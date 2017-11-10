@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/qunliao"
+        android:icon="@drawable/chats"
+        android:title="发起群聊" />
+    <item
+        android:id="@+id/add_friends"
+        android:icon="@drawable/add_haoyou"
+        android:title="添加好友" />
+    <item
+        android:id="@+id/erweima"
+        android:icon="@drawable/erweima"
+        android:title="扫一扫" />
+</menu>

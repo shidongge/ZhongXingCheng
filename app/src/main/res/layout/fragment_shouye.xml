@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:id="@+id/swipe_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F1F1F1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/shouye_shang"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:background="@mipmap/banner"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/shouye_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/mycolor"
+                    android:gravity="center"
+                    android:text="中星宝"
+                    android:textColor="#ffff"
+                    android:textSize="20sp" />
+
+
+                <!--<com.daimajia.slider.library.SliderLayout-->
+                <!--android:id="@+id/slider"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="170dp" />-->
+
+                <!--<com.daimajia.slider.library.Indicators.PagerIndicator-->
+                <!--android:id="@+id/custom_indicator"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--custom:selected_color="@color/colorPrimary"-->
+                <!--custom:selected_height="3dp"-->
+                <!--custom:selected_padding_left="2dp"-->
+                <!--custom:selected_padding_right="2dp"-->
+                <!--custom:selected_width="16dp"-->
+                <!--custom:shape="rect"-->
+                <!--custom:unselected_color="#55333333"-->
+                <!--custom:unselected_height="3dp"-->
+                <!--custom:unselected_padding_left="2dp"-->
+                <!--custom:unselected_padding_right="2dp"-->
+                <!--custom:unselected_width="16dp"-->
+                <!--/>-->
+                <ImageView
+                    android:id="@+id/shouye_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/shouye_title" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_zhong"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="195dp"
+                android:background="@drawable/shouye_bejing_rela"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/shouye_kthy"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/hyzx_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="开通会员" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/shouye_czzx"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/kthy_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="充值中心" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/shouye_xwzx"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/xwzx_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="新闻中心" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:id="@+id/shouye_mrqd"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/mrqd_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="每日签到" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/shouye_zxsc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/zxsc_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="中星商城" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/shouye_ltzx"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/ltzx_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="论坛中心" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/shouye_spzx"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/spzx_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="商品中心" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/shouye_sxy"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/sxy_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="商学院" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shouye_jptj"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/ll_zhong"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shouye_bejing_rela"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="精品推荐"
+                    android:textColor="#666666"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/imges_1" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/imges_2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/imges_3" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/imges_4" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shouye_rexiao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/shouye_jptj"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shouye_bejing_rela"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="热销商品"
+                    android:textColor="#666666"
+                    android:textSize="18sp" />
+
+                <us.mifeng.zhongxingcheng.view.MyGridView
+                    android:id="@+id/shouye_mGv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="3"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/shouye_gengduo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/shouye_rexiao"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="更多请前往商城查看"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

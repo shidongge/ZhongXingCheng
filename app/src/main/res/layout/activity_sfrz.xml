@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--身份认证-->
+    <include layout="@layout/title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/sfrz_img"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/sfrz_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sfrz_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+          />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/sfrz_jbxx_ll"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="基本信息" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="未完善" />
+
+        <ImageView
+
+            style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+        android:id="@+id/sfrz_zjzp"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="证件照片" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/sfrz_zjzp_text"
+            style="@style/zhuti_text"
+            android:text="未完善" />
+
+        <ImageView
+
+            style="@style/img_xiao" />
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="人脸照片" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="未完善" />
+
+        <ImageView
+
+            style="@style/img_xiao" />
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+
+</LinearLayout>

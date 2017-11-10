@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--基本信息-->
+    <include layout="@layout/title" />
+
+    <View style="@style/xiantiao" />
+
+    <View
+        style="@style/xiantiao"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="国籍(地区)" />
+
+        <View style="@style/xiantiao_zhongjian" />
+        <TextView
+            style="@style/zhuti_text"
+            android:text="中国大陆"
+            android:layout_marginRight="10dp"
+            />
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+
+            style="@style/zhuti_text"
+            android:text="姓名" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <EditText
+            android:gravity="center"
+            android:id="@+id/jbxx_name"
+            style="@style/zhuti_text"
+            android:hint="请输入姓名"
+            android:layout_marginRight="10dp" />
+
+    </LinearLayout>
+
+    <View style="@style/xiantiao"
+
+        />
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="证件类型" />
+
+        <View style="@style/xiantiao_zhongjian" />
+        <TextView
+            style="@style/zhuti_text"
+            android:text="身份证"
+            android:layout_marginRight="10dp"
+            />
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+    <View
+        style="@style/xiantiao"
+      />
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="证件号码" />
+
+        <View style="@style/xiantiao_zhongjian" />
+        <EditText
+            android:gravity="center"
+            android:inputType="number"
+            android:digits="0123456789X"
+            android:maxLength="18"
+            android:id="@+id/jbxx_sfz"
+            style="@style/zhuti_text"
+            android:hint="请输入二代身份证号码"
+            android:layout_marginRight="10dp"
+            />
+    </LinearLayout>
+    <View
+        style="@style/xiantiao"
+        />
+    <View style="@style/xiantiao"
+        android:layout_marginTop="10dp"
+
+        />
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="性别" />
+
+        <View style="@style/xiantiao_zhongjian" />
+        <TextView
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:id="@+id/jbxx_xingbie"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View style="@style/xiantiao"
+
+        />
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="出生年月日" />
+
+        <View style="@style/xiantiao_zhongjian" />
+        <TextView
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:id="@+id/jbxx_nianyueri"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View style="@style/xiantiao"
+
+        />
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="身份证所属地区" />
+
+        <View style="@style/xiantiao_zhongjian" />
+       <TextView
+           android:layout_marginRight="10dp"
+           android:gravity="center"
+           android:id="@+id/jbxx_ssdq"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent" />
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/jbxx_jiaoyan"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="校验"
+            />
+        <View
+            style="@style/xiantiao_zhongjian"/>
+        <Button
+            android:id="@+id/jbxx_tijiao"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="提交"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

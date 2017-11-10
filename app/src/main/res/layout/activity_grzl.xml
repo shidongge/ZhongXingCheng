@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="头像" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="未设置"
+
+            />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="我的二维码" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+        android:visibility="gone"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="背景图" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="未设置"
+
+            />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/grzl_ll_nc"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="昵称" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/grzl_nc"
+            style="@style/zhuti_text"
+
+
+            />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="性别" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/grzl_xb"
+            style="@style/zhuti_text"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:hint="点击选择"
+            />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="地区" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/grzl_diqu"
+            style="@style/zhuti_text"
+            android:layout_width="300dp"
+            android:gravity="center"
+            android:text="请选择地区"
+
+
+            />
+
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/grzl_ll_qm"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/zhuti_text"
+            android:text="个性签名" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/grzl_qianming"
+            style="@style/zhuti_text"
+
+
+            />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View
+        style="@style/xiantiao"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:visibility="gone"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="星座" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/grzl_xz"
+            style="@style/zhuti_text"
+            android:text="未设置"
+
+            />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+        android:id="@+id/grzl_ll_zhiye"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="职业" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/grzl_zhiye"
+            style="@style/zhuti_text"
+
+
+            />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="收入" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:text="收入选择"
+            android:gravity="center"
+            android:layout_width="300dp"
+            android:id="@+id/grzl_shouru"
+            style="@style/zhuti_text" />
+
+
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+        android:id="@+id/grzl_ll_aihao"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:text="兴趣爱好" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/grzl_aihao"
+            style="@style/zhuti_text" />
+
+        <ImageView style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+    <Button
+        android:id="@+id/grzl_mbtn"
+        android:layout_marginTop="10dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>

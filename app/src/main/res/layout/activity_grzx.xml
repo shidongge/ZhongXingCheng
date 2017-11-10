@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--个人中心界面-->
+
+    <include layout="@layout/title"/>
+    <View
+        style="@style/xiantiao"
+       />
+
+    <LinearLayout
+        android:id="@+id/grzx_grzy"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="个人主页"
+             />
+
+        <View
+            style="@style/xiantiao_zhongjian" />
+
+        <ImageView
+            style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View
+        style="@style/xiantiao" />
+
+    <LinearLayout
+        android:id="@+id/grzx_sfrz"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="身份认证"
+             />
+
+        <View
+            style="@style/xiantiao_zhongjian" />
+
+        <ImageView
+            style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View
+        style="@style/xiantiao" />
+
+    <LinearLayout style="@style/linear_tiaomu"
+        android:id="@+id/grzx_zxh"
+        >
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="我的中星号" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/grzx_zxh_text"
+            android:layout_marginRight="10dp"
+            style="@style/zhuti_text"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
+    <LinearLayout
+        android:id="@+id/grzx_shdz"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="收货地址"
+             />
+
+        <View
+            style="@style/xiantiao_zhongjian"/>
+
+        <ImageView
+            style="@style/img_xiao" />
+    </LinearLayout>
+
+    <View
+        style="@style/xiantiao" />
+    <LinearLayout
+        android:id="@+id/grzx_fapiao"
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="我的发票抬头"
+            />
+
+        <View
+            style="@style/xiantiao_zhongjian"/>
+
+        <ImageView
+            style="@style/img_xiao"/>
+    </LinearLayout>
+
+    <View
+        style="@style/xiantiao"  />
+    <LinearLayout
+        style="@style/linear_tiaomu">
+
+        <TextView
+            style="@style/zhuti_text"
+            android:text="我的收藏"
+             />
+
+        <View
+            style="@style/xiantiao_zhongjian"/>
+
+        <ImageView
+            style="@style/img_xiao"/>
+            style="@style/img_xiao"/>
+    </LinearLayout>
+
+    <View
+        style="@style/xiantiao"  />
+
+</LinearLayout>

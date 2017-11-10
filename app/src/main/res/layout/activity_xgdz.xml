@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--修改地址界面-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            style="@style/img_xiao"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="#000"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            style="@style/zhuti_text"
+            android:text="修改地址"
+
+            />
+        <View
+            style="@style/xiantiao_zhongjian"
+            />
+        <TextView
+           style="@style/zhuti_text"
+            android:text="删除"
+            />
+    </LinearLayout>
+    <View
+        style="@style/xiantiao"/>
+
+    <View
+        android:layout_marginTop="10dp"
+        style="@style/xiantiao"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="收件人" />
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="联系电话" />
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="所在地区" />
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="详细地址" />
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="邮政编码" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="纪宝宝" />
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="13810807771" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="北京 北京市 朝阳区" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView style="@style/img_xiao" />
+            </LinearLayout>
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="建外街道现代百联大厦300" />
+            <TextView
+                android:layout_weight="1"
+                style="@style/zhuti_text"
+                android:text="100011" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:layout_marginTop="20dp"
+        android:text="保存"
+        android:layout_gravity="center"
+        android:layout_width="244dp"
+        android:layout_height="40dp" />
+
+</LinearLayout>
