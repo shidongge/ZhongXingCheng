@@ -56,8 +56,6 @@ import us.mifeng.zhongxingcheng.liaotian.utils.PushUtil;
  */
 public class ConversationFragment extends Fragment implements ConversationView, FriendshipMessageView, GroupManageMessageView, View.OnClickListener {
 
-    private final String TAG = "ConversationFragment";
-
     private View view;
     private List<Conversation> conversationList = new LinkedList<>();
     private ConversationAdapter adapter;
@@ -69,7 +67,6 @@ public class ConversationFragment extends Fragment implements ConversationView, 
     private FriendshipConversation friendshipConversation;
     private GroupManageConversation groupManageConversation;
     private ImageView iv_search, iv_lianxiren, iv_add;
-    private AlertDialog alertDialog;
     private RelativeLayout rela_sao;
     private RelativeLayout rela_add;
     private RelativeLayout rela_chats;
@@ -92,7 +89,6 @@ public class ConversationFragment extends Fragment implements ConversationView, 
             iv_add.setOnClickListener(this);
             iv_search.setOnClickListener(this);
             iv_lianxiren.setOnClickListener(this);
-            //alertDialog = showDialog();
             showDialog2 = showDialog2();
             adapter = new ConversationAdapter(getActivity(), R.layout.item_conversation, conversationList);
             listView.setAdapter(adapter);
@@ -361,19 +357,6 @@ public class ConversationFragment extends Fragment implements ConversationView, 
         }
     }
 
-    private AlertDialog showDialog() {
-        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.conversation_dialog, null);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(inflate);
-        AlertDialog alertDialog = builder.create();
-        rela_chats = (RelativeLayout) inflate.findViewById(R.id.rela_chat);
-        rela_add = (RelativeLayout) inflate.findViewById(R.id.rela_add);
-        rela_sao = (RelativeLayout) inflate.findViewById(R.id.rela_erweima);
-        rela_add.setOnClickListener(this);
-        rela_chats.setOnClickListener(this);
-        rela_sao.setOnClickListener(this);
-        return alertDialog;
-    }
     private AlertDialog showDialog2() {
         View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.conversation_dialog, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -387,7 +370,7 @@ public class ConversationFragment extends Fragment implements ConversationView, 
         WindowManager.LayoutParams attributes = window.getAttributes();
         window.setGravity(Gravity.RIGHT | Gravity.TOP);
         attributes.width = (int) (display.getWidth() * 0.5);
-        attributes.y = 100;
+        attributes.y = 80;
         window.setAttributes(attributes);
         rela_chats = (RelativeLayout) inflate.findViewById(R.id.rela_chat);
         rela_add = (RelativeLayout) inflate.findViewById(R.id.rela_add);

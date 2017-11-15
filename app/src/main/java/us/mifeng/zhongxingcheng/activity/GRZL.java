@@ -5,17 +5,21 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -60,19 +64,20 @@ public class GRZL extends Activity implements View.OnClickListener {
     private TextView xb,xz,nincheng,diqu,qianming,xingzuo,zhiye,shouru,aihao;
     private boolean first = true;
     private String grxx;
-    private TextView biaoti;
     private String token;
     private LinearLayout ll_nc,ll_zhiye,ll_aihao;
     private LinearLayout ll_qianming;
     private int xb_int ;
+    private ImageView back;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grzl);
-        grxx = getIntent().getStringExtra("grxx");
         SharedUtils sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", GRZL.this);
         EventBus.getDefault().register(this);
+        TongMing();
         initView();
         initLianWang();
     }
@@ -162,21 +167,20 @@ public class GRZL extends Activity implements View.OnClickListener {
     private void initView() {
         xb = (TextView) findViewById(R.id.grzl_xb);
         xz = (TextView) findViewById(R.id.grzl_xz);
-        biaoti = (TextView) findViewById(R.id.title_text);
+
         nincheng = (TextView) findViewById(R.id.grzl_nc);
         diqu = (TextView) findViewById(R.id.grzl_diqu);
         qianming = (TextView) findViewById(R.id.grzl_qianming);
         zhiye = (TextView) findViewById(R.id.grzl_zhiye);
         shouru = (TextView) findViewById(R.id.grzl_shouru);
         aihao = (TextView) findViewById(R.id.grzl_aihao);
-        Button mbtn = (Button) findViewById(R.id.grzl_mbtn);
+        TextView mbtn = (TextView) findViewById(R.id.grzl_mbtn);
         ll_nc = (LinearLayout) findViewById(R.id.grzl_ll_nc);
         ll_zhiye = (LinearLayout) findViewById(R.id.grzl_ll_zhiye);
-        ImageView back = (ImageView) findViewById(R.id.title_back);
+        back = (ImageView) findViewById(R.id.grzl_back);
         ll_qianming = (LinearLayout) findViewById(R.id.grzl_ll_qm);
         ll_aihao = (LinearLayout) findViewById(R.id.grzl_ll_aihao);
-        back.setOnClickListener(this);
-        biaoti.setText(grxx);
+
         xz.setOnClickListener(this);
         xb.setOnClickListener(this);
         ll_nc.setOnClickListener(this);
@@ -186,6 +190,7 @@ public class GRZL extends Activity implements View.OnClickListener {
         ll_zhiye.setOnClickListener(this);
         diqu.setOnClickListener(this);
         shouru.setOnClickListener(this);
+        back.setOnClickListener(this);
     }
 
     @Override
@@ -201,11 +206,6 @@ public class GRZL extends Activity implements View.OnClickListener {
 
                     @Override
                     public void onInputIllegal() {
-//                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(GRZL.this);
-//                        alertDialog.setTitle("Alert:");
-//                        alertDialog.setMessage(" Illegal Input");
-//                        alertDialog.setPositiveButton("ok", null);
-//                        alertDialog.show();
 
                     }
                 });
@@ -214,14 +214,14 @@ public class GRZL extends Activity implements View.OnClickListener {
             case R.id.grzl_xz:
                 onConstellationPicker(xz);
                 break;
-            case R.id.title_back:
-                finish();
-                break;
+
             case R.id.grzl_ll_nc:
                 Intent intent = new Intent(GRZL.this, NinChen.class);
                 startActivity(intent);
                 break;
-
+            case R.id.grzl_back:
+                finish();
+                break;
             case R.id.grzl_ll_qm:
                 startActivity(new Intent(GRZL.this,JieShao.class));
                 break;
@@ -353,7 +353,7 @@ public class GRZL extends Activity implements View.OnClickListener {
                 isChinese ? new String[]{
                         "5000以下", "5000-10000", "10000-15000", "20000-50000", "50000以上"
                 } : new String[]{
-                        "Aquarius", "Pisces", "Aries", "Taurus", "Gemini"
+                        "5000以下", "5000-10000", "10000-15000", "20000-50000", "50000以上"
                 });
         //picker.setCanLoop(false);//不禁用循环
         picker.setTopBackgroundColor(0xFFEEEEEE);
@@ -382,7 +382,7 @@ public class GRZL extends Activity implements View.OnClickListener {
             @Override
             public void onItemPicked(int index, String item) {
                 shouru.setText(item);
-                shouru.setTextColor(Color.parseColor("#ff0000"));
+               // shouru.setTextColor(Color.parseColor("#ff0000"));
             }
         });
         picker.show();
@@ -414,5 +414,26 @@ public class GRZL extends Activity implements View.OnClickListener {
     public void MessageEvent(AiHaoEvent event){
         String msg = event.getMsg();
         aihao.setText(msg);
+    }
+    //设置状态栏
+    public void TongMing(){
+        //如果手机有虚拟按键 那么不能添加透明状态栏
+        //透明状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            // Translucent status bar
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        //透明状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
+        tintManager.setTintColor(Color.parseColor("#000000"));
+
     }
 }

@@ -74,8 +74,11 @@ public class SearchFriendActivity extends Activity implements FriendInfoView, Ad
                 if (key.equals("")) return true;
                 presenter.searchFriendByName(key,true);
                 //给手机号加上86-
+                /**
+                 * 因为注册时在每个手机号后面都加了a,所以查找的时候要默认带a
+                 */
                 if (maybePhone(key)){
-                    key = "86-" + key;
+                    key =  key+"a";
                 }
                 presenter.searchFriendById(key);
                 return true;

@@ -5,11 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
@@ -46,12 +53,13 @@ import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.adapter.LXRAdapter;
 import us.mifeng.zhongxingcheng.bean.LXRBean;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
+import us.mifeng.zhongxingcheng.view.MyListView;
 
 
-public class FriendsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FriendshipManageView, StrAccountLogin.LoginListener, OnLoadMoreListener {
+public class FriendsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FriendshipManageView, StrAccountLogin.LoginListener, OnLoadMoreListener, View.OnClickListener {
     private static final String TAG = "Fragment_LianXiRen";
     private List<LXRBean> list;
-    private ListView lv;
+    private MyListView lv;
     private LXRAdapter adapter;
     private String password = "123456789";
     private TLSService tlsService;
@@ -64,6 +72,11 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     //保证数据加载时的准确性
     private int start;
     private String token;
+    private AlertDialog showDialog2;
+    private RelativeLayout rela_sao;
+    private RelativeLayout rela_add;
+    private RelativeLayout rela_chats;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,17 +156,42 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     };
 
 
-
-
-
-
     private void initView() {
-        lv = (ListView) findViewById(R.id.swipe_target);
-        swipeToLoadLayout = (SwipeToLoadLayout) findViewById(R.id.swipeToLoadLayout);
-        swipeToLoadLayout.setOnLoadMoreListener(this);
+        lv = (MyListView) findViewById(R.id.swipe_target);
+        ImageView add = (ImageView) findViewById(R.id.txl_add);
+        showDialog2 = showDialog2();
+        ImageView back = (ImageView) findViewById(R.id.txl_back);
+        back.setOnClickListener(this);
+        add.setOnClickListener(this);
+      //  swipeToLoadLayout = (SwipeToLoadLayout) findViewById(R.id.swipeToLoadLayout);
+//        swipeToLoadLayout.setOnLoadMoreListener(this);
         lv.setOnItemClickListener(this);
+        back.setOnClickListener(this);
 //        list = new ArrayList<>();
 
+    }
+    private AlertDialog showDialog2() {
+        View inflate = LayoutInflater.from(FriendsActivity.this).inflate(R.layout.conversation_dialog, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(FriendsActivity.this);
+        builder.setView(inflate);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        alertDialog.dismiss();
+        Window window = alertDialog.getWindow();
+        WindowManager windowManager = FriendsActivity.this.getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        window.setGravity(Gravity.RIGHT | Gravity.TOP);
+        attributes.width = (int) (display.getWidth() * 0.5);
+        attributes.y = 80;
+        window.setAttributes(attributes);
+        rela_chats = (RelativeLayout) inflate.findViewById(R.id.rela_chat);
+        rela_add = (RelativeLayout) inflate.findViewById(R.id.rela_add);
+        rela_sao = (RelativeLayout) inflate.findViewById(R.id.rela_erweima);
+        rela_add.setOnClickListener(this);
+        rela_chats.setOnClickListener(this);
+        rela_sao.setOnClickListener(this);
+        return alertDialog;
     }
 
 //    private void initData() {
@@ -176,8 +214,13 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
         LXRBean bean = (LXRBean) parent.getAdapter().getItem(position);
         mobile = bean.getMobile()+"a";
+//        Intent intent = new Intent(this, ChatActivity.class);
+//        intent.putExtra("identify",mobile);
+//        intent.putExtra("type", TIMConversationType.C2C);
+//        startActivity(intent);
         int result = tlsService.TLSStrAccReg(mobile, password, strAccRegListener);
         if (result == TLSErrInfo.INPUT_INVALID) {
             Util.showToast(this, "帐号不合法");
@@ -193,6 +236,24 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     public void onLoadMore() {
         initLianWang();
         swipeToLoadLayout.setLoadingMore(false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.txl_add:
+                if (showDialog2 != null) {
+                    if (showDialog2.isShowing()) {
+                        showDialog2.dismiss();
+                    } else {
+                        showDialog2.show();
+                    }
+                }
+                break;
+            case R.id.txl_back:
+                finish();
+                break;
+        }
     }
 
     class StrAccRegListener implements TLSStrAccRegListener {
@@ -229,9 +290,9 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                 break;
             case TIM_FRIEND_STATUS_SUCC:
                 Toast.makeText(this, "已添加好友", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ProfileActivity.class);
-                intent.putExtra("yonghu", mobile);
-                startActivity(intent);
+//                Intent intent = new Intent(this, ProfileActivity.class);
+//                intent.putExtra("yonghu", mobile);
+//                startActivity(intent);
                 break;
             case TIM_ADD_FRIEND_STATUS_FRIEND_SIDE_FORBID_ADD:
                 Toast.makeText(this, "对方拒绝添加任何人为好友", Toast.LENGTH_SHORT).show();
@@ -260,7 +321,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                 break;
             default:
                 Intent intent1 = new Intent(this, ProfileActivity.class);
-                intent1.putExtra("yonghu", mobile);
+                intent1.putExtra("identify", mobile);
                 startActivity(intent1);
                 Toast.makeText(this, getResources().getString(R.string.add_friend_error), Toast.LENGTH_SHORT).show();
                 break;
@@ -288,6 +349,5 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     public void onChangeGroup(TIMFriendStatus status, String groupName) {
 
     }
-
 
 }

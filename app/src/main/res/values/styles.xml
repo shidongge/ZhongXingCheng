@@ -70,7 +70,7 @@
     <style name="xiantiao">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">#7e7a7a</item>
+        <item name="android:background">#DBDBDB</item>
     </style>
 
     <style name="main_menu_animstyle">

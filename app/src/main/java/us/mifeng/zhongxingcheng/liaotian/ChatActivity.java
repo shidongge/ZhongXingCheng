@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,9 @@ import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.liaotian.adapter.ChatAdapter;
 import us.mifeng.zhongxingcheng.liaotian.model.CustomMessage;
 import us.mifeng.zhongxingcheng.liaotian.model.FileMessage;
+import us.mifeng.zhongxingcheng.liaotian.model.FriendProfile;
+import us.mifeng.zhongxingcheng.liaotian.model.FriendshipInfo;
+import us.mifeng.zhongxingcheng.liaotian.model.GroupInfo;
 import us.mifeng.zhongxingcheng.liaotian.model.ImageMessage;
 import us.mifeng.zhongxingcheng.liaotian.model.Message;
 import us.mifeng.zhongxingcheng.liaotian.model.MessageFactory;
@@ -74,6 +78,7 @@ public class ChatActivity extends FragmentActivity implements ChatView {
     private TIMConversationType type;
     private String titleStr;
     private Handler handler = new Handler();
+    private ImageView tv_details;
 
 
     public static void navToChat(Context context, String identify, TIMConversationType type) {
@@ -98,6 +103,25 @@ public class ChatActivity extends FragmentActivity implements ChatView {
         listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
         listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
+        tv_details = (ImageView) findViewById(R.id.tv_details);
+        tv_details.setOnClickListener(new View.OnClickListener() {
+
+            private Intent intent;
+
+            @Override
+            public void onClick(View v) {
+                //群组
+                if (type== TIMConversationType.C2C){
+
+                    intent = new Intent(ChatActivity.this, ProfileActivity.class);
+                    intent.putExtra("identify",identify);
+                }else {
+                    intent = new Intent(ChatActivity.this,GroupProfileActivity.class);
+                    intent.putExtra("identify",identify);
+                }
+                startActivity(intent);
+            }
+        });
         listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -128,8 +152,23 @@ public class ChatActivity extends FragmentActivity implements ChatView {
             }
         });
         registerForContextMenu(listView);
-        //TemplateTitle title = (TemplateTitle) findViewById(R.id.chat_title);
         TextView title = (TextView) findViewById(R.id.chat_title);
+        switch (type) {
+            case C2C:
+                if (FriendshipInfo.getInstance().isFriend(identify)){
+                    FriendProfile profile = FriendshipInfo.getInstance().getProfile(identify);
+                    title.setText(titleStr = profile == null ? identify : profile.getName());
+                }else{
+                    title.setText(titleStr = identify);
+                }
+                break;
+            case Group:
+                title.setText(GroupInfo.getInstance().getGroupName(identify));
+                break;
+
+        }
+        //TemplateTitle title = (TemplateTitle) findViewById(R.id.chat_title);
+        //TextView title = (TextView) findViewById(R.id.chat_title);
         /*switch (type) {
             case C2C:
                 title.setMoreImg(R.drawable.btn_person);

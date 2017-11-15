@@ -30,7 +30,7 @@ import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.liaotian.model.FriendProfile;
 import us.mifeng.zhongxingcheng.liaotian.model.FriendshipInfo;
 
-
+//好友资料界面
 public class ProfileActivity extends FragmentActivity implements FriendshipManageView, View.OnClickListener {
 
 
@@ -52,12 +52,11 @@ public class ProfileActivity extends FragmentActivity implements FriendshipManag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        identify = getIntent().getStringExtra("yonghu");
+        identify = getIntent().getStringExtra("identify");
         friendshipManagerPresenter = new FriendshipManagerPresenter(this);
         if (!TextUtils.isEmpty(identify)){
             showProfile(identify);
         }
-
     }
 
     /**

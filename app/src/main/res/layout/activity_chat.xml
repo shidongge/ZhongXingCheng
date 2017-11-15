@@ -12,6 +12,12 @@
         android:gravity="center"
         android:text="聊天"
         android:textSize="18sp" />
+    <ImageView
+        android:id="@+id/tv_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_haoyou"
+        />
     <View
         android:layout_below="@id/chat_title"
         style="@style/xiantiao"

@@ -1,8 +1,8 @@
 package us.mifeng.zhongxingcheng.liaotian.model;
 
 import android.content.Context;
-import android.content.Intent;
 
+import com.tencent.imsdk.TIMConversationType;
 import com.tencent.imsdk.TIMGroupMemberRoleType;
 import com.tencent.imsdk.TIMGroupReceiveMessageOpt;
 import com.tencent.imsdk.ext.group.TIMGroupBasicSelfInfo;
@@ -10,7 +10,7 @@ import com.tencent.imsdk.ext.group.TIMGroupCacheInfo;
 import com.tencent.imsdk.ext.group.TIMGroupDetailInfo;
 
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.liaotian.GroupProfileActivity;
+import us.mifeng.zhongxingcheng.liaotian.ChatActivity;
 
 
 /**
@@ -100,8 +100,9 @@ public class GroupProfile implements ProfileSummary {
      */
     @Override
     public void onClick(Context context) {
-        Intent intent = new Intent(context, GroupProfileActivity.class);
-        intent.putExtra("identify", profile.getGroupId());
-        context.startActivity(intent);
+//        Intent intent = new Intent(context, GroupProfileActivity.class);
+//        intent.putExtra("identify", profile.getGroupId());
+//        context.startActivity(intent);
+        ChatActivity.navToChat(context,profile.getGroupId(), TIMConversationType. Group);
     }
 }

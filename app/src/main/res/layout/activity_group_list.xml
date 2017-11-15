@@ -6,24 +6,35 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:background="@color/zhuangtailan"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/ql_back"
+            android:padding="10dp"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/fh"
+            />
         <TextView
+            android:layout_marginLeft="45dp"
+            android:textColor="#fff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="公开群"
+            android:layout_centerVertical="true"
+            android:text="群聊"
             android:textSize="18sp" />
 
         <ImageView
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
             android:id="@+id/groupListTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/ic_add_more" />
+
+            android:src="@mipmap/tj" />
     </RelativeLayout>
 
 

@@ -4,24 +4,22 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:layout_marginTop="22dp"
+        android:background="@drawable/mycolor"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal"
         >
         <ImageView
             android:id="@+id/qianming_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/back"
-            android:padding="15dp"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/fh"
+            android:padding="5dp"
             />
-        <View
-            android:layout_gravity="center"
-            android:layout_width="1dp"
-            android:layout_height="40dp"
-            android:background="#000"
-            />
+
         <TextView
+            android:textColor="#fff"
             android:layout_marginLeft="10dp"
             style="@style/zhuti_text"
             android:text="个性签名"
@@ -29,14 +27,9 @@
         <View
             style="@style/xiantiao_zhongjian"
             />
-        <View
-            android:layout_marginRight="10dp"
-            android:layout_gravity="center"
-            android:layout_width="1dp"
-            android:layout_height="40dp"
-            android:background="#000"
-            />
+
         <TextView
+            android:textColor="#fff"
             android:id="@+id/qm_bc"
             android:layout_marginRight="10dp"
             style="@style/zhuti_text"
@@ -46,13 +39,35 @@
     <View
         style="@style/xiantiao"
         />
-    <EditText
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp">
+    <EditText
+        android:hint="输您想要表达的签名"
+        android:gravity="top"
+        android:background="#dbdbdb"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:id="@+id/qm_edit"
         android:maxLength="30"
         />
+        <TextView
+            android:id="@+id/renren_sdk_status_ch_counter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+           android:layout_alignParentBottom="true"
+            android:layout_marginRight="15dp"
+           android:layout_marginBottom="15dp"
+            android:gravity="right"
+            android:text="0/30"
+            android:textColor="#999999"
+            android:textSize="14sp" />
+    </RelativeLayout>
     <TextView
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="最多可输入30字"

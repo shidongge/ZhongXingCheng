@@ -98,7 +98,13 @@
         <activity android:name=".activity.AIHao"/>
         <activity android:name=".activity.H5SHDZ"/>
         <activity android:name=".activity.FPGL"/>
+        <activity android:name=".activity.ZZC"/>
+        <activity android:name=".denlgu.SettingActivity"/>
+        <activity android:name=".liaotian.FriendshipHandleActivity"/>
+        <activity android:name=".liaotian.FriendshipManageMessageActivity"/>
         <activity android:name=".activity.ZhangDan"/>
+        <activity android:name=".liaotian.BlackListActivity"/>
+
         <!-- 消息收发service -->
         <service
             android:name="com.tencent.qalsdk.service.QalService"

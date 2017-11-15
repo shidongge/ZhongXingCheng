@@ -2,17 +2,21 @@ package us.mifeng.zhongxingcheng.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.tencent.qcloud.tlslibrary.utils.SharedUtils;
 
 import org.json.JSONException;
@@ -21,12 +25,16 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
+
 
 /**
  * Created by shido on 2017/10/30.
@@ -38,11 +46,10 @@ import us.mifeng.zhongxingcheng.utils.WangZhi;
 public class GRXX extends Activity implements View.OnClickListener {
     private static final String TAG = "GRXX";
     private TextView nc,js,phone,zsxm,diqu,zhiye,shouru,aihao;
-    private Button bt;
-    private TextView biaoti;
+    private TextView bt;
     private String grzx;
     private String token;
-    private ImageView img;
+    private ImageView img,back,sznc;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +58,7 @@ public class GRXX extends Activity implements View.OnClickListener {
         grzx = getIntent().getStringExtra("grzx");
         SharedUtils sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", GRXX.this);
+        TongMing();
         initView();
         initLianWang();
     }
@@ -134,7 +142,7 @@ public class GRXX extends Activity implements View.OnClickListener {
 
                         nc.setText(nickName);
                     }
-                    Glide.with(GRXX.this).load(WangZhi.TUPIAN+portrait).into(img);
+                    Glide.with(GRXX.this).load(WangZhi.TUPIAN+portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -151,34 +159,55 @@ public class GRXX extends Activity implements View.OnClickListener {
         zhiye = (TextView) findViewById(R.id.grxx_zhiye);
         shouru = (TextView) findViewById(R.id.grxx_shouru);
         aihao = (TextView) findViewById(R.id.grxx_aihao);
-        bt = (Button) findViewById(R.id.grzx_bt);
-        biaoti = (TextView) findViewById(R.id.title_text);
+        bt = (TextView) findViewById(R.id.grzx_bt);
         img = (ImageView) findViewById(R.id.grxx_img);
-        ImageView back = (ImageView) findViewById(R.id.title_back);
-        biaoti.setText(grzx);
-        back.setOnClickListener(this);
+        back = (ImageView) findViewById(R.id.grxx_back);
 //        nc.setOnClickListener(this);
-        //js.setOnClickListener(this);
+        sznc = (ImageView) findViewById(R.id.grxx_sznc);
+        js.setOnClickListener(this);
         bt.setOnClickListener(this);
+        back.setOnClickListener(this);
+        sznc.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-//            case R.id.grxx_nc:
-//                startActivity(new Intent(GRXX.this,NinChen.class));
-//                break;
-//            case R.id.grxx_js:
-//                startActivity(new Intent(GRXX.this,JieShao.class));
-//                break;
+            case R.id.grxx_sznc:
+                startActivity(new Intent(GRXX.this,NinChen.class));
+                break;
+            case R.id.grxx_js:
+                startActivity(new Intent(GRXX.this,JieShao.class));
+                break;
             case R.id.grzx_bt:
                 Intent intent = new Intent(GRXX.this, GRZL.class);
                 intent.putExtra("grxx","个人资料");
                 startActivity(intent);
                 break;
-            case R.id.title_back:
+            case R.id.grxx_back:
                 finish();
                 break;
         }
+    }
+    //设置状态栏
+    public void TongMing(){
+        //如果手机有虚拟按键 那么不能添加透明状态栏
+        //透明状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            // Translucent status bar
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        //透明状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
+        tintManager.setTintColor(Color.parseColor("#000000"));
+
     }
 }

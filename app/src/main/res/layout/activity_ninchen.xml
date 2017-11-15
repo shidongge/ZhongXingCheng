@@ -4,6 +4,8 @@
     android:layout_height="match_parent">
     
     <LinearLayout
+        android:layout_marginTop="22dp"
+        android:background="@drawable/mycolor"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal"
@@ -11,18 +13,15 @@
 
         <ImageView
             android:id="@+id/nincheng_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/back"
-            android:padding="15dp"/>
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/fh"
+            android:padding="8dp"/>
 
-        <View
-            android:layout_gravity="center"
-            android:layout_width="1dp"
-            android:layout_height="40dp"
-            android:background="#000"
-            />
+
         <TextView
+            android:textSize="18sp"
+            android:textColor="#fff"
             android:layout_marginLeft="10dp"
             style="@style/zhuti_text"
             android:text="昵称"
@@ -30,14 +29,10 @@
         <View
             style="@style/xiantiao_zhongjian"
             />
-        <View
-            android:layout_marginRight="10dp"
-            android:layout_gravity="center"
-            android:layout_width="1dp"
-            android:layout_height="40dp"
-            android:background="#000"
-            />
+
         <TextView
+            android:textSize="18sp"
+            android:textColor="#fff"
             android:id="@+id/nc_bc"
             android:layout_marginRight="10dp"
             style="@style/zhuti_text"

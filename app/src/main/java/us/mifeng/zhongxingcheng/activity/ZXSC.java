@@ -34,7 +34,7 @@ public class ZXSC extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zxsc);
         SharedUtils sharedUtils = new SharedUtils();
-        session = sharedUtils.getToken("session", this);
+        session = sharedUtils.getShared("sessionId", this);
         progressDialog = new ProgressDialog(ZXSC.this);
         url = WangZhi.ZXC;
         initView();
@@ -42,8 +42,10 @@ public class ZXSC extends Activity {
 
     private void initView() {
         zxsc = (WebView) findViewById(R.id.wv_zxsc);
+        synCookies(ZXSC.this,url);
         WebSettings settings = zxsc.getSettings();
         settings.setJavaScriptEnabled(true);
+        settings.setBuiltInZoomControls(true);
         zxsc.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -61,14 +63,14 @@ public class ZXSC extends Activity {
             }
         });
 
-        synCookies(this,url,session);
+
         zxsc.loadUrl(url);
     }
-    public void synCookies(Context context, String url, String cookie) {
+    public void synCookies(Context context, String url) {
         CookieSyncManager.createInstance(context);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
-        cookieManager.setCookie(url, cookie);//cookies是在HttpClient中获得的cookie
+        cookieManager.setCookie(url, session);//cookies是在HttpClient中获得的cookie
         CookieSyncManager.getInstance().sync();
     }
     @Override

@@ -2,22 +2,28 @@ package us.mifeng.zhongxingcheng.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -80,7 +87,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
         imagePicker = MyApplicaiton.getImagePicker();
         SharedUtils sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", SFRZ.this);
-
+        TongMing();
         Log.e(TAG, "onCreate: "+token );
         initView();
         initLianWang();
@@ -292,11 +299,32 @@ public class SFRZ extends Activity implements View.OnClickListener {
                     }else if (realStatus.equals("1")){
                         renzhen.setText("已实名认证");
                     }
-                    Glide.with(SFRZ.this).load(WangZhi.TUPIAN+portrait).into(img);
+                    Glide.with(SFRZ.this).load(WangZhi.TUPIAN+portrait).apply(RequestOptions.bitmapTransform(new CropCircleTransformation())).into(img);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
     };
+    //设置状态栏
+    public void TongMing(){
+        //如果手机有虚拟按键 那么不能添加透明状态栏
+        //透明状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            // Translucent status bar
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        //透明状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
+        tintManager.setTintColor(Color.parseColor("#000000"));
+
+    }
 }

@@ -113,7 +113,11 @@ public class FriendProfile implements ProfileSummary {
 //        }else{
 //            return profile.getFriendGroups().get(0);
 //        }
+
         return MyApplicaiton.getContext().getString(R.string.default_group_name);
+    }
+    public interface GetIdListener {
+        void getId(String id);
     }
 
 }

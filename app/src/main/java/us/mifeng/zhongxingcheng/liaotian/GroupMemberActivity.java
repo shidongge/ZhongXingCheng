@@ -61,6 +61,7 @@ public class GroupMemberActivity extends Activity implements TIMValueCallBack<Li
                 startActivityForResult(intent, MEM_REQ);
             }
         });
+
         if (type.equals(GroupInfo.privateGroup)) {
             img_add.setOnClickListener(new View.OnClickListener() {
                 @Override

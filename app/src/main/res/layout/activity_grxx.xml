@@ -6,36 +6,85 @@
 
     <!--个人信息界面-->
 
-    <include layout="@layout/title" />
-
-    <RelativeLayout
+    <LinearLayout
+        android:layout_marginTop="22dp"
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="48dp"
+        android:background="@drawable/mycolor"
+        android:orientation="horizontal">
 
         <ImageView
-            android:scaleType="fitXY"
-            android:layout_marginTop="30dp"
+            android:id="@+id/grxx_back"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@mipmap/fh" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="个人主页"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <View style="@style/xiantiao_zhongjian" />
+        <TextView
+            android:id="@+id/grzx_bt"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="编辑"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:background="@mipmap/dt2"
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+        
+        <ImageView
             android:id="@+id/grxx_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_centerHorizontal="true" />
-
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitXY" />
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:id="@+id/grxx_nincheng"
+            android:layout_below="@id/grxx_img"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+        
         <TextView
             android:id="@+id/grxx_nc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/grxx_img"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="未设置昵称" />
 
+            android:text="未设置昵称" />
+            <ImageView
+                android:id="@+id/grxx_sznc"
+                android:layout_marginLeft="10dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/bj"
+                />
+        </LinearLayout>
         <TextView
             android:id="@+id/grxx_js"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/grxx_nc"
+            android:layout_below="@id/grxx_nincheng"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             android:text="介绍一下你自己"
             android:textColor="#243bcf"
             android:textSize="13dp" />
@@ -43,11 +92,11 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:background="#f4f2f2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        >
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="80dp"
@@ -57,60 +106,60 @@
             android:orientation="vertical">
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="中星宝账户" />
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="真实姓名" />
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="中星积分" />
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="地区" />
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="星座" />
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="职业" />
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="收入" />
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="兴趣爱好" />
 
 
@@ -127,73 +176,60 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-              />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/grxx_zsxm"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-             />
+                android:gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-               />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/grxx_diqu"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                 />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/grxx_xingzuo"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                 />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/grxx_zhiye"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-               />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/grxx_shouru"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-               />
+                android:gravity="center" />
+
             <TextView
                 android:id="@+id/grxx_aihao"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-             />
+                android:gravity="center" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/grzx_bt"
-        android:layout_width="244dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="编辑" />
+
 
 </LinearLayout>

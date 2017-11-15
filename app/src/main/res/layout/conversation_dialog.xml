@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="160dp"
-    android:layout_height="120dp"
+    android:layout_width="140dp"
+    android:layout_height="100dp"
+    android:background="@mipmap/tc"
     android:orientation="vertical">
 
     <RelativeLayout
+
         android:id="@+id/rela_chat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -12,19 +14,22 @@
         android:paddingLeft="10dp">
 
         <ImageView
+            android:padding="5dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/chats" />
+            android:src="@mipmap/ql" />
 
         <TextView
+            android:layout_marginLeft="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:text="发起群聊" />
     </RelativeLayout>
 
     <RelativeLayout
+
         android:id="@+id/rela_add"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -32,19 +37,22 @@
         android:paddingLeft="10dp">
 
         <ImageView
+            android:padding="5dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/add_haoyou" />
+            android:src="@mipmap/tjhpy" />
 
         <TextView
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginLeft="40dp"
             android:text="添加好友" />
     </RelativeLayout>
 
     <RelativeLayout
+
         android:id="@+id/rela_erweima"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -52,15 +60,17 @@
         android:paddingLeft="10dp">
 
         <ImageView
+            android:padding="5dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/erweima" />
 
         <TextView
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginLeft="40dp"
             android:text="扫一扫" />
     </RelativeLayout>
 </LinearLayout>

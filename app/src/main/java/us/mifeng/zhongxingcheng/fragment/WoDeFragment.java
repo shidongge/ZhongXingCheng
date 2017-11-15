@@ -23,16 +23,20 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.activity.BZZX;
 import us.mifeng.zhongxingcheng.activity.GRZX;
-import us.mifeng.zhongxingcheng.activity.SheZhi;
+import us.mifeng.zhongxingcheng.activity.ZZC;
 import us.mifeng.zhongxingcheng.activity.ZhangDan;
+import us.mifeng.zhongxingcheng.denlgu.SettingActivity;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 /**
  * Created by shido on 2017/10/17.
@@ -43,11 +47,13 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rela;
     private View inflate;
     private static final String TAG = "WoDeFragment";
-    private LinearLayout shezhi,bzzx,zhangdan;
-    private TextView phone,nincheng;
+    private LinearLayout bzzx,zzc;
+    private TextView phone,nincheng,shezhi;
     private String id;
     private String token;
     private ImageView img;
+    private String portrait;
+    private LinearLayout zhangdan;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
@@ -84,8 +90,9 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
 
     private void initView() {
         zhangdan = (LinearLayout) inflate.findViewById(R.id.wode_zhangdan);
+        zzc = (LinearLayout) inflate.findViewById(R.id.wode_zzc);
         rela = (RelativeLayout) inflate.findViewById(R.id.wode_rela);
-        shezhi = (LinearLayout) inflate.findViewById(R.id.wode_shezhi);
+        shezhi = (TextView) inflate.findViewById(R.id.wode_shezhi);
         bzzx = (LinearLayout) inflate.findViewById(R.id.wode_bzzx);
         phone = (TextView) inflate.findViewById(R.id.wode_phone);
         nincheng = (TextView) inflate.findViewById(R.id.wode_nincheng);
@@ -93,6 +100,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
         shezhi.setOnClickListener(this);
         rela.setOnClickListener(this);
         bzzx.setOnClickListener(this);
+        zzc.setOnClickListener(this);
         zhangdan.setOnClickListener(this);
     }
 
@@ -103,12 +111,17 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), GRZX.class));
                 break;
             case R.id.wode_shezhi:
-                startActivity(new Intent(getActivity(), SheZhi.class));
+                Intent intent1 = new Intent(getActivity(), SettingActivity.class);
+                intent1.putExtra("img",portrait);
+                startActivity(intent1);
                 break;
             case R.id.wode_bzzx:
                 Intent intent = new Intent(getActivity(), BZZX.class);
                 intent.putExtra("bangzhu","帮助中心");
                 startActivity(intent);
+                break;
+            case R.id.wode_zzc:
+                startActivity(new Intent(getActivity(), ZZC.class));
                 break;
             case R.id.wode_zhangdan:
                 startActivity(new Intent(getActivity(), ZhangDan.class));
@@ -128,9 +141,9 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                     String nickName = msg1.getString("nickName");
 
                     //图片地址
-                    String portrait = msg1.getString("portrait");
+                    portrait = msg1.getString("portrait");
                     SharedUtils sharedUtils = new SharedUtils();
-                    sharedUtils.saveShared("portrait",portrait,getActivity());
+                    sharedUtils.saveShared("portrait", portrait,getActivity());
                     String mobile = msg1.getString("mobile");
 
                     //TODO 隐藏手机号中间四位
@@ -144,8 +157,8 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                     }else {
                         nincheng.setText(nickName);
                     }
-                    Log.e(TAG, "handleMessage: "+portrait );
-                    Glide.with(getActivity()).load(WangZhi.TUPIAN+portrait).into(img);
+                    Log.e(TAG, "handleMessage: "+ portrait);
+                    Glide.with(getActivity()).load(WangZhi.TUPIAN+ portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
