@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,7 +19,17 @@ import android.widget.TextView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.tencent.qcloud.tlslibrary.utils.SharedUtils;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.utils.OkUtils;
+import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 
 /**
@@ -32,7 +45,9 @@ public class GRZX extends Activity implements View.OnClickListener {
     private ImageView back;
     private TextView zxh;
     private String yicangshoujiaho;
-
+    private String token;
+    private static final String TAG = "GRZX";
+    private String realStatus;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,9 +55,33 @@ public class GRZX extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_grzx);
         SharedUtils sharedUtils = new SharedUtils();
         yicangshoujiaho = sharedUtils.getShared("yicangshoujihao", GRZX.this);
+        token = sharedUtils.getShared("token",GRZX.this);
         TongMing();
+        initLianWang();
         initView();
     }
+
+    private void initLianWang() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("token",token);
+        OkUtils.UploadSJ(WangZhi.WODE, map, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+             //   Log.e(TAG, "onResponse: "+response.body().string() );
+                String string = response.body().string();
+                Message mess = hand.obtainMessage();
+                mess.obj=string;
+                mess.what=100;
+                hand.sendMessage(mess);
+            }
+        });
+    }
+
     //设置状态栏
     public void TongMing(){
         //如果手机有虚拟按键 那么不能添加透明状态栏
@@ -89,9 +128,15 @@ public class GRZX extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.grzx_sfrz:
-                Intent intent1 = new Intent(GRZX.this, SFRZ.class);
-                intent1.putExtra("sfrz","身份认证");
-                startActivity(intent1);
+                Log.e(TAG, "onClick: "+realStatus );
+                if (realStatus.equals("1")){
+                    startActivity(new Intent(GRZX.this,ZJZP_WanShan.class));
+                }else if (realStatus.equals("0")){
+                    Intent intent1 = new Intent(GRZX.this, SFRZ.class);
+                    intent1.putExtra("sfrz","身份认证");
+                    startActivity(intent1);
+                }
+
                 break;
             case R.id.grzx_shdz:
                 startActivity(new Intent(GRZX.this,H5SHDZ.class));
@@ -105,4 +150,22 @@ public class GRZX extends Activity implements View.OnClickListener {
                 break;
         }
     }
+    Handler hand = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what==100){
+                String str = (String) msg.obj;
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    JSONObject msg1 = data.getJSONObject("msg");
+                    realStatus = msg1.getString("realStatus");
+                    Log.e(TAG, "handleMessage: "+realStatus );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
 }

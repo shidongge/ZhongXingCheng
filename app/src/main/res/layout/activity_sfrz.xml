@@ -5,90 +5,318 @@
     android:layout_marginTop="22dp"
     android:orientation="vertical">
     <!--身份认证-->
-    <include
-        layout="@layout/title"
-
-        />
-
-    <RelativeLayout
+    <LinearLayout
+        android:background="@drawable/mycolor"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
-
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        >
         <ImageView
-            android:scaleType="centerCrop"
-            android:id="@+id/sfrz_img"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_centerInParent="true" />
+            android:id="@+id/sfrz_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/fh"
+            android:padding="5dp"
+            />
 
         <TextView
-            android:id="@+id/sfrz_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/sfrz_img"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-          />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/sfrz_jbxx_ll"
-        style="@style/linear_tiaomu">
-
-        <TextView
+            android:textColor="#fff"
+            android:layout_marginLeft="10dp"
             style="@style/zhuti_text"
-            android:text="基本信息" />
-
-        <View style="@style/xiantiao_zhongjian" />
+            android:text="身份认证"
+            />
+        <View
+            style="@style/xiantiao_zhongjian"
+            />
 
         <TextView
+            android:textColor="#fff"
+            android:id="@+id/sfrz_baocun"
+            android:layout_marginRight="10dp"
             style="@style/zhuti_text"
-            android:text="未完善" />
-
-        <ImageView
-
-            style="@style/img_xiao" />
+            android:text="保存"
+            />
     </LinearLayout>
 
-    <View style="@style/xiantiao" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/sfrz_zjzp"
-        style="@style/linear_tiaomu">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            style="@style/zhuti_text"
-            android:text="证件照片" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
 
-        <View style="@style/xiantiao_zhongjian" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/jbzl" />
 
-        <TextView
-            android:id="@+id/sfrz_zjzp_text"
-            style="@style/zhuti_text"
-            android:text="未完善" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="基本信息"
+                    android:textColor="#333333"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-        <ImageView
+            <View
+                style="@style/xiantiao"
+                android:layout_marginTop="10dp" />
 
-            style="@style/img_xiao" />
-    </LinearLayout>
-    <View style="@style/xiantiao" />
-    <LinearLayout style="@style/linear_tiaomu">
+            <LinearLayout style="@style/linear_tiaomu">
 
-        <TextView
-            style="@style/zhuti_text"
-            android:text="人脸照片" />
+                <TextView
+                    style="@style/zhuti_text"
+                    android:text="国籍(地区)" />
 
-        <View style="@style/xiantiao_zhongjian" />
+                <View style="@style/xiantiao_zhongjian" />
 
-        <TextView
-            style="@style/zhuti_text"
-            android:text="未完善" />
+                <TextView
+                    style="@style/zhuti_text"
+                    android:layout_marginRight="10dp"
+                    android:text="中国大陆" />
+            </LinearLayout>
 
-        <ImageView
+            <View style="@style/xiantiao" />
 
-            style="@style/img_xiao" />
-    </LinearLayout>
-    <View style="@style/xiantiao" />
+            <LinearLayout style="@style/linear_tiaomu">
+
+                <TextView
+
+                    style="@style/zhuti_text"
+                    android:text="姓名" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <EditText
+                    android:id="@+id/jbxx_name"
+                    style="@style/zhuti_text"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:hint="请输入姓名"
+                    android:theme="@style/MyEditText" />
+
+            </LinearLayout>
+
+            <View style="@style/xiantiao"
+
+                />
+
+            <LinearLayout style="@style/linear_tiaomu">
+
+                <TextView
+                    style="@style/zhuti_text"
+                    android:text="证件类型" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <TextView
+                    style="@style/zhuti_text"
+                    android:layout_marginRight="10dp"
+                    android:text="身份证" />
+            </LinearLayout>
+
+            <View style="@style/xiantiao" />
+
+            <View style="@style/xiantiao" />
+
+            <LinearLayout style="@style/linear_tiaomu">
+
+                <TextView
+                    style="@style/zhuti_text"
+                    android:text="证件号码" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <EditText
+                    android:id="@+id/jbxx_sfz"
+                    style="@style/zhuti_text"
+                    android:layout_marginRight="10dp"
+                    android:digits="0123456789X"
+                    android:gravity="center"
+                    android:hint="请输入二代身份证号码"
+                    android:inputType="number"
+                    android:maxLength="18"
+                    android:theme="@style/MyEditText" />
+            </LinearLayout>
+
+            <View style="@style/xiantiao" />
+
+            <View
+                style="@style/xiantiao"
+                android:layout_marginTop="10dp"
+
+                />
+
+            <LinearLayout style="@style/linear_tiaomu">
+
+                <TextView
+                    style="@style/zhuti_text"
+                    android:text="性别" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <TextView
+                    android:id="@+id/jbxx_xingbie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <View style="@style/xiantiao"
+
+                />
+
+            <LinearLayout style="@style/linear_tiaomu">
+
+                <TextView
+                    style="@style/zhuti_text"
+                    android:text="出生年月日" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <TextView
+                    android:id="@+id/jbxx_nianyueri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <View style="@style/xiantiao"
+
+                />
+
+            <LinearLayout style="@style/linear_tiaomu">
+
+                <TextView
+                    style="@style/zhuti_text"
+                    android:text="身份证所属地区" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <TextView
+                    android:id="@+id/jbxx_ssdq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <View style="@style/xiantiao" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/zjzp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="证件照片"
+                    android:textColor="#333333"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="拍摄您的二代身份证原件，请确保图片清晰，四角完整"
+                />
+            <ImageView
+
+                android:src="@mipmap/sfzm"
+                android:id="@+id/zjzp_zhengmian"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="330dp"
+                android:layout_height="200dp" />
+
+            <ImageView
+
+                android:src="@mipmap/sfzfm"
+                android:id="@+id/zjzp_fanmian"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="330dp"
+                android:layout_height="200dp" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/scsfz" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="持照照片"
+                    android:textColor="#333333"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="拍摄您的二代身份证原件，请确保图片清晰，四角完整"
+                />
+
+            <ImageView
+                android:id="@+id/zjzp_chizhao_zhenmian"
+                android:layout_width="330dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:src="@mipmap/sczjzzm" />
+            <TextView
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="持照正面照"
+                />
+            <ImageView
+                android:src="@mipmap/scsfzfm"
+                android:id="@+id/zjzp_chizhao_fanmian"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="330dp"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="持照反面照"
+                />
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

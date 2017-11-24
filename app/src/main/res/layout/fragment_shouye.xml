@@ -274,11 +274,13 @@
                 android:orientation="vertical">
 
                 <TextView
+
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="精品推荐"
+
                     android:textColor="#666666"
                     android:textSize="18sp" />
 
@@ -288,18 +290,22 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:scaleType="fitXY"
+                        android:id="@+id/shouye_yihao"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
-                        android:background="@drawable/imges_1" />
+                        android:src="@drawable/imges_1" />
 
                     <ImageView
+                        android:scaleType="fitXY"
+                        android:id="@+id/shouye_erhao"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
-                        android:background="@drawable/imges_2" />
+                        android:src="@drawable/imges_2" />
 
                 </LinearLayout>
 
@@ -309,18 +315,22 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:scaleType="fitXY"
+                        android:id="@+id/shouye_sanhao"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
-                        android:background="@drawable/imges_3" />
+                        android:src="@drawable/imges_3" />
 
                     <ImageView
+                        android:scaleType="fitXY"
+                        android:id="@+id/shouye_sihao"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
-                        android:background="@drawable/imges_4" />
+                        android:src="@drawable/imges_4" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -343,6 +353,7 @@
                     android:paddingLeft="15dp"
                     android:text="热销商品"
                     android:textColor="#666666"
+
                     android:textSize="18sp" />
 
                 <us.mifeng.zhongxingcheng.view.MyGridView

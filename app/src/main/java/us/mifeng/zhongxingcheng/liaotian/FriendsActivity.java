@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -53,13 +54,13 @@ import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.adapter.LXRAdapter;
 import us.mifeng.zhongxingcheng.bean.LXRBean;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
-import us.mifeng.zhongxingcheng.view.MyListView;
+
 
 
 public class FriendsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FriendshipManageView, StrAccountLogin.LoginListener, OnLoadMoreListener, View.OnClickListener {
     private static final String TAG = "Fragment_LianXiRen";
     private List<LXRBean> list;
-    private MyListView lv;
+    private ListView lv;
     private LXRAdapter adapter;
     private String password = "123456789";
     private TLSService tlsService;
@@ -157,16 +158,13 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
 
 
     private void initView() {
-        lv = (MyListView) findViewById(R.id.swipe_target);
+        lv = (ListView) findViewById(R.id.swipe_target);
         ImageView add = (ImageView) findViewById(R.id.txl_add);
         showDialog2 = showDialog2();
-        ImageView back = (ImageView) findViewById(R.id.txl_back);
-        back.setOnClickListener(this);
         add.setOnClickListener(this);
       //  swipeToLoadLayout = (SwipeToLoadLayout) findViewById(R.id.swipeToLoadLayout);
 //        swipeToLoadLayout.setOnLoadMoreListener(this);
         lv.setOnItemClickListener(this);
-        back.setOnClickListener(this);
 //        list = new ArrayList<>();
 
     }
@@ -217,6 +215,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
 
         LXRBean bean = (LXRBean) parent.getAdapter().getItem(position);
         mobile = bean.getMobile()+"a";
+        Log.e(TAG, "onItemClick: "+mobile );
 //        Intent intent = new Intent(this, ChatActivity.class);
 //        intent.putExtra("identify",mobile);
 //        intent.putExtra("type", TIMConversationType.C2C);
@@ -249,9 +248,6 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                         showDialog2.show();
                     }
                 }
-                break;
-            case R.id.txl_back:
-                finish();
                 break;
         }
     }

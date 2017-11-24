@@ -57,4 +57,6 @@ public class MyApplicaiton extends Application {
     public static Context getContext() {
         return context;
     }
+
+
 }

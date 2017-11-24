@@ -2,16 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="48dp"
+        >
+
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="发票管理"
         android:textSize="18sp"
         android:gravity="center"
         />
-    <ListView
-        android:id="@+id/fpgl_lv"
+        <TextView
+            android:id="@+id/fpgl_xinzeng"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="新增"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent">
+        <ListView
+            android:visibility="gone"
+            android:id="@+id/fpgl_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@mipmap/fpzt"
+            />
+
+    </RelativeLayout>
+
 
 </LinearLayout>

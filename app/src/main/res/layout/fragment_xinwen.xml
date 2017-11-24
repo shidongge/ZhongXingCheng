@@ -2,7 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+   
+   <LinearLayout
+       android:background="@drawable/mycolor"
+       android:layout_width="match_parent"
+       android:layout_height="48dp"
+       android:orientation="horizontal"
+       >
+      <TextView
+          android:textColor="#fff"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:text="官网公告"
+          android:textSize="18sp"
+          android:gravity="center_vertical"
 
+          />
+      
+   </LinearLayout>
+   
    <ListView
        android:layout_width="match_parent"
        android:layout_height="match_parent"

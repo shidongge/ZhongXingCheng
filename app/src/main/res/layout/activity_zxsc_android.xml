@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:id="@+id/zxsc_home_xiada"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
+            android:id="@+id/zxsc_home_shouye"
+            style="@style/home_ll">
+            <ImageView
+                android:id="@+id/zxsc_home_shouye_img"
+                android:src="@mipmap/sy_l"
+                style="@style/home_img"
+                />
+            <TextView
+                android:id="@+id/zxsc_home_shouye_text"
+                style="@style/home_text"
+                android:text="首页"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/zxsc_home_fenlei"
+            style="@style/home_ll">
+            <ImageView
+                android:id="@+id/zxsc_home_fenlei_img"
+                style="@style/home_img"
+                android:src="@mipmap/fx_h"
+
+                />
+            <TextView
+                android:id="@+id/zxsc_home_fenlei_text"
+                style="@style/home_text"
+                android:text="分类"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/zxsc_home_gouwuche"
+            style="@style/home_ll">
+
+            <ImageView
+                android:id="@+id/zxsc_home_gouwuche_img"
+                style="@style/home_img"
+                android:src="@mipmap/hy_h" />
+
+            <TextView
+                android:id="@+id/zxsc_home_gouwuche_text"
+                style="@style/home_text"
+                android:text="购物车"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/zxsc_home_wode"
+            style="@style/home_ll">
+            <ImageView
+
+                android:id="@+id/zxsc_home_wode_img"
+                style="@style/home_img"
+                android:src="@mipmap/wd_h"
+
+                />
+            <TextView
+                style="@style/home_text"
+                android:id="@+id/zxsc_home_wode_text"
+                android:text="我的" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/zxsc_home_xiantiao"
+        android:layout_above="@id/zxsc_home_xiada"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/mycolor"
+        />
+    <LinearLayout
+        android:fitsSystemWindows="true"
+        android:clipToPadding="true"
+        android:layout_above="@id/zxsc_home_xiantiao"
+        android:orientation="vertical"
+        android:id="@+id/zxsc_home_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
+
+</RelativeLayout>

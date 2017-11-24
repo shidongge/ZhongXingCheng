@@ -13,9 +13,11 @@
         android:text="聊天"
         android:textSize="18sp" />
     <ImageView
+        android:padding="8dp"
+        android:layout_alignParentRight="true"
         android:id="@+id/tv_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/add_haoyou"
         />
     <View

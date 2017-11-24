@@ -1,63 +1,70 @@
 package us.mifeng.zhongxingcheng.bean;
 
+import java.util.List;
+
 /**
- * Created by shido on 2017/11/2.
+ * Created by shido on 2017/11/21.
  */
 
 public class Home_ShangPuBean {
-    public String id;
-    public String shopName;
-    public String imgTop;
 
-    public String getId() {
-        return id;
+    /**
+     * success : true
+     * msg :
+     * data : [{"id":"14","imgTop":""},{"id":"2","imgTop":"http://47.94.144.186:8080/uploads/userShops/20170814/150271248149.png"},{"id":"5","imgTop":"http://47.94.144.186:8080/uploads/userShops/20170814/150271249610.png"},{"id":"6","imgTop":"http://47.94.144.186:8080/uploads/userShops/20170814/150271251179.png"}]
+     */
+
+    private boolean success;
+    private String msg;
+    private List<DataBean> data;
+
+    public boolean isSuccess() {
+        return success;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
-    public String getShopName() {
-        return shopName;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public String getImgTop() {
-        return imgTop;
+    public List<DataBean> getData() {
+        return data;
     }
 
-    public void setImgTop(String imgTop) {
-        this.imgTop = imgTop;
+    public void setData(List<DataBean> data) {
+        this.data = data;
     }
 
-    public String getImgIcon() {
-        return imgIcon;
-    }
+    public static class DataBean {
+        /**
+         * id : 14
+         * imgTop :
+         */
 
-    public void setImgIcon(String imgIcon) {
-        this.imgIcon = imgIcon;
-    }
+        private String id;
+        private String imgTop;
 
-    public String getWeight() {
-        return weight;
-    }
+        public String getId() {
+            return id;
+        }
 
-    public void setWeight(String weight) {
-        this.weight = weight;
-    }
+        public void setId(String id) {
+            this.id = id;
+        }
 
-    public String getDesc() {
-        return desc;
-    }
+        public String getImgTop() {
+            return imgTop;
+        }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+        public void setImgTop(String imgTop) {
+            this.imgTop = imgTop;
+        }
     }
-
-    public String imgIcon;
-    public String weight;
-    public String desc;
 }

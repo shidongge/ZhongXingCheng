@@ -19,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.tencent.imsdk.TIMConversation;
 import com.tencent.imsdk.TIMConversationType;
@@ -352,7 +351,7 @@ public class ConversationFragment extends Fragment implements ConversationView, 
                 startActivity(intent);
                 break;
             case R.id.rela_erweima:
-                Toast.makeText(getActivity(), "暂无此功能", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(),SearchGroupActivity.class));
                 break;
         }
     }

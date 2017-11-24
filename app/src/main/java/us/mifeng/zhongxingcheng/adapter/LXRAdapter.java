@@ -43,8 +43,8 @@ public class LXRAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHorder vh = null;
-        if (vh==null){
+        ViewHorder vh ;
+        if (convertView==null){
             vh = new ViewHorder();
             convertView = View.inflate(context, R.layout.lianxir_item,null);
             vh.mobile = (TextView) convertView.findViewById(R.id.lxr_item_mobile);

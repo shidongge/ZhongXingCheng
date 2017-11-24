@@ -11,7 +11,7 @@
         android:layout_height="48dp">
         <ImageView
             android:id="@+id/ql_back"
-            android:padding="10dp"
+            android:padding="15dp"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:src="@mipmap/fh"

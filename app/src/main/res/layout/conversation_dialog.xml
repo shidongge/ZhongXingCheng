@@ -71,6 +71,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:text="扫一扫" />
+            android:text="查找群" />
     </RelativeLayout>
 </LinearLayout>

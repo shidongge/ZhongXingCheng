@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--中星商城优惠券界面-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:background="@color/zhongxinshangcheng"
+        >
+        <ImageView
+            android:layout_marginTop="3dp"
+            android:id="@+id/yhq_back"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@mipmap/fh"
+
+            />
+        <TextView
+            android:layout_toRightOf="@id/yhq_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="返回"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="优惠券"
+            android:textSize="16sp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:background="#777"
+            android:textColor="#fff"
+            android:id="@+id/activity_yhq_weishiyong"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="未使用"
+            />
+        <View
+            android:layout_width="1dp"
+            android:background="#000"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/activity_yhq_yishiyong"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="已使用"
+            />
+        <View
+            android:layout_width="1dp"
+            android:background="#000"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/activity_yhq_yiguoqi"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="已过期"
+            />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/yhq_da"
+        ></LinearLayout>
+    
+</LinearLayout>

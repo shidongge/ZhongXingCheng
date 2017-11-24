@@ -121,7 +121,9 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.wode_zzc:
-                startActivity(new Intent(getActivity(), ZZC.class));
+                Intent intent2 = new Intent(getActivity(), ZZC.class);
+                intent2.putExtra("zzc",portrait);
+                startActivity(intent2);
                 break;
             case R.id.wode_zhangdan:
                 startActivity(new Intent(getActivity(), ZhangDan.class));

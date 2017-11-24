@@ -91,7 +91,10 @@
 
     </RelativeLayout>
 
-    <LinearLayout style="@style/linear_tiaomu">
+    <LinearLayout
+
+        android:layout_marginTop="5dp"
+        style="@style/linear_tiaomu">
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -105,11 +108,6 @@
 
         <View style="@style/xiantiao_zhongjian" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="未购买" />
 
         <ImageView style="@style/img_xiao" />
         />
@@ -118,12 +116,6 @@
     <View
         style="@style/xiantiao"
          />
-
-    <View
-
-        android:layout_marginTop="5dp"
-        style="@style/xiantiao" />
-
     <LinearLayout
         android:id="@+id/wode_zhangdan"
         style="@style/linear_tiaomu">

@@ -189,7 +189,7 @@
 
     <LinearLayout
         style="@style/linear_tiaomu"
-        android:visibility="gone">
+        >
 
         <TextView
             style="@style/zhuti_text"

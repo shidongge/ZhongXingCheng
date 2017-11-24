@@ -30,16 +30,13 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xzshdz);
-        xzshdz = getIntent().getStringExtra("xzshdz");
         initView();
     }
 
     private void initView() {
         diqu = (LinearLayout) findViewById(R.id.xzshdz_diqu);
         diqu_text = (TextView) findViewById(R.id.xzshdz_text);
-        ImageView back = (ImageView) findViewById(R.id.title_back);
-        TextView title = (TextView) findViewById(R.id.title_text);
-        title.setText(xzshdz);
+        back = (ImageView) findViewById(R.id.xzshdz_back);
         diqu.setOnClickListener(this);
         back.setOnClickListener(this);
     }
@@ -70,7 +67,7 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
                 });
                 task.execute("北京市", "北京市", "东城区");
                 break;
-            case R.id.title_back:
+            case R.id.xzshdz_back:
                 finish();
                 break;
         }

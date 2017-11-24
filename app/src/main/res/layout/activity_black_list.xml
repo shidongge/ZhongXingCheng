@@ -30,6 +30,16 @@
             android:textColor="#fff"
             android:textSize="18sp" />
     </LinearLayout>
+    <TextView
+        android:id="@+id/noResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="280dp"
+        android:text="@string/search_no_result"
+        android:textColor="@color/text_gray1"
+        android:textSize="14sp"
+        android:visibility="gone" />
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"

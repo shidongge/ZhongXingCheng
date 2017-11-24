@@ -4,7 +4,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <!--新增收货地址界面-->
-    <include layout="@layout/title" />
+    <LinearLayout
+        android:background="@drawable/mycolor"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/xzshdz_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/fh"
+            android:padding="8dp"/>
+
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:layout_marginLeft="10dp"
+            style="@style/zhuti_text"
+            android:text="新增收货地址"
+            />
+        <View
+            style="@style/xiantiao_zhongjian"
+            />
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:id="@+id/xzshdz_bc"
+            android:layout_marginRight="10dp"
+            style="@style/zhuti_text"
+            android:text="保存"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -117,12 +151,5 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="增加地址"
-        />
 
 </LinearLayout>

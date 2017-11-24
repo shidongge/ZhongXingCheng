@@ -340,7 +340,6 @@ public class ZJZP extends Activity implements View.OnClickListener {
                     if (identityFace.equals("")) {
                     } else {
                         Glide.with(ZJZP.this).load(WangZhi.TUPIAN + identityFace).into(zhengmian);
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

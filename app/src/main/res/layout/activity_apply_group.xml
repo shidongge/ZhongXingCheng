@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.tencent.qcloud.ui.TemplateTitle
+    <TextView
         android:id="@+id/apply_group_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:textSize="18sp"
+        android:gravity="center"
         android:layout_alignParentTop="true"
-        app:titleText="@string/chat_setting_add"
-        app:canBack="true" />
+        android:text="申请加群"
+        />
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -39,21 +40,26 @@ public class XWAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MyViewHorder vh = null;
-        if (vh==null){
+        MyViewHorder vh ;
+        if (convertView==null){
             vh = new MyViewHorder();
             convertView = View.inflate(context, R.layout.xw_item,null);
-            vh.neirong  = (TextView) convertView.findViewById(R.id.xw_item_neirong);
-            vh.time = (TextView) convertView.findViewById(R.id.xw_item_time);
+            vh.neirong  = (TextView) convertView.findViewById(R.id.item_faxian_neirong);
+            vh.gonggao = (TextView) convertView.findViewById(R.id.item_faxian_gonggao);
+            vh.yuedu = (TextView) convertView.findViewById(R.id.item_faxian_yuedu);
+            vh.guanfang = (TextView) convertView.findViewById(R.id.item_faxian_guanfang);
+            vh.img = (ImageView) convertView.findViewById(R.id.item_faxian_img);
+
             convertView.setTag(vh);
         }else {
             vh = (MyViewHorder) convertView.getTag();
         }
         vh.neirong.setText(list.get(position).getNeirong());
-        vh.time.setText(list.get(position).getTime());
+
         return convertView;
     }
     class MyViewHorder{
-        TextView neirong,time;
+        TextView neirong,guanfang,gonggao,yuedu;
+        ImageView img;
     }
 }

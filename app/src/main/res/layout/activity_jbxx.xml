@@ -38,6 +38,7 @@
         <View style="@style/xiantiao_zhongjian" />
 
         <EditText
+            android:theme="@style/MyEditText"
             android:gravity="center"
             android:id="@+id/jbxx_name"
             style="@style/zhuti_text"
@@ -74,6 +75,7 @@
 
         <View style="@style/xiantiao_zhongjian" />
         <EditText
+            android:theme="@style/MyEditText"
             android:gravity="center"
             android:inputType="number"
             android:digits="0123456789X"

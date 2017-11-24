@@ -12,17 +12,16 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.bean.Home_ShangPuBean;
-import us.mifeng.zhongxingcheng.utils.WangZhi;
+import us.mifeng.zhongxingcheng.bean.Home_ShangPingCGBean;
 
 /**
  * Created by shido on 2017/11/2.
  */
 
-public class Home_DianPuAdapter extends BaseAdapter {
-    private List<Home_ShangPuBean> list;
+public class Home_DianPingAdapter extends BaseAdapter {
+    private List<Home_ShangPingCGBean.DataBean.MsgBean> list;
     private Context context;
-    public  Home_DianPuAdapter(List<Home_ShangPuBean> list,Context context){
+    public Home_DianPingAdapter(List<Home_ShangPingCGBean.DataBean.MsgBean> list, Context context){
         this.list=list;
         this.context=context;
     }
@@ -44,8 +43,8 @@ public class Home_DianPuAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MyViewHorder viewHorder = null;
-        if (viewHorder==null){
+        MyViewHorder viewHorder ;
+        if (convertView==null){
             viewHorder = new MyViewHorder();
             convertView = View.inflate(context,R.layout.home_gv,null);
             viewHorder.shopname = (TextView) convertView.findViewById(R.id.home_gv_shopname);
@@ -55,9 +54,9 @@ public class Home_DianPuAdapter extends BaseAdapter {
         }else {
             viewHorder = (MyViewHorder) convertView.getTag();
         }
-        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(viewHorder.img);
-        viewHorder.price.setText(list.get(position).getImgIcon());
-        viewHorder.shopname.setText(list.get(position).getShopName());
+        Glide.with(context).load(list.get(position).getImgCart()).into(viewHorder.img);
+        viewHorder.price.setText(list.get(position).getGoodsMoney1());
+        viewHorder.shopname.setText(list.get(position).getShortDesc());
         return convertView;
     }
     class MyViewHorder{

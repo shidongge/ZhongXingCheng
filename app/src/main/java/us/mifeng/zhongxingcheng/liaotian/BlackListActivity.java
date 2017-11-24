@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.tencent.imsdk.TIMUserProfile;
@@ -33,7 +34,7 @@ public class BlackListActivity extends Activity {
     List<ProfileSummary> list = new ArrayList<>();
     ListView listView;
     private ImageView back;
-
+    TextView tvNoResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,10 @@ public class BlackListActivity extends Activity {
                 finish();
             }
         });
+        tvNoResult = (TextView) findViewById(R.id.noResult);
+
         adapter = new ProfileSummaryAdapter(this, R.layout.item_profile_summary, list);
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -55,6 +59,7 @@ public class BlackListActivity extends Activity {
                 list.get(position).onClick(BlackListActivity.this);
             }
         });
+
         TIMFriendshipManagerExt.getInstance().getBlackList(new TIMValueCallBack<List<String>>() {
             @Override
             public void onError(int i, String s) {
@@ -82,6 +87,8 @@ public class BlackListActivity extends Activity {
 
             }
         });
+
+
     }
     //设置状态栏
     public void TongMing(){

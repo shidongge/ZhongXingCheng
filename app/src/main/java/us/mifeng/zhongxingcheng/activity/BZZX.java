@@ -3,6 +3,7 @@ package us.mifeng.zhongxingcheng.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,13 +18,12 @@ import us.mifeng.zhongxingcheng.R;
 /**
  *帮助中心的界面
  */
-public class BZZX extends Activity {
+public class BZZX extends Activity implements View.OnClickListener {
 
     private LinearLayout tixian,kuoda,huiyuan,dizhi,renzheng,bangding;
     private ImageView back;
     private String bangzhu;
     private TextView title;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,7 @@ public class BZZX extends Activity {
         dizhi = (LinearLayout) findViewById(R.id.bz_dizhi);
         renzheng = (LinearLayout) findViewById(R.id.bz_renzheng);
         bangding = (LinearLayout) findViewById(R.id.bz_bangding);
+        back = (ImageView) findViewById(R.id.title_back);
 //        tixian.setOnClickListener(this);
 //        kuoda.setOnClickListener(this);
 //        huiyuan.setOnClickListener(this);
@@ -46,10 +47,19 @@ public class BZZX extends Activity {
 //        renzheng.setOnClickListener(this);
 //        bangding.setOnClickListener(this);
 
-        back = (ImageView) findViewById(R.id.title_back);
-//        back.setOnClickListener(this);
+
+        back.setOnClickListener(this);
         title = (TextView) findViewById(R.id.title_text);
         title.setText(bangzhu);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.title_back:
+                finish();
+                break;
+        }
     }
 
 //    @Override

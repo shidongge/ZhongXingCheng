@@ -46,7 +46,7 @@ public class XinWenFragment extends Fragment implements AdapterView.OnItemClickL
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         view = View.inflate(getActivity(), R.layout.fragment_xinwen, null);
         lv = (ListView) view.findViewById(R.id.xinwen_lv);
-        initLianWang();
+       // initLianWang();
         lv.setOnItemClickListener(this);
         return view;
 

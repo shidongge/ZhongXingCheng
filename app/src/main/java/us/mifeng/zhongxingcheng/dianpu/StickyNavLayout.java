@@ -16,8 +16,6 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
-import us.mifeng.zhongxingcheng.R;
-
 
 public class StickyNavLayout extends LinearLayout implements NestedScrollingParent
 {
@@ -262,7 +260,6 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     {
         super.onFinishInflate();
 
-        mNav = findViewById(R.id.id_stickynavlayout_indicator);
 
     }
 

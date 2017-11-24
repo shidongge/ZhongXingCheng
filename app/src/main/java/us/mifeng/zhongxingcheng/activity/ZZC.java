@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
@@ -21,7 +22,11 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.utils.WangZhi;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 /**
  * Created by shido on 2017/11/10.
@@ -29,20 +34,23 @@ import us.mifeng.zhongxingcheng.R;
 
 public class ZZC extends Activity implements View.OnClickListener {
     private PieChart mPieChart;
-    private ImageView back;
+    private ImageView back,img;
+    private String zzc;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zzc);
+        zzc = getIntent().getStringExtra("zzc");
 
         initView();
         TongMing();
     }
     //初始化View
     private void initView() {
-
+        img = (ImageView) findViewById(R.id.zzc_img);
         back = (ImageView) findViewById(R.id.zzc_back);
+        Glide.with(ZZC.this).load(WangZhi.TUPIAN+ zzc).apply(bitmapTransform(new CropCircleTransformation())).into(img);
         back.setOnClickListener(this);
         //饼状图
         mPieChart = (PieChart) findViewById(R.id.mPieChart);

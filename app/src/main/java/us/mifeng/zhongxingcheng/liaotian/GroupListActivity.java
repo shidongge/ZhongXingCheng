@@ -74,7 +74,7 @@ public class GroupListActivity extends Activity implements Observer {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (GROUP_MEM_CODE == requestCode) {
             if (resultCode == RESULT_OK) {
-                GroupManagerPresenter.createGroup("<未知 1 >",
+                GroupManagerPresenter.createGroup("谈论组",
                         type,
                         data.getStringArrayListExtra("select"),
                         new TIMValueCallBack<String>() {

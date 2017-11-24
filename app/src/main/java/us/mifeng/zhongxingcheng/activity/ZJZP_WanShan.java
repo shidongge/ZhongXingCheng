@@ -39,9 +39,10 @@ public class ZJZP_WanShan extends Activity {
     private SharedUtils utils;
     private String token;
     private static final String TAG = "ZJZP_WanShan";
-    private ImageView zm;
+    private ImageView zhengmian,fanmian,chizhao_zhenmian,chizhao_fanmian;
     private ImageView fm;
-
+    private TextView title,xingming,xingbie,nianyueri,diqu,sfz;
+    private String xb;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,10 +83,28 @@ public class ZJZP_WanShan extends Activity {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
                     JSONObject msg1 = data.getJSONObject("msg");
+                    String realName = msg1.getString("realName");
+                    String identityCard = msg1.getString("identityCard");
+                    String gender = msg1.getString("gender");
+                    String birthDate = msg1.getString("birthDate");
+                    String city = msg1.getString("city");
+                    diqu.setText(city);
+                    nianyueri.setText(birthDate);
+                    if (gender.equals("1")){
+                        xb="男";
+                    }else {
+                        xb = "女";
+                    }
+
+                    xingbie.setText(xb);
+                    xingming.setText(realName);
+                    sfz.setText(identityCard);
                     String identityFace = msg1.getString("identityFace");
                     String identityBack = msg1.getString("identityBack");
-                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityBack).into(fm);
-                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityFace).into(zm);
+
+                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityBack).into(fanmian);
+                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityFace).into(zhengmian);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -94,12 +113,14 @@ public class ZJZP_WanShan extends Activity {
     };
 
     private void initView() {
-        ImageView back = (ImageView) findViewById(R.id.title_back);
-        TextView title = (TextView) findViewById(R.id.title_text);
-        zm = (ImageView) findViewById(R.id.sfz_zm);
-        fm = (ImageView) findViewById(R.id.sfz_fm);
-
-        title.setText("身份认证");
+        ImageView back = (ImageView) findViewById(R.id.jbxx_wanshan_back);
+        sfz = (TextView) findViewById(R.id.jbxx_wanshan_sfz);
+        xingbie = (TextView) findViewById(R.id.jbxx_wanshan_xingbie);
+        nianyueri = (TextView) findViewById(R.id.jbxx_wanshan_nianyueri);
+        diqu = (TextView) findViewById(R.id.jbxx_wanshan_ssdq);
+        xingming = (TextView) findViewById(R.id.jbxx_wanshan_name);
+        zhengmian = (ImageView) findViewById(R.id.zjzp_wanshan_zhengmian);
+        fanmian = (ImageView) findViewById(R.id.zjzp_wanshan_fanmian);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

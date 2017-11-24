@@ -44,6 +44,7 @@ import us.mifeng.zhongxingcheng.upload.PermissionUtils;
 import us.mifeng.zhongxingcheng.upload.UpLoadAppUtils;
 import us.mifeng.zhongxingcheng.utils.FirstEvent;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
+import us.mifeng.zhongxingcheng.utils.TuiChuEvent;
 
 import static us.mifeng.zhongxingcheng.R.mipmap.sy_l;
 
@@ -175,8 +176,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         haoyou_img.setImageResource(R.mipmap.hy_h);
         wode_img.setImageResource(R.mipmap.wd_h);
 
-
-
     }
     private void hintFragment(){
         FragmentTransaction ft = fm.beginTransaction();
@@ -282,6 +281,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onPermissionListener() {
 
             utils.showUpdateDialog(MainActivity.this);
-
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void MessageEvent(TuiChuEvent event) {
+        finish();
+    }
+
+
+
 }

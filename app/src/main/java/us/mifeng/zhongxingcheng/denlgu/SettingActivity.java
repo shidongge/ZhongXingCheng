@@ -32,6 +32,8 @@ import com.tencent.qcloud.tlslibrary.service.TlsBusiness;
 import com.tencent.qcloud.tlslibrary.utils.SharedUtils;
 import com.tencent.qcloud.ui.LineControllerView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +46,7 @@ import us.mifeng.zhongxingcheng.liaotian.SplashActivity;
 import us.mifeng.zhongxingcheng.liaotian.model.FriendshipInfo;
 import us.mifeng.zhongxingcheng.liaotian.model.GroupInfo;
 import us.mifeng.zhongxingcheng.liaotian.model.UserInfo;
+import us.mifeng.zhongxingcheng.utils.TuiChuEvent;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
@@ -168,6 +171,8 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
 
 
     public void logout() {
+        EventBus.getDefault().post(new TuiChuEvent("这是要发送的内容"));
+
         TlsBusiness.logout(UserInfo.getInstance().getId());
         UserInfo.getInstance().setId(null);
         MessageEvent.getInstance().clear();

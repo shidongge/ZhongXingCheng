@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:weightSum="5"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/item_youhuiquan_jiazhi"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="¥30"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/item_youhuiquan_manjian"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="满299元使用" />
+
+
+    <TextView
+        android:id="@+id/item_youhuiquan_riqi"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="07.30-07.31" />
+
+    <TextView
+        android:id="@+id/item_youhuiquan_shiyong"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="立即使用" />
+
+
+</LinearLayout>
