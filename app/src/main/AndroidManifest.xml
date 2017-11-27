@@ -106,8 +106,8 @@
         <activity android:name=".activity.TJDD"/>
         <activity android:name=".activity.TJFPTT"/>
         <activity android:name=".activity.ZhiFu"/>
-        <activity android:name=".activity.CXDD"/>
-        <activity android:name=".activity.DingDan"
+
+        <activity android:name=".activity.ChaXunDD"
             android:theme="@style/StyledIndicators"
             />
         <activity android:name=".activity.ZXSC_YouHuiQuan"/>
