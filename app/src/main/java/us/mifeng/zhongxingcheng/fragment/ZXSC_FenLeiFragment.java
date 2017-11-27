@@ -27,7 +27,7 @@ public class ZXSC_FenLeiFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inflate = View.inflate(getActivity(), R.layout.fragment_zxsc_fenlei, null);
         sousuo = (TextView) inflate.findViewById(R.id.zxsc_fenlei_sousuo);
-        ImageView back = (ImageView) inflate.findViewById(R.id.zxsc_home_back);
+        ImageView back = (ImageView) inflate.findViewById(R.id.zxsc_fenlei_back);
         back.setOnClickListener(this);
         sousuo.setOnClickListener(this);
         return inflate;

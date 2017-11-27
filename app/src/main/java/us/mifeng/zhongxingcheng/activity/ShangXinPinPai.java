@@ -36,8 +36,6 @@ public class ShangXinPinPai extends Activity implements View.OnClickListener {
         list = new ArrayList<>();
         for (int i =0;i<10;i++){
             Home_ShangPinBean bean = new Home_ShangPinBean();
-
-
             list.add(bean);
         }
     }

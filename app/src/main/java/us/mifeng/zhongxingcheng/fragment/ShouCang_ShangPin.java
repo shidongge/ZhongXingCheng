@@ -1,11 +1,13 @@
 package us.mifeng.zhongxingcheng.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 import android.widget.TextView;
 
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.activity.ZXSC_Android;
 import us.mifeng.zhongxingcheng.base.BaseFragment;
 
 /**
@@ -33,6 +35,9 @@ public class ShouCang_ShangPin extends BaseFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.shangpin_gg:
+                Intent intent = new Intent(getActivity(),ZXSC_Android.class);
+                intent.putExtra("page",1);
+                startActivity(intent);
                 break;
         }
     }

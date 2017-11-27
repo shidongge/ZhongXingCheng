@@ -44,23 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="170dp" />
 
-            <com.daimajia.slider.library.Indicators.PagerIndicator
-                android:id="@+id/custom_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                custom:selected_color="@color/colorPrimary"
-                custom:selected_height="3dp"
-                custom:selected_padding_left="2dp"
-                custom:selected_padding_right="2dp"
-                custom:selected_width="16dp"
-                custom:shape="rect"
-                custom:unselected_color="#55333333"
-                custom:unselected_height="3dp"
-                custom:unselected_padding_left="2dp"
-                custom:unselected_padding_right="2dp"
-                custom:unselected_width="16dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"

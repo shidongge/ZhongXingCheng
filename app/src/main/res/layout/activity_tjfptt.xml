@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -30,7 +31,6 @@
             />
 
         <TextView
-
             android:textSize="18sp"
             android:textColor="#fff"
             android:id="@+id/tjttfp_baocun"
@@ -41,6 +41,7 @@
     </LinearLayout>
     
     <EditText
+        android:theme="@style/MyEditText"
         android:id="@+id/tjttfp_name"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -49,6 +50,7 @@
         android:hint="请输入发票抬头"
         />
     <EditText
+        android:theme="@style/MyEditText"
         android:id="@+id/tjttfp_shibiema"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -56,7 +58,5 @@
         android:layout_height="wrap_content"
         android:hint="输入纳税人识别码"
         />
-
-
 
 </LinearLayout>

@@ -200,7 +200,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/dingdan_daifahuo"
+                    android:id="@+id/dingdan_daizhifu"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -229,8 +229,39 @@
                     android:layout_marginTop="5dp"
                     android:background="#dbdbdb" />
 
+
                 <LinearLayout
-                    android:id="@+id/dingdan_yifahuo"
+                    android:id="@+id/dingdan_daifahuo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="10dp"
+                        android:src="@mipmap/daipingjia"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="待发货" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#dbdbdb" />
+                <LinearLayout
+                    android:id="@+id/dingdan_daishouhuo"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -259,7 +290,6 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:background="#dbdbdb" />
-
                 <LinearLayout
                     android:id="@+id/dingdan_daipingjia"
                     android:layout_width="0dp"
@@ -356,7 +386,7 @@
             <View style="@style/xiantiao" />
 
             <LinearLayout
-
+                android:id="@+id/dingdan_shdz"
                 style="@style/linear_tiaomu">
 
                 <TextView

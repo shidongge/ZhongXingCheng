@@ -17,7 +17,7 @@
             style="@style/home_ll">
             <ImageView
                 android:id="@+id/zxsc_home_shouye_img"
-                android:src="@mipmap/sy_l"
+                android:src="@mipmap/zxsc_sy_l"
                 style="@style/home_img"
                 />
             <TextView
@@ -33,7 +33,7 @@
             <ImageView
                 android:id="@+id/zxsc_home_fenlei_img"
                 style="@style/home_img"
-                android:src="@mipmap/fx_h"
+                android:src="@mipmap/zxsc_fl_h"
 
                 />
             <TextView
@@ -51,7 +51,7 @@
             <ImageView
                 android:id="@+id/zxsc_home_gouwuche_img"
                 style="@style/home_img"
-                android:src="@mipmap/hy_h" />
+                android:src="@mipmap/zxsc_gwc_h" />
 
             <TextView
                 android:id="@+id/zxsc_home_gouwuche_text"
@@ -67,7 +67,7 @@
 
                 android:id="@+id/zxsc_home_wode_img"
                 style="@style/home_img"
-                android:src="@mipmap/wd_h"
+                android:src="@mipmap/zxsc_wd_h"
 
                 />
             <TextView

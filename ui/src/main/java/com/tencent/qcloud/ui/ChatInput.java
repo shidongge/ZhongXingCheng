@@ -3,24 +3,18 @@ package com.tencent.qcloud.ui;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Build;
-import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
-import android.text.method.KeyListener;
 import android.text.style.ImageSpan;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tencent.qcloud.presentation.viewfeatures.ChatView;
 
@@ -82,8 +75,8 @@ public class ChatInput extends RelativeLayout implements TextWatcher,View.OnClic
         BtnImage.setOnClickListener(this);
         LinearLayout BtnPhoto = (LinearLayout) findViewById(R.id.btn_image);
         BtnPhoto.setOnClickListener(this);
-        LinearLayout btnVideo = (LinearLayout) findViewById(R.id.btn_video);
-        btnVideo.setOnClickListener(this);
+//        LinearLayout btnVideo = (LinearLayout) findViewById(R.id.btn_video);
+//        btnVideo.setOnClickListener(this);
         LinearLayout btnFile = (LinearLayout) findViewById(R.id.btn_file);
         btnFile.setOnClickListener(this);
         setSendBtn();
@@ -339,20 +332,20 @@ public class ChatInput extends RelativeLayout implements TextWatcher,View.OnClic
         if (id == R.id.btn_keyboard){
             updateView(InputMode.TEXT);
         }
-        if (id == R.id.btn_video){
-            if (getContext() instanceof FragmentActivity){
-                FragmentActivity fragmentActivity = (FragmentActivity) getContext();
-                if (requestVideo(fragmentActivity)){
-//                    VideoInputDialog.show(fragmentActivity.getSupportFragmentManager());
-                    if (requestRtmp()) {
-                        chatView.videoAction();
-                    }else {
-                        Toast.makeText(activity, "系统版本太低", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            }
-        }
+//        if (id == R.id.btn_video){
+//            if (getContext() instanceof FragmentActivity){
+//                FragmentActivity fragmentActivity = (FragmentActivity) getContext();
+//                if (requestVideo(fragmentActivity)){
+////                    VideoInputDialog.show(fragmentActivity.getSupportFragmentManager());
+//                    if (requestRtmp()) {
+//                        chatView.videoAction();
+//                    }else {
+//                        Toast.makeText(activity, "系统版本太低", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }
+//            }
+//        }
         if (id == R.id.btnEmoticon){
             updateView(inputMode == InputMode.EMOTICON?InputMode.TEXT:InputMode.EMOTICON);
         }

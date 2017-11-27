@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
@@ -96,14 +95,11 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
             slider.addSlider(defaultSliderView);
         }
         // 设置默认过渡效果(可在xml中设置)
-        slider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        slider.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
         // 设置默认指示器位置(默认指示器白色,位置在sliderlayout底部)
         slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        // 设置自定义指示器(位置自定义)
-        slider.setCustomIndicator((PagerIndicator) inflate.findViewById(R.id.custom_indicator));
         // 设置TextView自定义动画
         slider.setCustomAnimation(new DescriptionAnimation());
-        //mDemoSlider2.setCustomAnimation(new ChildAnimationExample()); // 多种效果，进入该类修改，参考效果github/daimajia/AndroidViewAnimations
         // 设置持续时间
         slider.setDuration(2000);
         slider.addOnPageChangeListener(this);

@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="22dp"
+        android:fitsSystemWindows="true"
         android:background="@drawable/mycolor"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -12,16 +12,16 @@
         >
 
         <ImageView
+            android:layout_gravity="center"
             android:id="@+id/aihao_back"
             android:layout_width="40dp"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:src="@mipmap/fh"
-            android:padding="8dp"/>
+            android:padding="10dp"/>
 
 
         <TextView
             android:textColor="#fff"
-            android:layout_marginLeft="8dp"
             style="@style/zhuti_text"
             android:text="爱好"
             />
@@ -52,6 +52,7 @@
 
             />
         <EditText
+            android:theme="@style/MyEditText"
             android:id="@+id/aihao_aihao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

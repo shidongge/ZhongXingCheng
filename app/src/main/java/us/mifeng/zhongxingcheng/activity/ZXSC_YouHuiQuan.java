@@ -1,15 +1,20 @@
 package us.mifeng.zhongxingcheng.activity;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.fragment.WeiShiYongFragment;
@@ -38,6 +43,7 @@ public class ZXSC_YouHuiQuan extends FragmentActivity implements View.OnClickLis
         weiShiYongFragment = new WeiShiYongFragment();
         ft.add(R.id.yhq_da, weiShiYongFragment);
         ft.commit();
+        TongMing();
         initView();
     }
 
@@ -116,5 +122,26 @@ public class ZXSC_YouHuiQuan extends FragmentActivity implements View.OnClickLis
         weishiyong.setTextColor(Color.parseColor("#000000"));
         yishiyong.setTextColor(Color.parseColor("#000000"));
         yiguoqi.setTextColor(Color.parseColor("#000000"));
+    }
+    //设置状态栏
+    public void TongMing(){
+        //如果手机有虚拟按键 那么不能添加透明状态栏
+        //透明状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            // Translucent status bar
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        //透明状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
+        tintManager.setTintColor(Color.parseColor("#000000"));
+
     }
 }

@@ -21,7 +21,6 @@
 
         <TextView
             android:textSize="18sp"
-            android:layout_marginLeft="5dp"
             android:textColor="#fff"
             android:id="@+id/title_text"
             style="@style/zhuti_text"

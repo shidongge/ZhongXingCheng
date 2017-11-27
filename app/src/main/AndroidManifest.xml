@@ -68,14 +68,10 @@
         <activity android:name=".activity.SheZhi" />
         <activity android:name=".activity.WuPing" />
         <activity android:name=".activity.BZZX" />
-        <activity android:name=".activity.ZJZP" />
         <activity android:name=".zhaopian.IDCardActivity" />
         <activity android:name=".view.YunFei" />
-        <activity android:name=".activity.SFRZFM" />
-        <activity android:name=".activity.SFRZZM" />
         <activity android:name=".activity.JBXX" />
         <activity android:name=".liaotian.FriendsActivity" />
-
         <activity android:name=".liaotian.AddFriendActivity" />
         <activity android:name=".liaotian.ChatActivity" />
         <activity android:name=".liaotian.EditActivity" />
@@ -111,7 +107,9 @@
         <activity android:name=".activity.TJFPTT"/>
         <activity android:name=".activity.ZhiFu"/>
         <activity android:name=".activity.CXDD"/>
-        <activity android:name=".activity.DingDan"/>
+        <activity android:name=".activity.DingDan"
+            android:theme="@style/StyledIndicators"
+            />
         <activity android:name=".activity.ZXSC_YouHuiQuan"/>
         <activity android:name=".activity.ShouCang"/>
 

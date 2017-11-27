@@ -153,13 +153,14 @@
 
 
 
-    <style name="StyledIndicators" parent="@android:style/Theme.Light">
+    <style name="StyledIndicators" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
     </style>
 
     <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
-        <!--<item name="android:background">@drawable/tab_indicator</item>-->
-        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="android:background">@drawable/tab_indicator</item>
+        <item name="android:textAppearance">@style/Widget</item>
+        <item name="android:textColor">@drawable/selector_tabtext</item>
         <item name="android:textSize">14sp</item>
         <item name="android:dividerPadding">8dp</item>
         <item name="android:showDividers">middle</item>
@@ -169,9 +170,12 @@
         <item name="android:fadingEdgeLength">8dp</item>
     </style>
 
-    <style name="CustomTabPageIndicator.Text" parent="android:TextAppearance.Medium">
-        <item name="android:typeface">monospace</item>
-        <item name="android:textColor">#f00</item>
+
+    <style parent="Widget" name="MyTextAppearance.TabPageIndicator">
+        <!-- 设置文本字体加粗 -->
+        <item name="android:textStyle">bold</item>
+        <!-- 设置文本字体颜色选择器 -->
+        <item name="android:textColor">@drawable/selector_tabtext</item>
     </style>
 
 </resources>

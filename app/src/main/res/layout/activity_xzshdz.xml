@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
     <!--新增收货地址界面-->
     <LinearLayout
@@ -12,17 +13,18 @@
         >
 
         <ImageView
+            android:layout_gravity="center"
             android:id="@+id/xzshdz_back"
             android:layout_width="40dp"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:src="@mipmap/fh"
             android:padding="8dp"/>
 
 
         <TextView
+            android:layout_gravity="center"
             android:textSize="18sp"
             android:textColor="#fff"
-            android:layout_marginLeft="10dp"
             style="@style/zhuti_text"
             android:text="新增收货地址"
             />
@@ -84,12 +86,14 @@
             android:orientation="vertical">
 
             <EditText
+                android:theme="@style/MyEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="请填写姓名" />
 
             <EditText
+                android:theme="@style/MyEditText"
                 android:numeric="integer"
                 android:maxLength="11"
                 android:layout_width="match_parent"
@@ -114,12 +118,14 @@
             </LinearLayout>
 
             <EditText
+                android:theme="@style/MyEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="请填写详细地址" />
 
             <EditText
+                android:theme="@style/MyEditText"
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

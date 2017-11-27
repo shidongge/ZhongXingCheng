@@ -135,25 +135,25 @@
                     android:text="@string/chat_photo"
                     android:textColor="@color/text_gray1"/>
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/btn_video"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="40dp"
-                android:gravity="center_horizontal"
-                android:layout_alignParentRight="true">
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_video"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/chat_video"
-                    android:textColor="@color/text_gray1"/>
-            </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:id="@+id/btn_video"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_marginRight="40dp"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:layout_alignParentRight="true">-->
+                <!--<ImageView-->
+                    <!--android:layout_width="60dp"-->
+                    <!--android:layout_height="60dp"-->
+                    <!--android:src="@drawable/ic_video"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:text="@string/chat_video"-->
+                    <!--android:textColor="@color/text_gray1"/>-->
+            <!--</LinearLayout>-->
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"

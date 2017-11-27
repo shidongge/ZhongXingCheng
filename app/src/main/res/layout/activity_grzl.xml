@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginTop="22dp"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/mycolor"
@@ -22,7 +22,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="个人资料"
             android:textColor="#fff"
@@ -60,7 +59,9 @@
 
     <View style="@style/xiantiao" />
 
-    <LinearLayout style="@style/linear_tiaomu">
+    <LinearLayout
+        android:visibility="gone"
+        style="@style/linear_tiaomu">
 
         <TextView
             style="@style/zhuti_text"

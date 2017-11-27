@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="22dp"
+
         android:background="@drawable/mycolor"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal"
         >
         <ImageView
+            android:layout_gravity="center_vertical"
             android:id="@+id/qianming_back"
             android:layout_width="40dp"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:src="@mipmap/fh"
-            android:padding="5dp"
+            android:padding="10dp"
             />
 
         <TextView
             android:textColor="#fff"
-            android:layout_marginLeft="10dp"
+
             style="@style/zhuti_text"
             android:text="个性签名"
             />
@@ -43,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp">
     <EditText
+        android:theme="@style/MyEditText"
         android:hint="输您想要表达的签名"
         android:gravity="top"
         android:background="#dbdbdb"

@@ -53,6 +53,7 @@ import tencent.tls.platform.TLSUserInfo;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.adapter.LXRAdapter;
 import us.mifeng.zhongxingcheng.bean.LXRBean;
+import us.mifeng.zhongxingcheng.liaotian.model.GroupInfo;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 
@@ -160,9 +161,11 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     private void initView() {
         lv = (ListView) findViewById(R.id.swipe_target);
         ImageView add = (ImageView) findViewById(R.id.txl_add);
-        showDialog2 = showDialog2();
+        ImageView back = (ImageView) findViewById(R.id.txl_back);
+        back.setOnClickListener(this);
         add.setOnClickListener(this);
-      //  swipeToLoadLayout = (SwipeToLoadLayout) findViewById(R.id.swipeToLoadLayout);
+        showDialog2 = showDialog2();
+        //  swipeToLoadLayout = (SwipeToLoadLayout) findViewById(R.id.swipeToLoadLayout);
 //        swipeToLoadLayout.setOnLoadMoreListener(this);
         lv.setOnItemClickListener(this);
 //        list = new ArrayList<>();
@@ -248,6 +251,20 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                         showDialog2.show();
                     }
                 }
+                break;
+            case R.id.txl_back:
+                finish();
+                break;
+            case R.id.rela_add:
+                startActivity(new Intent(FriendsActivity.this, SearchFriendActivity.class));
+                break;
+            case R.id.rela_chat:
+                Intent intent = new Intent(FriendsActivity.this, GroupListActivity.class);
+                intent.putExtra("type", GroupInfo.publicGroup);
+                startActivity(intent);
+                break;
+            case R.id.rela_erweima:
+                startActivity(new Intent(FriendsActivity.this,SearchGroupActivity.class));
                 break;
         }
     }
