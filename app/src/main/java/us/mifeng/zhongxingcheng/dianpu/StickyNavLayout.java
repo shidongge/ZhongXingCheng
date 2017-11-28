@@ -16,6 +16,8 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
+import us.mifeng.zhongxingcheng.R;
+
 
 public class StickyNavLayout extends LinearLayout implements NestedScrollingParent
 {
@@ -50,14 +52,10 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed)
     {
         Log.e(TAG, "onNestedPreScroll");
-        boolean hiddenTop = dy > 0 && getScrollY() < mTopViewHeight;
+
         boolean showTop = dy < 0 && getScrollY() >= 0 && !ViewCompat.canScrollVertically(target, -1);
 
-        if (hiddenTop || showTop)
-        {
-            scrollBy(0, dy);
-            consumed[1] = dy;
-        }
+
     }
 
     private int TOP_CHILD_FLING_THRESHOLD = 3;
@@ -103,9 +101,9 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     private int computeDuration(float velocityY) {
         final int distance;
         if (velocityY > 0) {
-            distance = Math.abs(getScrollY());
+            distance = Math.abs(mTop.getHeight() - getScrollY());
         } else {
-            distance = Math.abs(getScrollY());
+            distance = Math.abs(mTop.getHeight() - (mTop.getHeight() - getScrollY()));
         }
 
 
@@ -124,7 +122,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
 
     private void animateScroll(float velocityY, final int duration,boolean consumed) {
         final int currentOffset = getScrollY();
-//        final int topHeight = mTop.getHeight();
+        final int topHeight = mTop.getHeight();
         if (mOffsetAnimator == null) {
             mOffsetAnimator = new ValueAnimator();
             mOffsetAnimator.setInterpolator(mInterpolator);
@@ -142,7 +140,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         mOffsetAnimator.setDuration(Math.min(duration, 600));
 
         if (velocityY >= 0) {
-            mOffsetAnimator.setIntValues(currentOffset);
+            mOffsetAnimator.setIntValues(currentOffset, topHeight);
             mOffsetAnimator.start();
         }else {
             //如果子View没有消耗down事件 那么就让自身滑倒0位置
@@ -158,7 +156,6 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     private View mNav;
     private ViewPager mViewPager;
 
-    private int mTopViewHeight;
 
     private OverScroller mScroller;
     private VelocityTracker mVelocityTracker;
@@ -259,8 +256,15 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     protected void onFinishInflate()
     {
         super.onFinishInflate();
-
-
+        mTop = findViewById(R.id.id_stickynavlayout_topview);
+        mNav = findViewById(R.id.id_stickynavlayout_indicator);
+        View view = findViewById(R.id.id_stickynavlayout_viewpager);
+        if (!(view instanceof ViewPager))
+        {
+            throw new RuntimeException(
+                    "id_stickynavlayout_viewpager show used by ViewPager !");
+        }
+        mViewPager = (ViewPager) view;
     }
 
     @Override
@@ -271,7 +275,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         getChildAt(0).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
         ViewGroup.LayoutParams params = mViewPager.getLayoutParams();
         params.height = getMeasuredHeight() - mNav.getMeasuredHeight();
-        setMeasuredDimension(getMeasuredWidth(),  mNav.getMeasuredHeight() + mViewPager.getMeasuredHeight());
+        setMeasuredDimension(getMeasuredWidth(), mNav.getMeasuredHeight() + mViewPager.getMeasuredHeight());
 
     }
 
@@ -279,13 +283,13 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     protected void onSizeChanged(int w, int h, int oldw, int oldh)
     {
         super.onSizeChanged(w, h, oldw, oldh);
-//        mTopViewHeight = mTop.getMeasuredHeight();
+
     }
 
 
     public void fling(int velocityY)
     {
-        mScroller.fling(0, getScrollY(), 0, velocityY, 0, 0, 0, mTopViewHeight);
+
         invalidate();
     }
 
@@ -296,10 +300,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         {
             y = 0;
         }
-        if (y > mTopViewHeight)
-        {
-            y = mTopViewHeight;
-        }
+
         if (y != getScrollY())
         {
             super.scrollTo(x, y);

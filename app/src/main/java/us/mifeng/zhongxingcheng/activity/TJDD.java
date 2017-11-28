@@ -29,6 +29,9 @@ import us.mifeng.zhongxingcheng.view.MyListView;
  * Created by shido on 2017/11/17.
  */
 
+/**
+ * 提交订单界面
+ */
 public class TJDD extends Activity implements View.OnClickListener {
     private static final String TAG = "TJDD";
     private Button tjdd;

@@ -60,4 +60,9 @@
 
     <color name="zhuangtailan">#5A8EFF</color>
     <color name="zhongxinshangcheng">#f54f4f</color>
+    <!--这里颜色是测试商品详情颜色-->
+    <color name="text_red">#ec0f38</color>
+    <color name="text_black">#222222</color>
+
+
 </resources>

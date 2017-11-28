@@ -3,8 +3,6 @@ package us.mifeng.zhongxingcheng.activity;
 import android.Manifest;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,14 +11,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -73,32 +67,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shouYeFragment = new ShouYeFragment();
         ft.add(R.id.home_ll, shouYeFragment);
         ft.commit();
-        TongMing();
         initView();
         initGetVer();
         initupload();
     }
 
-    public void TongMing(){
-        //如果手机有虚拟按键 那么不能添加透明状态栏
-        //透明状态栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            // Translucent status bar
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-     //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
-        tintManager.setTintColor(Color.parseColor("#000000"));
-
-    }
 
     private void initView() {
         home_ll = (LinearLayout) findViewById(R.id.home_ll);

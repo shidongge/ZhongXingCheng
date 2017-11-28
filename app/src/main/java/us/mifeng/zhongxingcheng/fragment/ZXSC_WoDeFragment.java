@@ -32,9 +32,10 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.activity.DingDan;
+import us.mifeng.zhongxingcheng.activity.ChaXunDD;
 import us.mifeng.zhongxingcheng.activity.SHDZGL;
 import us.mifeng.zhongxingcheng.activity.ShouCang;
+import us.mifeng.zhongxingcheng.activity.ZJZP_WanShan;
 import us.mifeng.zhongxingcheng.activity.ZXSC_YouHuiQuan;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.SharedUtils;
@@ -53,7 +54,7 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
     private TextView nincheng, shoujihao;
     private ImageView img, back;
     private LinearLayout zongdingdan, daifahuo, daishouhuo, daipingjia,
-            shouhou, youhuiquan, shoucang, daizhifu,dingdan_shdz;
+            shouhou, youhuiquan, shoucang, daizhifu,dingdan_shdz,shiminrenzheng;
 
     @Nullable
     @Override
@@ -75,6 +76,7 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
         shoucang = (LinearLayout) inflate.findViewById(R.id.zxsc_wode_shoucang);
         daizhifu = (LinearLayout) inflate.findViewById(R.id.dingdan_daizhifu);
         dingdan_shdz = (LinearLayout) inflate.findViewById(R.id.dingdan_shdz);
+        shiminrenzheng = (LinearLayout) inflate.findViewById(R.id.zxsc_wode_smrz);
         zongdingdan.setOnClickListener(this);
         daizhifu.setOnClickListener(this);
         daishouhuo.setOnClickListener(this);
@@ -85,6 +87,7 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
         shoucang.setOnClickListener(this);
         back.setOnClickListener(this);
         dingdan_shdz.setOnClickListener(this);
+        shiminrenzheng.setOnClickListener(this);
         initView();
         return inflate;
     }
@@ -139,29 +142,29 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.MyDingDan:
-                Intent intent = new Intent(getActivity(), DingDan.class);
+                Intent intent = new Intent(getActivity(), ChaXunDD.class);
                 intent.putExtra("intent", "0");
                 startActivity(intent);
                 break;
             case R.id.dingdan_daizhifu:
-                Intent intent2 = new Intent(getActivity(), DingDan.class);
+                Intent intent2 = new Intent(getActivity(), ChaXunDD.class);
                 intent2.putExtra("intent", "1");
                 startActivity(intent2);
                 break;
 
 
             case R.id.dingdan_daifahuo:
-                Intent intent3 = new Intent(getActivity(), DingDan.class);
+                Intent intent3 = new Intent(getActivity(), ChaXunDD.class);
                 intent3.putExtra("intent", "2");
                 startActivity(intent3);
                 break;
             case R.id.dingdan_daishouhuo:
-                Intent intent4 = new Intent(getActivity(), DingDan.class);
+                Intent intent4 = new Intent(getActivity(), ChaXunDD.class);
                 intent4.putExtra("intent", "3");
                 startActivity(intent4);
                 break;
             case R.id.dingdan_daipingjia:
-                Intent intent5 = new Intent(getActivity(), DingDan.class);
+                Intent intent5 = new Intent(getActivity(), ChaXunDD.class);
                 intent5.putExtra("intent", "4");
                 startActivity(intent5);
                 break;
@@ -180,6 +183,10 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
             case R.id.dingdan_shdz:
                 startActivity(new Intent(getActivity(), SHDZGL.class));
                 break;
+            case R.id.zxsc_wode_smrz:
+                startActivity(new Intent(getActivity(), ZJZP_WanShan.class));
+                break;
+
 //            case R.id.dingdan_shouhou:
 //                //跳转待售后界面
 //                Intent intent5 =  new Intent(getActivity(),CXDD.class);

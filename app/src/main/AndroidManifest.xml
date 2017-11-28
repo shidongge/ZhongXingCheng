@@ -113,6 +113,8 @@
         <activity android:name=".activity.ZXSC_YouHuiQuan"/>
         <activity android:name=".activity.ShouCang"/>
 
+        <activity android:name=".wpxq_ceshi.WPXQ_CeSi"/>
+
 
         <!-- 消息收发service -->
         <service

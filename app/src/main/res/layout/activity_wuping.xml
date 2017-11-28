@@ -7,20 +7,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
+        android:background="@color/zhongxinshangcheng"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/wuping_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="15dp"
-            android:src="@mipmap/back" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@mipmap/fh" />
 
         <TextView
-            style="@style/zhuti_text"
-            android:layout_marginLeft="10dp"
-            android:text="商品详情" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="物品详情"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+
 
     </LinearLayout>
 

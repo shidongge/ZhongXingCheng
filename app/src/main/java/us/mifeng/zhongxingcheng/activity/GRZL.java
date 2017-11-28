@@ -1,25 +1,17 @@
 package us.mifeng.zhongxingcheng.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -60,7 +52,6 @@ import static android.content.ContentValues.TAG;
  * 个人资料界面
  */
 public class GRZL extends Activity implements View.OnClickListener {
-    private String[] sexArry = new String[] { "女孩", "男孩" };// 性别选择
     private TextView xb,xz,nincheng,diqu,qianming,xingzuo,zhiye,shouru,aihao;
     private boolean first = true;
     private String grxx;
@@ -77,7 +68,6 @@ public class GRZL extends Activity implements View.OnClickListener {
         SharedUtils sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", GRZL.this);
         EventBus.getDefault().register(this);
-        TongMing();
         initView();
         initLianWang();
     }
@@ -285,22 +275,6 @@ public class GRZL extends Activity implements View.OnClickListener {
 
         }
     }
-    /* 性别选择框 */
-    private void showSexChooseDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);// 自定义对话框
-
-        builder.setSingleChoiceItems(sexArry, 0, new DialogInterface.OnClickListener() {// 2默认的选中
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {// which是被选中的位置
-                // showToast(which+"");
-                xb.setText(sexArry[which]);
-                dialog.dismiss();// 随便点击一个item消失对话框，不用点击确认取消
-            }
-        });
-        builder.show();// 让弹出框显示
-    }
     //十二星座选择器
     public void onConstellationPicker(View view) {
         boolean isChinese = Locale.getDefault().getDisplayLanguage().contains("中文");
@@ -339,7 +313,7 @@ public class GRZL extends Activity implements View.OnClickListener {
             @Override
             public void onItemPicked(int index, String item) {
                 xz.setText(item);
-                xz.setTextColor(Color.parseColor("#ff0000"));
+//                xz.setTextColor(Color.parseColor("#ff0000"));
             }
         });
         picker.show();
@@ -414,26 +388,5 @@ public class GRZL extends Activity implements View.OnClickListener {
     public void MessageEvent(AiHaoEvent event){
         String msg = event.getMsg();
         aihao.setText(msg);
-    }
-    //设置状态栏
-    public void TongMing(){
-        //如果手机有虚拟按键 那么不能添加透明状态栏
-        //透明状态栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            // Translucent status bar
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
-        tintManager.setTintColor(Color.parseColor("#000000"));
-
     }
 }

@@ -405,7 +405,7 @@
                 android:layout_marginTop="10dp"
                 />
             <LinearLayout
-
+                android:id="@+id/zxsc_wode_smrz"
                 style="@style/linear_tiaomu">
 
 

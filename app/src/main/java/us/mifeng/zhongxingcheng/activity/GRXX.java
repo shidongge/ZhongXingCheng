@@ -2,21 +2,16 @@ package us.mifeng.zhongxingcheng.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.tencent.qcloud.tlslibrary.utils.SharedUtils;
 
 import org.json.JSONException;
@@ -58,7 +53,6 @@ public class GRXX extends Activity implements View.OnClickListener {
         grzx = getIntent().getStringExtra("grzx");
         SharedUtils sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", GRXX.this);
-        TongMing();
         initView();
         initLianWang();
     }
@@ -188,26 +182,5 @@ public class GRXX extends Activity implements View.OnClickListener {
                 finish();
                 break;
         }
-    }
-    //设置状态栏
-    public void TongMing(){
-        //如果手机有虚拟按键 那么不能添加透明状态栏
-        //透明状态栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            // Translucent status bar
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
-        tintManager.setTintColor(Color.parseColor("#000000"));
-
     }
 }

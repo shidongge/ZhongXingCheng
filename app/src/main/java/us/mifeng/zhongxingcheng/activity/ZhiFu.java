@@ -23,7 +23,6 @@ import us.mifeng.zhongxingcheng.utils.SignUtils8;
 
 public class ZhiFu extends Activity {
     private static final String TAG = "ZhiFu";
-
     private String encode;
     private ProgressDialog progressDialog;
     @Override
@@ -74,7 +73,7 @@ public class ZhiFu extends Activity {
                 "language=1&signType=4&" +
                 "merchantAcctId=1020996764101&payerIdType=3&" +
                 "payerId=18994659500&orderId=20171117172953&" +
-                "orderAmount=1000&orderTime=20171117172953&payType=21-1";
+                "orderAmount=100&orderTime=20171117172953&payType=21-1";
 //        Log.e(TAG, "initView: " + xxx);
         String s = SignUtils8.signMsg(xxx);
 
@@ -84,11 +83,8 @@ public class ZhiFu extends Activity {
             // TODO: handle exception
         }
 
-
-//        Log.e(TAG, "initView:sssssssssss " + s);
         wv.loadUrl("https://www.99bill.com/mobilegateway/recvMerchantInfoAction.htm?" + xxx +"&"+ "signMsg=" + encode);
-//        wv.loadUrl("https://www.99bill.com/mobilegateway/recvMerchantInfoAction.htm?inputCharset=1&bgUrl=http://www.baidu.com&version=mobile1.0&language=1&signType=4&merchantAcctId=1020996764101&payerIdType=3&payerId=18994659500&orderId=20171117172953&orderAmount=1000&orderTime=20171117172953&payType=21-1&signMsg=eZy7RTQLMIeVXwU%2b7kNHjyTn%2fW%2fHwRI3KFNARUnIZ3HN4J48wxvElnM0wzGK6F%2fi1Kg8A6zaNVjmfr0hcmAr2YorhbKE8h6ztF7qXhqOT0YAnPgKSUrDvXbnK1xrO9Bl%2bp30Xlm29QdjhE3MznRAEQBuEkK%2fLGZeqicrxa320JE%3D");
         String url = wv.getUrl();
-//        Log.e(TAG, "initView: " + url);
+        Log.e(TAG, "initView: "+url );
     }
 }

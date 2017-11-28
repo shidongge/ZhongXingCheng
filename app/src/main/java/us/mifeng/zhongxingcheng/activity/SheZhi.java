@@ -30,6 +30,9 @@ import us.mifeng.zhongxingcheng.utils.SharedUtils;
  * Created by shido on 2017/11/1.
  */
 
+/**
+ * 未用设置界面
+ */
 public class SheZhi extends Activity implements View.OnClickListener {
 
     private SharedUtils sharedUtils;

@@ -1,7 +1,5 @@
 package us.mifeng.zhongxingcheng.activity;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,11 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.viewpagerindicator.TabPageIndicator;
 
 import us.mifeng.zhongxingcheng.R;
@@ -28,21 +23,23 @@ import us.mifeng.zhongxingcheng.view.MyViewPager;
  * Created by shido on 2017/8/9.
  */
 
-public class DingDan extends FragmentActivity implements View.OnClickListener {
-    private static final String TAG = "DingDan";
+/**
+ * 查询订单界面
+ */
+public class ChaXunDD extends FragmentActivity implements View.OnClickListener {
+    private static final String TAG = "ChaXunDD";
     private static final String[] TITLE = new String[]{"全部", "待支付", "待发货","待收货","待评价"};
     private MyViewPager viewpager;
     private TabPageIndicator tabPageIndicator;
     private String zhuangtai;
     private int integer;
     private ImageView back;
-    private ImageView sousuo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cxdd);
-        TongMing();
+
         initView();
         zhuangtai = getIntent().getStringExtra("intent");
         integer = Integer.valueOf(zhuangtai).intValue();
@@ -65,7 +62,7 @@ public class DingDan extends FragmentActivity implements View.OnClickListener {
 
             @Override
             public void onPageSelected(int position) {
-                ToSi.show(DingDan.this, TITLE[position]);
+                ToSi.show(ChaXunDD.this, TITLE[position]);
             }
 
             @Override
@@ -102,7 +99,6 @@ public class DingDan extends FragmentActivity implements View.OnClickListener {
                 Fragment fragment = new DD_DaiFuKuan();
                 return fragment;
             }else {
-
                 //这里是为了清楚TabPageIndicator时报的ViewPager has not been bound异常，先给TabPageIndicator设置android:visibility="gone"
                 Fragment fragment = new HomeFragment_shouye();
                 Bundle args = new Bundle();
@@ -122,28 +118,6 @@ public class DingDan extends FragmentActivity implements View.OnClickListener {
         public int getCount() {
             return TITLE.length;
         }
-    }
-
-    //设置状态栏
-    public void TongMing() {
-        //如果手机有虚拟按键 那么不能添加透明状态栏
-        //透明状态栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            // Translucent status bar
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
-        tintManager.setTintColor(Color.parseColor("#000000"));
-
     }
 
 }

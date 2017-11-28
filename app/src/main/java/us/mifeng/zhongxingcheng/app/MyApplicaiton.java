@@ -3,6 +3,7 @@ package us.mifeng.zhongxingcheng.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
 import com.tencent.imsdk.TIMGroupReceiveMessageOpt;
@@ -25,6 +26,7 @@ public class MyApplicaiton extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fresco.initialize(this);
         Foreground.init(this);
         imagePicker= ImagePicker.getInstance();
         imagePicker.setImageLoader(new GlideImageLoader());

@@ -1,6 +1,7 @@
 package us.mifeng.zhongxingcheng.fragment;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,6 +25,13 @@ public class DD_DaiFuKuan extends BaseFragment {
         lv = (ListView) inflate.findViewById(R.id.dd_daifukan_lv);
         DD_DaiFuKuanAdapter dd_daiFuKuanAdapter = new DD_DaiFuKuanAdapter(list, getActivity());
         lv.setAdapter(dd_daiFuKuanAdapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
         return inflate;
     }
 

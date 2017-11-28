@@ -29,10 +29,10 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.dianpu.SimpleViewPagerIndicator;
-import us.mifeng.zhongxingcheng.dianpu.TabFragment;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.Util;
+import us.mifeng.zhongxingcheng.utils.ZhuangTaiLan;
 import us.mifeng.zhongxingcheng.view.MyScrollView;
 
 /**
@@ -41,10 +41,8 @@ import us.mifeng.zhongxingcheng.view.MyScrollView;
 /**
  * 店铺界面
  */
-public class WuPing extends Activity implements View.OnClickListener, MyScrollView.OnScrollListener {
-    private String[] mTitles = new String[] { "简介", "评价", "相关" };
+public class WuPing extends Activity implements View.OnClickListener {
     private SimpleViewPagerIndicator mIndicator;
-    private TabFragment[] mFragments = new TabFragment[mTitles.length];
     private ImageView back;
     private LinearLayout fenxiang, yunfei;
     private String appKey = "wx2629c8fc2e7dd404";
@@ -68,6 +66,9 @@ public class WuPing extends Activity implements View.OnClickListener, MyScrollVi
         setContentView(R.layout.activity_wuping);
         String shipId = getIntent().getStringExtra("shopId");
         initLianWang();
+        ZhuangTaiLan zhuangTaiLan = new ZhuangTaiLan();
+        zhuangTaiLan.TongMing(WuPing.this);
+
         initView();
     }
 
@@ -110,7 +111,6 @@ public class WuPing extends Activity implements View.OnClickListener, MyScrollVi
         fenxiang.setOnClickListener(this);
         yunfei.setOnClickListener(this);
         dianpu.setOnClickListener(this);
-        myscr.setOnScrollListener(this);
         jrgwc.setOnClickListener(this);
 
     }
@@ -167,15 +167,5 @@ public class WuPing extends Activity implements View.OnClickListener, MyScrollVi
     private String buildTransaction(final String type) {
         return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
     }
-    //TODO 这里是判断scrollview滑到指定位置然后让顶部字体颜色变色
-    @Override
-    public void onScroll(int scrollY) {
-        int i = img.getHeight() + shang.getHeight() + zhiying.getHeight() + jianjie.getHeight() + jieshao.getHeight() + yunfei.getHeight() + dpmz.getHeight() + shou.getHeight() + baobei.getHeight();
-        if (scrollY>i){
-            ToSi.show(WuPing.this,"已经拉到500dp");
 
-        }else if (scrollY<i){
-
-        }
-    }
 }
