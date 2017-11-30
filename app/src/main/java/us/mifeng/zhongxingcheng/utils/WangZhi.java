@@ -23,6 +23,7 @@ public class WangZhi {
     public static final String ZHAOPIAN = ZHUJI + "app/imageUpload";//图片上传
     //http://47.94.144.186:8080/uploads/userShops/20170814/1502712437111.png 首页图片
     public static final String DIANPU = "http://47.94.144.186:8080/uploads/";
-    public static final String SHOUYESIGE = "http://192.168.1.130:8081/app/new_brand";
-    public static final String SHOUYEJIUGE = "http://192.168.1.130:8081/app/shop_index";
+    public static final String SHOUYESIGE = CHENGGE+"app/index_shops";//首页四个店铺网址
+    public static final String SHOUYEJIUGE = CHENGGE+"app/index_goods";//首页九个商品网址
+    public static final String GRXX = CHENGGE+"app/user_info";//个人信息网址
 }

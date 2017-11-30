@@ -19,9 +19,9 @@ import us.mifeng.zhongxingcheng.bean.Home_ShangPingCGBean;
  */
 
 public class Home_DianPingAdapter extends BaseAdapter {
-    private List<Home_ShangPingCGBean.DataBean.MsgBean> list;
+    private List<Home_ShangPingCGBean.DataBean.GoodsInfoBean> list;
     private Context context;
-    public Home_DianPingAdapter(List<Home_ShangPingCGBean.DataBean.MsgBean> list, Context context){
+    public Home_DianPingAdapter(List<Home_ShangPingCGBean.DataBean.GoodsInfoBean> list, Context context){
         this.list=list;
         this.context=context;
     }

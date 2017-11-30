@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -66,11 +65,6 @@ public class SFRZ extends Activity implements View.OnClickListener {
     private static final String TAG = "SFRZ";
     private ImageItem item;
     int tag;
-    private TextView renzhen;
-    private TextView zjzp_text;
-    private String identityBack;
-    private String identityFace;
-    private String realStatus;
     private ImageView zjzp_zhengmian, zjzp_fanmian, chizhao_zhengmian, chizhao_fanmian;
     private String trim;
     private TextView ssqy,nianyueri,xingbie,baocun;
@@ -87,28 +81,6 @@ public class SFRZ extends Activity implements View.OnClickListener {
         token = sharedUtils.getShared("token", SFRZ.this);
         Log.e(TAG, "onCreate: "+token );
         initView();
-       // initLianWang();
-
-    }
-
-    private void initLianWang() {
-        Map<String, String> map = new HashMap<>();
-        map.put("token", token);
-        OkUtils.UploadSJ(WangZhi.WODE, map, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String string = response.body().string();
-                Message mess = hand.obtainMessage();
-                mess.obj = string;
-                mess.what = 100;
-                hand.sendMessage(mess);
-            }
-        });
 
     }
 
@@ -126,17 +98,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
         nianyueri = (TextView) findViewById(R.id.jbxx_nianyueri);
         xingbie = (TextView) findViewById(R.id.jbxx_xingbie);
         baocun = (TextView) findViewById(R.id.sfrz_baocun);
-
         baocun.setOnClickListener(this);
-//        zjzp_text = (TextView) findViewById(R.id.sfrz_zjzp_text);
-//        img = (ImageView) findViewById(R.id.sfrz_img);
-//        renzhen = (TextView) findViewById(R.id.sfrz_text);
-//        biaoti.setText(sfrz);
-//        img.setOnClickListener(this);
-//        zjzp.setOnClickListener(this);
-//        back.setOnClickListener(this);
-//        jbxx.setOnClickListener(this);
-        //Glide.with(SFRZ.this).load("http://192.168.1.111:1003/uploads/portrait/"+portrait).load(img);
         zjzp_zhengmian.setOnClickListener(this);
         zjzp_fanmian.setOnClickListener(this);
         chizhao_zhengmian.setOnClickListener(this);
@@ -188,17 +150,6 @@ public class SFRZ extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-//            case R.id.sfrz_zjzp:
-//                if (realStatus.equals("1")){
-//                    startActivity(new Intent(SFRZ.this,ZJZP_WanShan.class));
-//                }else {
-//
-//                    Intent intent = new Intent(SFRZ.this, ZJZP.class);
-//                    intent.putExtra("zjzp","证件照片");
-//                    startActivity(new Intent(intent));
-//                }
-//
-//                break;
             case R.id.sfrz_back:
                 finish();
                 break;
@@ -215,15 +166,9 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 }else if (zjzp_fanmian.getDrawable().getCurrent().getConstantState()==getResources().getDrawable(R.mipmap.sfzfm).getConstantState()){
                     ToSi.show(SFRZ.this,"请上传身份证反面照");
                 }
-
-
-
                 else {
                     ToSi.show(SFRZ.this,"正确");
                 }
-
-
-
                 break;
             case R.id.zjzp_zhengmian:
                 tag = 1;
@@ -687,34 +632,6 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-//                String str = (String) msg.obj;
-//                try {
-//                    JSONObject jsonObject = new JSONObject(str);
-//                    JSONObject data = jsonObject.getJSONObject("data");
-//                    JSONObject msg1 = data.getJSONObject("msg");
-//                    realStatus = msg1.getString("realStatus");
-//                    String portrait = msg1.getString("portrait");
-//                    identityBack = msg1.getString("identityBack");
-//                    identityFace = msg1.getString("identityFace");
-//                    Log.e(TAG, "handleMessage: fanmian" + identityBack);
-//                    Log.e(TAG, "handleMessage: zhengmian" + identityFace);
-//
-////                    //TODO 判断是否有照片并且是否实名认证
-////                    if ((identityBack.equals("null")&& identityFace.equals("null"))||realStatus.equals("0")){
-////                        zjzp_text.setText("未完善");
-////                    }else {
-////                        zjzp_text.setText("已完善");
-////                    }
-////                    if (realStatus.equals("0")){
-////                        renzhen.setText("未实名认证");
-////                    }else if (realStatus.equals("1")){
-////                        renzhen.setText("已实名认证");
-////                    }
-////                    Glide.with(SFRZ.this).load(WangZhi.TUPIAN+portrait).apply(RequestOptions.bitmapTransform(new CropCircleTransformation())).into(img);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
             }
         }
     };

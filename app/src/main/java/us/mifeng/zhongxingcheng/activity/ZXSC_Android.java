@@ -42,6 +42,11 @@ public class ZXSC_Android extends FragmentActivity implements View.OnClickListen
         setContentView(R.layout.activity_zxsc_android);
         fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+
+
+
+
+
         initView();
         Intent intent = getIntent();
         int page = intent.getIntExtra("page",0);

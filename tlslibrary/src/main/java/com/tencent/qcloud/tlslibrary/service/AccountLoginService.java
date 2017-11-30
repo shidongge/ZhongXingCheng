@@ -82,6 +82,7 @@ public class AccountLoginService {
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
+//                            Log.e(TAG, "onResponse: "+response.body().string() );
                             String string = response.body().string();
                             Message mess = hand.obtainMessage();
                             mess.obj=string;
@@ -110,7 +111,8 @@ public class AccountLoginService {
                         String sessionId = data.getString("sessionId");
                         String token = data.getString("token");
                         SharedUtils sharedUtils = new SharedUtils();
-                        sharedUtils.saveShared("sessionId","ci_session="+sessionId,context);
+                        Log.e(TAG, "handleMessage: "+sessionId );
+                        sharedUtils.saveShared("sessionId","sessionId="+sessionId,context);
                         sharedUtils.saveShared("token",token,context);
                         username = username + "a";
                         sharedUtils.saveShared("id",username,context);

@@ -33,6 +33,7 @@ import us.mifeng.zhongxingcheng.activity.GRZX;
 import us.mifeng.zhongxingcheng.activity.ZZC;
 import us.mifeng.zhongxingcheng.activity.ZhangDan;
 import us.mifeng.zhongxingcheng.denlgu.SettingActivity;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
@@ -61,9 +62,31 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
         SharedUtils sharedUtils = new SharedUtils();
         //id = sharedUtils.getShared("id", getActivity());
         token = sharedUtils.getShared("token", getActivity());
+        String sessionId = sharedUtils.getShared("sessionId", getActivity());
+        Log.e(TAG, "onCreateView: sessionId = "+sessionId );
         initView();
+        initCGGRXX();
         initLianWang();
         return inflate;
+    }
+
+    private void initCGGRXX() {
+        String realStatus = JiaMi.jdkBase64Encoder("realStatus");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("token",token);
+        Log.e(TAG, "onCreate: token"+token );
+        map.put("field",realStatus);
+        OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e(TAG, "onResponse: "+response.body().string() );
+            }
+        });
     }
 
     private void initLianWang() {

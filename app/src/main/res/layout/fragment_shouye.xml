@@ -296,16 +296,16 @@
                         android:layout_height="match_parent"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
-                        android:src="@drawable/imges_1" />
+                        />
 
                     <ImageView
-                        android:scaleType="fitXY"
                         android:id="@+id/shouye_erhao"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
-                        android:src="@drawable/imges_2" />
+                        android:scaleType="fitXY"
+                         />
 
                 </LinearLayout>
 
@@ -321,7 +321,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
-                        android:src="@drawable/imges_3" />
+                         />
 
                     <ImageView
                         android:scaleType="fitXY"
@@ -330,7 +330,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
-                        android:src="@drawable/imges_4" />
+                         />
 
                 </LinearLayout>
             </LinearLayout>

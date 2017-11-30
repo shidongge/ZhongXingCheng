@@ -38,9 +38,11 @@ import us.mifeng.zhongxingcheng.activity.ZXSC_Android;
 import us.mifeng.zhongxingcheng.adapter.Home_DianPingAdapter;
 import us.mifeng.zhongxingcheng.bean.Home_ShangPingCGBean;
 import us.mifeng.zhongxingcheng.bean.Home_ShangPuBean;
+import us.mifeng.zhongxingcheng.dianpu.DianPuActivity;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 import us.mifeng.zhongxingcheng.view.MyGridView;
+import us.mifeng.zhongxingcheng.wpxq_ceshi.WPXQ_CeSi;
 
 /**
  * Created by shido on 2017/10/17.
@@ -51,11 +53,11 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
     private static final String TAG = "ShouYeFragment";
     private View inflate;
     private LinearLayout mrqd, ltzx, kthy, czzx, zxsc, xwzx, spzx, sxy;
-    private List<Home_ShangPingCGBean.DataBean.MsgBean> list;
+    private List<Home_ShangPingCGBean.DataBean.GoodsInfoBean> list;
     private MyGridView mgv;
     private TextView gengduo;
     private ImageView yihao, erhao, sanhao, sihao;
-    private List<Home_ShangPuBean.DataBean> shangpu_list;
+    private List<Home_ShangPuBean.DataBean.ShopsInfoBean> shangpu_list;
 
     @Nullable
     @Override
@@ -111,7 +113,6 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
 
     //    初始化布局
     private void initView() {
-
         gengduo = (TextView) inflate.findViewById(R.id.shouye_gengduo);
         mrqd = (LinearLayout) inflate.findViewById(R.id.shouye_mrqd);
         ltzx = (LinearLayout) inflate.findViewById(R.id.shouye_ltzx);
@@ -189,19 +190,33 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
                 break;
             case R.id.shouye_yihao:
                 String id0 = shangpu_list.get(0).getId();
-                Log.e(TAG, "onClick: 000"+id0 );
+                Intent intent1 = new Intent(getActivity(), DianPuActivity.class);
+                intent1.putExtra("dianpu",id0);
+                startActivity(intent1);
+                Log.e(TAG, "onClick: 000" + id0);
                 break;
             case R.id.shouye_erhao:
                 String id1 = shangpu_list.get(1).getId();
-                Log.e(TAG, "onClick: 111"+id1 );
+                Intent intent2 = new Intent(getActivity(), DianPuActivity.class);
+                intent2.putExtra("dianpu",id1);
+                startActivity(intent2);
+                Log.e(TAG, "onClick: 111" + id1);
                 break;
             case R.id.shouye_sanhao:
                 String id2 = shangpu_list.get(2).getId();
-                Log.e(TAG, "onClick:222 "+id2 );
+                Intent intent3 = new Intent(getActivity(), DianPuActivity.class);
+                intent3.putExtra("dianpu",id2);
+                startActivity(intent3);
+                Log.e(TAG, "onClick:222 " + id2);
                 break;
             case R.id.shouye_sihao:
                 String id3 = shangpu_list.get(3).getId();
-                Log.e(TAG, "onClick: 333"+id3 );
+                Intent intent4 = new Intent(getActivity(), DianPuActivity.class);
+                intent4.putExtra("dianpu",id3);
+                startActivity(intent4);
+                Log.e(TAG, "onClick: 333" + id3);
+                break;
+            default:
                 break;
         }
     }
@@ -210,30 +225,37 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            //四个店铺返回值
+//            //四个店铺返回值
             if (msg.what == 100) {
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
                     String success = jsonObject.getString("success");
                     if (success.equals("true")) {
-                        JSONArray data = jsonObject.getJSONArray("data");
+                        JSONObject data = jsonObject.getJSONObject("data");
+                        JSONArray shopsInfo = data.getJSONArray("shopsInfo");
                         shangpu_list = new ArrayList<>();
-                        for (int i = 0; i < data.length(); i++) {
-                            JSONObject jsonObject1 = data.getJSONObject(i);
+                        for (int i = 0; i < shopsInfo.length(); i++) {
+                            JSONObject jsonObject1 = shopsInfo.getJSONObject(i);
                             String imgTop = jsonObject1.getString("imgTop");
                             Log.e(TAG, "handleMessage: " + imgTop);
                             String id = jsonObject1.getString("id");
-                            Home_ShangPuBean.DataBean dataBean = new Home_ShangPuBean.DataBean();
+                            String shopname = jsonObject1.getString("shopName");
+                            Home_ShangPuBean.DataBean.ShopsInfoBean dataBean = new Home_ShangPuBean.DataBean.ShopsInfoBean();
                             dataBean.setId(id);
                             shangpu_list.add(dataBean);
-                            if (i==0){
+                            if (i == 0) {
+                                Log.e(TAG, "handleMessage: " + "我是一号");
+
                                 Glide.with(getActivity()).load(imgTop).into(yihao);
-                            }else if (i==1){
+                            } else if (i == 1) {
+                                Log.e(TAG, "handleMessage: " + "我是二号");
                                 Glide.with(getActivity()).load(imgTop).into(erhao);
-                            }else if (i==2){
+                            } else if (i == 2) {
+                                Log.e(TAG, "handleMessage: " + "我是三号");
                                 Glide.with(getActivity()).load(imgTop).into(sanhao);
-                            }else if (i==3){
+                            } else if (i == 3) {
+                                Log.e(TAG, "handleMessage: " + "我是四号");
                                 Glide.with(getActivity()).load(imgTop).into(sihao);
                             }
                         }
@@ -248,21 +270,23 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
                 try {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
-                    JSONArray msg1 = data.getJSONArray("msg");
+                    JSONArray msg1 = data.getJSONArray("goodsInfo");
                     list = new ArrayList<>();
                     for (int i = 0; i < msg1.length(); i++) {
                         JSONObject jsonObject1 = msg1.getJSONObject(i);
 //                        String desc = jsonObject1.getString("shopName");
+                        String id = jsonObject1.getString("id");
                         String goodsMoney1 = jsonObject1.getString("goodsMoney1");//会员价
                         String goodsMoney_old = jsonObject1.getString("goodsMoney_old");//原价
                         String shortDesc = jsonObject1.getString("shortDesc");//商品名称
 
                         String imgTop = jsonObject1.getString("imgCart");
-//                        String imgIcon = jsonObject1.getString("imgIcon");
-                        Home_ShangPingCGBean.DataBean.MsgBean home_shangPinBean = new Home_ShangPingCGBean.DataBean.MsgBean();
+                        String goodsMoney = jsonObject1.getString("goodsMoney");
+                        Home_ShangPingCGBean.DataBean.GoodsInfoBean home_shangPinBean = new Home_ShangPingCGBean.DataBean.GoodsInfoBean();
                         home_shangPinBean.setGoodsMoney1(goodsMoney1);
                         home_shangPinBean.setShortDesc(shortDesc);
                         home_shangPinBean.setImgCart(imgTop);
+                        home_shangPinBean.setId(id);
                         list.add(home_shangPinBean);
                     }
                     Home_DianPingAdapter home_dianPingAdapter = new Home_DianPingAdapter(list, getActivity());
@@ -276,8 +300,12 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Home_ShangPingCGBean.DataBean.MsgBean bean = (Home_ShangPingCGBean.DataBean.MsgBean) parent.getAdapter().getItem(position);
-
+        Home_ShangPingCGBean.DataBean.GoodsInfoBean bean = (Home_ShangPingCGBean.DataBean.GoodsInfoBean) parent.getAdapter().getItem(position);
+        String id1 = bean.getId();
+        Log.e(TAG, "onItemClick: " + id1);
+        Intent intent = new Intent(getActivity(), WPXQ_CeSi.class);
+        intent.putExtra("id", id1);
+        startActivity(intent);
 
     }
 }

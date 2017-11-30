@@ -8,15 +8,16 @@ import java.util.List;
 
 public class Home_ShangPuBean {
 
+
     /**
      * success : true
-     * msg :
-     * data : [{"id":"14","imgTop":""},{"id":"2","imgTop":"http://47.94.144.186:8080/uploads/userShops/20170814/150271248149.png"},{"id":"5","imgTop":"http://47.94.144.186:8080/uploads/userShops/20170814/150271249610.png"},{"id":"6","imgTop":"http://47.94.144.186:8080/uploads/userShops/20170814/150271251179.png"}]
+     * msg : 0
+     * data : {"msg":0,"shopsInfo":[{"id":"15","shopName":"茅台京驾贡酒","imgTop":""},{"id":"2","shopName":"鄃蜂蜂蜜","imgTop":"userShops/20170814/150271248149.png"},{"id":"5","shopName":"手机哥俱乐部","imgTop":"userShops/20170814/150271249610.png"},{"id":"6","shopName":"本草天香茶花籽油","imgTop":"userShops/20170814/150271251179.png"}]}
      */
 
     private boolean success;
-    private String msg;
-    private List<DataBean> data;
+    private int msg;
+    private DataBean data;
 
     public boolean isSuccess() {
         return success;
@@ -26,45 +27,81 @@ public class Home_ShangPuBean {
         this.success = success;
     }
 
-    public String getMsg() {
+    public int getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
+    public void setMsg(int msg) {
         this.msg = msg;
     }
 
-    public List<DataBean> getData() {
+    public DataBean getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(DataBean data) {
         this.data = data;
     }
 
     public static class DataBean {
         /**
-         * id : 14
-         * imgTop :
+         * msg : 0
+         * shopsInfo : [{"id":"15","shopName":"茅台京驾贡酒","imgTop":""},{"id":"2","shopName":"鄃蜂蜂蜜","imgTop":"userShops/20170814/150271248149.png"},{"id":"5","shopName":"手机哥俱乐部","imgTop":"userShops/20170814/150271249610.png"},{"id":"6","shopName":"本草天香茶花籽油","imgTop":"userShops/20170814/150271251179.png"}]
          */
 
-        private String id;
-        private String imgTop;
+        private int msg;
+        private List<ShopsInfoBean> shopsInfo;
 
-        public String getId() {
-            return id;
+        public int getMsg() {
+            return msg;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setMsg(int msg) {
+            this.msg = msg;
         }
 
-        public String getImgTop() {
-            return imgTop;
+        public List<ShopsInfoBean> getShopsInfo() {
+            return shopsInfo;
         }
 
-        public void setImgTop(String imgTop) {
-            this.imgTop = imgTop;
+        public void setShopsInfo(List<ShopsInfoBean> shopsInfo) {
+            this.shopsInfo = shopsInfo;
+        }
+
+        public static class ShopsInfoBean {
+            /**
+             * id : 15
+             * shopName : 茅台京驾贡酒
+             * imgTop :
+             */
+
+            private String id;
+            private String shopName;
+            private String imgTop;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getShopName() {
+                return shopName;
+            }
+
+            public void setShopName(String shopName) {
+                this.shopName = shopName;
+            }
+
+            public String getImgTop() {
+                return imgTop;
+            }
+
+            public void setImgTop(String imgTop) {
+                this.imgTop = imgTop;
+            }
         }
     }
 }

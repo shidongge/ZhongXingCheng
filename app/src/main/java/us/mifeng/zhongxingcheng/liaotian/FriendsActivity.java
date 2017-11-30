@@ -57,7 +57,6 @@ import us.mifeng.zhongxingcheng.liaotian.model.GroupInfo;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 
-
 public class FriendsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FriendshipManageView, StrAccountLogin.LoginListener, OnLoadMoreListener, View.OnClickListener {
     private static final String TAG = "Fragment_LianXiRen";
     private List<LXRBean> list;
@@ -95,7 +94,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         start = 0;
         item = 0;
         //initData();
-        initLianWang();
+//        initLianWang();
     }
 
     private void initLianWang() {
@@ -118,6 +117,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
             }
         });
     }
+
     Handler hand = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -132,10 +132,10 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                     //赋值，确保不重复取值
                     start = item;
                     item += 20;
-                    for (int i = 0; i < msg1.length(); i++) {
+                    for (int i = start; i < msg1.length(); i++) {
                         JSONObject jsonObject1 = msg1.getJSONObject(i);
                         String mobile = jsonObject1.getString("mobile");
-                        Log.e(TAG, "handleMessage: "+mobile );
+                        Log.e(TAG, "handleMessage: " + mobile);
                         String vipLevel = jsonObject1.getString("vipLevel");
                         LXRBean lxrBean = new LXRBean();
                         lxrBean.setMobile(mobile);
@@ -151,8 +151,6 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                 } else {
                     adapter.notifyDataSetChanged();
                 }
-//                lxrAdapter = new LXRAdapter(getActivity(),list);
-//                lv.setAdapter(lxrAdapter);
             }
         }
     };
@@ -165,12 +163,10 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         back.setOnClickListener(this);
         add.setOnClickListener(this);
         showDialog2 = showDialog2();
-        //  swipeToLoadLayout = (SwipeToLoadLayout) findViewById(R.id.swipeToLoadLayout);
-//        swipeToLoadLayout.setOnLoadMoreListener(this);
         lv.setOnItemClickListener(this);
-//        list = new ArrayList<>();
 
     }
+
     private AlertDialog showDialog2() {
         View inflate = LayoutInflater.from(FriendsActivity.this).inflate(R.layout.conversation_dialog, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(FriendsActivity.this);
@@ -217,8 +213,8 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         LXRBean bean = (LXRBean) parent.getAdapter().getItem(position);
-        mobile = bean.getMobile()+"a";
-        Log.e(TAG, "onItemClick: "+mobile );
+        mobile = bean.getMobile() + "a";
+        Log.e(TAG, "onItemClick: " + mobile);
 //        Intent intent = new Intent(this, ChatActivity.class);
 //        intent.putExtra("identify",mobile);
 //        intent.putExtra("type", TIMConversationType.C2C);
@@ -242,7 +238,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.txl_add:
                 if (showDialog2 != null) {
                     if (showDialog2.isShowing()) {
@@ -264,7 +260,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                 startActivity(intent);
                 break;
             case R.id.rela_erweima:
-                startActivity(new Intent(FriendsActivity.this,SearchGroupActivity.class));
+                startActivity(new Intent(FriendsActivity.this, SearchGroupActivity.class));
                 break;
         }
     }
