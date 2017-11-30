@@ -1,6 +1,7 @@
 package us.mifeng.zhongxingcheng.wpxq_ceshi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.dianpu.DianPuActivity;
 
 /**
  * item页ViewPager里的商品Fragment
@@ -54,6 +57,7 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener,
     private FragmentManager fragmentManager;
     public WPXQ_CeSi activity;
     private LayoutInflater inflater;
+    private Button dianpu;
 
     @Override
     public void onAttach(Context context) {
@@ -99,6 +103,7 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener,
     }
 
     private void initView(View rootView) {
+        dianpu = (Button) rootView.findViewById(R.id.wuping_dianpu);
         psts_tabs = (PagerSlidingTabStrip) rootView.findViewById(R.id.psts_tabs);
         fab_up_slide = (FloatingActionButton) rootView.findViewById(R.id.fab_up_slide);
         sv_switch = (SlideDetailsLayout) rootView.findViewById(R.id.sv_switch);
@@ -129,6 +134,9 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener,
         //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
         vp_item_goods_img.setPageIndicator(new int[]{R.mipmap.index_white, R.mipmap.index_red});
         vp_item_goods_img.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
+
+
+        dianpu.setOnClickListener(this);
 
     }
 
@@ -183,7 +191,10 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener,
                 switchFragment(nowFragment, goodsConfigFragment);
                 nowFragment = goodsConfigFragment;
                 break;
+            case R.id.wuping_dianpu:
 
+                startActivity(new Intent(getActivity(),DianPuActivity.class));
+                break;
             default:
                 break;
         }

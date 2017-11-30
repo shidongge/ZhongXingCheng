@@ -105,7 +105,75 @@
                                 android:textSize="13sp" />
 
                         </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/wuping_zhiying"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="直营" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="不包邮" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/wuping_jianjie"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="梧桐堡.路易干红葡萄酒2008 法国原瓶进口 75cl | 梧桐堡|路易干红葡萄酒|法国原瓶进口|红酒" />
+
+                        <TextView
+                            android:id="@+id/wuping_jieshao"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="浓郁的果味，酒体平衡。纯正法国原装进口，值得品尝的葡萄酒" />
+
+                        <LinearLayout
+                            android:id="@+id/wuping_yunfei"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="法国品牌" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:gravity="center"
+                                android:text="跨境商品"
+                                android:textSize="10sp" />
+
+                            <View style="@style/xiantiao_zhongjian" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:src="@mipmap/go" />
+
+                        </LinearLayout>
+
+                        <View style="@style/xiantiao" />
                         <LinearLayout
                             android:id="@+id/ll_activity"
                             android:layout_width="match_parent"
@@ -228,6 +296,207 @@
                             android:textColor="#888888"
                             android:textSize="13dp" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wuping_dpmz"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:src="@mipmap/yushou" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:gravity="center_vertical"
+                                android:text="法国梧桐堡红酒" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:text="销售 "
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="1"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="共"
+                                    android:textSize="10sp"
+
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="10"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="件宝贝"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View style="@style/xiantiao_zhongjian" />
+
+                        <Button
+                            android:id="@+id/wuping_dianpu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:text="进入店铺" />
+                    </LinearLayout>
+
+                    <View style="@style/xiantiao" />
+
+                    <LinearLayout
+                        android:id="@+id/wuping_baobei"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:text="10" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:gravity="center"
+                                android:text="全部宝贝" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="#000" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:text="10" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:gravity="center"
+                                android:text="上新宝贝" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="#000" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="企业" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="直营" />
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="诚信商家" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <View style="@style/xiantiao" />
+
+                    <LinearLayout
+                        android:id="@+id/wuping_shou"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:src="@mipmap/yushou" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:src="@mipmap/yushou" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:src="@mipmap/yushou" />
+
+
+                    </LinearLayout>
+
 
                     <!-- 上拉查看图文详情 -->
                     <LinearLayout

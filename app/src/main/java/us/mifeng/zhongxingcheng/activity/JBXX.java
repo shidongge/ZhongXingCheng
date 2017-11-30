@@ -157,7 +157,7 @@ public class JBXX extends Activity implements View.OnClickListener {
                 break;
             case R.id.jbxx_tijiao:
                 String trim1 = name.getText().toString().trim();
-                if (trim1.equals("")){
+                if ("".equals(trim1)){
                     ToSi.show(JBXX.this,"请输入名字");
                 } else if (("".equals(xingbie.getText().toString().trim())||("").equals(nianyueri.getText().toString().trim())||("").equals(ssdq.getText().toString().trim()))) {
                     ToSi.show(JBXX.this,"请输入身份证");
@@ -190,9 +190,9 @@ public class JBXX extends Activity implements View.OnClickListener {
                     String msg1 = jsonObject.getString("msg");
                     String error = jsonObject.getString("error");
                     Log.e(TAG, "handleMessage: sssssss" + error);
-                    if (msg1.equals("没有信息")){
+                    if ("没有信息".equals(msg1)){
                         ToSi.show(JBXX.this,"身份证不正确");
-                    } else if (error.equals("0")) {
+                    } else if ("0".equals(error)) {
                         String replace = msg1.replace("所属区域: ", "");
                         ssdq.setText(replace);
                         String substring2 = trim.substring(6, 14);

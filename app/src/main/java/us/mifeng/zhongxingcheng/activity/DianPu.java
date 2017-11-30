@@ -2,7 +2,6 @@ package us.mifeng.zhongxingcheng.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,28 +13,28 @@ import android.widget.TextView;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.dianpu.SimpleViewPagerIndicator;
 import us.mifeng.zhongxingcheng.dianpu.TabFragment;
+import us.mifeng.zhongxingcheng.wpxq_ceshi.NoScrollViewPager;
 
 /**
  * Created by shido on 2017/11/3.
  */
 
 public class DianPu extends FragmentActivity implements View.OnClickListener {
-    private String[] mTitles = new String[]{"简介", "评价", "相关"};
+    private String[] mTitles = new String[]{"全部", "销量", "价格","新品","筛选"};
     private RecyclerView youhuiquan;
     private SimpleViewPagerIndicator mIndicator;
-    private ViewPager mViewPager;
+    private NoScrollViewPager mViewPager;
     private FragmentPagerAdapter mAdapter;
     private TabFragment[] mFragments = new TabFragment[mTitles.length];
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dianpu);
+        setContentView(R.layout.activity_dian_pu);
         initView();
 
         //；粘性布局
         initViews();
-        initDatas();
-        initEvents();
+
 
     }
 
@@ -57,33 +56,29 @@ public class DianPu extends FragmentActivity implements View.OnClickListener {
         }
     }
 
-    private void initDatas() {
-        mIndicator.setTitles(mTitles);
-
-        for (int i = 0; i < mTitles.length; i++) {
-            mFragments[i] = (TabFragment) TabFragment.newInstance(mTitles[i]);
-        }
-
-        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
-            @Override
-            public int getCount() {
-                return mTitles.length;
-            }
-
-            @Override
-            public Fragment getItem(int position) {
-                return mFragments[position];
-            }
-
-        };
-
-        mViewPager.setAdapter(mAdapter);
-        mViewPager.setCurrentItem(0);
-    }
-
     private void initViews() {
         mIndicator = (SimpleViewPagerIndicator) findViewById(R.id.id_stickynavlayout_indicator);
-        mViewPager = (ViewPager) findViewById(R.id.id_stickynavlayout_viewpager);
+//        mViewPager = (NoScrollViewPager) findViewById(R.id.id_stickynavlayout_viewpager);
+        mIndicator.setIndicatorListener(new SimpleViewPagerIndicator.OnIndicatorClickListener() {
+            @Override
+            public void onIndicator(TextView tv) {
+                if ("全部".equals(tv.getText())) {
+                    mViewPager.setCurrentItem(0);
+                }
+                if ("销量".equals(tv.getText())) {
+                    mViewPager.setCurrentItem(1);
+                }
+                if ("价格".equals(tv.getText())) {
+                    mViewPager.setCurrentItem(2);
+                }
+                if ("新品".equals(tv.getText())) {
+                    mViewPager.setCurrentItem(3);
+                }
+                if ("筛选".equals(tv.getText())) {
+                    mViewPager.setCurrentItem(4);
+                }
+            }
+        });
 
     }
     private void initEvents() {

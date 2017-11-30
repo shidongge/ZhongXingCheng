@@ -111,34 +111,34 @@ public class GRZL extends Activity implements View.OnClickListener {
                     String income = msg1.getString("income");
                     String hobby = msg1.getString("hobby");
                     String nickName = msg1.getString("nickName");
-                    if (zhiye.equals("")){
+                    if ("".equals(zhiye)){
                         zhiye.setText("未设置");
                     }else {
                         zhiye.setText(job);
                     }
-                    if (diqu.equals("")){
+                    if ("".equals(diqu)){
                         diqu.setText("未设置");
                     }else {
                         diqu.setText(city);
                     }
-                    if (shouru.equals("")){
+                    if ("".equals(shouru)){
                         shouru.setText("未设置");
                     }else {
 
                         shouru.setText(income);
                     }
-                    if (aihao.equals("")){
+                    if ("".equals(aihao)){
                         aihao.setText("未设置");
                     }else {
 
                         aihao.setText(hobby);
                     }
-                    if (nincheng.equals("")){
+                    if ("".equals(nincheng)){
                         nincheng.setText("未设置");
                     }else {
                         nincheng.setText(nickName);
                     }
-                    if (gender.equals("1")){
+                    if ("1".equals(gender)){
                         xb.setText("男");
                     }else {
                         xb.setText("女");
@@ -251,9 +251,9 @@ public class GRZL extends Activity implements View.OnClickListener {
             case R.id.grzl_mbtn:
                 HashMap<String, String> map = new HashMap<>();
                 String string = xb.getText().toString();
-                if (string.equals("男")){
+                if ("男".equals(string)){
                     xb_int=1;
-                }else if (string.equals("女")){
+                }else if ("女".equals(string)){
                     xb_int=2;
                 }
                 //性别

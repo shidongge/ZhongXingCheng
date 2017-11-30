@@ -70,8 +70,10 @@ public class ProfileActivity extends FragmentActivity implements FriendshipManag
         if (profile == null) return;
         TextView name = (TextView) findViewById(R.id.name);
         name.setText(profile.getName());
+        Log.e(TAG, "showProfile:aaa "+profile.getName() );
         LineControllerView id = (LineControllerView) findViewById(R.id.id);
         id.setContent(profile.getIdentify());
+        Log.e(TAG, "showProfile: xxx"+profile.getIdentify() );
         final LineControllerView remark = (LineControllerView) findViewById(R.id.remark);
         remark.setContent(profile.getRemark());
         remark.setOnClickListener(new View.OnClickListener() {

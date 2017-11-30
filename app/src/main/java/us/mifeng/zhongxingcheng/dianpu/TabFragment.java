@@ -2,7 +2,7 @@ package us.mifeng.zhongxingcheng.dianpu;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +16,9 @@ import java.util.List;
 
 import us.mifeng.zhongxingcheng.R;
 
+/**
+ * Created by user on 2017/11/29.
+ */
 
 public class TabFragment extends Fragment {
     public static final String TITLE = "title";
@@ -38,7 +41,7 @@ public class TabFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         mRecyclerView = (RecyclerView) view
                 .findViewById(R.id.id_stickynavlayout_innerscrollview);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         // mTextView = (TextView) view.findViewById(R.id.id_info);
         // mTextView.setText(mTitle);
         for (int i = 0; i < 20; i++) {
@@ -62,5 +65,4 @@ public class TabFragment extends Fragment {
         tabFragment.setArguments(bundle);
         return tabFragment;
     }
-
 }

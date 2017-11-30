@@ -48,7 +48,7 @@ public class AIHao extends Activity implements View.OnClickListener {
                 break;
             case R.id.aihao_bc:
                 String trim = edit.getText().toString().trim();
-                if (trim.equals("")) {
+                if ("".equals(trim)) {
                     ToSi.show(AIHao.this,"请输入爱好");
                 }else {
                     EventBus.getDefault().post(new AiHaoEvent(trim));

@@ -72,7 +72,9 @@ public class AccountLoginService {
                     HashMap<String,String> map = new HashMap<>();
                     map.put("mobile",username);
                     map.put("pwd",password);
-                    OkUtils.UploadSJ("http://192.168.1.111:1003/app/check_login", map, new Callback() {
+                    //陈哥接口 192.168.1.130:8081
+                    //小东接口 192.168.1.111:1003
+                    OkUtils.UploadSJ("http://192.168.1.130:8081/app/check_login", map, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
 
@@ -104,7 +106,7 @@ public class AccountLoginService {
                     Log.e(TAG, "jsonObject: " + jsonObject);
                     JSONObject data = jsonObject.getJSONObject("data");
                     String msg1 = data.getString("msg");
-                    if (msg1.equals("0")){
+                    if ("0".equals(msg1)){
                         String sessionId = data.getString("sessionId");
                         String token = data.getString("token");
                         SharedUtils sharedUtils = new SharedUtils();
@@ -114,11 +116,11 @@ public class AccountLoginService {
                         sharedUtils.saveShared("id",username,context);
                         tlsService.TLSPwdLogin(username, LOGIN_PSW, pwdLoginListener);
                         registerTencentIM(username, LOGIN_PSW, strAccRegListener);
-                    }else if (msg1.equals("1")){
+                    }else if ("1".equals(msg1)){
                         Util.showToast(context, "用户不存在");
-                    }else if (msg1.equals("2")){
+                    }else if ("2".equals(msg1)){
                         Util.showToast(context,"账号或密码不正确");
-                    }else if (msg1.equals("3")){
+                    }else if ("3".equals(msg1)){
                         Util.showToast(context,"用户已被禁止登录");
                     }else {
                         Util.showToast(context,"参数不齐");

@@ -101,9 +101,9 @@ public class GRZX extends Activity implements View.OnClickListener {
                 break;
             case R.id.grzx_sfrz:
                 Log.e(TAG, "onClick: "+realStatus );
-                if (realStatus.equals("1")){
+                if ("1".equals(realStatus)){
                     startActivity(new Intent(GRZX.this,ZJZP_WanShan.class));
-                }else if (realStatus.equals("0")){
+                }else if ("0".equals(realStatus)){
                     Intent intent1 = new Intent(GRZX.this, SFRZ.class);
                     intent1.putExtra("sfrz","身份认证");
                     startActivity(intent1);

@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,38 +18,36 @@ import android.widget.OverScroller;
 import us.mifeng.zhongxingcheng.R;
 
 
-public class StickyNavLayout extends LinearLayout implements NestedScrollingParent
-{
+/**
+ * Created by user on 2017/11/29.
+ */
+
+public class StickyNavLayout extends LinearLayout implements NestedScrollingParent {
     private static final String TAG = "StickyNavLayout";
 
     @Override
-    public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes)
-    {
+    public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
         Log.e(TAG, "onStartNestedScroll");
         return true;
     }
 
     @Override
-    public void onNestedScrollAccepted(View child, View target, int nestedScrollAxes)
-    {
+    public void onNestedScrollAccepted(View child, View target, int nestedScrollAxes) {
         Log.e(TAG, "onNestedScrollAccepted");
     }
 
     @Override
-    public void onStopNestedScroll(View target)
-    {
+    public void onStopNestedScroll(View target) {
         Log.e(TAG, "onStopNestedScroll");
     }
 
     @Override
-    public void onNestedScroll(View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed)
-    {
+    public void onNestedScroll(View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         Log.e(TAG, "onNestedScroll");
     }
 
     @Override
-    public void onNestedPreScroll(View target, int dx, int dy, int[] consumed)
-    {
+    public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
         Log.e(TAG, "onNestedPreScroll");
 
         boolean showTop = dy < 0 && getScrollY() >= 0 && !ViewCompat.canScrollVertically(target, -1);
@@ -59,9 +56,9 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     }
 
     private int TOP_CHILD_FLING_THRESHOLD = 3;
+
     @Override
-    public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed)
-    {
+    public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
         //如果是recyclerView 根据判断第一个元素是哪个位置可以判断是否消耗
         //这里判断如果第一个元素的位置是大于TOP_CHILD_FLING_THRESHOLD的
         //认为已经被消耗，在animateScroll里不会对velocityY<0时做处理
@@ -72,29 +69,28 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
             consumed = childAdapterPosition > TOP_CHILD_FLING_THRESHOLD;
         }
         if (!consumed) {
-            animateScroll(velocityY, computeDuration(0),consumed);
+            animateScroll(velocityY, computeDuration(0), consumed);
         } else {
-            animateScroll(velocityY, computeDuration(velocityY),consumed);
+            animateScroll(velocityY, computeDuration(velocityY), consumed);
         }
         return true;
     }
 
     @Override
-    public boolean onNestedPreFling(View target, float velocityX, float velocityY)
-    {
-       //不做拦截 可以传递给子View
-       return false;
+    public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
+        //不做拦截 可以传递给子View
+        return false;
     }
 
     @Override
-    public int getNestedScrollAxes()
-    {
+    public int getNestedScrollAxes() {
         Log.e(TAG, "getNestedScrollAxes");
         return 0;
     }
 
     /**
      * 根据速度计算滚动动画持续时间
+     *
      * @param velocityY
      * @return
      */
@@ -120,7 +116,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
 
     }
 
-    private void animateScroll(float velocityY, final int duration,boolean consumed) {
+    private void animateScroll(float velocityY, final int duration, boolean consumed) {
         final int currentOffset = getScrollY();
         final int topHeight = mTop.getHeight();
         if (mOffsetAnimator == null) {
@@ -142,9 +138,9 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         if (velocityY >= 0) {
             mOffsetAnimator.setIntValues(currentOffset, topHeight);
             mOffsetAnimator.start();
-        }else {
+        } else {
             //如果子View没有消耗down事件 那么就让自身滑倒0位置
-            if(!consumed){
+            if (!consumed) {
                 mOffsetAnimator.setIntValues(currentOffset, 0);
                 mOffsetAnimator.start();
             }
@@ -154,7 +150,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
 
     private View mTop;
     private View mNav;
-    private ViewPager mViewPager;
+    private RecyclerView vp;
 
 
     private OverScroller mScroller;
@@ -167,8 +163,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     private float mLastY;
     private boolean mDragging;
 
-    public StickyNavLayout(Context context, AttributeSet attrs)
-    {
+    public StickyNavLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.VERTICAL);
 
@@ -178,144 +173,73 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
                 .getScaledMaximumFlingVelocity();
         mMinimumVelocity = ViewConfiguration.get(context)
                 .getScaledMinimumFlingVelocity();
-
     }
 
-    private void initVelocityTrackerIfNotExists()
-    {
-        if (mVelocityTracker == null)
-        {
+    private void initVelocityTrackerIfNotExists() {
+        if (mVelocityTracker == null) {
             mVelocityTracker = VelocityTracker.obtain();
         }
     }
 
-    private void recycleVelocityTracker()
-    {
-        if (mVelocityTracker != null)
-        {
+    private void recycleVelocityTracker() {
+        if (mVelocityTracker != null) {
             mVelocityTracker.recycle();
             mVelocityTracker = null;
         }
     }
 
-
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event)
-//    {
-//        initVelocityTrackerIfNotExists();
-//        mVelocityTracker.addMovement(event);
-//        int action = event.getAction();
-//        float y = event.getY();
-//
-//        switch (action)
-//        {
-//            case MotionEvent.ACTION_DOWN:
-//                if (!mScroller.isFinished())
-//                    mScroller.abortAnimation();
-//                mLastY = y;
-//                return true;
-//            case MotionEvent.ACTION_MOVE:
-//                float dy = y - mLastY;
-//
-//                if (!mDragging && Math.abs(dy) > mTouchSlop)
-//                {
-//                    mDragging = true;
-//                }
-//                if (mDragging)
-//                {
-//                    scrollBy(0, (int) -dy);
-//                }
-//
-//                mLastY = y;
-//                break;
-//            case MotionEvent.ACTION_CANCEL:
-//                mDragging = false;
-//                recycleVelocityTracker();
-//                if (!mScroller.isFinished())
-//                {
-//                    mScroller.abortAnimation();
-//                }
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                mDragging = false;
-//                mVelocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
-//                int velocityY = (int) mVelocityTracker.getYVelocity();
-//                if (Math.abs(velocityY) > mMinimumVelocity)
-//                {
-//                    fling(-velocityY);
-//                }
-//                recycleVelocityTracker();
-//                break;
-//        }
-//
-//        return super.onTouchEvent(event);
-//    }
-
-
     @Override
-    protected void onFinishInflate()
-    {
+    protected void onFinishInflate() {
         super.onFinishInflate();
         mTop = findViewById(R.id.id_stickynavlayout_topview);
         mNav = findViewById(R.id.id_stickynavlayout_indicator);
-        View view = findViewById(R.id.id_stickynavlayout_viewpager);
-        if (!(view instanceof ViewPager))
-        {
+        View view = findViewById(R.id.id_stickynavlayout_vp);
+        if (!(view instanceof RecyclerView)) {
             throw new RuntimeException(
-                    "id_stickynavlayout_viewpager show used by ViewPager !");
+                    "id_stickynavlayout_vp show used by ViewPager !");
         }
-        mViewPager = (ViewPager) view;
+        vp = (RecyclerView) view;
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //不限制顶部的高度
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         getChildAt(0).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-        ViewGroup.LayoutParams params = mViewPager.getLayoutParams();
+        ViewGroup.LayoutParams params = vp.getLayoutParams();
         params.height = getMeasuredHeight() - mNav.getMeasuredHeight();
-        setMeasuredDimension(getMeasuredWidth(), mNav.getMeasuredHeight() + mViewPager.getMeasuredHeight());
+        setMeasuredDimension(getMeasuredWidth(), mNav.getMeasuredHeight() + vp.getMeasuredHeight());
 
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh)
-    {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
     }
 
 
-    public void fling(int velocityY)
-    {
+    public void fling(int velocityY) {
 
         invalidate();
     }
 
     @Override
-    public void scrollTo(int x, int y)
-    {
-        if (y < 0)
-        {
+    public void scrollTo(int x, int y) {
+        if (y < 0) {
             y = 0;
         }
 
-        if (y != getScrollY())
-        {
+        if (y != getScrollY()) {
             super.scrollTo(x, y);
         }
     }
 
     @Override
-    public void computeScroll()
-    {
-        if (mScroller.computeScrollOffset())
-        {
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()) {
             scrollTo(0, mScroller.getCurrY());
             invalidate();
         }
     }
-
-
 }

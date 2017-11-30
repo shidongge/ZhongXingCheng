@@ -6,6 +6,28 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- mi push -->
     <permission
@@ -61,11 +83,9 @@
         <activity android:name=".activity.XZSHDZ" />
         <activity android:name=".activity.QianDao" />
         <activity android:name=".activity.CZZX" />
-        <activity android:name=".activity.YuShou" />
         <activity android:name=".activity.KTHY" />
         <activity android:name=".activity.ZXSC" />
         <activity android:name=".activity.XWZX" />
-        <activity android:name=".activity.SheZhi" />
         <activity android:name=".activity.WuPing" />
         <activity android:name=".activity.BZZX" />
         <activity android:name=".zhaopian.IDCardActivity" />
@@ -114,6 +134,9 @@
         <activity android:name=".activity.ShouCang"/>
 
         <activity android:name=".wpxq_ceshi.WPXQ_CeSi"/>
+        <activity android:name=".dianpu.DianPuActivity"/>
+
+
 
 
         <!-- 消息收发service -->
@@ -262,6 +285,18 @@
         <service
             android:name="com.huawei.android.pushagent.PushService"
             android:process=":HwPushService" />
+
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="us.mifeng.zhongxingcheng.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
 
     </application>
 

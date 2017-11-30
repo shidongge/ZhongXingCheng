@@ -24,7 +24,6 @@ public class FriendshipInfo extends Observable implements Observer {
 
     private final String TAG = "FriendshipInfo";
 
-
     private List<String> groups;
     private Map<String, List<FriendProfile>> friends;
 

@@ -67,7 +67,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shouYeFragment = new ShouYeFragment();
         ft.add(R.id.home_ll, shouYeFragment);
         ft.commit();
-        initView();
+
         initGetVer();
         initupload();
     }
@@ -229,7 +229,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     JSONObject jo = new JSONObject(strh);
                     String ver = jo.getString("ver");
                     if (ver.equals(""+versionCode)){
-
+                        initView();
                     }else {
                         initUtils();
                         utils.showUpdateDialog(MainActivity.this);

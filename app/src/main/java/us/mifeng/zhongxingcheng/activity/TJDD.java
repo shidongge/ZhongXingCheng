@@ -77,6 +77,7 @@ public class TJDD extends Activity implements View.OnClickListener {
                 View contentView = LayoutInflater.from(TJDD.this).inflate(R.layout.dialog_zhifu, null);
                 LinearLayout wx = (LinearLayout) contentView.findViewById(R.id.zhifu_weixin);
                 LinearLayout zhifubao = (LinearLayout) contentView.findViewById(R.id.zhifu_zhifubao);
+                LinearLayout kuaiqian = (LinearLayout) contentView.findViewById(R.id.zhifu_kuaiqian);
                 AlertDialog dialog = new AlertDialog.Builder(this).create();
                 dialog.setView(contentView);
                 dialog.show();
@@ -84,15 +85,21 @@ public class TJDD extends Activity implements View.OnClickListener {
                 Display defaultDisplay = windowManager.getDefaultDisplay();
                 Window window = dialog.getWindow();
                 WindowManager.LayoutParams attributes = window.getAttributes();
-                attributes.height = (int) (defaultDisplay.getHeight() * 0.26);
+                attributes.height = (int) (defaultDisplay.getHeight() * 0.12);
                 attributes.width = defaultDisplay.getWidth();
                 window.setGravity(Gravity.BOTTOM);
                 window.setWindowAnimations(R.style.anim_menu_bottombar);
                 dialog.getWindow().setAttributes(attributes);
                 wx.setOnClickListener(this);
                 zhifubao.setOnClickListener(this);
+                kuaiqian.setOnClickListener(this);
 
                 break;
+            case R.id.zhifu_kuaiqian:
+                startActivity(new Intent(TJDD.this,ZhiFu.class));
+                break;
+
+
             case R.id.zhifu_weixin:
 //                SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss ");
 //                Date curDate = new Date(System.currentTimeMillis());//获取当前时间
@@ -143,7 +150,7 @@ public class TJDD extends Activity implements View.OnClickListener {
 //                        Log.e(TAG, "onResponse: "+response.body().string() );
 //                    }
 //                });
-                startActivity(new Intent(TJDD.this,ZhiFu.class));
+
 
                 ToSi.show(TJDD.this, "点击的是微信支付");
                 break;

@@ -49,15 +49,17 @@ public class UpLoadAppUtils implements OnDownloadListener {
             if (msg.what == 2) {
                 File file = (File) msg.obj;
                 Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    Uri contentUri = FileProvider.getUriForFile(activity, "us.mifeng.xianghuitou.fileprovider", file);
+                    Uri contentUri = FileProvider.getUriForFile(activity, "us.mifeng.zhongxingcheng.fileprovider", file);
                     intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
                 } else {
                     intent.setDataAndType(Uri.fromFile(file),
                             "application/vnd.android.package-archive");
                 }
                 activity.startActivity(intent);
+                android.os.Process.killProcess(android.os.Process.myPid());
             }
         }
     };
@@ -118,7 +120,7 @@ public class UpLoadAppUtils implements OnDownloadListener {
         pBar.show();
         //apk下载网址
         //http://www.taogt.cn/xth2017929.apk
-        requestUrl("http://www.taogt.cn/xth2017929.apk", new Callback() {
+        requestUrl("http://www.zxhyvip.com/xth2.apk", new Callback() {
             private File file;
 
             @Override
@@ -178,12 +180,12 @@ public class UpLoadAppUtils implements OnDownloadListener {
 
     private File getPath() {
         File file = new File(Environment.getExternalStorageDirectory()
-                .getAbsolutePath(), "/waha");//文件夹名
+                .getAbsolutePath(), "/zhongxingcheng");//文件夹名
         if (!file.exists()) {
             file.mkdirs();
         }
         File file1;
-        file1 = new File(file, "goodap.apk");//文件名
+        file1 = new File(file, "zhongxingcheng.apk");//文件名
         if (!file1.exists()) {
             try {
                 file1.createNewFile();

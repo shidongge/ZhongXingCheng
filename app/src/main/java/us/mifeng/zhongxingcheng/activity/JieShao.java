@@ -74,7 +74,7 @@ public class JieShao extends Activity {
             @Override
             public void onClick(View v) {
                 String trim = qm.getText().toString().trim();
-                if (trim.equals("")){
+                if ("".equals(trim)){
                     ToSi.show(JieShao.this,"请输入签名");
                 }else {
                     EventBus.getDefault().post(new QianMingEvent(trim));

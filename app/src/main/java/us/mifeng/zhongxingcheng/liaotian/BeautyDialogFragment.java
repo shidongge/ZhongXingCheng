@@ -135,8 +135,9 @@ public class BeautyDialogFragment extends DialogFragment implements SeekBar.OnSe
                 ImageView view = (ImageView) convertView.findViewById(R.id.filter_image);
                 if (position == 0) {
                     ImageView view_tint = (ImageView) convertView.findViewById(R.id.filter_image_tint);
-                    if (view_tint != null)
+                    if (view_tint != null) {
                         view_tint.setVisibility(View.VISIBLE);
+                    }
                 }
                 view.setTag(position);
                 view.setImageDrawable(getResources().getDrawable(getItem(position)));

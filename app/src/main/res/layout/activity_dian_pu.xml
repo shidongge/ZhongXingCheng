@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <us.mifeng.zhongxingcheng.dianpu.StickyNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="us.mifeng.zhongxingcheng.dianpu.DianPuActivity">
 
     <LinearLayout
         android:id="@id/id_stickynavlayout_topview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <include layout="@layout/title" />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -199,16 +202,62 @@
     </LinearLayout>
 
 
-    <us.mifeng.zhongxingcheng.dianpu.SimpleViewPagerIndicator
+    <LinearLayout
         android:id="@id/id_stickynavlayout_indicator"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ffffffff" />
+        android:background="#fff"
+        android:orientation="horizontal">
 
-    <us.mifeng.zhongxingcheng.wpxq_ceshi.NoScrollViewPager
+        <TextView
+            android:id="@+id/dp_yihao"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="全部"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dp_erhao"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="销量"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dp_sanhao"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="价格"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dp_sihao"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="新品"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/dp_shaixuan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="筛选"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
         android:id="@id/id_stickynavlayout_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#44ff0000" />
+        android:layout_height="match_parent" />
+
 
 </us.mifeng.zhongxingcheng.dianpu.StickyNavLayout>

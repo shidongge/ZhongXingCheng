@@ -102,35 +102,35 @@ public class GRXX extends Activity implements View.OnClickListener {
                     String maskNumber = mobile.substring(0,3)+"****"+mobile2.substring(7,mobile2.length());
 
                     phone.setText(maskNumber);
-                    if (zhiye.equals("")){
+                    if ("".equals(zhiye)){
                         zhiye.setText("未设置");
                     }else {
                         zhiye.setText(job);
                     }
-                    if (zsxm.equals("")){
+                    if ("".equals(zsxm)){
                         zsxm.setText("未设置");
                     }else {
                         zsxm.setText(realName);
                     }
-                    if (diqu.equals("")){
+                    if ("".equals(diqu)){
                         diqu.setText("未设置");
                     }else {
 
                         diqu.setText(city);
                     }
-                    if (shouru.equals("")){
+                    if ("".equals(shouru)){
                         shouru.setText("未设置");
                     }else {
 
                         shouru.setText(income);
                     }
-                    if (aihao.equals("")){
+                    if ("".equals(aihao)){
                         aihao.setText("未设置");
                     }else {
 
                         aihao.setText(hobby);
                     }
-                    if (nc.equals("")){
+                    if ("".equals(nc)){
                         nc.setText("未设置");
                     }else {
 

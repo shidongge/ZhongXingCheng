@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.activity.DianPu;
 import us.mifeng.zhongxingcheng.bean.Home_ShangPinBean;
+import us.mifeng.zhongxingcheng.dianpu.DianPuActivity;
 import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 import us.mifeng.zhongxingcheng.wpxq_ceshi.WPXQ_CeSi;
@@ -106,7 +106,7 @@ public class ZXSC_ShouYeAdapter extends BaseAdapter  {
         vh.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, DianPu.class));
+                context.startActivity(new Intent(context, DianPuActivity.class));
 //                context.startActivity(new Intent(context, MainActivity.class));
                 ToSi.show(context,"点击是大的");
             }
