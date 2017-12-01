@@ -23,6 +23,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
@@ -36,7 +37,7 @@ import us.mifeng.zhongxingcheng.utils.WangZhi;
  */
 public class GRZX extends Activity implements View.OnClickListener {
 
-    private LinearLayout grzy,sfrz,shdz,fapiao;
+    private LinearLayout grzy, sfrz, shdz, fapiao;
     private ImageView back;
     private TextView zxh;
     private String yicangshoujiaho;
@@ -49,28 +50,29 @@ public class GRZX extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grzx);
         SharedUtils sharedUtils = new SharedUtils();
-        yicangshoujiaho = sharedUtils.getShared("yicangshoujihao", GRZX.this);
-        token = sharedUtils.getShared("token",GRZX.this);
+        yicangshoujiaho = sharedUtils.getShared("mobile", GRZX.this);
+        token = sharedUtils.getShared("token", GRZX.this);
         initLianWang();
         initView();
     }
 
     private void initLianWang() {
+        final String realStatus = JiaMi.jdkBase64Encoder("realStatus");
         HashMap<String, String> map = new HashMap<>();
-        map.put("token",token);
-        OkUtils.UploadSJ(WangZhi.WODE, map, new Callback() {
+        map.put("token", token);
+        map.put("field",realStatus);
+        OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
+                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-             //   Log.e(TAG, "onResponse: "+response.body().string() );
                 String string = response.body().string();
                 Message mess = hand.obtainMessage();
-                mess.obj=string;
-                mess.what=100;
+                mess.obj = string;
+                mess.what = 100;
                 hand.sendMessage(mess);
             }
         });
@@ -93,47 +95,49 @@ public class GRZX extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.grzx_grzy:
                 Intent intent = new Intent(GRZX.this, GRXX.class);
-                intent.putExtra("grzx","个人主页");
+                intent.putExtra("grzx", "个人主页");
                 startActivity(intent);
                 break;
             case R.id.grzx_sfrz:
-                Log.e(TAG, "onClick: "+realStatus );
-                if ("1".equals(realStatus)){
-                    startActivity(new Intent(GRZX.this,ZJZP_WanShan.class));
-                }else if ("0".equals(realStatus)){
+                Log.e(TAG, "onClick: " + realStatus);
+                if ("1".equals(realStatus)) {
+                    startActivity(new Intent(GRZX.this, ZJZP_WanShan.class));
+                } else if ("0".equals(realStatus)) {
                     Intent intent1 = new Intent(GRZX.this, SFRZ.class);
-                    intent1.putExtra("sfrz","身份认证");
+                    intent1.putExtra("sfrz", "身份认证");
                     startActivity(intent1);
                 }
 
                 break;
             case R.id.grzx_shdz:
-                startActivity(new Intent(GRZX.this,H5SHDZ.class));
+                startActivity(new Intent(GRZX.this, H5SHDZ.class));
                 break;
 
             case R.id.grzx_fapiao:
-                startActivity(new Intent(GRZX.this,FPGL.class));
+                startActivity(new Intent(GRZX.this, FPGL.class));
                 break;
             case R.id.grzx_back:
                 finish();
                 break;
+            default:
+                break;
         }
     }
-    Handler hand = new Handler(){
+
+    Handler hand = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what==100){
+            if (msg.what == 100) {
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
-                    JSONObject msg1 = data.getJSONObject("msg");
+                    JSONObject msg1 = data.getJSONObject("userInfo");
                     realStatus = msg1.getString("realStatus");
-                    Log.e(TAG, "handleMessage: "+realStatus );
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

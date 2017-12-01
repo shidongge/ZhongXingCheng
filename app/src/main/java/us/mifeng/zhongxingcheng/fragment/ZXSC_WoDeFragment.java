@@ -1,8 +1,6 @@
 package us.mifeng.zhongxingcheng.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,14 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +32,7 @@ import us.mifeng.zhongxingcheng.activity.SHDZGL;
 import us.mifeng.zhongxingcheng.activity.ShouCang;
 import us.mifeng.zhongxingcheng.activity.ZJZP_WanShan;
 import us.mifeng.zhongxingcheng.activity.ZXSC_YouHuiQuan;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.SharedUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
@@ -55,14 +51,15 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
     private ImageView img, back;
     private LinearLayout zongdingdan, daifahuo, daishouhuo, daipingjia,
             shouhou, youhuiquan, shoucang, daizhifu,dingdan_shdz,shiminrenzheng;
+    private String mobile;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         SharedUtils sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", getActivity());
+        mobile = sharedUtils.getShared("mobile", getActivity());
         inflate = View.inflate(getActivity(), R.layout.fragment_zxsc_wode, null);
-        TongMing();
         nincheng = (TextView) inflate.findViewById(R.id.zxsc_wode_nincheng);
         shoujihao = (TextView) inflate.findViewById(R.id.zxsc_wode_shoujihao);
         img = (ImageView) inflate.findViewById(R.id.zxsc_wode_img);
@@ -93,9 +90,11 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initView() {
+        String s = JiaMi.jdkBase64Encoder("nickName,portrait");
         HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
-        OkUtils.UploadSJ(WangZhi.WODE, map, new Callback() {
+        map.put("field",s);
+        OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
@@ -121,14 +120,22 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
                 try {
                     JSONObject jsonObject = new JSONObject(string);
                     JSONObject data = jsonObject.getJSONObject("data");
-                    JSONObject msg1 = data.getJSONObject("msg");
+                    JSONObject msg1 = data.getJSONObject("userInfo");
                     String nickName = msg1.getString("nickName");
-                    String mobile = msg1.getString("mobile");
                     String portrait = msg1.getString("portrait");
                     shoujihao.setText(mobile);
-                    nincheng.setText(nickName);
-                    Glide.with(getActivity()).load(WangZhi.TUPIAN + portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+                    if ("".equals(nickName)){
+                        nincheng.setText("未设置");
+                    }else {
 
+                        nincheng.setText(nickName);
+                    }
+                    if ("".equals(portrait)){
+                        img.setImageResource(R.mipmap.tx);
+                    }else {
+
+                        Glide.with(getActivity()).load(WangZhi.TUPIAN + portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -186,6 +193,8 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
             case R.id.zxsc_wode_smrz:
                 startActivity(new Intent(getActivity(), ZJZP_WanShan.class));
                 break;
+            default:
+                break;
 
 //            case R.id.dingdan_shouhou:
 //                //跳转待售后界面
@@ -195,28 +204,4 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
 //                break;
         }
     }
-
-    //设置状态栏
-    public void TongMing() {
-        //如果手机有虚拟按键 那么不能添加透明状态栏
-        //透明状态栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getActivity().getWindow();
-            // Translucent status bar
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        //透明状态栏
-        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        SystemBarTintManager tintManager = new SystemBarTintManager(getActivity());
-        tintManager.setStatusBarTintEnabled(true);
-        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
-        tintManager.setTintColor(Color.parseColor("#000000"));
-
-    }
-
-
 }

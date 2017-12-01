@@ -68,16 +68,11 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
     }
 
     private void initSlider() {
-        HashMap<String,String> url_maps = new HashMap<String, String>();
+        HashMap<String,String> url_maps = new HashMap<>();
         url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
         url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
         url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
-//        HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-//        file_maps.put("Hannibal",R.drawable.nemo);
-//        file_maps.put("Big Bang Theory",R.drawable.up);
-//        file_maps.put("House of Cards",R.drawable.wall);
-//        file_maps.put("Game of Thrones", R.drawable.toystory);
         for(String name : url_maps.keySet()){
             DefaultSliderView defaultSliderView = new DefaultSliderView(getActivity());
             // initialize a SliderLayout
@@ -178,6 +173,8 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.zxsc_home_back:
                 getActivity().finish();
+                break;
+            default:
                 break;
         }
     }

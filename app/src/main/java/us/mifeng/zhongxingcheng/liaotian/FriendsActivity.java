@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -77,6 +78,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     private RelativeLayout rela_sao;
     private RelativeLayout rela_add;
     private RelativeLayout rela_chats;
+    private LinearLayout qunliao,tianjia;
 
 
     @Override
@@ -160,6 +162,9 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         lv = (ListView) findViewById(R.id.swipe_target);
         ImageView add = (ImageView) findViewById(R.id.txl_add);
         ImageView back = (ImageView) findViewById(R.id.txl_back);
+        qunliao = (LinearLayout) findViewById(R.id.txl_qunliao);
+        tianjia = (LinearLayout) findViewById(R.id.txl_tianjia);
+        qunliao.setOnClickListener(this);
         back.setOnClickListener(this);
         add.setOnClickListener(this);
         showDialog2 = showDialog2();
@@ -188,6 +193,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         rela_add.setOnClickListener(this);
         rela_chats.setOnClickListener(this);
         rela_sao.setOnClickListener(this);
+        tianjia.setOnClickListener(this);
         return alertDialog;
     }
 
@@ -261,6 +267,16 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                 break;
             case R.id.rela_erweima:
                 startActivity(new Intent(FriendsActivity.this, SearchGroupActivity.class));
+                break;
+            case R.id.txl_qunliao:
+                Intent intent1 = new Intent(FriendsActivity.this, GroupListActivity.class);
+                intent1.putExtra("type", GroupInfo.publicGroup);
+                startActivity(intent1);
+                break;
+            case R.id.txl_tianjia:
+                startActivity(new Intent(FriendsActivity.this, SearchFriendActivity.class));
+                break;
+            default:
                 break;
         }
     }

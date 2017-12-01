@@ -49,21 +49,21 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/zzc_nincheng"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1.02"
                 android:gravity="bottom"
-                android:text="你好"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/zzc_shoujihao"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:text="我是手机号"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -99,11 +99,11 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/zzc_zzc"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="11111111111"
             android:textColor="#333333"
             android:textSize="20sp" />
     </LinearLayout>
@@ -268,46 +268,52 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/zzc_keyong"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="14924.33" />
+                 />
 
             <TextView
+                android:id="@+id/zzc_dongjie"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="4900.33" />
+               />
 
             <TextView
+                android:id="@+id/zzc_tixian"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="600.33" />
+                 />
 
             <TextView
+                android:id="@+id/zzc_xbje"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="9593620.33" />
+                 />
 
             <TextView
+                android:id="@+id/zzc_scky"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="6666.33" />
+                 />
 
             <TextView
+                android:id="@+id/zzc_scbd"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="66666.33" />
+                />
 
 
         </LinearLayout>

@@ -16,8 +16,6 @@ import us.mifeng.zhongxingcheng.fragment.ZXSC_GouWuCheFragment;
 import us.mifeng.zhongxingcheng.fragment.ZXSC_ShouYeFragment;
 import us.mifeng.zhongxingcheng.fragment.ZXSC_WoDeFragment;
 
-import static us.mifeng.zhongxingcheng.R.id.zxsc_home_shouye_img;
-
 
 /**
  * Created by shido on 2017/11/15.
@@ -42,20 +40,11 @@ public class ZXSC_Android extends FragmentActivity implements View.OnClickListen
         setContentView(R.layout.activity_zxsc_android);
         fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-
-
-
-
-
         initView();
         Intent intent = getIntent();
         int page = intent.getIntExtra("page",0);
-
-
         zxsc_shouYeFragment = new ZXSC_ShouYeFragment();
         ft.add(R.id.zxsc_home_ll, zxsc_shouYeFragment);
-
-
         if (page==1){
             initText();
             hintFragment();
@@ -67,9 +56,6 @@ public class ZXSC_Android extends FragmentActivity implements View.OnClickListen
                 ft.show(zxsc_fenLeiFragment);
             }
         }
-
-
-
         ft.commit();
 
     }
@@ -80,7 +66,7 @@ public class ZXSC_Android extends FragmentActivity implements View.OnClickListen
         gouwuche = (LinearLayout) findViewById(R.id.zxsc_home_gouwuche);
         wode = (LinearLayout) findViewById(R.id.zxsc_home_wode);
 
-        shou_img = (ImageView) findViewById(zxsc_home_shouye_img);
+        shou_img = (ImageView) findViewById(R.id.zxsc_home_shouye_img);
         fenlei_img = (ImageView) findViewById(R.id.zxsc_home_fenlei_img);
         gouwuche_img = (ImageView) findViewById(R.id.zxsc_home_gouwuche_img);
         wode_img = (ImageView) findViewById(R.id.zxsc_home_wode_img);
@@ -131,6 +117,8 @@ public class ZXSC_Android extends FragmentActivity implements View.OnClickListen
                 }else {
                     ft.show(zxsc_woDeFragment);
                 }
+                break;
+            default:
                 break;
         }
         ft.commit();

@@ -89,7 +89,6 @@ public class ZJZP_WanShan extends Activity {
                     }else {
                         xb = "女";
                     }
-
                     xingbie.setText(xb);
                     xingming.setText(realName);
                     sfz.setText(identityCard);

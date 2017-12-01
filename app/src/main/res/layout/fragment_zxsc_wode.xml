@@ -31,7 +31,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,8 +49,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:src="@mipmap/tx" />
+                    android:layout_marginLeft="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -94,6 +94,7 @@
             </LinearLayout>
 
             <View style="@style/xiantiao" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -107,10 +108,10 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:padding="12dp"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:padding="12dp"
                         android:src="@mipmap/youhuiquan" />
 
                     <TextView
@@ -135,9 +136,9 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:padding="12dp"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
+                        android:padding="12dp"
                         android:src="@mipmap/shoucang" />
 
                     <TextView
@@ -191,6 +192,7 @@
             </LinearLayout>
 
             <View style="@style/xiantiao" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
@@ -243,9 +245,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:padding="10dp"
-                        android:src="@mipmap/daipingjia"
-
-                        />
+                        android:src="@mipmap/daipingjia" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -260,6 +260,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:background="#dbdbdb" />
+
                 <LinearLayout
                     android:id="@+id/dingdan_daishouhuo"
                     android:layout_width="0dp"
@@ -290,6 +291,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:background="#dbdbdb" />
+
                 <LinearLayout
                     android:id="@+id/dingdan_daipingjia"
                     android:layout_width="0dp"
@@ -347,10 +349,10 @@
             </LinearLayout>
 
             <View style="@style/xiantiao" />
+
             <LinearLayout
                 android:id="@+id/wode_zzc"
                 style="@style/linear_tiaomu">
-
 
 
                 <TextView
@@ -361,7 +363,7 @@
 
 
                 <ImageView style="@style/img_xiao" />
-                />
+
             </LinearLayout>
 
             <View style="@style/xiantiao" />
@@ -369,7 +371,6 @@
             <LinearLayout
 
                 style="@style/linear_tiaomu">
-
 
 
                 <TextView
@@ -380,7 +381,7 @@
 
 
                 <ImageView style="@style/img_xiao" />
-                />
+
             </LinearLayout>
 
             <View style="@style/xiantiao" />
@@ -397,13 +398,15 @@
 
 
                 <ImageView style="@style/img_xiao" />
-                />
+
             </LinearLayout>
 
             <View style="@style/xiantiao" />
-            <View style="@style/xiantiao"
-                android:layout_marginTop="10dp"
-                />
+
+            <View
+                style="@style/xiantiao"
+                android:layout_marginTop="10dp" />
+
             <LinearLayout
                 android:id="@+id/zxsc_wode_smrz"
                 style="@style/linear_tiaomu">
@@ -417,7 +420,7 @@
 
 
                 <ImageView style="@style/img_xiao" />
-                />
+
             </LinearLayout>
 
             <View style="@style/xiantiao" />
@@ -435,7 +438,7 @@
 
 
                 <ImageView style="@style/img_xiao" />
-                />
+
             </LinearLayout>
 
             <View style="@style/xiantiao" />
@@ -453,7 +456,7 @@
 
 
                 <ImageView style="@style/img_xiao" />
-                />
+
             </LinearLayout>
 
             <View style="@style/xiantiao" />

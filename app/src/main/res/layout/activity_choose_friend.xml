@@ -6,14 +6,22 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#fff">
-
+        android:layout_height="48dp"
+        android:background="@color/zhuangtailan">
+        <ImageView
+            android:id="@+id/xzlxr_back"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/fh"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="选择联系人"
+            android:textColor="#fff"
             android:textSize="18sp" />
 
         <TextView
@@ -24,6 +32,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:text="确定"
+            android:textColor="#fff"
             android:textSize="16sp" />
     </RelativeLayout>
 

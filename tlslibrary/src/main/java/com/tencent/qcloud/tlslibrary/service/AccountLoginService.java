@@ -110,10 +110,12 @@ public class AccountLoginService {
                     if ("0".equals(msg1)){
                         String sessionId = data.getString("sessionId");
                         String token = data.getString("token");
+                        String mobile = data.getString("mobile");
                         SharedUtils sharedUtils = new SharedUtils();
                         Log.e(TAG, "handleMessage: "+sessionId );
                         sharedUtils.saveShared("sessionId","sessionId="+sessionId,context);
                         sharedUtils.saveShared("token",token,context);
+                        sharedUtils.saveShared("mobile",mobile,context);
                         username = username + "a";
                         sharedUtils.saveShared("id",username,context);
                         tlsService.TLSPwdLogin(username, LOGIN_PSW, pwdLoginListener);

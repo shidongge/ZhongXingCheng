@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class ChooseFriendActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_friend);
+        ImageView back = (ImageView) findViewById(R.id.xzlxr_back);
         TextView title = (TextView) findViewById(R.id.chooseTitle);
         List<String> selected = getIntent().getStringArrayListExtra("selected");
         if (selected != null) {
@@ -73,6 +75,12 @@ public class ChooseFriendActivity extends Activity {
             }
         });
         mGroupListAdapter.notifyDataSetChanged();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 

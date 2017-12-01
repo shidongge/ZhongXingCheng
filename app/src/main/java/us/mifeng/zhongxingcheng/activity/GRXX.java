@@ -25,6 +25,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
@@ -40,11 +41,11 @@ import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
  */
 public class GRXX extends Activity implements View.OnClickListener {
     private static final String TAG = "GRXX";
-    private TextView nc,js,phone,zsxm,diqu,zhiye,shouru,aihao;
+    private TextView nc, js, phone, zsxm, diqu, zhiye, shouru, aihao, zxjf;
     private TextView bt;
     private String grzx;
     private String token;
-    private ImageView img,back,sznc;
+    private ImageView img, back, sznc;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,36 +59,39 @@ public class GRXX extends Activity implements View.OnClickListener {
     }
 
     private void initLianWang() {
-        HashMap<String,String> map = new HashMap<>();
-        map.put("token",token);
-        OkUtils.UploadSJ(WangZhi.WODE, map, new Callback() {
+        String s = JiaMi.jdkBase64Encoder("mobile,userExp,realName,nickName,province,city,job,income,hobby,portrait");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("token", token);
+        map.put("field", s);
+        OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
+                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-               // Log.e(TAG, "onResponse: "+response.body().string() );
+//                Log.e(TAG, "onResponse: "+response.body().string() );
                 String string = response.body().string();
                 Message mess = hand.obtainMessage();
-                mess.obj=string;
-                mess.what=200;
+                mess.obj = string;
+                mess.what = 200;
                 hand.sendMessage(mess);
 
             }
         });
     }
-    Handler hand = new Handler(){
+
+    Handler hand = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what==200){
+            if (msg.what == 200) {
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
-                    JSONObject msg1 = data.getJSONObject("msg");
+                    JSONObject msg1 = data.getJSONObject("userInfo");
                     String realName = msg1.getString("realName");
                     String mobile = msg1.getString("mobile");
                     String city = msg1.getString("city");
@@ -95,48 +99,60 @@ public class GRXX extends Activity implements View.OnClickListener {
                     String income = msg1.getString("income");
                     String hobby = msg1.getString("hobby");
                     String nickName = msg1.getString("nickName");
+                    String userExp = msg1.getString("userExp");
                     String portrait = msg1.getString("portrait");
-
                     //TODO 隐藏手机号中间四位
                     String mobile2 = mobile;
-                    String maskNumber = mobile.substring(0,3)+"****"+mobile2.substring(7,mobile2.length());
-
+                    String maskNumber = mobile.substring(0, 3) + "****" + mobile2.substring(7, mobile2.length());
                     phone.setText(maskNumber);
-                    if ("".equals(zhiye)){
+                    if ("".equals(job)) {
                         zhiye.setText("未设置");
-                    }else {
+                    } else {
                         zhiye.setText(job);
                     }
-                    if ("".equals(zsxm)){
+                    if ("".equals(realName)) {
                         zsxm.setText("未设置");
-                    }else {
+                    } else {
                         zsxm.setText(realName);
                     }
-                    if ("".equals(diqu)){
+                    if ("".equals(portrait)){
                         diqu.setText("未设置");
                     }else {
-
-                        diqu.setText(city);
+                        if ("".equals(city)) {
+                            diqu.setText("未设置");
+                        } else {
+                            diqu.setText(portrait+city);
+                        }
                     }
-                    if ("".equals(shouru)){
+                    if ("".equals(income)) {
                         shouru.setText("未设置");
-                    }else {
+                    } else {
 
                         shouru.setText(income);
                     }
-                    if ("".equals(aihao)){
+                    if ("".equals(hobby)) {
                         aihao.setText("未设置");
-                    }else {
+                    } else {
 
                         aihao.setText(hobby);
                     }
-                    if ("".equals(nc)){
+                    if ("".equals(nickName)) {
                         nc.setText("未设置");
-                    }else {
+                    } else {
 
                         nc.setText(nickName);
                     }
+                    if ("".equals(userExp)){
+                        zxjf.setText("未设置");
+                    }else {
+                        zxjf.setText(userExp);
+                    }
+                    if ("".equals(portrait)){
+                        img.setImageResource(R.mipmap.tx);
+                    }else {
+
                     Glide.with(GRXX.this).load(WangZhi.TUPIAN+portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -156,6 +172,7 @@ public class GRXX extends Activity implements View.OnClickListener {
         bt = (TextView) findViewById(R.id.grzx_bt);
         img = (ImageView) findViewById(R.id.grxx_img);
         back = (ImageView) findViewById(R.id.grxx_back);
+        zxjf = (TextView) findViewById(R.id.grxx_zxjf);
 //        nc.setOnClickListener(this);
         sznc = (ImageView) findViewById(R.id.grxx_sznc);
         js.setOnClickListener(this);
@@ -166,20 +183,22 @@ public class GRXX extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.grxx_sznc:
-                startActivity(new Intent(GRXX.this,NinChen.class));
+                startActivity(new Intent(GRXX.this, NinChen.class));
                 break;
             case R.id.grxx_js:
-                startActivity(new Intent(GRXX.this,JieShao.class));
+                startActivity(new Intent(GRXX.this, JieShao.class));
                 break;
             case R.id.grzx_bt:
                 Intent intent = new Intent(GRXX.this, GRZL.class);
-                intent.putExtra("grxx","个人资料");
+                intent.putExtra("grxx", "个人资料");
                 startActivity(intent);
                 break;
             case R.id.grxx_back:
                 finish();
+                break;
+            default:
                 break;
         }
     }

@@ -78,7 +78,7 @@ public class ChatActivity extends FragmentActivity implements ChatView {
     private TIMConversationType type;
     private String titleStr;
     private Handler handler = new Handler();
-    private ImageView tv_details;
+    private ImageView tv_details,back;
 
 
     public static void navToChat(Context context, String identify, TIMConversationType type) {
@@ -104,6 +104,14 @@ public class ChatActivity extends FragmentActivity implements ChatView {
         listView.setAdapter(adapter);
         listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
         tv_details = (ImageView) findViewById(R.id.tv_details);
+        back = (ImageView) findViewById(R.id.lt_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPause();
+                finish();
+            }
+        });
         tv_details.setOnClickListener(new View.OnClickListener() {
 
             private Intent intent;

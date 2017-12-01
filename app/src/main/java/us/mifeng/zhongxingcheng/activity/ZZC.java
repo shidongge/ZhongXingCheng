@@ -3,9 +3,13 @@ package us.mifeng.zhongxingcheng.activity;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.PieChart;
@@ -16,36 +20,100 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
+import us.mifeng.zhongxingcheng.utils.OkUtils;
+import us.mifeng.zhongxingcheng.utils.SharedUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 /**
- * Created by shido on 2017/11/10.
+ *
+ * @author shido
+ * @author shido
+ * @date 2017/11/10
  */
 
 public class ZZC extends Activity implements View.OnClickListener {
     private PieChart mPieChart;
-    private ImageView back,img;
+    private ImageView back, img;
     private String zzc;
+    private String token;
+    private String mobile;
+    private static final String TAG = "ZZC";
+    private TextView nincheng,shouji,zongzichan,keyong,dongjie,tixian,xiangbi,scky,scbd;
+    private String portrait;
+    private String cashMoney;
+    private String balance;
+    private String available;
+    private String frozen;
+    private String shareholder;
+    private String shopAvailable;
+    private String shopBindMoney;
+    private String nickName;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zzc);
         zzc = getIntent().getStringExtra("zzc");
-
+        SharedUtils sharedUtils = new SharedUtils();
+        token = sharedUtils.getShared("token", ZZC.this);
+        mobile = sharedUtils.getShared("mobile", ZZC.this);
+        initLianWang();
         initView();
     }
+
+    private void initLianWang() {
+        String s = JiaMi.jdkBase64Encoder("portrait,balance,available,frozen,cashMoney,shareholder,shopAvailable,shopBindMoney,nickName");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("token", token);
+        map.put("field", s);
+        OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+//                Log.e(TAG, "onResponse: " + response.body().string());
+                String string = response.body().string();
+                Message mess = hand.obtainMessage();
+                mess.obj = string;
+                mess.what = 100;
+                hand.sendMessage(mess);
+            }
+        });
+    }
+
     //初始化View
     private void initView() {
         img = (ImageView) findViewById(R.id.zzc_img);
         back = (ImageView) findViewById(R.id.zzc_back);
-        Glide.with(ZZC.this).load(WangZhi.TUPIAN+ zzc).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+        nincheng = (TextView) findViewById(R.id.zzc_nincheng);
+        shouji = (TextView) findViewById(R.id.zzc_shoujihao);
+        zongzichan = (TextView) findViewById(R.id.zzc_zzc);
+        keyong = (TextView) findViewById(R.id.zzc_keyong);
+        dongjie = (TextView) findViewById(R.id.zzc_dongjie);
+        tixian = (TextView) findViewById(R.id.zzc_tixian);
+        xiangbi = (TextView) findViewById(R.id.zzc_xbje);
+        scky = (TextView) findViewById(R.id.zzc_scky);
+        scbd = (TextView) findViewById(R.id.zzc_scbd);
+        shouji.setText(mobile);
         back.setOnClickListener(this);
         //饼状图
         mPieChart = (PieChart) findViewById(R.id.mPieChart);
@@ -61,7 +129,7 @@ public class ZZC extends Activity implements View.OnClickListener {
 
         mPieChart.setDragDecelerationFrictionCoef(0.95f);
 
-        mPieChart.setTransparentCircleColor(Color.WHITE);
+        mPieChart.setTransparentCircleColor(Color.BLACK);
         mPieChart.setTransparentCircleAlpha(1);
 
         mPieChart.setHoleRadius(40f);
@@ -76,25 +144,14 @@ public class ZZC extends Activity implements View.OnClickListener {
 
 
 
-        //模拟数据
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
-        entries.add(new PieEntry(14, ""));
-        entries.add(new PieEntry(40, ""));
-        entries.add(new PieEntry(20000, ""));
-        entries.add(new PieEntry(90, ""));
-        entries.add(new PieEntry(66, ""));
-        entries.add(new PieEntry(66, ""));
 
-        //设置数据
-        setData(entries);
 
-       // mPieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 
         Legend l = mPieChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setPosition(Legend.LegendPosition.ABOVE_CHART_LEFT);  //控制旁边的文字在什么地方显示
+        l.setPosition(Legend.LegendPosition.ABOVE_CHART_LEFT);//控制旁边的文字在什么地方显示
         l.setDrawInside(false);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
@@ -105,7 +162,6 @@ public class ZZC extends Activity implements View.OnClickListener {
 
         l.setXEntrySpace(20f);//设置距离饼图的距离，防止与饼图重合
         l.setYEntrySpace(10f);
-
 
 
         // 输入标签样式
@@ -147,10 +203,78 @@ public class ZZC extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.zzc_back:
                 finish();
                 break;
+            default:
+                break;
         }
     }
+
+    Handler hand = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 100) {
+                String str = (String) msg.obj;
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    JSONObject userInfo = data.getJSONObject("userInfo");
+                    portrait = userInfo.getString("portrait");
+                    balance = userInfo.getString("balance");
+                    available = userInfo.getString("available");
+                    frozen = userInfo.getString("frozen");
+                    cashMoney = userInfo.getString("cashMoney");
+                    shareholder = userInfo.getString("shareholder");
+                    shopAvailable = userInfo.getString("shopAvailable");
+                    shopBindMoney = userInfo.getString("shopBindMoney");
+                    nickName = userInfo.getString("nickName");
+                    zongzichan.setText(balance);
+                    keyong.setText(balance);
+                    dongjie.setText(frozen);
+                    xiangbi.setText(shareholder);
+                    tixian.setText(cashMoney);
+                    scky.setText(shopAvailable);
+                    scbd.setText(shopBindMoney);
+                    if ("".equals(nickName)){
+                        nincheng.setText("未设置");
+                    }else {
+                        nincheng.setText(nickName);
+                    }
+                    if ("".equals(portrait)){
+                        img.setImageResource(R.mipmap.tx);
+                    }else {
+
+                        Glide.with(ZZC.this).load(WangZhi.TUPIAN + zzc).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+                    }
+                    shezhi();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
+    public void shezhi(){
+        //模拟数据
+        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+        float v1 = Float.parseFloat(available);
+        float v2 = Float.parseFloat(frozen);
+        float v3 = Float.parseFloat(cashMoney);
+        float v4 = Float.parseFloat(shareholder);
+        float v5 = Float.parseFloat(shopAvailable);
+        float v6 = Float.parseFloat(shopBindMoney);
+        entries.add(new PieEntry(v1, ""));
+        entries.add(new PieEntry(v2, ""));
+        entries.add(new PieEntry(v3, ""));
+        entries.add(new PieEntry(v4, ""));
+        entries.add(new PieEntry(v5, ""));
+        entries.add(new PieEntry(v6, ""));
+        //设置数据
+        setData(entries);
+
+    }
+
+
 }

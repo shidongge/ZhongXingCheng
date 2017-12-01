@@ -55,26 +55,26 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     private ImageView img;
     private String portrait;
     private LinearLayout zhangdan;
+    private String mobile;
+    private SharedUtils sharedUtils;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
         inflate = View.inflate(getActivity(), R.layout.fragment_wode, null);
-        SharedUtils sharedUtils = new SharedUtils();
-        //id = sharedUtils.getShared("id", getActivity());
+        sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", getActivity());
+        mobile = sharedUtils.getShared("mobile", getActivity());
         String sessionId = sharedUtils.getShared("sessionId", getActivity());
-        Log.e(TAG, "onCreateView: sessionId = "+sessionId );
         initView();
         initCGGRXX();
-        initLianWang();
+//        initLianWang();
         return inflate;
     }
 
     private void initCGGRXX() {
-        String realStatus = JiaMi.jdkBase64Encoder("realStatus");
+        String realStatus = JiaMi.jdkBase64Encoder("mobile,nickName,portrait");
         HashMap<String, String> map = new HashMap<>();
         map.put("token",token);
-        Log.e(TAG, "onCreate: token"+token );
         map.put("field",realStatus);
         OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
             @Override
@@ -84,7 +84,12 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e(TAG, "onResponse: "+response.body().string() );
+                String string = response.body().string();
+                Message mess = hand.obtainMessage();
+                mess.obj=string;
+                mess.what=100;
+                hand.sendMessage(mess);
+
             }
         });
     }
@@ -100,7 +105,6 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-//                Log.e(TAG, "onResponse: "+response.body().string() );
                 String string = response.body().string();
                 Message mess = hand.obtainMessage();
                 mess.obj=string;
@@ -125,6 +129,11 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
         bzzx.setOnClickListener(this);
         zzc.setOnClickListener(this);
         zhangdan.setOnClickListener(this);
+        //TODO 隐藏手机号中间四位
+        String mobile2 = mobile;
+        String maskNumber = mobile.substring(0,3)+"****"+mobile2.substring(7,mobile2.length());
+        phone.setText(maskNumber);
+
     }
 
     @Override
@@ -150,6 +159,8 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.wode_zhangdan:
                 startActivity(new Intent(getActivity(), ZhangDan.class));
+                break;
+            default:
                 break;
         }
     }
@@ -177,13 +188,37 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                     sharedUtils.saveShared("yicangshoujihao",maskNumber,getActivity());
 
                     phone.setText(maskNumber);
-                    if (nickName.equals("")){
+                    if ("".equals(nickName)){
                         nincheng.setText("未设置昵称");
                     }else {
                         nincheng.setText(nickName);
                     }
                     Log.e(TAG, "handleMessage: "+ portrait);
                     Glide.with(getActivity()).load(WangZhi.TUPIAN+ portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (msg.what==100){
+                String str = (String) msg.obj;
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    JSONObject userInfo = data.getJSONObject("userInfo");
+                    String mobile = userInfo.getString("mobile");
+                    String nickName = userInfo.getString("nickName");
+                    String portrait = userInfo.getString("portrait");
+                    if ("".equals(nickName)){
+                        nincheng.setText("未设置");
+                    }else {
+                        nincheng.setText(nickName);
+                    }
+                    if ("".equals(portrait)){
+                        img.setImageResource(R.mipmap.tx);
+                    }
+                    else {
+                        Glide.with(getActivity()).load(portrait).into(img);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
