@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +14,14 @@ import android.widget.ImageView;
 
 import com.viewpagerindicator.TabPageIndicator;
 
+import java.util.List;
+
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.fragment.DD_DaiFaHuo;
 import us.mifeng.zhongxingcheng.fragment.DD_DaiFuKuan;
-import us.mifeng.zhongxingcheng.utils.ToSi;
+import us.mifeng.zhongxingcheng.fragment.DD_DaiPingJia;
+import us.mifeng.zhongxingcheng.fragment.DD_DaiShouHuo;
+import us.mifeng.zhongxingcheng.fragment.DD_QuanBu;
 import us.mifeng.zhongxingcheng.view.MyViewPager;
 
 
@@ -34,17 +40,26 @@ public class ChaXunDD extends FragmentActivity implements View.OnClickListener {
     private String zhuangtai;
     private int integer;
     private ImageView back;
+    private List<Fragment> list;
+    private FragmentManager fm;
+    private DD_QuanBu dd_quanBu;
+    private DD_DaiFuKuan dd_daiFuKuan;
+    private DD_DaiFaHuo dd_daiFaHuo;
+    private DD_DaiShouHuo dd_daiShouHuo;
+    private DD_DaiPingJia dd_daiPingJia;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cxdd);
-
+        fm = getSupportFragmentManager();
         initView();
         zhuangtai = getIntent().getStringExtra("intent");
         integer = Integer.valueOf(zhuangtai).intValue();
         viewpager.setCurrentItem(integer);
     }
+
+
 
     private void initView() {
         back = (ImageView) findViewById(R.id.dingdan_back);
@@ -62,7 +77,6 @@ public class ChaXunDD extends FragmentActivity implements View.OnClickListener {
 
             @Override
             public void onPageSelected(int position) {
-                ToSi.show(ChaXunDD.this, TITLE[position]);
             }
 
             @Override
@@ -93,12 +107,28 @@ public class ChaXunDD extends FragmentActivity implements View.OnClickListener {
 
         @Override
         public Fragment getItem(int position) {
-
+            FragmentTransaction ft = fm.beginTransaction();
             Log.e(TAG, "getItem: 00" + position);
-            if (position==1){
+            if (position==0){
                 Fragment fragment = new DD_DaiFuKuan();
                 return fragment;
-            }else {
+            }
+            else if (position==1){
+                Fragment fragment = new DD_DaiFuKuan();
+                return fragment;
+            }else if (position==2){
+                Fragment fragment = new DD_DaiFuKuan();
+                return fragment;
+                }
+             else if (position==3){
+                Fragment fragment = new DD_DaiFuKuan();
+                return fragment;
+            }else if (position==4){
+                Fragment fragment = new DD_DaiFuKuan();
+                return fragment;
+            }
+
+            else {
                 //这里是为了清楚TabPageIndicator时报的ViewPager has not been bound异常，先给TabPageIndicator设置android:visibility="gone"
                 Fragment fragment = new HomeFragment_shouye();
                 Bundle args = new Bundle();

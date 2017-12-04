@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.tencent.qcloud.tlslibrary.utils.SharedUtils;
 
 import org.json.JSONException;
@@ -23,6 +22,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
@@ -49,9 +49,11 @@ public class ZJZP_WanShan extends Activity {
     }
 
     private void initLianWang() {
+        String s = JiaMi.jdkBase64Encoder("realName,identityCard,birthDate,gender,province,city");
         HashMap<String ,String> map = new HashMap<>();
+        map.put("field",s);
         map.put("token",token);
-        OkUtils.UploadSJ(WangZhi.WODE, map, new Callback() {
+        OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
@@ -76,7 +78,7 @@ public class ZJZP_WanShan extends Activity {
                 try {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
-                    JSONObject msg1 = data.getJSONObject("msg");
+                    JSONObject msg1 = data.getJSONObject("userInfo");
                     String realName = msg1.getString("realName");
                     String identityCard = msg1.getString("identityCard");
                     String gender = msg1.getString("gender");
@@ -95,8 +97,8 @@ public class ZJZP_WanShan extends Activity {
                     String identityFace = msg1.getString("identityFace");
                     String identityBack = msg1.getString("identityBack");
 
-                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityBack).into(fanmian);
-                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityFace).into(zhengmian);
+//                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityBack).into(fanmian);
+//                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityFace).into(zhengmian);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

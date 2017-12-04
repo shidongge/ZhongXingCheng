@@ -33,6 +33,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.app.MyApplicaiton;
+import us.mifeng.zhongxingcheng.utils.FileSizeUtil;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.SharedUtils;
 import us.mifeng.zhongxingcheng.utils.ToSi;
@@ -49,7 +51,7 @@ import us.mifeng.zhongxingcheng.zhaopian.SelectDialog;
  */
 public class SFRZ extends Activity implements View.OnClickListener {
     protected static Uri tempUri;
-    private EditText sfz,xingming;
+    private EditText sfz, xingming;
     private String sfrz;
     protected static final int CHOOSE_PICTURE = 0;
     protected static final int TAKE_PICTURE = 1;
@@ -67,9 +69,9 @@ public class SFRZ extends Activity implements View.OnClickListener {
     int tag;
     private ImageView zjzp_zhengmian, zjzp_fanmian, chizhao_zhengmian, chizhao_fanmian;
     private String trim;
-    private TextView ssqy,nianyueri,xingbie,baocun;
+    private TextView ssqy, nianyueri, xingbie, baocun;
     private ImageView back;
-
+    int xb;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
         imagePicker = MyApplicaiton.getImagePicker();
         SharedUtils sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", SFRZ.this);
-        Log.e(TAG, "onCreate: "+token );
+        Log.e(TAG, "onCreate: " + token);
         initView();
 
     }
@@ -117,7 +119,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length()==18){
+                if (s.length() == 18) {
                     trim = sfz.getText().toString().trim();
                     String substring = trim.substring(0, 6);
                     HashMap<String, String> map = new HashMap<>();
@@ -155,19 +157,48 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 break;
             case R.id.sfrz_baocun:
                 String string = xingming.getText().toString();
-                if (string.equals("")){
-                    ToSi.show(SFRZ.this,"请输入姓名");
-                }else if ("".equals(xingbie.getText().toString().trim())||"".equals(nianyueri.getText().toString().trim())||"".equals(ssqy.getText().toString().trim())){
-                    ToSi.show(SFRZ.this,"请输入身份证");
-                }else if (sfz.getText().length()<18){
-                    ToSi.show(SFRZ.this,"身份证位数不足");
-                }else if (zjzp_zhengmian.getDrawable().getCurrent().getConstantState()==getResources().getDrawable(R.mipmap.sfzm).getConstantState()){
-                    ToSi.show(SFRZ.this,"请上传身份证正面照");
-                }else if (zjzp_fanmian.getDrawable().getCurrent().getConstantState()==getResources().getDrawable(R.mipmap.sfzfm).getConstantState()){
-                    ToSi.show(SFRZ.this,"请上传身份证反面照");
+                if (string.equals("")) {
+                    ToSi.show(SFRZ.this, "请输入姓名");
+                } else if ("".equals(xingbie.getText().toString().trim()) || "".equals(nianyueri.getText().toString().trim()) || "".equals(ssqy.getText().toString().trim())) {
+                    ToSi.show(SFRZ.this, "请输入身份证");
+                } else if (sfz.getText().length() < 18) {
+                    ToSi.show(SFRZ.this, "身份证位数不足");
                 }
-                else {
-                    ToSi.show(SFRZ.this,"正确");
+                else if (zjzp_zhengmian.getDrawable().getCurrent().getConstantState() == getResources().getDrawable(R.mipmap.sfzm).getConstantState()) {
+                    ToSi.show(SFRZ.this, "请上传身份证正面照");
+                } else if (zjzp_fanmian.getDrawable().getCurrent().getConstantState() == getResources().getDrawable(R.mipmap.sfzfm).getConstantState()) {
+                    ToSi.show(SFRZ.this, "请上传身份证反面照");
+                } else if (chizhao_zhengmian.getDrawable().getCurrent().getConstantState()==getResources().getDrawable(R.mipmap.sczjzzm).getConstantState()){
+                    ToSi.show(SFRZ.this,"请上传持照正面照");
+                }
+                else if (chizhao_fanmian.getDrawable().getCurrent().getConstantState()==getResources().getDrawable(R.mipmap.scsfzfm).getConstantState()){
+                    ToSi.show(SFRZ.this,"请上传持照正面照");
+                } else {
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("nickName", string);
+                    map.put("identityCard", trim);
+                    JSONObject jsonObject = new JSONObject(map);
+                    String string1 = jsonObject.toString();
+                    String s = JiaMi.jdkBase64Encoder(string1);
+                    HashMap<String, String> map1 = new HashMap<>();
+                    map1.put("token", token);
+                    map1.put("field", s);
+                    OkUtils.UploadSJ(WangZhi.GXJRXX, map1, new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+//                            Log.e(TAG, "onResponse: " + response.body().string());
+                            String string2 = response.body().string();
+                            Message mess = hand.obtainMessage();
+                            mess.what=600;
+                            mess.obj=string2;
+                            hand.sendMessage(mess);
+                        }
+                    });
                 }
                 break;
             case R.id.zjzp_zhengmian:
@@ -249,7 +280,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 }, name2);
                 break;
             case R.id.zjzp_chizhao_zhenmian:
-                tag= 3;
+                tag = 3;
                 List<String> name3 = new ArrayList<>();
                 name3.add("拍照");
                 name3.add("相册");
@@ -288,7 +319,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 }, name3);
                 break;
             case R.id.zjzp_chizhao_fanmian:
-                tag= 4;
+                tag = 4;
                 List<String> name4 = new ArrayList<>();
                 name4.add("拍照");
                 name4.add("相册");
@@ -326,6 +357,8 @@ public class SFRZ extends Activity implements View.OnClickListener {
                     }
                 }, name4);
                 break;
+            default:
+                break;
         }
     }
 
@@ -340,6 +373,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
     }
 
     ArrayList<ImageItem> images = null;
+    public static final int SIZETYPE_B = 1;//获取文件大小单位为B的double值
 
     @Override
     public void onActivityResult(final int requestCode, int resultCode, Intent data) {
@@ -353,27 +387,31 @@ public class SFRZ extends Activity implements View.OnClickListener {
                         item = images.get(0);
                         // TODO 把图片设置到控件上
 //                    ImagePicker.getInstance().getImageLoader().displayImage(this, item.path, img, 0, 0);
-                        //TODO 图片上传
-                        HashMap<String, String> map = new HashMap<>();
-                        map.put("token", token);
-                        Log.e(TAG, "onActivityResult: map===11111"+map );
-                        OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "identityFace", item.path, map, new Callback() {
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
-                            }
+                        //TODO 判断图片是否过大
+                        double fileOrFilesSize = FileSizeUtil.getFileOrFilesSize(item.path, FileSizeUtil.SIZETYPE_B);
+                        if (fileOrFilesSize > 5242880) {
+                            ToSi.show(SFRZ.this, "图片过大");
+                        } else {
+                            //TODO 图片上传
+                            HashMap<String, String> map = new HashMap<>();
+                            map.put("token", token);
+                            Log.e(TAG, "onActivityResult: map===11111" + map);
+                            OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "identityFace", item.path, map, new Callback() {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+                                    Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+                                }
 
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-//                            Log.e(TAG, "onResponse: "+response.body().string() );
-                                String string = response.body().string();
-                                Message message = hand.obtainMessage();
-                                message.what = 100;
-                                message.obj = string;
-                                hand.sendMessage(message);
-                            }
-                        });
-
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String string = response.body().string();
+                                    Message message = hand.obtainMessage();
+                                    message.what = 100;
+                                    message.obj = string;
+                                    hand.sendMessage(message);
+                                }
+                            });
+                        }
                         Log.e(TAG, "onActivityResult: " + item.path);
                     }
                 }
@@ -388,7 +426,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 }
             }
         }
-        if (tag ==2) {
+        if (tag == 2) {
             if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
                 //添加图片返回
                 if (data != null && requestCode == REQUEST_CODE_SELECT) {
@@ -397,27 +435,33 @@ public class SFRZ extends Activity implements View.OnClickListener {
                         item = images.get(0);
                         // TODO 把图片设置到控件上
 //                    ImagePicker.getInstance().getImageLoader().displayImage(this, item.path, img, 0, 0);
-                        //TODO 图片上传
-                        HashMap<String, String> map = new HashMap<>();
-                        map.put("token", token);
-                        Log.e(TAG, "onActivityResult: map===22222"+map );
-                        OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "identityBack", item.path, map, new Callback() {
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
-                            }
 
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
+                        //TODO 判断图片是否过大
+                        double fileOrFilesSize = FileSizeUtil.getFileOrFilesSize(item.path, FileSizeUtil.SIZETYPE_B);
+                        if (fileOrFilesSize > 5242880) {
+                            ToSi.show(SFRZ.this, "图片过大");
+                        } else {
+                            //TODO 图片上传
+                            HashMap<String, String> map = new HashMap<>();
+                            map.put("token", token);
+                            Log.e(TAG, "onActivityResult: map===22222" + map);
+                            OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "identityBack", item.path, map, new Callback() {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+                                    Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+                                }
+
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
 //                            Log.e(TAG, "onResponse: "+response.body().string() );
-                                String string = response.body().string();
-                                Message message = hand.obtainMessage();
-                                message.what = 200;
-                                message.obj = string;
-                                hand.sendMessage(message);
-                            }
-                        });
-
+                                    String string = response.body().string();
+                                    Message message = hand.obtainMessage();
+                                    message.what = 200;
+                                    message.obj = string;
+                                    hand.sendMessage(message);
+                                }
+                            });
+                        }
                         Log.e(TAG, "onActivityResult: " + item.path);
                     }
                 }
@@ -441,27 +485,32 @@ public class SFRZ extends Activity implements View.OnClickListener {
                         item = images.get(0);
                         // TODO 把图片设置到控件上
 //                    ImagePicker.getInstance().getImageLoader().displayImage(this, item.path, img, 0, 0);
-                        //TODO 图片上传
-                        HashMap<String, String> map = new HashMap<>();
-                        map.put("token", token);
-                        Log.e(TAG, "onActivityResult: map==="+map );
-                        OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "portrait", item.path, map, new Callback() {
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
-                            }
+                        //TODO 判断图片是否过大
+                        double fileOrFilesSize = FileSizeUtil.getFileOrFilesSize(item.path, FileSizeUtil.SIZETYPE_B);
+                        if (fileOrFilesSize > 5242880) {
+                            ToSi.show(SFRZ.this, "图片过大");
+                        } else {
+                            //TODO 图片上传
+                            HashMap<String, String> map = new HashMap<>();
+                            map.put("token", token);
+                            Log.e(TAG, "onActivityResult: map===" + map);
+                            OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "portrait", item.path, map, new Callback() {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+                                    Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+                                }
 
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
 //                            Log.e(TAG, "onResponse: "+response.body().string() );
-                                String string = response.body().string();
-                                Message message = hand.obtainMessage();
-                                message.what = 300;
-                                message.obj = string;
-                                hand.sendMessage(message);
-                            }
-                        });
-
+                                    String string = response.body().string();
+                                    Message message = hand.obtainMessage();
+                                    message.what = 300;
+                                    message.obj = string;
+                                    hand.sendMessage(message);
+                                }
+                            });
+                        }
                         Log.e(TAG, "onActivityResult: " + item.path);
                     }
                 }
@@ -485,24 +534,30 @@ public class SFRZ extends Activity implements View.OnClickListener {
                         item = images.get(0);
                         // TODO 把图片设置到控件上
 //                    ImagePicker.getInstance().getImageLoader().displayImage(this, item.path, img, 0, 0);
-                        //TODO 图片上传
-                        HashMap<String, String> map = new HashMap<>();
-                        map.put("token", token);
-                        OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "portrait", item.path, map, new Callback() {
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
-                            }
+                        //TODO 判断图片是否过大
+                        double fileOrFilesSize = FileSizeUtil.getFileOrFilesSize(item.path, FileSizeUtil.SIZETYPE_B);
+                        if (fileOrFilesSize > 5242880) {
+                            ToSi.show(SFRZ.this, "图片过大");
+                        } else {
+                            //TODO 图片上传
+                            HashMap<String, String> map = new HashMap<>();
+                            map.put("token", token);
+                            OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "portrait", item.path, map, new Callback() {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+                                    Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+                                }
 
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-                                String string = response.body().string();
-                                Message message = hand.obtainMessage();
-                                message.what = 400;
-                                message.obj = string;
-                                hand.sendMessage(message);
-                            }
-                        });
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String string = response.body().string();
+                                    Message message = hand.obtainMessage();
+                                    message.what = 400;
+                                    message.obj = string;
+                                    hand.sendMessage(message);
+                                }
+                            });
+                        }
                     }
                 }
             } else if (resultCode == ImagePicker.RESULT_CODE_BACK) {
@@ -523,6 +578,23 @@ public class SFRZ extends Activity implements View.OnClickListener {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            //提交信息
+            if (msg.what==600){
+                String str = (String) msg.obj;
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    String msg1 = data.getString("msg");
+                    if ("0".equals(msg1)){
+                        ToSi.show(SFRZ.this,"提交成功，等后台审核");
+                        finish();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
             //身份证验证
             if (msg.what == 500) {
                 String obj = (String) msg.obj;
@@ -530,9 +602,8 @@ public class SFRZ extends Activity implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(obj);
                     String msg1 = jsonObject.getString("msg");
                     String error = jsonObject.getString("error");
-                    Log.e(TAG, "handleMessage: sssssss" + error);
-                    if (msg1.equals("没有信息")){
-                        ToSi.show(SFRZ.this,"身份证不正确");
+                    if (msg1.equals("没有信息")) {
+                        ToSi.show(SFRZ.this, "身份证不正确");
                     } else if (error.equals("0")) {
                         String replace = msg1.replace("所属区域: ", "");
                         ssqy.setText(replace);
@@ -582,7 +653,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
                     if (data.equals("true")) {
                         JSONObject msg1 = jsonObject.getJSONObject("msg");
                         ToSi.show(SFRZ.this, "上传成功");
-                        ImagePicker.getInstance().getImageLoader().displayImage(SFRZ.this, item.path,chizhao_zhengmian , 0, 0);
+                        ImagePicker.getInstance().getImageLoader().displayImage(SFRZ.this, item.path, chizhao_zhengmian, 0, 0);
                     } else {
                         JSONObject data1 = jsonObject.getJSONObject("data");
                         String msg1 = data1.getString("msg");
@@ -635,4 +706,5 @@ public class SFRZ extends Activity implements View.OnClickListener {
             }
         }
     };
+
 }

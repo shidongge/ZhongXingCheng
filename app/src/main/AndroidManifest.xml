@@ -59,7 +59,7 @@
             android:launchMode="singleTask" />
         <activity android:name=".liaotian.SearchFriendActivity" />
 
-        <activity android:name=".liaotian.SplashActivity">
+        <activity android:name="us.mifeng.zhongxingcheng.liaotian.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -89,7 +89,6 @@
         <activity android:name=".activity.WuPing" />
         <activity android:name=".activity.BZZX" />
         <activity android:name=".zhaopian.IDCardActivity" />
-        <activity android:name=".view.YunFei" />
         <activity android:name=".activity.JBXX" />
         <activity android:name=".liaotian.FriendsActivity" />
         <activity android:name=".liaotian.AddFriendActivity" />

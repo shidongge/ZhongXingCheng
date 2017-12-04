@@ -116,49 +116,8 @@
 
     <View style="@style/xiantiao" />
 
-    <LinearLayout
-
-        style="@style/linear_tiaomu">
-
-        <TextView
-            style="@style/zhuti_text"
-            android:text="性别" />
-
-        <View style="@style/xiantiao_zhongjian" />
-
-        <TextView
-            android:id="@+id/grzl_xb"
-            style="@style/zhuti_text"
-            android:layout_width="100dp"
-            android:gravity="center"
-            android:hint="点击选择" />
-
-        <ImageView style="@style/img_xiao" />
-    </LinearLayout>
-
-    <View style="@style/xiantiao" />
-
-    <LinearLayout style="@style/linear_tiaomu">
-
-        <TextView
-            style="@style/zhuti_text"
-            android:text="地区" />
-
-        <View style="@style/xiantiao_zhongjian" />
-
-        <TextView
-            android:id="@+id/grzl_diqu"
-            style="@style/zhuti_text"
-            android:layout_width="300dp"
-            android:gravity="center"
-            android:text="请选择地区"
 
 
-            />
-
-    </LinearLayout>
-
-    <View style="@style/xiantiao" />
 
     <LinearLayout
         android:id="@+id/grzl_ll_qm"
@@ -189,6 +148,7 @@
         android:layout_height="10dp" />
 
     <LinearLayout
+        android:visibility="gone"
         style="@style/linear_tiaomu"
         >
 

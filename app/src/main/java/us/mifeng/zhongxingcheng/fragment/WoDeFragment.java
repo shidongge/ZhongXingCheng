@@ -58,6 +58,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     private String mobile;
     private SharedUtils sharedUtils;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
         inflate = View.inflate(getActivity(), R.layout.fragment_wode, null);
@@ -207,7 +208,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                     JSONObject userInfo = data.getJSONObject("userInfo");
                     String mobile = userInfo.getString("mobile");
                     String nickName = userInfo.getString("nickName");
-                    String portrait = userInfo.getString("portrait");
+                    portrait = userInfo.getString("portrait");
                     if ("".equals(nickName)){
                         nincheng.setText("未设置");
                     }else {
@@ -217,7 +218,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                         img.setImageResource(R.mipmap.tx);
                     }
                     else {
-                        Glide.with(getActivity()).load(portrait).into(img);
+                        Glide.with(getActivity()).load(WangZhi.TUPIAN+portrait).into(img);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

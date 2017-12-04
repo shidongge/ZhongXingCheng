@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,12 +25,24 @@ import com.tencent.qcloud.presentation.viewfeatures.FriendshipManageView;
 import com.tencent.qcloud.ui.LineControllerView;
 import com.tencent.qcloud.ui.ListPickerDialog;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.liaotian.model.FriendProfile;
 import us.mifeng.zhongxingcheng.liaotian.model.FriendshipInfo;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
+import us.mifeng.zhongxingcheng.utils.OkUtils;
+import us.mifeng.zhongxingcheng.utils.SharedUtils;
+import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 //好友资料界面
 public class ProfileActivity extends FragmentActivity implements FriendshipManageView, View.OnClickListener {
@@ -40,6 +54,7 @@ public class ProfileActivity extends FragmentActivity implements FriendshipManag
     private final int CHANGE_REMARK_CODE = 200;
     private FriendshipManagerPresenter friendshipManagerPresenter;
     private String identify, categoryStr;
+    private String token;
 
 
     public static void navToProfile(Context context, String identify) {
@@ -53,10 +68,37 @@ public class ProfileActivity extends FragmentActivity implements FriendshipManag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         identify = getIntent().getStringExtra("identify");
+        SharedUtils sharedUtils = new SharedUtils();
+        token = sharedUtils.getShared("token", ProfileActivity.this);
         friendshipManagerPresenter = new FriendshipManagerPresenter(this);
-        if (!TextUtils.isEmpty(identify)){
+        if (!TextUtils.isEmpty(identify)) {
             showProfile(identify);
         }
+        //获取个人信息里面的图像
+        initLianWang();
+    }
+
+    private void initLianWang() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("token", token);
+        String portrait = JiaMi.jdkBase64Encoder("portrait");
+        map.put("field", portrait);
+        OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String string = response.body().string();
+                Message mess = hand.obtainMessage();
+                mess.what=100;
+                mess.obj=string;
+                hand.sendMessage(mess);
+
+            }
+        });
     }
 
     /**
@@ -70,10 +112,10 @@ public class ProfileActivity extends FragmentActivity implements FriendshipManag
         if (profile == null) return;
         TextView name = (TextView) findViewById(R.id.name);
         name.setText(profile.getName());
-        Log.e(TAG, "showProfile:aaa "+profile.getName() );
+        Log.e(TAG, "showProfile:aaa " + profile.getName());
         LineControllerView id = (LineControllerView) findViewById(R.id.id);
         id.setContent(profile.getIdentify());
-        Log.e(TAG, "showProfile: xxx"+profile.getIdentify() );
+        Log.e(TAG, "showProfile: xxx" + profile.getIdentify());
         final LineControllerView remark = (LineControllerView) findViewById(R.id.remark);
         remark.setContent(profile.getRemark());
         remark.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +195,8 @@ public class ProfileActivity extends FragmentActivity implements FriendshipManag
                     }
                 });
                 break;
+            default:
+                break;
         }
     }
 
@@ -199,6 +243,8 @@ public class ProfileActivity extends FragmentActivity implements FriendshipManag
             case TIM_FRIEND_STATUS_UNKNOWN:
                 Toast.makeText(this, getResources().getString(R.string.profile_del_fail), Toast.LENGTH_SHORT).show();
                 break;
+            default:
+                break;
         }
 
     }
@@ -228,4 +274,21 @@ public class ProfileActivity extends FragmentActivity implements FriendshipManag
                 break;
         }
     }
+
+    Handler hand = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 100) {
+                String str = (String) msg.obj;
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    };
 }

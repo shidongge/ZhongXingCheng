@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -23,24 +22,21 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 
-import cn.qqtheme.framework.entity.City;
-import cn.qqtheme.framework.entity.County;
-import cn.qqtheme.framework.entity.Province;
 import cn.qqtheme.framework.picker.SinglePicker;
 import cn.qqtheme.framework.widget.WheelView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.utils.AddressPickTask;
 import us.mifeng.zhongxingcheng.utils.AiHaoEvent;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.NinChengEvent;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.QianMingEvent;
 import us.mifeng.zhongxingcheng.utils.SharedUtils;
+import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 import us.mifeng.zhongxingcheng.utils.ZhiYeEvent;
-import us.mifeng.zhongxingcheng.view.CustomDog;
 
 import static android.content.ContentValues.TAG;
 
@@ -52,13 +48,13 @@ import static android.content.ContentValues.TAG;
  * 个人资料界面
  */
 public class GRZL extends Activity implements View.OnClickListener {
-    private TextView xb,xz,nincheng,diqu,qianming,xingzuo,zhiye,shouru,aihao;
+    private TextView  xz, nincheng, qianming, xingzuo, zhiye, shouru, aihao;
     private boolean first = true;
     private String grxx;
     private String token;
-    private LinearLayout ll_nc,ll_zhiye,ll_aihao;
+    private LinearLayout ll_nc, ll_zhiye, ll_aihao;
     private LinearLayout ll_qianming;
-    private int xb_int ;
+    private int xb_int;
     private ImageView back;
 
     @Override
@@ -73,75 +69,87 @@ public class GRZL extends Activity implements View.OnClickListener {
     }
 
     private void initLianWang() {
-        HashMap<String,String> map = new HashMap<>();
-        map.put("token",token);
-        OkUtils.UploadSJ(WangZhi.WODE, map, new Callback() {
+        HashMap<String, String> map = new HashMap<>();
+        String s = JiaMi.jdkBase64Encoder("gender,nickName,province,city,job,income,hobby");
+        map.put("token", token);
+        map.put("field", s);
+        OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
+                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                // Log.e(TAG, "onResponse: "+response.body().string() );
+//                 Log.e(TAG, "onResponse: "+response.body().string() );
                 String string = response.body().string();
                 Message mess = hand.obtainMessage();
-                mess.obj=string;
-                mess.what=200;
+                mess.obj = string;
+                mess.what = 200;
                 hand.sendMessage(mess);
 
             }
         });
     }
-    Handler hand = new Handler(){
+
+    Handler hand = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what==200){
+            if (msg.what == 200) {
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
-                    JSONObject msg1 = data.getJSONObject("msg");
-                    String realName = msg1.getString("realName");
-                    String city = msg1.getString("city");
-                    String gender = msg1.getString("gender");
-
+                    JSONObject msg1 = data.getJSONObject("userInfo");
                     String job = msg1.getString("job");
                     String income = msg1.getString("income");
                     String hobby = msg1.getString("hobby");
                     String nickName = msg1.getString("nickName");
-                    if ("".equals(zhiye)){
+                    if ("".equals(job)) {
                         zhiye.setText("未设置");
-                    }else {
+                    } else {
                         zhiye.setText(job);
                     }
-                    if ("".equals(diqu)){
-                        diqu.setText("未设置");
-                    }else {
-                        diqu.setText(city);
-                    }
-                    if ("".equals(shouru)){
+
+                    if ("".equals(income)) {
                         shouru.setText("未设置");
-                    }else {
+                    } else {
 
                         shouru.setText(income);
                     }
-                    if ("".equals(aihao)){
+                    if ("".equals(hobby)) {
                         aihao.setText("未设置");
-                    }else {
-
+                    } else {
                         aihao.setText(hobby);
                     }
-                    if ("".equals(nincheng)){
+                    if ("".equals(nickName)) {
                         nincheng.setText("未设置");
-                    }else {
+                    } else {
                         nincheng.setText(nickName);
                     }
-                    if ("1".equals(gender)){
-                        xb.setText("男");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (msg.what==100){
+                String str = (String) msg.obj;
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    String msg1 = data.getString("msg");
+                    if ("0".equals(msg1)){
+                        ToSi.show(GRZL.this,"更新成功");
+                        finish();
+                    }else if ("1".equals(msg1)){
+                        ToSi.show(GRZL.this,"参数不齐");
+                    }else if ("2".equals(msg1)){
+                        ToSi.show(GRZL.this,"用户不存在");
+                    }else if ("3".equals(msg1)){
+                        ToSi.show(GRZL.this,"更新失败");
                     }else {
-                        xb.setText("女");
+                        ToSi.show(GRZL.this,"更新失败");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -151,15 +159,10 @@ public class GRZL extends Activity implements View.OnClickListener {
     };
 
 
-
-
-
     private void initView() {
-        xb = (TextView) findViewById(R.id.grzl_xb);
         xz = (TextView) findViewById(R.id.grzl_xz);
 
         nincheng = (TextView) findViewById(R.id.grzl_nc);
-        diqu = (TextView) findViewById(R.id.grzl_diqu);
         qianming = (TextView) findViewById(R.id.grzl_qianming);
         zhiye = (TextView) findViewById(R.id.grzl_zhiye);
         shouru = (TextView) findViewById(R.id.grzl_shouru);
@@ -172,109 +175,86 @@ public class GRZL extends Activity implements View.OnClickListener {
         ll_aihao = (LinearLayout) findViewById(R.id.grzl_ll_aihao);
 
         xz.setOnClickListener(this);
-        xb.setOnClickListener(this);
+
         ll_nc.setOnClickListener(this);
         mbtn.setOnClickListener(this);
         ll_aihao.setOnClickListener(this);
         ll_qianming.setOnClickListener(this);
         ll_zhiye.setOnClickListener(this);
-        diqu.setOnClickListener(this);
         shouru.setOnClickListener(this);
         back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.grzl_xb:
-                CustomDog customDog = new CustomDog(GRZL.this);
-                customDog.setOnDialogClickListeners(new CustomDog.OnDialogClickListeners() {
-                    @Override
-                    public void onInputLegitimacy(String inputString) {
-                       xb.setText(inputString);
-                    }
-
-                    @Override
-                    public void onInputIllegal() {
-
-                    }
-                });
-                customDog.show();
-                break;
+        switch (v.getId()) {
             case R.id.grzl_xz:
                 onConstellationPicker(xz);
                 break;
-
             case R.id.grzl_ll_nc:
                 Intent intent = new Intent(GRZL.this, NinChen.class);
+                intent.putExtra("tag","2");
                 startActivity(intent);
                 break;
             case R.id.grzl_back:
                 finish();
                 break;
             case R.id.grzl_ll_qm:
-                startActivity(new Intent(GRZL.this,JieShao.class));
+                Intent intent1 = new Intent(GRZL.this, JieShao.class);
+                intent1.putExtra("tag","2");
+                startActivity(intent1);
                 break;
             case R.id.grzl_ll_zhiye:
-                startActivity(new Intent(GRZL.this,ZhiYe.class));
+                startActivity(new Intent(GRZL.this, ZhiYe.class));
                 break;
             case R.id.grzl_ll_aihao:
-                startActivity(new Intent(GRZL.this,AIHao.class));
+                startActivity(new Intent(GRZL.this, AIHao.class));
                 break;
-            case R.id.grzl_diqu:
-                //TODO 添加地区地址
-                AddressPickTask task = new AddressPickTask(this);
-                task.setHideProvince(false);
-                task.setHideCounty(false);
-                task.setCallback(new AddressPickTask.Callback() {
-                    @Override
-                    public void onAddressInitFailed() {
-                        Toast.makeText(GRZL.this, "数据初始化失败", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onAddressPicked(Province province, City city, County county) {
-                        if (county == null) {
-                            final String address = province.getAreaName() + city.getAreaName();
-                            diqu.setText(address);
-                        } else {
-                            final String address = province.getAreaName() + city.getAreaName() + county.getAreaName();
-                            diqu.setText(address);
-                        }
-                    }
-                });
-                task.execute("北京市", "北京市", "东城区");
-                break;
             case R.id.grzl_shouru:
                 onShouru(shouru);
                 break;
             case R.id.grzl_mbtn:
                 HashMap<String, String> map = new HashMap<>();
-                String string = xb.getText().toString();
-                if ("男".equals(string)){
-                    xb_int=1;
-                }else if ("女".equals(string)){
-                    xb_int=2;
-                }
-                //性别
-                map.put("gender",xb_int+"");
                 //爱好
                 String string1 = aihao.getText().toString();
-                map.put("hobby",string1);
+                map.put("hobby", string1);
                 //收入
                 String string2 = shouru.getText().toString();
-                map.put("income",string2);
-                //地区
-                String string3 = diqu.getText().toString();
-                map.put("city",string3);
+                map.put("income", string2);
                 //昵称
                 String string4 = nincheng.getText().toString();
-                map.put("nickName",string4);
-                Log.e(TAG, "onClick: "+map );
+                map.put("nickName", string4);
+                String string5 = zhiye.getText().toString();
+                map.put("job",string5);
+                JSONObject jsonObject = new JSONObject(map);
+                String string = jsonObject.toString();
+                final String s = JiaMi.jdkBase64Encoder(string);
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put("token",token);
+                map1.put("field",s);
+
+                OkUtils.UploadSJ(WangZhi.GXJRXX, map1, new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String string3 = response.body().string();
+                        Message mess = hand.obtainMessage();
+                        mess.obj=string3;
+                        mess.what=100;
+                        hand.sendMessage(mess);
+                    }
+                });
+                break;
+            default:
                 break;
 
         }
     }
+
     //十二星座选择器
     public void onConstellationPicker(View view) {
         boolean isChinese = Locale.getDefault().getDisplayLanguage().contains("中文");
@@ -356,12 +336,11 @@ public class GRZL extends Activity implements View.OnClickListener {
             @Override
             public void onItemPicked(int index, String item) {
                 shouru.setText(item);
-               // shouru.setTextColor(Color.parseColor("#ff0000"));
+                // shouru.setTextColor(Color.parseColor("#ff0000"));
             }
         });
         picker.show();
     }
-
 
 
     //接收签名发过来的值
@@ -371,22 +350,28 @@ public class GRZL extends Activity implements View.OnClickListener {
         qianming.setText(msg);
 
     }
+
     //接收昵称发过来的值
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void MessageEvent(NinChengEvent event){
+    public void MessageEvent(NinChengEvent event) {
         String msg = event.getMsg();
         nincheng.setText(msg);
     }
+
     //接收昵称发过来的值
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void MessageEvent(ZhiYeEvent event){
+    public void MessageEvent(ZhiYeEvent event) {
         String msg = event.getMsg();
         zhiye.setText(msg);
     }
+
     //接收爱好发过来的值
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void MessageEvent(AiHaoEvent event){
+    public void MessageEvent(AiHaoEvent event) {
         String msg = event.getMsg();
         aihao.setText(msg);
     }
+
+
+
 }

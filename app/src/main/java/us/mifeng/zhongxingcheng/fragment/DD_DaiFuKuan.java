@@ -42,6 +42,4 @@ public class DD_DaiFuKuan extends BaseFragment {
             list.add(i+"");
         }
     }
-
-
 }

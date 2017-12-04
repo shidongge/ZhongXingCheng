@@ -3,15 +3,12 @@ package us.mifeng.zhongxingcheng.denlgu;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
@@ -20,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.tencent.imsdk.TIMCallBack;
 import com.tencent.imsdk.TIMFriendAllowType;
 import com.tencent.imsdk.TIMUserProfile;
@@ -74,8 +70,8 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         tupian = getIntent().getStringExtra("img");
+        Log.e(TAG, "onCreate: " + img);
         sharedUtils = new SharedUtils();
-        TongMing();
         id = (TextView) findViewById(R.id.idtext);
         name = (TextView) findViewById(R.id.name);
         img = (ImageView) findViewById(R.id.shezhi_img);
@@ -86,7 +82,12 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
 
         back.setOnClickListener(this);
         friendshipManagerPresenter = new FriendshipManagerPresenter(this);
-        Glide.with(this).load(WangZhi.TUPIAN + tupian).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+        if ("".equals(tupian)) {
+            img.setImageResource(R.mipmap.tx);
+        } else {
+
+            Glide.with(this).load(WangZhi.TUPIAN + tupian).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+        }
         friendshipManagerPresenter.getMyProfile();
         TextView logout = (TextView) findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -232,31 +233,12 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.sz_back:
                 finish();
                 break;
+            default:
+                break;
         }
-    }
-    //设置状态栏
-    public void TongMing(){
-        //如果手机有虚拟按键 那么不能添加透明状态栏
-        //透明状态栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            // Translucent status bar
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-        //   tintManager.setStatusBarTintResource(R.color.zhuangtailan);
-        tintManager.setTintColor(Color.parseColor("#000000"));
-
     }
 }

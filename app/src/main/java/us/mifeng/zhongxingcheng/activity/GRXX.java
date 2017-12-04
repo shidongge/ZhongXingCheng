@@ -185,7 +185,9 @@ public class GRXX extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.grxx_sznc:
-                startActivity(new Intent(GRXX.this, NinChen.class));
+                Intent intent1 = new Intent(GRXX.this, NinChen.class);
+                intent1.putExtra("tag","1");
+                startActivity(intent1);
                 break;
             case R.id.grxx_js:
                 startActivity(new Intent(GRXX.this, JieShao.class));
@@ -201,5 +203,11 @@ public class GRXX extends Activity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        initLianWang();
+        super.onRestart();
     }
 }

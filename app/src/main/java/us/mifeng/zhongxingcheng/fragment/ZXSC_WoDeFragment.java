@@ -28,6 +28,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.activity.ChaXunDD;
+import us.mifeng.zhongxingcheng.activity.SFRZ;
 import us.mifeng.zhongxingcheng.activity.SHDZGL;
 import us.mifeng.zhongxingcheng.activity.ShouCang;
 import us.mifeng.zhongxingcheng.activity.ZJZP_WanShan;
@@ -52,6 +53,7 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
     private LinearLayout zongdingdan, daifahuo, daishouhuo, daipingjia,
             shouhou, youhuiquan, shoucang, daizhifu,dingdan_shdz,shiminrenzheng;
     private String mobile;
+    private String realStatus;
 
     @Nullable
     @Override
@@ -90,7 +92,7 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initView() {
-        String s = JiaMi.jdkBase64Encoder("nickName,portrait");
+        String s = JiaMi.jdkBase64Encoder("nickName,portrait,realStatus");
         HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
         map.put("field",s);
@@ -123,17 +125,17 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
                     JSONObject msg1 = data.getJSONObject("userInfo");
                     String nickName = msg1.getString("nickName");
                     String portrait = msg1.getString("portrait");
+                    realStatus = msg1.getString("realStatus");
+                    Log.e(TAG, "handleMessage: "+realStatus );
                     shoujihao.setText(mobile);
                     if ("".equals(nickName)){
                         nincheng.setText("未设置");
                     }else {
-
                         nincheng.setText(nickName);
                     }
                     if ("".equals(portrait)){
                         img.setImageResource(R.mipmap.tx);
                     }else {
-
                         Glide.with(getActivity()).load(WangZhi.TUPIAN + portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
                     }
                 } catch (JSONException e) {
@@ -158,8 +160,6 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
                 intent2.putExtra("intent", "1");
                 startActivity(intent2);
                 break;
-
-
             case R.id.dingdan_daifahuo:
                 Intent intent3 = new Intent(getActivity(), ChaXunDD.class);
                 intent3.putExtra("intent", "2");
@@ -175,11 +175,8 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
                 intent5.putExtra("intent", "4");
                 startActivity(intent5);
                 break;
-
-
             case R.id.zxsc_wode_youhuiquan:
                 startActivity(new Intent(getActivity(), ZXSC_YouHuiQuan.class));
-
                 break;
             case R.id.zxsc_wode_shoucang:
                 startActivity(new Intent(getActivity(), ShouCang.class));
@@ -191,7 +188,11 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
                 startActivity(new Intent(getActivity(), SHDZGL.class));
                 break;
             case R.id.zxsc_wode_smrz:
-                startActivity(new Intent(getActivity(), ZJZP_WanShan.class));
+                if ("0".equals(realStatus)){
+                    startActivity(new Intent(getActivity(), SFRZ.class));
+                }else {
+                    startActivity(new Intent(getActivity(), ZJZP_WanShan.class));
+                }
                 break;
             default:
                 break;

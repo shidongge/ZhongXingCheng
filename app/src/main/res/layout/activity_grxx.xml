@@ -118,6 +118,7 @@
                 android:text="真实姓名" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -133,6 +134,7 @@
                 android:text="地区" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -184,6 +186,7 @@
                 android:gravity="center" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/grxx_zxjf"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -198,6 +201,7 @@
                 android:gravity="center" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/grxx_xingzuo"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"

@@ -1,6 +1,7 @@
 package us.mifeng.zhongxingcheng.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,10 +73,12 @@ public class TJDDAdapter extends BaseAdapter {
         } else {
             vh = (MyViewHorder) convertView.getTag();
         }
+
+       vh.jiage.setText(integer+"");
         vh.number.setText(integer + "");
         vh.shuliang.setText(integer + "");
         vh.zongjishuliang.setText(integer + "");
-
+        vh.yuanjia.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         vh.jia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
