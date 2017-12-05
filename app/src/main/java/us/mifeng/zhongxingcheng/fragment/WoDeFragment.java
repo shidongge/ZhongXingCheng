@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     private LinearLayout zhangdan;
     private String mobile;
     private SharedUtils sharedUtils;
+    private String nickName;
 
 
     @Override
@@ -131,10 +133,11 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
         zzc.setOnClickListener(this);
         zhangdan.setOnClickListener(this);
         //TODO 隐藏手机号中间四位
-        String mobile2 = mobile;
-        String maskNumber = mobile.substring(0,3)+"****"+mobile2.substring(7,mobile2.length());
-        phone.setText(maskNumber);
-
+        if (!TextUtils.isEmpty(mobile)) {
+            String mobile2 = mobile;
+            String maskNumber = mobile.substring(0, 3) + "****" + mobile2.substring(7, mobile2.length());
+            phone.setText(maskNumber);
+        }
     }
 
     @Override
@@ -146,6 +149,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
             case R.id.wode_shezhi:
                 Intent intent1 = new Intent(getActivity(), SettingActivity.class);
                 intent1.putExtra("img",portrait);
+                intent1.putExtra("nickName",nickName);
                 startActivity(intent1);
                 break;
             case R.id.wode_bzzx:
@@ -175,7 +179,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
                     JSONObject msg1 = data.getJSONObject("msg");
-                    String nickName = msg1.getString("nickName");
+                    nickName = msg1.getString("nickName");
 
                     //图片地址
                     portrait = msg1.getString("portrait");
@@ -189,13 +193,19 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                     sharedUtils.saveShared("yicangshoujihao",maskNumber,getActivity());
 
                     phone.setText(maskNumber);
+                    Log.e(TAG, "handleMessage: "+ nickName);
                     if ("".equals(nickName)){
                         nincheng.setText("未设置昵称");
                     }else {
                         nincheng.setText(nickName);
                     }
                     Log.e(TAG, "handleMessage: "+ portrait);
-                    Glide.with(getActivity()).load(WangZhi.TUPIAN+ portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+                    if ("".equals(portrait)){
+                        img.setImageResource(R.mipmap.tx);
+                    }else {
+
+                        Glide.with(getActivity()).load(WangZhi.TUPIAN+ portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -207,8 +217,9 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                     JSONObject data = jsonObject.getJSONObject("data");
                     JSONObject userInfo = data.getJSONObject("userInfo");
                     String mobile = userInfo.getString("mobile");
-                    String nickName = userInfo.getString("nickName");
+                    nickName = userInfo.getString("nickName");
                     portrait = userInfo.getString("portrait");
+                    Log.e(TAG, "handleMessage:我是图片地址 "+portrait );
                     if ("".equals(nickName)){
                         nincheng.setText("未设置");
                     }else {
@@ -226,4 +237,10 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
             }
         }
     };
+
+    @Override
+    public void onResume() {
+        initCGGRXX();
+        super.onResume();
+    }
 }

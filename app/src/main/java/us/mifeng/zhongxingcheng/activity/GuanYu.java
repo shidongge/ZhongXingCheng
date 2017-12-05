@@ -19,12 +19,13 @@ public class GuanYu extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guanyu);
+        initGetVer();
         initView();
     }
 
     private void initView() {
         TextView banben = (TextView) findViewById(R.id.guanyu_banben);
-        banben.setText(versionCode);
+        banben.setText(versionCode+"");
     }
 
     private void initGetVer() {

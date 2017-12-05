@@ -77,7 +77,7 @@ public class AccountLoginService {
                     OkUtils.UploadSJ("http://192.168.1.130:8081/app/check_login", map, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
-
+                            Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
                         }
 
                         @Override

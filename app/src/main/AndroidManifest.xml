@@ -134,7 +134,7 @@
 
         <activity android:name=".wpxq_ceshi.WPXQ_CeSi"/>
         <activity android:name=".dianpu.DianPuActivity"/>
-
+        <activity android:name=".activity.GuanYu"/>
 
 
 

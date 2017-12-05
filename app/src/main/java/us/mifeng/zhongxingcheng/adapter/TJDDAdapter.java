@@ -74,10 +74,12 @@ public class TJDDAdapter extends BaseAdapter {
             vh = (MyViewHorder) convertView.getTag();
         }
 
-       vh.jiage.setText(integer+"");
         vh.number.setText(integer + "");
         vh.shuliang.setText(integer + "");
         vh.zongjishuliang.setText(integer + "");
+        String trim = vh.jiage.getText().toString().trim();
+        final Integer i = Integer.valueOf(trim);
+        vh.zongjia.setText(i*integer+"");
         vh.yuanjia.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         vh.jia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +87,7 @@ public class TJDDAdapter extends BaseAdapter {
                 integer = integer + 1;
                 s = String.valueOf(integer);
                 vh.shuliang.setText(integer + "");
-                vh.zongjia.setText(integer + "");
+                vh.zongjia.setText(i*integer + "");
                 vh.zongjishuliang.setText(integer+"");
                 vh.number.setText(integer+"");
             }
@@ -100,7 +102,7 @@ public class TJDDAdapter extends BaseAdapter {
                     integer = integer - 1;
                     s = String.valueOf(integer);
                     vh.shuliang.setText(integer + "");
-                    vh.zongjia.setText(integer + "");
+                    vh.zongjia.setText(i*integer + "");
                     vh.number.setText(integer+"");
                     vh.zongjishuliang.setText(integer+"");
                     Log.e(TAG, "onClick: -----------" + integer);

@@ -16,9 +16,9 @@ public class WangZhi {
     public static final String GWZX = ZHUJI + "shop/shop_search/k_%25E7%25BA%25A2%25E9%2585%2592%2520%257C%2520%25E6%25B4%258B%25E9%2585%2592/t_1";//购物中心地址
     public static final String XWZX = "http://m.taogt.cn/index.php?m=mobile&c=index&a=show";//新闻中心地址
     public static final String GWGG = "http://m.taogt.cn/index.php?m=mobile&c=index&a=news_center";//官网公告
-    public static final String HAOYOU = ZHUJI + "app/myFriend";
+    public static final String HAOYOU = CHENGGE + "myFriend";//好友列表
     public static final String HOME_DIANPU = ZHUJI + "app/shop_index";
-    public static final String TUPIAN = "http://192.168.1.111:1003/uploads/";
+    public static final String TUPIAN = "http://192.168.1.130:8081/uploads/";
     public static final String WODE = ZHUJI + "app/userInfo";//我的fragment的信息
     public static final String ZHAOPIAN = ZHUJI + "app/imageUpload";//图片上传
     //http://47.94.144.186:8080/uploads/userShops/20170814/1502712437111.png 首页图片

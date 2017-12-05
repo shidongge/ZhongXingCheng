@@ -55,6 +55,7 @@ import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.adapter.LXRAdapter;
 import us.mifeng.zhongxingcheng.bean.LXRBean;
 import us.mifeng.zhongxingcheng.liaotian.model.GroupInfo;
+import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 
@@ -96,11 +97,12 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         start = 0;
         item = 0;
         //initData();
-//        initLianWang();
+        initLianWang();
     }
 
     private void initLianWang() {
-        final HashMap<String, String> map = new HashMap<>();
+
+        HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
         OkUtils.UploadSJ(WangZhi.HAOYOU, map, new Callback() {
             @Override
@@ -110,6 +112,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+//                Log.e(TAG, "onResponse: "+response.body().string() );
                 String string = response.body().string();
                 Message mess = hand.obtainMessage();
                 mess.obj = string;
@@ -128,31 +131,39 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
-                    JSONObject data = jsonObject.getJSONObject("data");
-                    JSONArray msg1 = data.getJSONArray("msg");
-                    list = new ArrayList<>();
-                    //赋值，确保不重复取值
-                    start = item;
-                    item += 20;
-                    for (int i = start; i < msg1.length(); i++) {
-                        JSONObject jsonObject1 = msg1.getJSONObject(i);
-                        String mobile = jsonObject1.getString("mobile");
-                        Log.e(TAG, "handleMessage: " + mobile);
-                        String vipLevel = jsonObject1.getString("vipLevel");
-                        LXRBean lxrBean = new LXRBean();
-                        lxrBean.setMobile(mobile);
-                        lxrBean.setViplevel(vipLevel);
-                        list.add(lxrBean);
+                    String msg2 = jsonObject.getString("msg");
+                    if ("2".equals(msg2)){
+                        ToSi.show(FriendsActivity.this,"暂无好友");
+                    }else if ("1".equals(msg2)){
+                        ToSi.show(FriendsActivity.this,"参数不对");
+                    }else if ("0".equals(msg2)){
+                        JSONObject data = jsonObject.getJSONObject("data");
+                        JSONArray msg1 = data.getJSONArray("msg");
+                        list = new ArrayList<>();
+                        //赋值，确保不重复取值
+                        start = item;
+                        item += 20;
+                        for (int i = start; i < msg1.length(); i++) {
+                            JSONObject jsonObject1 = msg1.getJSONObject(i);
+                            String mobile = jsonObject1.getString("mobile");
+                            Log.e(TAG, "handleMessage: " + mobile);
+                            String vipLevel = jsonObject1.getString("vipLevel");
+                            LXRBean lxrBean = new LXRBean();
+                            lxrBean.setMobile(mobile);
+                            lxrBean.setViplevel(vipLevel);
+                            list.add(lxrBean);
+                        }
+                        if (adapter == null) {
+                            adapter = new LXRAdapter(FriendsActivity.this, list);
+                            lv.setAdapter(adapter);
+                        } else {
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                if (adapter == null) {
-                    adapter = new LXRAdapter(FriendsActivity.this, list);
-                    lv.setAdapter(adapter);
-                } else {
-                    adapter.notifyDataSetChanged();
-                }
+
             }
         }
     };

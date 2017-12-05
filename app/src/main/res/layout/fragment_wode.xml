@@ -209,11 +209,13 @@
         style="@style/xiantiao" />
 
     <View
+        android:visibility="gone"
         style="@style/xiantiao"
         android:layout_marginTop="5dp"
          />
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/wode_bzzx"
         style="@style/linear_tiaomu">
 
@@ -235,10 +237,14 @@
         <ImageView style="@style/img_xiao" />/>
     </LinearLayout>
 
-    <View style="@style/xiantiao" />
+    <View
+        android:visibility="gone"
+        style="@style/xiantiao" />
 
 
-    <LinearLayout style="@style/linear_tiaomu">
+    <LinearLayout
+        android:visibility="gone"
+        style="@style/linear_tiaomu">
 
         <ImageView
             android:layout_width="40dp"
@@ -257,6 +263,8 @@
         <ImageView style="@style/img_xiao" />/>
     </LinearLayout>
 
-    <View style="@style/xiantiao" />
+    <View
+        android:visibility="gone"
+        style="@style/xiantiao" />
 
 </LinearLayout>

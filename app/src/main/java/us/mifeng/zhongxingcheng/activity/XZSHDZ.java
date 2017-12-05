@@ -21,6 +21,9 @@ import us.mifeng.zhongxingcheng.utils.ToSi;
  * Created by shido on 2017/10/30.
  */
 
+/**
+ *新增收货地址界面
+ */
 public class XZSHDZ extends Activity implements View.OnClickListener {
 
     private LinearLayout diqu;

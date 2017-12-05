@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -36,6 +35,7 @@ import java.util.Map;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.activity.GuanYu;
 import us.mifeng.zhongxingcheng.liaotian.BlackListActivity;
 import us.mifeng.zhongxingcheng.liaotian.EditActivity;
 import us.mifeng.zhongxingcheng.liaotian.SplashActivity;
@@ -62,20 +62,22 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
     private FragmentManager fm;
     private SharedUtils sharedUtils;
     private ImageView img, back;
-    private String tupian;
+    private String tupian,nickName1;
     private LinearLayout hmd;
+    private TextView about;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         tupian = getIntent().getStringExtra("img");
-        Log.e(TAG, "onCreate: " + img);
+        nickName1 = getIntent().getStringExtra("nickName");
         sharedUtils = new SharedUtils();
         id = (TextView) findViewById(R.id.idtext);
         name = (TextView) findViewById(R.id.name);
         img = (ImageView) findViewById(R.id.shezhi_img);
-
+        name.setText(nickName1);
 
         hmd = (LinearLayout) findViewById(R.id.blackList);
         back = (ImageView) findViewById(R.id.sz_back);
@@ -115,10 +117,11 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
                 });
             }
         });
+        about = (TextView) findViewById(R.id.about);
+        about.setOnClickListener(this);
 
-
-        nickName = (LineControllerView) findViewById(R.id.nickName);
-        nickName.setOnClickListener(new View.OnClickListener() {
+        this.nickName = (LineControllerView) findViewById(R.id.nickName);
+        this.nickName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditActivity.navToEdit(SettingActivity.this, getResources().getString(R.string.setting_nick_name_change), name.getText().toString(), REQ_CHANGE_NICK, new EditActivity.EditInterface() {
@@ -189,16 +192,16 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQ_CHANGE_NICK) {
             if (resultCode == this.RESULT_OK) {
-                setNickName(data.getStringExtra(EditActivity.RETURN_EXTRA));
+//                setNickName(data.getStringExtra(EditActivity.RETURN_EXTRA));
             }
         }
     }
 
-    private void setNickName(String name) {
-        if (name == null) return;
-        this.name.setText(name);
-        nickName.setContent(name);
-    }
+//    private void setNickName(String name) {
+//        if (name == null) return;
+//        this.name.setText(nickName1);
+//        nickName.setContent(name);
+//    }
 
 
     /**
@@ -222,7 +225,7 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
     @Override
     public void showUserInfo(List<TIMUserProfile> users) {
         id.setText(users.get(0).getIdentifier());
-        setNickName(users.get(0).getNickName());
+//        setNickName(users.get(0).getNickName());
         for (String item : allowTypeContent.keySet()) {
             if (allowTypeContent.get(item) == users.get(0).getAllowType()) {
 //                friendConfirm.setContent(item);
@@ -236,6 +239,9 @@ public class SettingActivity extends AppCompatActivity implements FriendInfoView
         switch (v.getId()) {
             case R.id.sz_back:
                 finish();
+                break;
+            case R.id.about:
+                startActivity(new Intent(SettingActivity.this, GuanYu.class));
                 break;
             default:
                 break;
