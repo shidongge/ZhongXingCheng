@@ -311,6 +311,11 @@
     <string name="message_notify_c2c_music">自定义C2C消息推送声音</string>
     <string name="message_notify_group_music">自定义群消息推送声音</string>
 
-
+    <!--购物车-->
+    <string name="edit">编辑</string>
+    <string name="all_select">全选</string>
+    <string name="delete">删除</string>
+    <string name="complete">完成</string>
+    <string name="select_tip">请选择商品</string>
 
 </resources>

@@ -62,6 +62,7 @@ import us.mifeng.zhongxingcheng.utils.WangZhi;
 public class FriendsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FriendshipManageView, StrAccountLogin.LoginListener, OnLoadMoreListener, View.OnClickListener {
     private static final String TAG = "Fragment_LianXiRen";
     private List<LXRBean> list;
+    private List<LXRBean> showList;
     private ListView lv;
     private LXRAdapter adapter;
     private String password = "123456789";
@@ -71,16 +72,15 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     private FriendshipManagerPresenter presenter;
     private StrAccountLogin login;
     private SwipeToLoadLayout swipeToLoadLayout;
-    private int item;
-    //保证数据加载时的准确性
-    private int start;
     private String token;
     private AlertDialog showDialog2;
     private RelativeLayout rela_sao;
     private RelativeLayout rela_add;
     private RelativeLayout rela_chats;
-    private LinearLayout qunliao,tianjia;
-
+    private LinearLayout qunliao, tianjia;
+    private int startItem = 0;
+    private int endItem = 20;
+    private boolean loadFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,19 +89,30 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         initView();
         SharedUtils sharedUtils = new SharedUtils();
         token = sharedUtils.getShared("token", FriendsActivity.this);
+        Log.e(TAG, "onCreate: "+token );
         tlsService = TLSService.getInstance();
         strAccRegListener = new StrAccRegListener();
         login = new StrAccountLogin(this);
         presenter = new FriendshipManagerPresenter(this);
-        //用于分段从list中取值
-        start = 0;
-        item = 0;
-        //initData();
+        showList = new ArrayList<>();
         initLianWang();
     }
 
-    private void initLianWang() {
+    private void initView() {
+        lv = (ListView) findViewById(R.id.swipe_target);
+        ImageView add = (ImageView) findViewById(R.id.txl_add);
+        ImageView back = (ImageView) findViewById(R.id.txl_back);
+        qunliao = (LinearLayout) findViewById(R.id.txl_qunliao);
+        tianjia = (LinearLayout) findViewById(R.id.txl_tianjia);
+        qunliao.setOnClickListener(this);
+        back.setOnClickListener(this);
+        add.setOnClickListener(this);
+        showDialog2 = showDialog2();
+        lv.setOnItemClickListener(this);
+    }
 
+
+    private void initLianWang() {
         HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
         OkUtils.UploadSJ(WangZhi.HAOYOU, map, new Callback() {
@@ -112,13 +123,11 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-//                Log.e(TAG, "onResponse: "+response.body().string() );
                 String string = response.body().string();
                 Message mess = hand.obtainMessage();
                 mess.obj = string;
                 mess.what = 200;
                 hand.sendMessage(mess);
-
             }
         });
     }
@@ -134,53 +143,54 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                     String msg2 = jsonObject.getString("msg");
                     if ("2".equals(msg2)){
                         ToSi.show(FriendsActivity.this,"暂无好友");
-                    }else if ("1".equals(msg2)){
+                    }
+                    else if ("1".equals(msg2)){
                         ToSi.show(FriendsActivity.this,"参数不对");
-                    }else if ("0".equals(msg2)){
+                    }else if ("0".equals(msg2)) {
+
                         JSONObject data = jsonObject.getJSONObject("data");
                         JSONArray msg1 = data.getJSONArray("msg");
                         list = new ArrayList<>();
-                        //赋值，确保不重复取值
-                        start = item;
-                        item += 20;
-                        for (int i = start; i < msg1.length(); i++) {
+                        for (int i = 0; i < msg1.length(); i++) {
                             JSONObject jsonObject1 = msg1.getJSONObject(i);
                             String mobile = jsonObject1.getString("mobile");
-                            Log.e(TAG, "handleMessage: " + mobile);
                             String vipLevel = jsonObject1.getString("vipLevel");
                             LXRBean lxrBean = new LXRBean();
                             lxrBean.setMobile(mobile);
                             lxrBean.setViplevel(vipLevel);
                             list.add(lxrBean);
                         }
-                        if (adapter == null) {
-                            adapter = new LXRAdapter(FriendsActivity.this, list);
-                            lv.setAdapter(adapter);
-                        } else {
-                            adapter.notifyDataSetChanged();
-                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }
     };
 
-
-    private void initView() {
-        lv = (ListView) findViewById(R.id.swipe_target);
-        ImageView add = (ImageView) findViewById(R.id.txl_add);
-        ImageView back = (ImageView) findViewById(R.id.txl_back);
-        qunliao = (LinearLayout) findViewById(R.id.txl_qunliao);
-        tianjia = (LinearLayout) findViewById(R.id.txl_tianjia);
-        qunliao.setOnClickListener(this);
-        back.setOnClickListener(this);
-        add.setOnClickListener(this);
-        showDialog2 = showDialog2();
-        lv.setOnItemClickListener(this);
-
+    private void load() {
+        for (int i = startItem; i < endItem; i++) {
+            showList.add(list.get(i));
+        }
+        //有数据
+        if (list.size() - endItem > 0) {
+            //如果数据不够20条
+            if (list.size() - endItem < 20) {
+                startItem = endItem;
+                endItem = list.size();
+            } else {
+                startItem = endItem;
+                endItem += 20;
+            }
+        } else {
+            loadFlag = true;
+        }
+        if (adapter == null) {
+            adapter = new LXRAdapter(this, showList);
+            lv.setAdapter(adapter);
+        } else {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private AlertDialog showDialog2() {
@@ -208,27 +218,8 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         return alertDialog;
     }
 
-//    private void initData() {
-//        //赋值，确保不重复取值
-//        start = item;
-//        item += 20;
-//        for (int i = start; i < item; i++) {
-//            ContactBean bean = new ContactBean();
-//            bean.setUsername(i + "000100a");
-//            list.add(bean);
-//        }
-//        if (adapter == null) {
-//            adapter = new ContactAdapter1(list, this);
-//            lv.setAdapter(adapter);
-//        } else {
-//            adapter.notifyDataSetChanged();
-//        }
-//
-//    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         LXRBean bean = (LXRBean) parent.getAdapter().getItem(position);
         mobile = bean.getMobile() + "a";
         Log.e(TAG, "onItemClick: " + mobile);
@@ -249,7 +240,10 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onLoadMore() {
-        initLianWang();
+        //加载数据，如果没有数据则不加载
+        if (!loadFlag) {
+            load();
+        }
         swipeToLoadLayout.setLoadingMore(false);
     }
 

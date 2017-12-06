@@ -378,6 +378,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
     @Override
     public void onActivityResult(final int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //TODO 身份证正面
         if (tag == 1) {
             if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
                 //添加图片返回
@@ -395,8 +396,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
                             //TODO 图片上传
                             HashMap<String, String> map = new HashMap<>();
                             map.put("token", token);
-                            Log.e(TAG, "onActivityResult: map===11111" + map);
-                            OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "identityFace", item.path, map, new Callback() {
+                            OkUtils.UploadFileCS(WangZhi.GXJRXX, "identityFace", item.path, map, new Callback() {
                                 @Override
                                 public void onFailure(Call call, IOException e) {
                                     Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
@@ -412,7 +412,6 @@ public class SFRZ extends Activity implements View.OnClickListener {
                                 }
                             });
                         }
-                        Log.e(TAG, "onActivityResult: " + item.path);
                     }
                 }
             } else if (resultCode == ImagePicker.RESULT_CODE_BACK) {
@@ -426,6 +425,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 }
             }
         }
+        //TODO 身份证反面
         if (tag == 2) {
             if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
                 //添加图片返回
@@ -444,8 +444,7 @@ public class SFRZ extends Activity implements View.OnClickListener {
                             //TODO 图片上传
                             HashMap<String, String> map = new HashMap<>();
                             map.put("token", token);
-                            Log.e(TAG, "onActivityResult: map===22222" + map);
-                            OkUtils.UploadFileCS(WangZhi.ZHAOPIAN, "identityBack", item.path, map, new Callback() {
+                            OkUtils.UploadFileCS(WangZhi.GXJRXX, "identityBack", item.path, map, new Callback() {
                                 @Override
                                 public void onFailure(Call call, IOException e) {
                                     Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
@@ -628,10 +627,9 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
-                    Log.e(TAG, "handleMessage:手持身份证反面 " + jsonObject);
-                    String data = jsonObject.getString("success");
-                    if (data.equals("true")) {
-                        JSONObject msg1 = jsonObject.getJSONObject("msg");
+                    String data = jsonObject.getString("msg");
+                    if (("0").equals(data)) {
+
                         ToSi.show(SFRZ.this, "上传成功");
                         ImagePicker.getInstance().getImageLoader().displayImage(SFRZ.this, item.path, chizhao_fanmian, 0, 0);
                     } else {
@@ -669,11 +667,14 @@ public class SFRZ extends Activity implements View.OnClickListener {
                 try {
                     JSONObject jsonObject = new JSONObject(str);
                     Log.e(TAG, "handleMessage: 身份证反面" + jsonObject);
-                    String data = jsonObject.getString("success");
-                    if (data.equals("true")) {
-                        JSONObject msg1 = jsonObject.getJSONObject("msg");
-                        ToSi.show(SFRZ.this, "上传成功");
-                        ImagePicker.getInstance().getImageLoader().displayImage(SFRZ.this, item.path, zjzp_fanmian, 0, 0);
+                    String msg2 = jsonObject.getString("msg");
+                    if ("0".equals(msg2)){
+                        JSONObject data = jsonObject.getJSONObject("data");
+                        String msg1 = data.getString("msg");
+                        if ("0".equals(msg1)){
+                            ToSi.show(SFRZ.this, "上传成功");
+                            ImagePicker.getInstance().getImageLoader().displayImage(SFRZ.this, item.path, zjzp_fanmian, 0, 0);
+                        }
                     } else {
                         JSONObject data1 = jsonObject.getJSONObject("data");
                         String msg1 = data1.getString("msg");
@@ -685,16 +686,19 @@ public class SFRZ extends Activity implements View.OnClickListener {
             }
             //证件照片上传正面
             if (msg.what == 100) {
-
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
-                    Log.e(TAG, "handleMessage: 身份证正面" + jsonObject);
-                    String data = jsonObject.getString("success");
-                    if (data.equals("true")) {
-                        JSONObject msg1 = jsonObject.getJSONObject("msg");
-                        ToSi.show(SFRZ.this, "上传成功");
-                        ImagePicker.getInstance().getImageLoader().displayImage(SFRZ.this, item.path, zjzp_zhengmian, 0, 0);
+                    Log.e(TAG, "handleMessage:正面"+jsonObject );
+                    String msg2 = jsonObject.getString("msg");
+                    if ("0".equals(msg2)){
+                        JSONObject data = jsonObject.getJSONObject("data");
+                        String msg1 = data.getString("msg");
+                        if ("0".equals(msg1)){
+
+                            ToSi.show(SFRZ.this, "上传成功");
+                            ImagePicker.getInstance().getImageLoader().displayImage(SFRZ.this, item.path, zjzp_zhengmian, 0, 0);
+                        }
                     } else {
                         JSONObject data1 = jsonObject.getJSONObject("data");
                         String msg1 = data1.getString("msg");

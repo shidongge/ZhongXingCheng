@@ -54,7 +54,7 @@ public class XWAdapter extends BaseAdapter {
         }else {
             vh = (MyViewHorder) convertView.getTag();
         }
-        vh.neirong.setText(list.get(position).getNeirong());
+
 
         return convertView;
     }

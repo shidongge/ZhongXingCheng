@@ -125,6 +125,7 @@
         <activity android:name=".activity.TJDD"/>
         <activity android:name=".activity.TJFPTT"/>
         <activity android:name=".activity.ZhiFu"/>
+        <activity android:name=".activity.XinWen_NeiRong"/>
 
         <activity android:name=".activity.ChaXunDD"
             android:theme="@style/StyledIndicators"

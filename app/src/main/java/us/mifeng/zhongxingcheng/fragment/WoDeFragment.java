@@ -36,6 +36,7 @@ import us.mifeng.zhongxingcheng.activity.ZhangDan;
 import us.mifeng.zhongxingcheng.denlgu.SettingActivity;
 import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
+import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
@@ -49,7 +50,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rela;
     private View inflate;
     private static final String TAG = "WoDeFragment";
-    private LinearLayout bzzx,zzc;
+    private LinearLayout bzzx,zzc,yue,yinghangka;
     private TextView phone,nincheng,shezhi;
     private String id;
     private String token;
@@ -127,9 +128,13 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
         phone = (TextView) inflate.findViewById(R.id.wode_phone);
         nincheng = (TextView) inflate.findViewById(R.id.wode_nincheng);
         img = (ImageView) inflate.findViewById(R.id.fragment_wode_img);
+        yue = (LinearLayout) inflate.findViewById(R.id.wode_yue);
+        yinghangka = (LinearLayout) inflate.findViewById(R.id.wode_yinghangka);
         shezhi.setOnClickListener(this);
         rela.setOnClickListener(this);
         bzzx.setOnClickListener(this);
+        yue.setOnClickListener(this);
+        yinghangka.setOnClickListener(this);
         zzc.setOnClickListener(this);
         zhangdan.setOnClickListener(this);
         //TODO 隐藏手机号中间四位
@@ -164,6 +169,12 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.wode_zhangdan:
                 startActivity(new Intent(getActivity(), ZhangDan.class));
+                break;
+            case R.id.wode_yue:
+                ToSi.show(getActivity(),"暂未开发");
+                break;
+            case R.id.wode_yinghangka:
+                ToSi.show(getActivity(),"暂未开发");
                 break;
             default:
                 break;
@@ -229,7 +240,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                         img.setImageResource(R.mipmap.tx);
                     }
                     else {
-                        Glide.with(getActivity()).load(WangZhi.TUPIAN+portrait).into(img);
+                        Glide.with(getActivity()).load(WangZhi.TUPIAN+portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

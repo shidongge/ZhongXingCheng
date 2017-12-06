@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.tencent.qcloud.tlslibrary.utils.SharedUtils;
 
 import org.json.JSONException;
@@ -34,10 +35,11 @@ public class ZJZP_WanShan extends Activity {
     private SharedUtils utils;
     private String token;
     private static final String TAG = "ZJZP_WanShan";
-    private ImageView zhengmian,fanmian,chizhao_zhenmian,chizhao_fanmian;
+    private ImageView zhengmian, fanmian, chizhao_zhenmian, chizhao_fanmian;
     private ImageView fm;
-    private TextView title,xingming,xingbie,nianyueri,diqu,sfz;
+    private TextView title, xingming, xingbie, nianyueri, diqu, sfz;
     private String xb;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,31 +51,32 @@ public class ZJZP_WanShan extends Activity {
     }
 
     private void initLianWang() {
-        String s = JiaMi.jdkBase64Encoder("realName,identityCard,birthDate,gender,province,city");
-        HashMap<String ,String> map = new HashMap<>();
-        map.put("field",s);
-        map.put("token",token);
+        String s = JiaMi.jdkBase64Encoder("realName,identityCard,birthDate,gender,province,city,identityFace,identityBack");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("field", s);
+        map.put("token", token);
         OkUtils.UploadSJ(WangZhi.GRXX, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
+                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String string = response.body().string();
                 Message message = hand.obtainMessage();
-                message.obj=string;
-                message.what=200;
+                message.obj = string;
+                message.what = 200;
                 hand.sendMessage(message);
             }
         });
     }
-    Handler hand = new Handler(){
+
+    Handler hand = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what==200){
+            if (msg.what == 200) {
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
@@ -86,9 +89,9 @@ public class ZJZP_WanShan extends Activity {
                     String city = msg1.getString("city");
                     diqu.setText(city);
                     nianyueri.setText(birthDate);
-                    if (gender.equals("1")){
-                        xb="男";
-                    }else {
+                    if (gender.equals("1")) {
+                        xb = "男";
+                    } else {
                         xb = "女";
                     }
                     xingbie.setText(xb);
@@ -96,9 +99,16 @@ public class ZJZP_WanShan extends Activity {
                     sfz.setText(identityCard);
                     String identityFace = msg1.getString("identityFace");
                     String identityBack = msg1.getString("identityBack");
-
-//                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityBack).into(fanmian);
-//                    Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN+identityFace).into(zhengmian);
+                    if ("".equals(identityFace)) {
+                        zhengmian.setImageResource(R.mipmap.sfzm);
+                    } else {
+                        Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN + identityFace).into(zhengmian);
+                    }
+                    if ("".equals(identityBack)) {
+                        fanmian.setImageResource(R.mipmap.sfzfm);
+                    } else {
+                        Glide.with(ZJZP_WanShan.this).load(WangZhi.TUPIAN + identityBack).into(fanmian);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

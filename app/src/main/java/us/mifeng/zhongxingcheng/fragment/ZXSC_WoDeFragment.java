@@ -126,7 +126,6 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
                     String nickName = msg1.getString("nickName");
                     String portrait = msg1.getString("portrait");
                     realStatus = msg1.getString("realStatus");
-                    Log.e(TAG, "handleMessage: "+realStatus );
                     shoujihao.setText(mobile);
                     if ("".equals(nickName)){
                         nincheng.setText("未设置");

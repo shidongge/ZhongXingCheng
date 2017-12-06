@@ -162,7 +162,9 @@
 
     <View style="@style/xiantiao" />
 
-    <LinearLayout style="@style/linear_tiaomu">
+    <LinearLayout
+        android:id="@+id/wode_yue"
+        style="@style/linear_tiaomu">
 
         <ImageView
             android:layout_width="40dp"
@@ -184,7 +186,9 @@
     <View
        style="@style/xiantiao" />
 
-    <LinearLayout style="@style/linear_tiaomu">
+    <LinearLayout
+        android:id="@+id/wode_yinghangka"
+        style="@style/linear_tiaomu">
 
         <ImageView
             android:layout_width="40dp"

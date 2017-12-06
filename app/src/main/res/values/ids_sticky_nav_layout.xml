@@ -22,5 +22,6 @@
     <item type="id" name="id_stickynavlayout_innerscrollview"/>
 
     <item name="id_stickynavlayout_vp" type = "id"/>
-
+    <integer name="view_group_tag">0</integer>
+    <integer name="view_child_tag">1</integer>
 </resources>

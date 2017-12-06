@@ -64,5 +64,15 @@
     <color name="text_red">#ec0f38</color>
     <color name="text_black">#222222</color>
 
+    <!--//购物车颜色-->
 
+    <color name="orange">#FE5600</color>
+    <color name="gray">#F8F8F8</color>
+
+    <color name="color_text_black">#3B4043</color>
+    <color name="color_text_gray">#979797</color>
+
+    <color name="color_line_gray">#DDDDDD</color>
+
+    <color name="color_icon_gray">#B4B8C4</color>
 </resources>

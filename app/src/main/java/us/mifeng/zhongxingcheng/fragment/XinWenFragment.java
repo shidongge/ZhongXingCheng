@@ -47,9 +47,20 @@ public class XinWenFragment extends Fragment implements AdapterView.OnItemClickL
         view = View.inflate(getActivity(), R.layout.fragment_xinwen, null);
         lv = (ListView) view.findViewById(R.id.xinwen_lv);
        // initLianWang();
+        initData();
+        XWAdapter xwAdapter = new XWAdapter(getActivity(), list);
+        lv.setAdapter(xwAdapter);
         lv.setOnItemClickListener(this);
         return view;
 
+    }
+
+    private void initData() {
+        list = new ArrayList<>();
+        for (int i = 0 ;i <4 ;i++){
+            XWBean xwBean = new XWBean();
+            list.add(xwBean);
+        }
     }
 
     private void initLianWang() {
