@@ -12,6 +12,9 @@ import us.mifeng.zhongxingcheng.R;
  * Created by shido on 2017/12/7.
  */
 
+/**
+ * 提现记录界面
+ */
 public class TXJL extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

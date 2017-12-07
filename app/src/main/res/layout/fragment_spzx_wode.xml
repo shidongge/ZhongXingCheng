@@ -34,11 +34,13 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="fitXY"
                         android:id="@+id/geren_img"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:padding="10dp"
-                        android:src="@mipmap/tx" />
+                         />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -139,7 +141,7 @@
                             android:gravity="center"
                             android:text="元"
                             android:textColor="#fff"
-                            android:textSize="20sp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -298,6 +300,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/geren_shdz"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

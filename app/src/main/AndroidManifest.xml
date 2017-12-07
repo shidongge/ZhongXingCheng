@@ -144,6 +144,7 @@
         <activity android:name=".activity.TXJL"/>
         <activity android:name=".activity.WDJX"/>
         <activity android:name=".activity.WDYJ"/>
+        <activity android:name=".activity.SPZX_SHDZGL"/>
 
         <!-- 消息收发service -->
         <service

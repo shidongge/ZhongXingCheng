@@ -22,10 +22,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.activity.SPZX_SHDZGL;
 import us.mifeng.zhongxingcheng.activity.SQTX;
 import us.mifeng.zhongxingcheng.activity.TXJL;
 import us.mifeng.zhongxingcheng.activity.WDHB;
@@ -35,6 +37,8 @@ import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.SharedUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 /**
  * Created by shido on 2017/12/6.
@@ -51,7 +55,7 @@ public class SPZX_WoDo extends Fragment implements View.OnClickListener {
     private  boolean huoban_panduan = false;
     private boolean jixiao_panduan = false;
     private boolean yeji_panduan = false;
-    private LinearLayout geren_sqtx,geren_txjl;
+    private LinearLayout geren_sqtx,geren_txjl,geren_shdz;
     private LinearLayout geren_wfk,geren_yfk,geren_yfh,geren_ywc;
     private LinearLayout geren_djs,geren_ytx,geren_ktx,geren_bbh,geren_sqz,geren_ddk;
     private String token;
@@ -128,7 +132,7 @@ public class SPZX_WoDo extends Fragment implements View.OnClickListener {
 
         geren_sqtx = (LinearLayout) inflate.findViewById(R.id.geren_sqtx);
         geren_txjl = (LinearLayout) inflate.findViewById(R.id.geren_txjl);
-
+        geren_shdz = (LinearLayout) inflate.findViewById(R.id.geren_shdz);
 
         geren_djs = (LinearLayout) inflate.findViewById(R.id.geren_djs);
         geren_ytx = (LinearLayout) inflate.findViewById(R.id.geren_ytx);
@@ -153,6 +157,7 @@ public class SPZX_WoDo extends Fragment implements View.OnClickListener {
 
         geren_sqtx.setOnClickListener(this);
         geren_txjl.setOnClickListener(this);
+        geren_shdz.setOnClickListener(this);
 
         geren_wfk.setOnClickListener(this);
         geren_yfk.setOnClickListener(this);
@@ -207,6 +212,7 @@ public class SPZX_WoDo extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), TXJL.class));
                 break;
 
+
             case R.id.geren_qingtong:
                 Intent intent1 = new Intent(getActivity(), WDHB.class);
                 intent1.putExtra("tag","1");
@@ -233,11 +239,12 @@ public class SPZX_WoDo extends Fragment implements View.OnClickListener {
                 startActivity(intent5);
                 break;
             case R.id.geren_sqtx:
-                Intent intent6 = new Intent(getActivity(), SQTX.class);
-                startActivity(intent6);
+                Intent geren_sqtx = new Intent(getActivity(), SQTX.class);
+                startActivity(geren_sqtx);
                 break;
-
-
+            case R.id.geren_shdz:
+                startActivity(new Intent(getActivity(), SPZX_SHDZGL.class));
+                break;
 
 
             case R.id.geren_wfk:
@@ -300,6 +307,7 @@ public class SPZX_WoDo extends Fragment implements View.OnClickListener {
                     JSONObject userInfo = data.getJSONObject("userInfo");
                     String nickName = userInfo.getString("nickName");
                     String portrait = userInfo.getString("portrait");
+                    Log.e(TAG, "handleMessage: "+portrait );
                     if ("".equals(nickName)){
                         nincheng.setText("未设置");
                     }else {
@@ -308,7 +316,7 @@ public class SPZX_WoDo extends Fragment implements View.OnClickListener {
                     if ("".equals(portrait)){
                         img.setImageResource(R.mipmap.tx);
                     }else {
-                        Glide.with(getActivity()).load(WangZhi.TUPIAN+portrait).load(img);
+                        Glide.with(getActivity()).load(WangZhi.TUPIAN+ portrait).apply(bitmapTransform(new CropCircleTransformation())).into(img);
                     }
 
                 } catch (JSONException e) {

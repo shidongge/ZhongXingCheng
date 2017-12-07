@@ -47,6 +47,7 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
     private ProgressBar mBar;
     private String page;
     private String pageCound;
+    private int lastVisIdnex;
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         view = View.inflate(getActivity(), R.layout.fragment_xinwen, null);
@@ -57,6 +58,7 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
         lv.addFooterView(inflate);
         initLianWang();
         lv.setOnScrollListener(this);
+
         return view;
 
     }
@@ -143,7 +145,7 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if(scrollState==SCROLL_STATE_IDLE){
+        if(scrollState==SCROLL_STATE_IDLE&&lastVisIdnex==xwAdapter.getCount()){
             //确认滑倒底部 加载更多
             mBar.setVisibility(View.VISIBLE);
             initLianWang();
@@ -153,6 +155,7 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        lastVisIdnex=firstVisibleItem+visibleItemCount-1;
 //        if (page.equals(pageCound)){
 //            lv.removeFooterView(inflate);
 //            ToSi.show(getActivity(),"没有更多数据了");
