@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import us.mifeng.zhongxingcheng.R;
@@ -18,8 +20,9 @@ import us.mifeng.zhongxingcheng.bean.XWBean;
 
 public class XWAdapter extends BaseAdapter {
     private Context context;
-    private List<XWBean> list;
-    public XWAdapter(Context context,List<XWBean> list){
+    private List<XWBean.DataBean
+            .InfoBean> list;
+    public XWAdapter(Context context,List<XWBean.DataBean.InfoBean> list){
         this.context=context;
         this.list=list;
     }
@@ -54,8 +57,11 @@ public class XWAdapter extends BaseAdapter {
         }else {
             vh = (MyViewHorder) convertView.getTag();
         }
-
-
+        Glide.with(context).load(list.get(position).getThumb()).into(vh.img);
+        vh.gonggao.setText(list.get(position).getTitle());
+        vh.yuedu.setText(list.get(position).getUpdateTime());
+        vh.guanfang.setText(list.get(position).getCommentNum());
+        vh.neirong.setText(list.get(position).getTitle());
         return convertView;
     }
     class MyViewHorder{

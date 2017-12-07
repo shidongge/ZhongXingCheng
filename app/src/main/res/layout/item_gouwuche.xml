@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/dp_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="梧桐堡红酒旗舰店"
+            android:textSize="16sp" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@mipmap/fh1" />
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/yigouxuan" />
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/cptp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="7">
+
+            <LinearLayout
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:text="梧桐堡*至高干红葡萄酒..."
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:gravity="center"
+                    android:text="来自法国原装进口"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="750ml x 1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                >
+                <TextView
+                    android:textColor="#f00"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="¥ 168" />
+
+                <View
+                    style="@style/xiantiao_zhongjian"/>
+
+                <LinearLayout
+                    android:background="@drawable/shuliang"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent"
+                        android:text="—"
+                        />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#999999"
+                        />
+                    <TextView
+                        android:textColor="#666666"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:text="1"
+                        android:gravity="center"
+                        />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#999999"
+                        />
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent"
+                        android:text="+"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

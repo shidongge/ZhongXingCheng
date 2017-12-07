@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+
+        >
+
+        <ImageView
+            android:id="@+id/sqtx_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/fhh" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="申请提现"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <View style="@style/xiantiao" />
+
+    <View style="@style/xiantiao"
+        android:layout_marginTop="10dp"
+        />
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="持卡人姓名:"
+            android:textColor="#333333"
+            android:gravity="center"
+            />
+        <View style="@style/xiantiao_zhongjian"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="哈哈哈"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+
+    <View style="@style/xiantiao"
+        android:layout_marginTop="10dp"
+        />
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="提现金额:"
+            android:gravity="center"
+            />
+        <View style="@style/xiantiao_zhongjian"/>
+        <EditText
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="最高可提20000.00元"
+            />
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+
+    <View style="@style/xiantiao"
+        android:layout_marginTop="10dp"
+        />
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="需交手续费:"
+            android:gravity="center"
+            />
+        <View style="@style/xiantiao_zhongjian"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="手续费1%"
+            android:textColor="#ff9147"
+            />
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+
+    <View style="@style/xiantiao"
+        android:layout_marginTop="10dp"
+        />
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="实得金额:"
+            android:gravity="center"
+            />
+        <View style="@style/xiantiao_zhongjian"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="0.0元"
+            />
+    </LinearLayout>
+    <View style="@style/xiantiao" />
+    <Button
+        android:textSize="18sp"
+        android:background="@drawable/sqtx"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#fff"
+        android:text="确定"
+        android:layout_width="200dp"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="温馨提示"
+            />
+        <TextView
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.钱包账户提现最低金额为1000元"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.我们将在两个工作日内（除双休日和法定节假日外）将提现的金额转入绑定的银行卡内。"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.平台禁止洗钱，信用卡套现等行为，平台有权拒接行用卡提前及无消费用户提现行为。"
+            />
+      <TextView
+            android:layout_marginTop="5dp"
+          android:textSize="14sp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="4.每笔提现金额，银行会收取1%的手续费"
+          />
+
+
+
+    </LinearLayout>
+    
+</LinearLayout>

@@ -1,6 +1,5 @@
 package us.mifeng.zhongxingcheng.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,8 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,54 +25,48 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.activity.XinWen_NeiRong;
 import us.mifeng.zhongxingcheng.adapter.XWAdapter;
 import us.mifeng.zhongxingcheng.bean.XWBean;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
+import us.mifeng.zhongxingcheng.utils.ToSi;
+import us.mifeng.zhongxingcheng.utils.WangZhi;
+
 
 /**
  * Created by shido on 2017/10/17.
  */
 
-public class XinWenFragment extends Fragment implements AdapterView.OnItemClickListener {
-    private List<XWBean> list;
+public class XinWenFragment extends Fragment implements AbsListView.OnScrollListener {
+    private List<XWBean.DataBean.InfoBean> list;
     private View view;
     private int index = 0;
     private XWAdapter xwAdapter;
     private ListView lv;
     private static final String TAG = "XinWenFragment";
-
+    private View inflate;
+    private ProgressBar mBar;
+    private String page;
+    private String pageCound;
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         view = View.inflate(getActivity(), R.layout.fragment_xinwen, null);
         lv = (ListView) view.findViewById(R.id.xinwen_lv);
-       // initLianWang();
-        initData();
-        XWAdapter xwAdapter = new XWAdapter(getActivity(), list);
-        lv.setAdapter(xwAdapter);
-        lv.setOnItemClickListener(this);
+        inflate = View.inflate(getActivity(), R.layout.footerview, null);
+        mBar = (ProgressBar) inflate.findViewById(R.id.mBar);
+        list = new ArrayList<>();
+        lv.addFooterView(inflate);
+        initLianWang();
+        lv.setOnScrollListener(this);
         return view;
 
     }
 
-    private void initData() {
-        list = new ArrayList<>();
-        for (int i = 0 ;i <4 ;i++){
-            XWBean xwBean = new XWBean();
-            list.add(xwBean);
-        }
-    }
+
 
     private void initLianWang() {
-        list = new ArrayList<>();
-        index++;
-        HashMap<String,String> map = new HashMap<>();
-        map.put("key","b77f82f109f35ed582a6596f93e27df9");
-        map.put("page",index+"");
-        map.put("pagesize","10");
-        map.put("sort","asc");
-        map.put("time","1418816972");
-        OkUtils.UploadSJ("https://japi.juhe.cn/joke/content/list.from", map, new Callback() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("page",""+index++);
+        OkUtils.UploadSJ(WangZhi.XINWEN, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
@@ -80,46 +74,88 @@ public class XinWenFragment extends Fragment implements AdapterView.OnItemClickL
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e(TAG, "onResponse: "+response.body().string());
-//                String string = response.body().string();
-//                Message message = hand.obtainMessage();
-//                message.obj=string;
-//                message.what=200;
-//                hand.sendMessage(message);
+//                Log.e(TAG, "onResponse: "+response.body().string() );
+                String string = response.body().string();
+                Message mess = hand.obtainMessage();
+                mess.obj=string;
+                mess.what=100;
+                hand.sendMessage(mess);
             }
         });
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        parent.getAdapter().getItem(position);
-        startActivity(new Intent(getActivity(), XinWen_NeiRong.class));
-    }
     Handler hand = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what==200){
+            if (msg.what==100){
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
-                    JSONObject result = jsonObject.getJSONObject("result");
-                    JSONArray data = result.getJSONArray("data");
-                    for (int i=0;i<data.length();i++){
-                        JSONObject jsonObject1 = data.getJSONObject(i);
-                        XWBean xwBean = new XWBean();
-                        String content = jsonObject1.getString("content");
-                        String updatetime = jsonObject1.getString("updatetime");
-                        xwBean.setNeirong(content);
-                        xwBean.setTime(updatetime);
-                        list.add(xwBean);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    pageCound = data.getString("pageCount");
+                    page = data.getString("page");
+                    if (page.equals(pageCound)){
+                        mBar.setVisibility(View.GONE);
+                        ToSi.show(getActivity(),"没有更多数据了");
+                    }else {
+                        JSONArray info = data.getJSONArray("info");
+                        Log.e(TAG, "handleMessage: "+info.length() );
+                        for (int i = 0;i<info.length();i++){
+                            JSONObject jsonObject1 = (JSONObject) info.get(i);
+                            String id = jsonObject1.getString("id");
+                            String title = jsonObject1.getString("title");
+                            String thumb = jsonObject1.getString("thumb");
+                            String hits = jsonObject1.getString("hits");
+                            String updateTime = jsonObject1.getString("updateTime");
+                            String commentNum = jsonObject1.getString("commentNum");
+                            String praiseNum = jsonObject1.getString("praiseNum");
+                            XWBean.DataBean.InfoBean infoBean = new XWBean.DataBean.InfoBean();
+                            infoBean.setHits(hits);
+                            infoBean.setId(id);
+                            infoBean.setTitle(title);
+                            infoBean.setUpdateTime(updateTime);
+                            infoBean.setThumb(thumb);
+                            infoBean.setCommentNum(commentNum);
+                            infoBean.setPraiseNum(praiseNum);
+                            list.add(infoBean);
+
+                        }
+                        if (xwAdapter==null){
+                            xwAdapter = new XWAdapter(getActivity(),list);
+                            lv.setAdapter(xwAdapter);
+                        }else {
+                            lv.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    xwAdapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
                     }
-                    xwAdapter = new XWAdapter(getActivity(), list);
-                    lv.setAdapter(xwAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
     };
+
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if(scrollState==SCROLL_STATE_IDLE){
+            //确认滑倒底部 加载更多
+            mBar.setVisibility(View.VISIBLE);
+            initLianWang();
+
+        }
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//        if (page.equals(pageCound)){
+//            lv.removeFooterView(inflate);
+//            ToSi.show(getActivity(),"没有更多数据了");
+//        }
+    }
 }

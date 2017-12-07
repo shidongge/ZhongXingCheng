@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--我的伙伴界面-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+
+        >
+
+        <ImageView
+            android:id="@+id/wdhb_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/fhh" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="我的伙伴"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/wdhb_qingtong"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="青铜会员"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:id="@+id/wdhb_qingtong_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/wdhb_baiyin"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="白银会员"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:id="@+id/wdhb_baiyin_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/wdhb_huangjin"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="黄金会员"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:id="@+id/wdhb_huangjin_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/wdhb_bojin"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="铂金会员"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:id="@+id/wdhb_bojin_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/wdhb_zuanshi"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="钻石会员"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+
+            <View style="@style/xiantiao" />
+
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:id="@+id/wdhb_zuanshi_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

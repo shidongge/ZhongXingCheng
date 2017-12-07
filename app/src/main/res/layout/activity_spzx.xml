@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:background="#ffffff"
+            android:id="@+id/spzx_xia"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            >
+            <LinearLayout
+                android:id="@+id/spzx_shouye"
+                style="@style/home_ll">
+                <ImageView
+                    android:id="@+id/spzx_shouye_img"
+                    android:src="@mipmap/sy_l"
+                    style="@style/home_img"
+                    />
+                <TextView
+                    android:id="@+id/spzx_shouye_text"
+                    style="@style/home_text"
+                    android:text="商品中心"
+                    />
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/spzx_dingdan"
+                style="@style/home_ll">
+
+                <ImageView
+                    android:id="@+id/spzx_dingdan_img"
+                    style="@style/home_img"
+                    android:src="@mipmap/hy_h" />
+
+                <TextView
+                    android:id="@+id/spzx_dingdan_text"
+                    style="@style/home_text"
+                    android:text="我的订单" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/spzx_geren"
+                style="@style/home_ll">
+                <ImageView
+
+                    android:id="@+id/spzx_geren_img"
+                    style="@style/home_img"
+                    android:src="@mipmap/wd_h"
+
+                    />
+                <TextView
+                    style="@style/home_text"
+                    android:id="@+id/spzx_geren_text"
+                    android:text="个人中心" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/spzx_shang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/spzx_xia"
+        />
+    <View
+        android:layout_below="@id/spzx_shang"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/mycolor"
+        />
+
+</RelativeLayout>

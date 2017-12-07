@@ -33,6 +33,7 @@ import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.activity.CZZX;
 import us.mifeng.zhongxingcheng.activity.KTHY;
 import us.mifeng.zhongxingcheng.activity.QianDao;
+import us.mifeng.zhongxingcheng.activity.SPZX;
 import us.mifeng.zhongxingcheng.activity.XWZX;
 import us.mifeng.zhongxingcheng.activity.ZXSC_Android;
 import us.mifeng.zhongxingcheng.adapter.Home_DianPingAdapter;
@@ -68,7 +69,12 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
         initView();
         initSiGe();
         initMyGV();
+        panduanshifouxiaofeiguo();
         return inflate;
+    }
+
+    private void panduanshifouxiaofeiguo() {
+
     }
 
     private void initSiGe() {
@@ -155,7 +161,9 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
         switch (v.getId()) {
             //商品中心
             case R.id.shouye_spzx:
-//                startActivity(new Intent(getActivity(), YuShou.class));
+                Intent intent = new Intent(getActivity(), SPZX.class);
+
+                startActivity(intent);
                 break;
             //开通会员
             case R.id.shouye_kthy:

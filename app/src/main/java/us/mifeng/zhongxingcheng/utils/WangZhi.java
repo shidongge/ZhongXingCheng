@@ -32,7 +32,8 @@ public class WangZhi {
     public static final String SHOUYEJIUGE = CHENGGE+"app/index_goods";//首页九个商品网址
     public static final String GRXX = CHENGGE+"app/user_info";//个人信息网址
     public static final String GXJRXX = CHENGGE+"app/update_user_info";//更新个人信息
-    public static final String TUPIAN = "http://192.168.1.130:8081/uploads/";
+    public static final String TUPIAN = CHENGGE+"uploads/";
+    public static final String XINWEN = CHENGGE+"app/news";//新闻中心
 
 
 }

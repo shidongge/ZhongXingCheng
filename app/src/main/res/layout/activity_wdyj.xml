@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--我的业绩界面-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+
+        >
+
+        <ImageView
+            android:id="@+id/wdyj_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/fhh" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="我的业绩"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+    <View
+        style="@style/xiantiao"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/txjl_wzf"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="待结算业绩"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="已提现业绩"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:id="@+id/wdhb_baiyin_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/txjl_yfh"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="可提现业绩"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:id="@+id/wdhb_huangjin_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/txjl_ywc"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="被驳回业绩"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="申请中业绩"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="待打款业绩"
+                    android:textSize="16sp" />
+
+                <View style="@style/xiantiao_zhongjian" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@mipmap/fh1" />
+            </LinearLayout>
+            <View style="@style/xiantiao" />
+            <us.mifeng.zhongxingcheng.view.MyListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

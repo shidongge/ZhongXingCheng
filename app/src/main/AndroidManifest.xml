@@ -136,8 +136,14 @@
         <activity android:name=".wpxq_ceshi.WPXQ_CeSi"/>
         <activity android:name=".dianpu.DianPuActivity"/>
         <activity android:name=".activity.GuanYu"/>
-
-
+        <activity android:name=".activity.SPZX"
+            android:theme="@style/StyledIndicators"
+            />
+        <activity android:name=".activity.WDHB"/>
+        <activity android:name=".activity.SQTX"/>
+        <activity android:name=".activity.TXJL"/>
+        <activity android:name=".activity.WDJX"/>
+        <activity android:name=".activity.WDYJ"/>
 
         <!-- 消息收发service -->
         <service
