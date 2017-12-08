@@ -62,10 +62,19 @@ public class CZZX extends Activity implements View.OnClickListener {
                 break;
             case R.id.czgl_ll_kuaiqian:
                 text.setText("快钱支付");
-
+                if (hah==false){
+                    hah=true;
+                }else {
+                    hah=false;
+                }
                 yincang.setVisibility(View.GONE);
                 break;
             case R.id.czgl_ll_weixin:
+                if (hah==false){
+                    hah=true;
+                }else {
+                    hah=false;
+                }
                 yincang.setVisibility(View.GONE);
                 text.setText("微信支付");
                 break;
