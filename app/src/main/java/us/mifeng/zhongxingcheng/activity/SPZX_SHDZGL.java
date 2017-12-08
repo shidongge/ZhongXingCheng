@@ -39,8 +39,8 @@ public class SPZX_SHDZGL extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.shdzgl_xz:
-                Intent intent = new Intent(SPZX_SHDZGL.this, XZSHDZ.class);
+            case R.id.spzx_shdzgl_xz:
+                Intent intent = new Intent(SPZX_SHDZGL.this, SPZX_XZSHDZ.class);
                 intent.putExtra("xzshdz", "新增收货地址");
                 startActivity(intent);
                 break;

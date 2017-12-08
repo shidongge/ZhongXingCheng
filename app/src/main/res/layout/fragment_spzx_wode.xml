@@ -379,7 +379,7 @@
                     android:id="@+id/geren_huoban_ll_text"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_marginRight="10dp"
+
                     android:background="@drawable/spzx_shuliang"
                     android:gravity="center"
                     android:paddingLeft="10dp"
@@ -632,7 +632,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/spzx_shuliang"
                     android:orientation="horizontal"
@@ -981,7 +980,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_marginRight="10dp"
                     android:background="@drawable/spzx_shuliang"
                     android:gravity="center"
                     android:paddingLeft="10dp"
