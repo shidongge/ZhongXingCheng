@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        >
+        <ImageView
+            android:id="@+id/hyzx_back"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/fhh"
+            android:padding="8dp"
+            />
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="会员中心"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            />
+        
+    </RelativeLayout>
+    <View
+        style="@style/xiantiao"/>
+
+    <RelativeLayout
+        android:background="@mipmap/ditu"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            />
+        <LinearLayout
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="会员等级:"
+                android:textSize="16sp"
+                android:textColor="#fff"
+                />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="无等级"
+                />
+            
+        </LinearLayout>
+        
+    </RelativeLayout>
+
+    <TextView
+        android:textColor="#ff9147"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="会员权益"
+        />
+    <TextView
+
+       android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.可在商城优惠购买商品"
+        />
+    <TextView
+        android:layout_marginTop="5dp"
+
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2.每月可定期领取专属优惠券"
+        />
+
+    <Button
+        android:id="@+id/hyzx_kaitong"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="立即开通"
+        android:textColor="#fff"
+        android:background="#d50e0e"
+        />
+
+</LinearLayout>

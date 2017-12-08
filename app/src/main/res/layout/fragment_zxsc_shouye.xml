@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -31,8 +32,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,134 +45,67 @@
                 android:layout_height="170dp" />
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:orientation="vertical">
+                android:layout_height="90dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/rexiaopaihang" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:src="@mipmap/meiriqiandao" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="每日签到" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:src="@mipmap/renwuzhongxin" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="任务中心" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:src="@mipmap/rexiaopaihang" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="热销排行" />
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="热销排行" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/fenxianglingquan" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:src="@mipmap/huiyuanzhongxin" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="会员中心" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:src="@mipmap/fenxianglingquan" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="分享领券" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/fragment_zxsc_shouye_sxpp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:src="@mipmap/shangxinpinpai" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="上新品牌" />
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="分享领券" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/fragment_zxsc_shouye_sxpp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/shangxinpinpai" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="上新品牌" />
+                </LinearLayout>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -181,95 +114,95 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/xdth" />
 
                 <ImageView
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/wfdsj" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/fxmhy"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/fxmhy" />
 
                 <ImageView
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/sjjlb"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/sjjlb" />
 
                 <ImageView
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/hhdnl"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/hhdnl" />
 
 
             </LinearLayout>
+
             <us.mifeng.zhongxingcheng.view.MyListView
                 android:id="@+id/zxsc_home_list"
                 android:layout_width="match_parent"
-                android:listSelector="@android:color/transparent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:listSelector="@android:color/transparent" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
+
                 <TextView
-                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="中星宏宇（北京）科技有限公司 Coparight © 2016-2017"
-                    />
-                <TextView
                     android:gravity="center"
+                    android:text="中星宏宇（北京）科技有限公司 Coparight © 2016-2017" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="统一社会信用代码：9111 0106 3271 2900 9T"
-                    />
-                <TextView
                     android:gravity="center"
+                    android:text="统一社会信用代码：9111 0106 3271 2900 9T" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="电话：4000001877    京ICP备17027735号-1"
-                    />
-                <TextView
                     android:gravity="center"
+                    android:text="电话：4000001877    京ICP备17027735号-1" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="食品经营许可证："
-                    />
+                    android:gravity="center"
+                    android:text="食品经营许可证：" />
 
             </LinearLayout>
 

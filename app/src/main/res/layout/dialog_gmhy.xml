@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--弹窗，购买会员-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="购买会员"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            />
+        <ImageView
+            android:id="@+id/gmhy_guanbi"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/fhh"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+
+            />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/xiantiao"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="会员类型"
+        android:textSize="18sp"
+        android:layout_margin="20dp"
+        />
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/gmhy_yinian"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/spzx_shuliang"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="一年会员"
+            android:gravity="center"
+            />
+
+         <TextView
+            android:id="@+id/gmhy_yongjiu"
+            android:layout_marginLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="永久会员"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="会员费用:"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/gmhy_feiyong"
+            android:textSize="20sp"
+            android:textColor="#ff0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="130元"
+            />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/gmhy_ljkt"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="立即开通"
+        android:textColor="#ffffff"
+        android:background="#ff0000"
+        />
+
+</LinearLayout>

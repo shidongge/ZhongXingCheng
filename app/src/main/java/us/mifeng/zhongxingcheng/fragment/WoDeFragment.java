@@ -31,6 +31,7 @@ import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.activity.BZZX;
 import us.mifeng.zhongxingcheng.activity.GRZX;
+import us.mifeng.zhongxingcheng.activity.HYZX;
 import us.mifeng.zhongxingcheng.activity.ZZC;
 import us.mifeng.zhongxingcheng.activity.ZhangDan;
 import us.mifeng.zhongxingcheng.denlgu.SettingActivity;
@@ -56,7 +57,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     private String token;
     private ImageView img;
     private String portrait;
-    private LinearLayout zhangdan;
+    private LinearLayout zhangdan,hyzx;
     private String mobile;
     private SharedUtils sharedUtils;
     private String nickName;
@@ -130,6 +131,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
         img = (ImageView) inflate.findViewById(R.id.fragment_wode_img);
         yue = (LinearLayout) inflate.findViewById(R.id.wode_yue);
         yinghangka = (LinearLayout) inflate.findViewById(R.id.wode_yinghangka);
+        hyzx = (LinearLayout) inflate.findViewById(R.id.wode_hyzx);
         shezhi.setOnClickListener(this);
         rela.setOnClickListener(this);
         bzzx.setOnClickListener(this);
@@ -137,6 +139,7 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
         yinghangka.setOnClickListener(this);
         zzc.setOnClickListener(this);
         zhangdan.setOnClickListener(this);
+        hyzx.setOnClickListener(this);
         //TODO 隐藏手机号中间四位
         if (!TextUtils.isEmpty(mobile)) {
             String mobile2 = mobile;
@@ -175,6 +178,9 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.wode_yinghangka:
                 ToSi.show(getActivity(),"暂未开发");
+                break;
+            case R.id.wode_hyzx:
+                startActivity(new Intent(getActivity(), HYZX.class));
                 break;
             default:
                 break;

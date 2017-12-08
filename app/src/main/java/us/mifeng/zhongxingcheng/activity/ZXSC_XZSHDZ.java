@@ -24,7 +24,7 @@ import us.mifeng.zhongxingcheng.utils.ToSi;
 /**
  * 新增收货地址界面
  */
-public class SPZX_XZSHDZ extends Activity implements View.OnClickListener {
+public class ZXSC_XZSHDZ extends Activity implements View.OnClickListener {
 
     private LinearLayout diqu;
     private TextView diqu_text, baocun;
@@ -35,19 +35,19 @@ public class SPZX_XZSHDZ extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spzx_xzshdz);
+        setContentView(R.layout.activity_zxsc_xzshdz);
         initView();
     }
 
     private void initView() {
-        diqu = (LinearLayout) findViewById(R.id.spzx_xzshdz_diqu);
-        diqu_text = (TextView) findViewById(R.id.spzx_xzshdz_text);
-        name = (EditText) findViewById(R.id.spzx_xzshdz_name);
-        xxdz = (EditText) findViewById(R.id.spzx_xzshdz_xxdz);
-        mobile = (EditText) findViewById(R.id.spzx_xzshdz_number);
-        youbian = (EditText) findViewById(R.id.spzx_xzshdz_youbian);
-        back = (ImageView) findViewById(R.id.spzx_xzshdz_back);
-        baocun = (TextView) findViewById(R.id.spzx_xzshdz_bc);
+        diqu = (LinearLayout) findViewById(R.id.zxsc_xzshdz_diqu);
+        diqu_text = (TextView) findViewById(R.id.zxsc_xzshdz_text);
+        name = (EditText) findViewById(R.id.zxsc_xzshdz_name);
+        xxdz = (EditText) findViewById(R.id.zxsc_xzshdz_xxdz);
+        mobile = (EditText) findViewById(R.id.zxsc_xzshdz_number);
+        youbian = (EditText) findViewById(R.id.zxsc_xzshdz_youbian);
+        back = (ImageView) findViewById(R.id.zxsc_xzshdz_back);
+        baocun = (TextView) findViewById(R.id.zxsc_xzshdz_bc);
         diqu.setOnClickListener(this);
         back.setOnClickListener(this);
         baocun.setOnClickListener(this);
@@ -56,14 +56,14 @@ public class SPZX_XZSHDZ extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.spzx_xzshdz_diqu:
+            case R.id.zxsc_xzshdz_diqu:
                 AddressPickTask task = new AddressPickTask(this);
                 task.setHideProvince(false);
                 task.setHideCounty(false);
                 task.setCallback(new AddressPickTask.Callback() {
                     @Override
                     public void onAddressInitFailed() {
-                        Toast.makeText(SPZX_XZSHDZ.this, "数据初始化失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ZXSC_XZSHDZ.this, "数据初始化失败", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -79,19 +79,19 @@ public class SPZX_XZSHDZ extends Activity implements View.OnClickListener {
                 });
                 task.execute("北京市", "北京市", "东城区");
                 break;
-            case R.id.spzx_xzshdz_back:
+            case R.id.zxsc_xzshdz_back:
                 finish();
                 break;
-            case R.id.spzx_xzshdz_bc:
+            case R.id.zxsc_xzshdz_bc:
                 String trim = name.getText().toString().trim();
                 String trim1 = mobile.getText().toString().trim();
                 String trim2 = xxdz.getText().toString().trim();
                 String trim3 = youbian.getText().toString().trim();
                 String trim4 = diqu_text.getText().toString().trim();
                 if (trim.equals("") || trim1.equals("") || trim2.equals("") || trim3.equals("") || trim4.equals("")) {
-                    ToSi.show(SPZX_XZSHDZ.this, "信息未填写完整");
+                    ToSi.show(ZXSC_XZSHDZ.this, "信息未填写完整");
                 } else {
-                    ToSi.show(SPZX_XZSHDZ.this, "信息已完善");
+                    ToSi.show(ZXSC_XZSHDZ.this, "信息已完善");
                 }
                 break;
             default:

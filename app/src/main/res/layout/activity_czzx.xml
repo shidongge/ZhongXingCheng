@@ -1,12 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <WebView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/wv_czzx"
-        ></WebView>
+        android:layout_height="48dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/fhh" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="充值管理"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <View style="@style/xiantiao" />
+
+    <View
+        style="@style/xiantiao"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:text="充钱至钱包"
+        android:textSize="18sp" />
+
+    <View style="@style/xiantiao" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@mipmap/ckrxm" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="持卡人姓名"
+            android:textSize="18sp" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:id="@+id/czgl_xingming"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="哈哈哈"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+    <View
+        style="@style/xiantiao"/>
+    <LinearLayout
+        android:id="@+id/czgl_fangshi"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@mipmap/zffs" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="支付方式"
+            android:textSize="18sp" />
+
+        <View style="@style/xiantiao_zhongjian" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="微信支付" />
+
+        <ImageView
+            android:id="@+id/czgl_zffs_you"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@mipmap/fh1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/czgl_yincang"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="微信支付"
+                android:textSize="16sp" />
+
+            <View style="@style/xiantiao_zhongjian" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/yigou" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="快钱支付"
+                android:textSize="16sp" />
+
+            <View style="@style/xiantiao_zhongjian" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/weigou" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        style="@style/xiantiao"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="充值金额"
+            android:textSize="16sp" />
+
+        <EditText
+            android:numeric="integer"
+            android:id="@+id/czgl_jine"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/tencent_tls_ui_rounded_rectangle_normal"
+            android:hint="最低充值100元"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <View style="@style/xiantiao" />
+
+    <Button
+        android:id="@+id/czgl_chongzhi"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="充值"
+        android:background="@drawable/tuichu"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="温馨提示"
+        android:textSize="18sp"
+        android:layout_margin="20dp"
+        />
+    <TextView
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="1.您充值的金额将直接进入您的“个人钱包”中"/>
 
 </LinearLayout>

@@ -31,7 +31,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.activity.CZZX;
-import us.mifeng.zhongxingcheng.activity.KTHY;
+import us.mifeng.zhongxingcheng.activity.HYZX;
 import us.mifeng.zhongxingcheng.activity.QianDao;
 import us.mifeng.zhongxingcheng.activity.SPZX;
 import us.mifeng.zhongxingcheng.activity.XWZX;
@@ -167,7 +167,7 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
                 break;
             //开通会员
             case R.id.shouye_kthy:
-                startActivity(new Intent(getActivity(), KTHY.class));
+                startActivity(new Intent(getActivity(), HYZX.class));
                 break;
             //充值中心
             case R.id.shouye_czzx:
@@ -246,25 +246,40 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
                         for (int i = 0; i < shopsInfo.length(); i++) {
                             JSONObject jsonObject1 = shopsInfo.getJSONObject(i);
                             String imgTop = jsonObject1.getString("imgTop");
-                            Log.e(TAG, "handleMessage: " + imgTop);
                             String id = jsonObject1.getString("id");
                             String shopname = jsonObject1.getString("shopName");
                             Home_ShangPuBean.DataBean.ShopsInfoBean dataBean = new Home_ShangPuBean.DataBean.ShopsInfoBean();
                             dataBean.setId(id);
                             shangpu_list.add(dataBean);
                             if (i == 0) {
-                                Log.e(TAG, "handleMessage: " + "我是一号");
+                                if ("".equals(imgTop)){
+                                }else {
 
-                                Glide.with(getActivity()).load(imgTop).into(yihao);
+                                    Glide.with(getActivity()).load(WangZhi.DIANPU+imgTop).into(yihao);
+                                }
                             } else if (i == 1) {
+
                                 Log.e(TAG, "handleMessage: " + "我是二号");
-                                Glide.with(getActivity()).load(imgTop).into(erhao);
+                                if ("".equals(imgTop)){
+
+                                }else {
+                                    Glide.with(getActivity()).load(WangZhi.DIANPU+imgTop).into(erhao);
+                                }
                             } else if (i == 2) {
-                                Log.e(TAG, "handleMessage: " + "我是三号");
-                                Glide.with(getActivity()).load(imgTop).into(sanhao);
+                                if ("".equals(imgTop)){
+
+                                }else {
+
+                                    Glide.with(getActivity()).load(WangZhi.DIANPU+imgTop).into(sanhao);
+                                }
                             } else if (i == 3) {
-                                Log.e(TAG, "handleMessage: " + "我是四号");
-                                Glide.with(getActivity()).load(imgTop).into(sihao);
+                                if ("".equals(imgTop)){
+
+                                }else {
+
+                                    Glide.with(getActivity()).load(WangZhi.DIANPU+imgTop).into(sihao);
+
+                                }
                             }
                         }
                     }
@@ -290,6 +305,7 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
 
                         String imgTop = jsonObject1.getString("imgCart");
                         String goodsMoney = jsonObject1.getString("goodsMoney");
+                        Log.e(TAG, "handleMessage: "+imgTop );
                         Home_ShangPingCGBean.DataBean.GoodsInfoBean home_shangPinBean = new Home_ShangPingCGBean.DataBean.GoodsInfoBean();
                         home_shangPinBean.setGoodsMoney1(goodsMoney1);
                         home_shangPinBean.setShortDesc(shortDesc);

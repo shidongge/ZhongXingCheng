@@ -113,7 +113,7 @@ public class GRZX extends Activity implements View.OnClickListener {
 
                 break;
             case R.id.grzx_shdz:
-                startActivity(new Intent(GRZX.this, H5SHDZ.class));
+                startActivity(new Intent(GRZX.this, SHDZGL.class));
                 break;
 
             case R.id.grzx_fapiao:

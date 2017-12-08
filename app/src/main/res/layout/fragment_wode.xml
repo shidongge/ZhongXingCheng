@@ -92,7 +92,7 @@
     </RelativeLayout>
 
     <LinearLayout
-
+        android:id="@+id/wode_hyzx"
         android:layout_marginTop="5dp"
         style="@style/linear_tiaomu">
         <ImageView

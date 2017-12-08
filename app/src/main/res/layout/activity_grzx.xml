@@ -155,6 +155,7 @@
     <View
         style="@style/xiantiao"  />
     <LinearLayout
+        android:visibility="gone"
         style="@style/linear_tiaomu">
         <ImageView
             android:layout_gravity="center"

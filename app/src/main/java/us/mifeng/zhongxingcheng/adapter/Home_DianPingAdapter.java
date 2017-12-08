@@ -54,7 +54,14 @@ public class Home_DianPingAdapter extends BaseAdapter {
         }else {
             viewHorder = (MyViewHorder) convertView.getTag();
         }
-        Glide.with(context).load(list.get(position).getImgCart()).into(viewHorder.img);
+
+        String imgCart = list.get(position).getImgCart();
+        if ("".equals(imgCart)){
+
+        }else {
+
+            Glide.with(context).load(list.get(position).getImgCart()).into(viewHorder.img);
+        }
         viewHorder.price.setText(list.get(position).getGoodsMoney1());
         viewHorder.shopname.setText(list.get(position).getShortDesc());
         return convertView;

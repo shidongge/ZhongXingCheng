@@ -41,6 +41,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/spzx_spzx_yihao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img2"
@@ -108,6 +109,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/spzx_spzx_erhao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img3">
@@ -190,6 +192,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/spzx_spzx_sanhao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img4"
@@ -257,6 +260,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/spzx_spzx_sihao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img5"
@@ -328,6 +332,7 @@
                 android:background="@mipmap/img6" />
 
             <LinearLayout
+                android:id="@+id/spzx_spzx_wuhao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img7"
@@ -392,72 +397,74 @@
                         android:textSize="18sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/spzx_spzx_liuhao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/img8"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/img8"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="210dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@mipmap/text4"
+                    android:gravity="center"
+                    android:text="牛樟芝一冲饮" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="210dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="18dp"
+                    android:text="解酒、解宿酒、保肝解毒、抑制细胞异化等" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="210dp"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="会员价：" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:layout_marginTop="40dp"
-                        android:background="@mipmap/text4"
-                        android:gravity="center"
-                        android:text="牛樟芝一冲饮" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="18dp"
-                        android:text="解酒、解宿酒、保肝解毒、抑制细胞异化等" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:layout_marginTop="25dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="会员价：" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="¥1299元"
-                            android:textColor="#f00"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="原价：" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="¥1299"
-                            android:textColor="#666666"
-                            android:textSize="18sp" />
-                    </LinearLayout>
+                        android:text="¥1299元"
+                        android:textColor="#f00"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="210dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="原价：" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¥1299"
+                        android:textColor="#666666"
+                        android:textSize="18sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

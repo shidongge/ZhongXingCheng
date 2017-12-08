@@ -290,6 +290,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:src="@mipmap/error"
                         android:scaleType="fitXY"
                         android:id="@+id/shouye_yihao"
                         android:layout_width="0dp"
@@ -299,6 +300,7 @@
                         />
 
                     <ImageView
+                        android:src="@mipmap/error"
                         android:id="@+id/shouye_erhao"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -315,6 +317,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:src="@mipmap/error"
                         android:scaleType="fitXY"
                         android:id="@+id/shouye_sanhao"
                         android:layout_width="0dp"
@@ -324,6 +327,7 @@
                          />
 
                     <ImageView
+                        android:src="@mipmap/error"
                         android:scaleType="fitXY"
                         android:id="@+id/shouye_sihao"
                         android:layout_width="0dp"

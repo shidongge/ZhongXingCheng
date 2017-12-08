@@ -7,6 +7,6 @@
 
     <solid
         android:color="#5a8eff"/><!-- 填充的颜色 -->
-    <size android:height="206dp"
-        android:width="360dp"/>
+    <size android:height="20dp"
+        android:width="36dp"/>
 </shape>

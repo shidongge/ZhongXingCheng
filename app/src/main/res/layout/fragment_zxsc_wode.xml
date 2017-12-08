@@ -348,46 +348,12 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <View style="@style/xiantiao" />
 
-            <LinearLayout
-                android:id="@+id/wode_zzc"
-                style="@style/linear_tiaomu">
-
-
-                <TextView
-                    style="@style/zhuti_text"
-                    android:text="会员中心" />
-
-                <View style="@style/xiantiao_zhongjian" />
-
-
-                <ImageView style="@style/img_xiao" />
-
-            </LinearLayout>
 
             <View style="@style/xiantiao" />
 
             <LinearLayout
-
-                style="@style/linear_tiaomu">
-
-
-                <TextView
-                    style="@style/zhuti_text"
-                    android:text="任务中心" />
-
-                <View style="@style/xiantiao_zhongjian" />
-
-
-                <ImageView style="@style/img_xiao" />
-
-            </LinearLayout>
-
-            <View style="@style/xiantiao" />
-
-            <LinearLayout
-                android:id="@+id/dingdan_shdz"
+                android:id="@+id/zxsc_wode_shdz"
                 style="@style/linear_tiaomu">
 
                 <TextView
@@ -403,9 +369,7 @@
 
             <View style="@style/xiantiao" />
 
-            <View
-                style="@style/xiantiao"
-                android:layout_marginTop="10dp" />
+
 
             <LinearLayout
                 android:id="@+id/zxsc_wode_smrz"
@@ -426,7 +390,7 @@
             <View style="@style/xiantiao" />
 
             <LinearLayout
-
+                android:id="@+id/zxsc_wode_wdqb"
                 style="@style/linear_tiaomu">
 
 
@@ -444,7 +408,7 @@
             <View style="@style/xiantiao" />
 
             <LinearLayout
-
+                android:id="@+id/zxsc_wode_bzzx"
                 style="@style/linear_tiaomu">
 
 

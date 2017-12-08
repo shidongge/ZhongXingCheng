@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <!--新增收货地址界面-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+         android:layout_centerVertical="true"
+            android:id="@+id/spzx_xzshdz_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/fhh"
+            android:padding="8dp"/>
+
+
+        <TextView
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            style="@style/zhuti_text"
+            android:text="新增收货地址"
+            />
+        <View
+            style="@style/xiantiao_zhongjian"
+            />
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/spzx_xzshdz_bc"
+            android:layout_marginRight="10dp"
+            style="@style/zhuti_text"
+            android:text="保存"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/zhuti_text"
+                android:layout_weight="1"
+                android:text="收件人" />
+
+            <TextView
+                style="@style/zhuti_text"
+                android:layout_weight="1"
+                android:text="联系电话" />
+
+            <TextView
+                style="@style/zhuti_text"
+                android:layout_weight="1"
+                android:text="所在地区" />
+
+            <TextView
+                style="@style/zhuti_text"
+                android:layout_weight="1"
+                android:text="详细地址" />
+
+            <TextView
+                style="@style/zhuti_text"
+                android:layout_weight="1"
+                android:text="邮政编码" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/spzx_xzshdz_name"
+                android:theme="@style/MyEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请填写姓名" />
+
+            <EditText
+                android:id="@+id/spzx_xzshdz_number"
+                android:theme="@style/MyEditText"
+                android:numeric="integer"
+                android:maxLength="11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请填写手机号" />
+
+            <LinearLayout
+                android:id="@+id/spzx_xzshdz_diqu"
+                android:layout_width="match_parent"
+                android:layout_height="34dp">
+
+                <TextView
+                    android:id="@+id/spzx_xzshdz_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="点击选择省市区" />
+
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/spzx_xzshdz_xxdz"
+                android:theme="@style/MyEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请填写详细地址" />
+
+            <EditText
+                android:theme="@style/MyEditText"
+                android:id="@+id/spzx_xzshdz_youbian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请填写邮政邮编" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="设为默认地址"
+            />
+        <View
+            style="@style/xiantiao_zhongjian"
+            />
+        <ImageView
+            style="@style/img_xiao"
+             />
+
+    </LinearLayout>
+
+
+</LinearLayout>

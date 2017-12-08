@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/wdqb_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/fhh" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="我的钱包"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <View style="@style/xiantiao" />
+
+    <RelativeLayout
+        android:background="@mipmap/bj"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/wdqb_jine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="金额"
+            android:textSize="16sp" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/wdqb_jine_text"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/wdqb_jine"
+            android:layout_height="wrap_content"
+            android:text="237.48" />
+
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="可用金额:"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/wdqb_keyong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="34.48元"
+                    android:textSize="16sp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="绑定金额:"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:textColor="@color/white"
+
+                    android:id="@+id/wdqb_bangding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="34.48元"
+                    android:textSize="16sp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        style="@style/xiantiao"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:id="@+id/wdqb_cz"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/czzx"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="充值"
+                android:gravity="center"
+                />
+
+
+        </LinearLayout>
+        <View
+            android:layout_gravity="center"
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:background="#DBDBDB"
+            />
+        <LinearLayout
+            android:id="@+id/wdqb_tx"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/czzx"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="提现"
+                android:gravity="center"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        style="@style/xiantiao"/>
+
+</LinearLayout>

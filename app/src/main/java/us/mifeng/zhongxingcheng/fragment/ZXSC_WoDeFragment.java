@@ -27,11 +27,13 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.activity.BZZX;
 import us.mifeng.zhongxingcheng.activity.ChaXunDD;
 import us.mifeng.zhongxingcheng.activity.SFRZ;
-import us.mifeng.zhongxingcheng.activity.SHDZGL;
 import us.mifeng.zhongxingcheng.activity.ShouCang;
+import us.mifeng.zhongxingcheng.activity.WDQB;
 import us.mifeng.zhongxingcheng.activity.ZJZP_WanShan;
+import us.mifeng.zhongxingcheng.activity.ZXSC_SHDZGL;
 import us.mifeng.zhongxingcheng.activity.ZXSC_YouHuiQuan;
 import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
@@ -51,7 +53,7 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
     private TextView nincheng, shoujihao;
     private ImageView img, back;
     private LinearLayout zongdingdan, daifahuo, daishouhuo, daipingjia,
-            shouhou, youhuiquan, shoucang, daizhifu,dingdan_shdz,shiminrenzheng;
+            shouhou, youhuiquan, shoucang, daizhifu,shdz,shiminrenzheng,bzzx,wdqb;
     private String mobile;
     private String realStatus;
 
@@ -74,8 +76,10 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
         youhuiquan = (LinearLayout) inflate.findViewById(R.id.zxsc_wode_youhuiquan);
         shoucang = (LinearLayout) inflate.findViewById(R.id.zxsc_wode_shoucang);
         daizhifu = (LinearLayout) inflate.findViewById(R.id.dingdan_daizhifu);
-        dingdan_shdz = (LinearLayout) inflate.findViewById(R.id.dingdan_shdz);
+        shdz = (LinearLayout) inflate.findViewById(R.id.zxsc_wode_shdz);
         shiminrenzheng = (LinearLayout) inflate.findViewById(R.id.zxsc_wode_smrz);
+        bzzx = (LinearLayout) inflate.findViewById(R.id.zxsc_wode_bzzx);
+        wdqb = (LinearLayout) inflate.findViewById(R.id.zxsc_wode_wdqb);
         zongdingdan.setOnClickListener(this);
         daizhifu.setOnClickListener(this);
         daishouhuo.setOnClickListener(this);
@@ -85,8 +89,10 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
         youhuiquan.setOnClickListener(this);
         shoucang.setOnClickListener(this);
         back.setOnClickListener(this);
-        dingdan_shdz.setOnClickListener(this);
+        shdz.setOnClickListener(this);
         shiminrenzheng.setOnClickListener(this);
+        bzzx.setOnClickListener(this);
+        wdqb.setOnClickListener(this);
         initView();
         return inflate;
     }
@@ -183,8 +189,8 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
             case R.id.zxscwode_back:
                 getActivity().finish();
                 break;
-            case R.id.dingdan_shdz:
-                startActivity(new Intent(getActivity(), SHDZGL.class));
+            case R.id.zxsc_wode_shdz:
+                startActivity(new Intent(getActivity(), ZXSC_SHDZGL.class));
                 break;
             case R.id.zxsc_wode_smrz:
                 if ("0".equals(realStatus)){
@@ -192,6 +198,12 @@ public class ZXSC_WoDeFragment extends Fragment implements View.OnClickListener 
                 }else {
                     startActivity(new Intent(getActivity(), ZJZP_WanShan.class));
                 }
+                break;
+            case R.id.zxsc_wode_bzzx:
+                startActivity(new Intent(getActivity(), BZZX.class));
+                break;
+            case R.id.zxsc_wode_wdqb:
+                startActivity(new Intent(getActivity(),WDQB.class));
                 break;
             default:
                 break;
