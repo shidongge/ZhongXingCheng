@@ -95,6 +95,7 @@
         <View style="@style/xiantiao_zhongjian" />
 
         <TextView
+            android:id="@+id/czgl_zffs_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -114,9 +115,11 @@
         android:layout_height="80dp"
         android:layout_marginLeft="10dp"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <LinearLayout
+            android:id="@+id/czgl_ll_weixin"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -131,6 +134,8 @@
             <View style="@style/xiantiao_zhongjian" />
 
             <ImageView
+                android:id="@+id/czgl_wxzf"
+                android:padding="5dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -139,6 +144,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/czgl_ll_kuaiqian"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -153,6 +159,8 @@
             <View style="@style/xiantiao_zhongjian" />
 
             <ImageView
+                android:id="@+id/czgl_kqzf"
+                android:padding="5dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
