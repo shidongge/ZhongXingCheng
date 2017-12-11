@@ -19,6 +19,8 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +41,7 @@ import us.mifeng.zhongxingcheng.bean.Home_ShangPinBean;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 import us.mifeng.zhongxingcheng.view.MyListView;
+import us.mifeng.zhongxingcheng.wxapi.WXEntryActivity;
 
 /**
  * Created by shido on 2017/11/15.
@@ -47,12 +50,20 @@ import us.mifeng.zhongxingcheng.view.MyListView;
 /**
  * 中星商城首页fragment
  */
-public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
+    private String appKey = "wx7832196282cda152";
+    private IWXAPI api;
+    //聊天
+    private int mTargetScene0 = SendMessageToWX.Req.WXSceneSession;
+    //朋友圈
+    private int mTargetScene1 = SendMessageToWX.Req.WXSceneTimeline;
+
+
     private static final String TAG = "ZXSC_ShouYeFragment";
     private MyListView listView;
     private View inflate;
     private List<Home_ShangPinBean> list;
-    private LinearLayout sxpp;
+    private LinearLayout sxpp, fxlq;
     private SliderLayout slider;
 
     @Nullable
@@ -60,6 +71,7 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inflate = View.inflate(getActivity(), R.layout.fragment_zxsc_shouye, null);
         listView = (MyListView) inflate.findViewById(R.id.zxsc_home_list);
+
         initView();
         initSlider();
         initLianWang();
@@ -68,12 +80,12 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
     }
 
     private void initSlider() {
-        HashMap<String,String> url_maps = new HashMap<>();
+        HashMap<String, String> url_maps = new HashMap<>();
         url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
         url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
         url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
-        for(String name : url_maps.keySet()){
+        for (String name : url_maps.keySet()) {
             DefaultSliderView defaultSliderView = new DefaultSliderView(getActivity());
             // initialize a SliderLayout
             defaultSliderView
@@ -85,7 +97,7 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
             //add your extra information 点击图片时可用到
             defaultSliderView.bundle(new Bundle());
             defaultSliderView.getBundle()
-                    .putString("extra",name);
+                    .putString("extra", name);
 
             slider.addSlider(defaultSliderView);
         }
@@ -101,36 +113,37 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
     }
 
     private void initLianWang() {
-        HashMap<String,String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         OkUtils.UploadSJ(WangZhi.HOME_DIANPU, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
+                Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String string = response.body().string();
                 Message mess = hand.obtainMessage();
-                mess.obj=string;
-                mess.what=200;
+                mess.obj = string;
+                mess.what = 200;
                 hand.sendMessage(mess);
             }
         });
 
     }
-    Handler hand = new Handler(){
+
+    Handler hand = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what==200){
+            if (msg.what == 200) {
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
                     JSONArray msg1 = data.getJSONArray("msg");
                     list = new ArrayList<>();
-                    for (int i =0;i<msg1.length();i++){
+                    for (int i = 0; i < msg1.length(); i++) {
                         JSONObject jsonObject1 = msg1.getJSONObject(i);
                         String desc = jsonObject1.getString("shopName");
                         String imgTop = jsonObject1.getString("imgTop");
@@ -141,7 +154,7 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
                         home_shangPinBean.setImgIcon(imgIcon);
                         list.add(home_shangPinBean);
                     }
-                    ZXSC_ShouYeAdapter home_dianPuAdapter = new ZXSC_ShouYeAdapter(list,getActivity());
+                    ZXSC_ShouYeAdapter home_dianPuAdapter = new ZXSC_ShouYeAdapter(list, getActivity());
                     listView.setAdapter(home_dianPuAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -154,8 +167,10 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
     private void initView() {
         ImageView back = (ImageView) inflate.findViewById(R.id.zxsc_home_back);
         sxpp = (LinearLayout) inflate.findViewById(R.id.fragment_zxsc_shouye_sxpp);
+        fxlq = (LinearLayout) inflate.findViewById(R.id.fragment_zxsc_shouye_fxlq);
         slider = (SliderLayout) inflate.findViewById(R.id.slider);
         sxpp.setOnClickListener(this);
+        fxlq.setOnClickListener(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -167,12 +182,16 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.fragment_zxsc_shouye_sxpp:
                 startActivity(new Intent(getActivity(), ShangXinPinPai.class));
                 break;
             case R.id.zxsc_home_back:
                 getActivity().finish();
+                break;
+            case R.id.fragment_zxsc_shouye_fxlq:
+                WXEntryActivity activity = new WXEntryActivity();
+                activity.fenxiang(getActivity(),mTargetScene1);
                 break;
             default:
                 break;
@@ -198,4 +217,6 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
     public void onPageScrollStateChanged(int state) {
 
     }
+
+
 }

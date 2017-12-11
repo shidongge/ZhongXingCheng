@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.utils.ToSi;
 
 /**
  * Created by shido on 2017/11/1.
@@ -24,6 +26,8 @@ public class CZZX extends Activity implements View.OnClickListener {
     private EditText jine;
     private boolean hah = true;
     private TextView text;
+    private static final String TAG = "CZZX";
+    private Button chongzhi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class CZZX extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
+        chongzhi = (Button) findViewById(R.id.czgl_chongzhi);
         text = (TextView) findViewById(R.id.czgl_zffs_text);
         you = (ImageView) findViewById(R.id.czgl_zffs_you);
         wxzf = (ImageView) findViewById(R.id.czgl_wxzf);
@@ -45,11 +50,13 @@ public class CZZX extends Activity implements View.OnClickListener {
         fangshi.setOnClickListener(this);
         weixin.setOnClickListener(this);
         kuaiqian.setOnClickListener(this);
+        chongzhi.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.czgl_fangshi:
                 if (hah == false) {
@@ -67,6 +74,8 @@ public class CZZX extends Activity implements View.OnClickListener {
                 }else {
                     hah=false;
                 }
+                wxzf.setImageResource(R.mipmap.weigou);
+               kqzf.setImageResource(R.mipmap.yigou);
                 yincang.setVisibility(View.GONE);
                 break;
             case R.id.czgl_ll_weixin:
@@ -75,11 +84,34 @@ public class CZZX extends Activity implements View.OnClickListener {
                 }else {
                     hah=false;
                 }
+                kqzf.setImageResource(R.mipmap.weigou);
+                wxzf.setImageResource(R.mipmap.yigou);
                 yincang.setVisibility(View.GONE);
                 text.setText("微信支付");
+                break;
+            case R.id.czgl_chongzhi:
+                String trim = jine.getText().toString().trim();
+                if ("".equals(trim)){
+                    ToSi.show(CZZX.this,"请输入充值金额");
+                }else {
+
+                    Integer integer = Integer.valueOf(trim);
+                    //判断能否被100整除
+                    int i = integer % 100;
+                    if (i==0){
+                        ToSi.show(CZZX.this,"充值成功");
+                    }else {
+                        ToSi.show(CZZX.this,"充值金额有误");
+                    }
+                }
+
                 break;
             default:
                 break;
         }
+    }
+    public void setImg(){
+        kqzf.setImageResource(R.mipmap.weigou);
+        wxzf.setImageResource(R.mipmap.weigou);
     }
 }

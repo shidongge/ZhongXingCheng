@@ -63,8 +63,7 @@ dependencies {
     compile project(':ui')
     compile project(':tlslibrary')
     compile project(':sdk')
-    //沉浸式状态栏
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
     //饼形图
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
     compile project(':ViewPagerIndicator')

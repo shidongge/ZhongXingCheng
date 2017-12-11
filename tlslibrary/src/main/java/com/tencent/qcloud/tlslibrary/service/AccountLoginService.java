@@ -74,7 +74,7 @@ public class AccountLoginService {
                     map.put("pwd",password);
                     //陈哥接口 192.168.1.130:8081
                     //小东接口 192.168.1.111:1003
-                    OkUtils.UploadSJ("http://192.168.1.130:8081/app/check_login", map, new Callback() {
+                    OkUtils.UploadSJ("http://www.taogt.cn/app/check_login", map, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );

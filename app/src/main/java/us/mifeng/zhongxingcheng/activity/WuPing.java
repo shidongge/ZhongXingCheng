@@ -32,7 +32,6 @@ import us.mifeng.zhongxingcheng.dianpu.SimpleViewPagerIndicator;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.Util;
-import us.mifeng.zhongxingcheng.utils.ZhuangTaiLan;
 import us.mifeng.zhongxingcheng.view.MyScrollView;
 
 /**
@@ -66,9 +65,6 @@ public class WuPing extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_wuping);
         String shipId = getIntent().getStringExtra("shopId");
         initLianWang();
-        ZhuangTaiLan zhuangTaiLan = new ZhuangTaiLan();
-        zhuangTaiLan.TongMing(WuPing.this);
-
         initView();
     }
 

@@ -12,11 +12,11 @@ public class WangZhi {
     public static final String DENGLU = ZHUJI + "app/check_login";//登录地址
     public static final String GEREN = ZHUJI + "userinfo/user_center";//进入享投汇地址
     public static final String ZXC = ZHUJI + "index/shop_index";//中心城地址
-    public static final String QIANDAO = CHENGGE + "shop/shop_sign_index";//签到地址
+    public static final String QIANDAO = WAIWANG + "shop/shop_sign_index";//签到地址
     public static final String GWZX = ZHUJI + "shop/shop_search/k_%25E7%25BA%25A2%25E9%2585%2592%2520%257C%2520%25E6%25B4%258B%25E9%2585%2592/t_1";//购物中心地址
     public static final String XWZX = "http://m.taogt.cn/index.php?m=mobile&c=index&a=show";//新闻中心地址
     public static final String GWGG = "http://m.taogt.cn/index.php?m=mobile&c=index&a=news_center";//官网公告
-    public static final String HAOYOU = CHENGGE + "app/myFriend";//好友列表
+    public static final String HAOYOU = WAIWANG + "app/myFriend";//好友列表
     public static final String HOME_DIANPU = ZHUJI + "app/shop_index";
     public static final String WODE = ZHUJI + "app/userInfo";//我的fragment的信息
     public static final String ZHAOPIAN = CHENGGE + "app/imageUpload";//图片
@@ -28,12 +28,12 @@ public class WangZhi {
 
 
 
-    public static final String SHOUYESIGE = CHENGGE+"app/index_shops";//首页四个店铺网址
-    public static final String SHOUYEJIUGE = CHENGGE+"app/index_goods";//首页九个商品网址
-    public static final String GRXX = CHENGGE+"app/user_info";//个人信息网址
-    public static final String GXJRXX = CHENGGE+"app/update_user_info";//更新个人信息
-    public static final String TUPIAN = CHENGGE+"uploads/";
-    public static final String XINWEN = CHENGGE+"app/news";//新闻中心
+    public static final String SHOUYESIGE = WAIWANG+"app/index_shops";//首页四个店铺网址
+    public static final String SHOUYEJIUGE = WAIWANG+"app/index_goods";//首页九个商品网址
+    public static final String GRXX = WAIWANG+"app/user_info";//个人信息网址
+    public static final String GXJRXX = WAIWANG+"app/update_user_info";//更新个人信息
+    public static final String TUPIAN = WAIWANG+"uploads/";
+    public static final String XINWEN = WAIWANG+"app/news";//新闻中心
 
 
 }

@@ -6,26 +6,26 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -44,9 +44,9 @@
     <application
         android:name=".app.MyApplicaiton"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -120,36 +120,47 @@
         <activity android:name=".liaotian.BlackListActivity" />
         <activity android:name=".liaotian.SearchGroupActivity" />
         <activity android:name=".activity.ZXSC_Android" />
-        <activity android:name=".activity.ShangXinPinPai"/>
-        <activity android:name=".activity.DianPu"/>
-        <activity android:name=".activity.TJDD"/>
-        <activity android:name=".activity.TJFPTT"/>
-        <activity android:name=".activity.ZhiFu"/>
-        <activity android:name=".activity.XinWen_NeiRong"/>
+        <activity android:name=".activity.ShangXinPinPai" />
+        <activity android:name=".activity.DianPu" />
+        <activity android:name=".activity.TJDD" />
+        <activity android:name=".activity.TJFPTT" />
+        <activity android:name=".activity.ZhiFu" />
+        <activity android:name=".activity.XinWen_NeiRong" />
 
-        <activity android:name=".activity.ChaXunDD"
-            android:theme="@style/StyledIndicators"
-            />
-        <activity android:name=".activity.ZXSC_YouHuiQuan"/>
-        <activity android:name=".activity.ShouCang"/>
+        <activity
+            android:name=".activity.ChaXunDD"
+            android:theme="@style/StyledIndicators" />
+        <activity android:name=".activity.ZXSC_YouHuiQuan" />
+        <activity android:name=".activity.ShouCang" />
 
-        <activity android:name=".wpxq_ceshi.WPXQ_CeSi"/>
-        <activity android:name=".dianpu.DianPuActivity"/>
-        <activity android:name=".activity.GuanYu"/>
-        <activity android:name=".activity.SPZX"
-            android:theme="@style/StyledIndicators"
-            />
-        <activity android:name=".activity.WDHB"/>
-        <activity android:name=".activity.SQTX"/>
-        <activity android:name=".activity.TXJL"/>
-        <activity android:name=".activity.WDJX"/>
-        <activity android:name=".activity.WDYJ"/>
-        <activity android:name=".activity.SPZX_SHDZGL"/>
-        <activity android:name=".activity.SPZX_XZSHDZ"/>
-        <activity android:name=".activity.HYZX"/>
-        <activity android:name=".activity.ZXSC_SHDZGL"/>
-        <activity android:name=".activity.ZXSC_XZSHDZ"/>
-        <activity android:name=".activity.WDQB"/>
+        <activity android:name=".wpxq_ceshi.WPXQ_CeSi" />
+        <activity android:name=".dianpu.DianPuActivity" />
+        <activity android:name=".activity.GuanYu" />
+        <activity
+            android:name=".activity.SPZX"
+            android:theme="@style/StyledIndicators" />
+        <activity android:name=".activity.WDHB" />
+        <activity android:name=".activity.SQTX" />
+        <activity android:name=".activity.TXJL" />
+        <activity android:name=".activity.WDJX" />
+        <activity android:name=".activity.WDYJ" />
+        <activity android:name=".activity.SPZX_SHDZGL" />
+        <activity android:name=".activity.SPZX_XZSHDZ" />
+        <activity android:name=".activity.HYZX" />
+        <activity android:name=".activity.ZXSC_SHDZGL" />
+        <activity android:name=".activity.ZXSC_XZSHDZ" />
+        <activity android:name=".activity.WDQB" />
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="sdksample" />
+            </intent-filter>
+        </activity>
 
         <!-- 消息收发service -->
         <service

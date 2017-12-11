@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -36,113 +36,240 @@
 
     <View style="@style/xiantiao" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="100dp">
 
+        <CheckBox
+            android:layout_centerVertical="true"
+            android:id="@+id/ck_chose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableLeft="@drawable/cart_selector"
+            android:padding="@dimen/spcing_middle"
+     />
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:src="@mipmap/yigouxuan" />
-
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:src="@mipmap/cptp" />
-
+            android:id="@+id/iv_show_pic"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/ck_chose" />
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="7">
-
-            <LinearLayout
-                android:layout_weight="5"
-                android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/iv_show_pic"
+            android:orientation="vertical">
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/tv_commodity_name"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-
+                android:text="酒红色纯红色纯羊毛西服套装"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:gravity="center"
-                    android:text="梧桐堡*至高干红葡萄酒..."
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:gravity="center"
-                    android:text="来自法国原装进口"
-                    android:textSize="16sp" />
-
-                <TextView
+                    android:id="@+id/tv_commodity_attr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="750ml x 1"
-                    android:textSize="16sp" />
+                    android:layout_marginTop="3dp"
+                    android:text="属性:粉蓝色"
+                    android:textSize="12sp"
+                    />
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                >
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
                 <TextView
-                    android:textColor="#f00"
-                    android:textSize="18sp"
-                    android:gravity="center"
+                    android:id="@+id/tv_commodity_price"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="¥ 168" />
-
-                <View
-                    style="@style/xiantiao_zhongjian"/>
-
+                    android:layout_height="wrap_content"
+                    android:text="￥390"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_commodity_num"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="x1"
+                />
                 <LinearLayout
-                    android:background="@drawable/shuliang"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent">
+                    android:id="@+id/rl_edit"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    >
+                    <TextView
+                        android:id="@+id/iv_sub"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:layout_margin="1dp"
+                        android:layout_height="match_parent"
+                        android:text=" — " />
 
                     <TextView
+                        android:id="@+id/tv_commodity_show_num"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_width="25dp"
-                        android:layout_height="match_parent"
-                        android:text="—"
-                        />
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="#999999"
-                        />
-                    <TextView
-                        android:textColor="#666666"
-                        android:layout_width="30dp"
+                        android:layout_margin="1dp"
                         android:layout_height="match_parent"
                         android:text="1"
-                        android:gravity="center"
                         />
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="#999999"
-                        />
+
                     <TextView
+                        android:id="@+id/iv_add"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_width="25dp"
+                        android:layout_margin="1dp"
                         android:layout_height="match_parent"
-                        android:text="+"
-                        />
+                        android:text=" ＋ " />
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
+        <ImageView
+            android:id="@+id/tv_commodity_delete"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/delete"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/ck_chose"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@mipmap/yigouxuan" />-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="90dp"-->
+            <!--android:layout_height="90dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:src="@mipmap/cptp" />-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:weightSum="7">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_weight="5"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_commodity_name"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="25dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="梧桐堡*至高干红葡萄酒..."-->
+                    <!--/>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_commodity_attr"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="28dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="来自法国原装进口"-->
+                     <!--/>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_commodity_num"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="750ml x 1"-->
+                   <!--/>-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="2"-->
+                <!--&gt;-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_commodity_price"-->
+                    <!--android:textColor="#f00"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:text="¥ 168" />-->
+
+                <!--<View-->
+                    <!--style="@style/xiantiao_zhongjian"/>-->
+
+                <!--<LinearLayout-->
+                    <!--android:background="@drawable/shuliang"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_width="80dp"-->
+                    <!--android:layout_height="match_parent">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/iv_sub"-->
+                        <!--android:gravity="center"-->
+                        <!--android:layout_width="25dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:text="—"-->
+                        <!--/>-->
+                    <!--<View-->
+                        <!--android:layout_width="1dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:background="#999999"-->
+                        <!--/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_commodity_show_num"-->
+                        <!--android:textColor="#666666"-->
+                        <!--android:layout_width="30dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:text="1"-->
+                        <!--android:gravity="center"-->
+                        <!--/>-->
+                    <!--<View-->
+                        <!--android:layout_width="1dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:background="#999999"-->
+                        <!--/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/iv_add"-->
+                        <!--android:gravity="center"-->
+                        <!--android:layout_width="25dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:text="+"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
 
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 </LinearLayout>
