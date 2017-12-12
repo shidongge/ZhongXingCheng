@@ -193,7 +193,7 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
                 break;
             //更多
             case R.id.shouye_gengduo:
-
+                startActivity(new Intent(getActivity(),ZXSC_Android.class));
 
                 break;
             case R.id.shouye_yihao:

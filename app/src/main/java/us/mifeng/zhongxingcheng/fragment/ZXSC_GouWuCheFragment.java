@@ -3,9 +3,11 @@ package us.mifeng.zhongxingcheng.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -27,8 +29,8 @@ import us.mifeng.zhongxingcheng.utils.ToSi;
  * Created by shido on 2017/11/27.
  */
 
-public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListener, ShoppingCartAdapter.CheckInterface, ShoppingCartAdapter.ModifyCountInterface {
-
+public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListener, ShoppingCartAdapter.CheckInterface, ShoppingCartAdapter.ModifyCountInterface, AdapterView.OnItemClickListener {
+    private static final String TAG = "ZXSC_GouWuCheFragment";
     private boolean isAllCheck;
     ListView list_shopping_cart;
     private List<ShoppingCartBean> list = new ArrayList<>();
@@ -72,11 +74,11 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
 
         list_shopping_cart = (ListView) inflate.findViewById(R.id.list_shopping_cart);
         ImageView back = (ImageView) inflate.findViewById(R.id.zxsc_gouwuche_back);
-
         ckAll.setOnClickListener(this);
         back.setOnClickListener(this);
         btnEdit.setOnClickListener(this);
         tvSettlement.setOnClickListener(this);
+        list_shopping_cart.setOnItemClickListener(this);
         initList();
         df = new DecimalFormat("#.00");
         return inflate;
@@ -274,4 +276,10 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
         shoppingCartAdapter.notifyDataSetChanged();
         statistics();
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ShoppingCartBean item = (ShoppingCartBean) parent.getAdapter().getItem(position);
+        int id1 = item.getId();
+        Log.e(TAG, "onItemClick: "+id1+"" );}
 }

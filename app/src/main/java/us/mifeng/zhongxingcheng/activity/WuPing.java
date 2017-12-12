@@ -28,6 +28,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
+import us.mifeng.zhongxingcheng.dianpu.DianPuActivity;
 import us.mifeng.zhongxingcheng.dianpu.SimpleViewPagerIndicator;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.ToSi;
@@ -130,7 +131,7 @@ public class WuPing extends Activity implements View.OnClickListener {
                 startActivity(new Intent(WuPing.this,TJDD.class));
                 break;
             case R.id.wuping_dianpu:
-                startActivity(new Intent(WuPing.this,DianPu.class));
+                startActivity(new Intent(WuPing.this,DianPuActivity.class));
                 break;
             case R.id.wuping_jrgwc:
                 ToSi.show(WuPing.this,"加入购物车成功");

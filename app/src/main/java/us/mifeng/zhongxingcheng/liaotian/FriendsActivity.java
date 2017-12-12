@@ -14,15 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
-import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.tencent.imsdk.TIMValueCallBack;
 import com.tencent.imsdk.ext.sns.TIMFriendResult;
 import com.tencent.imsdk.ext.sns.TIMFriendStatus;
@@ -59,7 +59,7 @@ import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 
-public class FriendsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FriendshipManageView, StrAccountLogin.LoginListener, OnLoadMoreListener, View.OnClickListener {
+public class FriendsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FriendshipManageView, StrAccountLogin.LoginListener, View.OnClickListener, AbsListView.OnScrollListener {
     private static final String TAG = "Fragment_LianXiRen";
     private List<LXRBean> list;
     private List<LXRBean> showList;
@@ -71,7 +71,6 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     private StrAccRegListener strAccRegListener;
     private FriendshipManagerPresenter presenter;
     private StrAccountLogin login;
-    private SwipeToLoadLayout swipeToLoadLayout;
     private String token;
     private AlertDialog showDialog2;
     private RelativeLayout rela_sao;
@@ -81,7 +80,9 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     private int startItem = 0;
     private int endItem = 20;
     private boolean loadFlag;
-
+    private View inflate;
+    private ProgressBar mBar;
+    private int lastVisIdnex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,11 +105,15 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         ImageView back = (ImageView) findViewById(R.id.txl_back);
         qunliao = (LinearLayout) findViewById(R.id.txl_qunliao);
         tianjia = (LinearLayout) findViewById(R.id.txl_tianjia);
+        inflate = View.inflate(FriendsActivity.this, R.layout.footerview, null);
+        mBar = (ProgressBar) inflate.findViewById(R.id.mBar);
+        list = new ArrayList<>();
         qunliao.setOnClickListener(this);
         back.setOnClickListener(this);
         add.setOnClickListener(this);
         showDialog2 = showDialog2();
         lv.setOnItemClickListener(this);
+        lv.setOnScrollListener(this);
     }
 
 
@@ -123,6 +128,7 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+//                Log.e(TAG, "onResponse: "+response.body().string());
                 String string = response.body().string();
                 Message mess = hand.obtainMessage();
                 mess.obj = string;
@@ -149,8 +155,8 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                     }else if ("0".equals(msg2)) {
 
                         JSONObject data = jsonObject.getJSONObject("data");
-                        JSONArray msg1 = data.getJSONArray("msg");
-                        list = new ArrayList<>();
+                        JSONArray msg1 = data.getJSONArray("list");
+
                         for (int i = 0; i < msg1.length(); i++) {
                             JSONObject jsonObject1 = msg1.getJSONObject(i);
                             String mobile = jsonObject1.getString("mobile");
@@ -160,6 +166,17 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
                             lxrBean.setViplevel(vipLevel);
                             list.add(lxrBean);
                         }
+                        if (adapter==null){
+                            adapter = new LXRAdapter(FriendsActivity.this,list);
+                            lv.setAdapter(adapter);
+                        }else {
+                            lv.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -168,30 +185,30 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
         }
     };
 
-    private void load() {
-        for (int i = startItem; i < endItem; i++) {
-            showList.add(list.get(i));
-        }
-        //有数据
-        if (list.size() - endItem > 0) {
-            //如果数据不够20条
-            if (list.size() - endItem < 20) {
-                startItem = endItem;
-                endItem = list.size();
-            } else {
-                startItem = endItem;
-                endItem += 20;
-            }
-        } else {
-            loadFlag = true;
-        }
-        if (adapter == null) {
-            adapter = new LXRAdapter(this, showList);
-            lv.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
-    }
+//    private void load() {
+//        for (int i = startItem; i < endItem; i++) {
+//            showList.add(list.get(i));
+//        }
+//        //有数据
+//        if (list.size() - endItem > 0) {
+//            //如果数据不够20条
+//            if (list.size() - endItem < 20) {
+//                startItem = endItem;
+//                endItem = list.size();
+//            } else {
+//                startItem = endItem;
+//                endItem += 20;
+//            }
+//        } else {
+//            loadFlag = true;
+//        }
+//        if (adapter == null) {
+//            adapter = new LXRAdapter(this, showList);
+//            lv.setAdapter(adapter);
+//        } else {
+//            adapter.notifyDataSetChanged();
+//        }
+//    }
 
     private AlertDialog showDialog2() {
         View inflate = LayoutInflater.from(FriendsActivity.this).inflate(R.layout.conversation_dialog, null);
@@ -239,15 +256,6 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     }
 
     @Override
-    public void onLoadMore() {
-        //加载数据，如果没有数据则不加载
-        if (!loadFlag) {
-            load();
-        }
-        swipeToLoadLayout.setLoadingMore(false);
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txl_add:
@@ -284,6 +292,21 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if(scrollState==SCROLL_STATE_IDLE&&lastVisIdnex==adapter.getCount()){
+            //确认滑倒底部 加载更多
+            mBar.setVisibility(View.VISIBLE);
+            initLianWang();
+
+        }
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        lastVisIdnex=firstVisibleItem+visibleItemCount-1;
     }
 
     class StrAccRegListener implements TLSStrAccRegListener {

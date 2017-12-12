@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -138,7 +139,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
             holder = (MyViewHorde) convertView.getTag();
         }
         final ShoppingCartBean shoppingCartBean = list.get(position);
-        boolean choosed = shoppingCartBean.isChoosed;
+        final boolean choosed = shoppingCartBean.isChoosed;
         if (choosed){
             holder.ckOneChose.setChecked(true);
         }else{
@@ -204,6 +205,19 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 alert.show();
             }
         });
+
+//        holder.dianpu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                context.startActivity(new Intent(context, DianPuActivity.class));
+//            }
+//        });
+//        holder.wupin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                context.startActivity(new Intent(context, WPXQ_CeSi.class));
+//            }
+//        });
         //判断是否在编辑状态下
         if (isShow) {
             holder.tvCommodityName.setVisibility(View.VISIBLE);
@@ -224,7 +238,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
         ImageView ivShowPic,tvCommodityDelete;
         TextView tvCommodityName, tvCommodityAttr, tvCommodityPrice, tvCommodityNum, tvCommodityShowNum,ivSub, ivAdd;
         CheckBox ckOneChose;
-        LinearLayout rlEdit;
+        LinearLayout rlEdit,dianpu;
+        RelativeLayout wupin;
         public MyViewHorde(View itemView) {
             ckOneChose = (CheckBox) itemView.findViewById(R.id.ck_chose);
             ivShowPic = (ImageView) itemView.findViewById(R.id.iv_show_pic);
@@ -237,8 +252,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
             tvCommodityShowNum = (TextView) itemView.findViewById(R.id.tv_commodity_show_num);
             tvCommodityDelete = (ImageView) itemView.findViewById(R.id.tv_commodity_delete);
             rlEdit = (LinearLayout) itemView.findViewById(R.id.rl_edit);
-
-
+            dianpu = (LinearLayout) itemView.findViewById(R.id.item_gwc_shang);
+            wupin = (RelativeLayout) itemView.findViewById(R.id.item_gwc_wupin);
         }
     }
 }
