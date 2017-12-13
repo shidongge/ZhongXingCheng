@@ -41,7 +41,7 @@ import us.mifeng.zhongxingcheng.utils.WangZhi;
  * 新增收货地址界面
  */
 
-public class XZSHDZ extends Activity implements View.OnClickListener {
+public class XGSHDZ extends Activity implements View.OnClickListener {
     private static final String TAG = "XZSHDZ";
     private LinearLayout diqu;
     private TextView diqu_text, baocun;
@@ -53,29 +53,53 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
     private String sheng, shi, qu;
     private boolean isTag = false;
     private String shifoumoren = "0";
+    private String dizhiid,city1,districe1,mobile1,isDefault1,province1,zip_code1,userName1,address1;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_xzshdz);
+        setContentView(R.layout.activity_xgshdz);
         SharedUtils sharedUtils = new SharedUtils();
-        String id = sharedUtils.getShared("id", XZSHDZ.this);
+        dizhiid = getIntent().getStringExtra("dizhiid");
+        city1 = getIntent().getStringExtra("city1");
+        districe1 = getIntent().getStringExtra("districe1");
+        mobile1 = getIntent().getStringExtra("mobile1");
+        isDefault1 = getIntent().getStringExtra("isDefault1");
+        province1 = getIntent().getStringExtra("province1");
+        zip_code1 = getIntent().getStringExtra("zip_code1");
+        userName1 = getIntent().getStringExtra("username1");
+        address1 = getIntent().getStringExtra("address1");
+        String id = sharedUtils.getShared("id", XGSHDZ.this);
         String newid = id;
         substring = newid.substring(0, 11);
-        token = sharedUtils.getShared("token", XZSHDZ.this);
-        zxcid = sharedUtils.getShared("zxcid", XZSHDZ.this);
+        token = sharedUtils.getShared("token", XGSHDZ.this);
+        zxcid = sharedUtils.getShared("zxcid", XGSHDZ.this);
         initView();
     }
 
     private void initView() {
-        diqu = (LinearLayout) findViewById(R.id.xzshdz_diqu);
-        diqu_text = (TextView) findViewById(R.id.xzshdz_text);
-        name = (EditText) findViewById(R.id.xzshdz_name);
-        xxdz = (EditText) findViewById(R.id.xzshdz_xxdz);
-        mobile = (EditText) findViewById(R.id.xzshdz_number);
-        youbian = (EditText) findViewById(R.id.xzshdz_youbian);
-        back = (ImageView) findViewById(R.id.xzshdz_back);
-        baocun = (TextView) findViewById(R.id.xzshdz_bc);
-        moren = (ImageView) findViewById(R.id.xzshdz_moren);
+        diqu = (LinearLayout) findViewById(R.id.xgshdz_diqu);
+        diqu_text = (TextView) findViewById(R.id.xgshdz_text);
+        name = (EditText) findViewById(R.id.xgshdz_name);
+        xxdz = (EditText) findViewById(R.id.xgshdz_xxdz);
+        mobile = (EditText) findViewById(R.id.xgshdz_number);
+        youbian = (EditText) findViewById(R.id.xgshdz_youbian);
+        back = (ImageView) findViewById(R.id.xgshdz_back);
+        baocun = (TextView) findViewById(R.id.xgshdz_bc);
+        moren = (ImageView) findViewById(R.id.xgshdz_moren);
+
+
+        diqu_text.setText(province1+city1+districe1);
+        name.setText(userName1);
+        youbian.setText(zip_code1);
+        mobile.setText(mobile1);
+        xxdz.setText(address1);
+        if ("0".equals(isDefault1)){
+            moren.setImageResource(R.mipmap.shdzwg);
+        }else {
+            moren.setImageResource(R.mipmap.shdzyg);
+        }
+
         diqu.setOnClickListener(this);
         back.setOnClickListener(this);
         baocun.setOnClickListener(this);
@@ -85,14 +109,14 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.xzshdz_diqu:
+            case R.id.xgshdz_diqu:
                 AddressPickTask task = new AddressPickTask(this);
                 task.setHideProvince(false);
                 task.setHideCounty(false);
                 task.setCallback(new AddressPickTask.Callback() {
                     @Override
                     public void onAddressInitFailed() {
-                        Toast.makeText(XZSHDZ.this, "数据初始化失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(XGSHDZ.this, "数据初始化失败", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -106,15 +130,18 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
                             shi = city.getAreaName();
                             qu = county.getAreaName();
                             diqu_text.setText(address);
+                            province1=sheng;
+                            city1=shi;
+                            districe1=qu;
                         }
                     }
                 });
                 task.execute("北京市", "北京市", "东城区");
                 break;
-            case R.id.xzshdz_back:
+            case R.id.xgshdz_back:
                 finish();
                 break;
-            case R.id.xzshdz_moren:
+            case R.id.xgshdz_moren:
 
                 if (!isTag){
                     moren.setImageResource(R.mipmap.shdzyg);
@@ -125,10 +152,8 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
                     isTag=false;
                     moren.setImageResource(R.mipmap.shdzwg);
                 }
-
-
                 break;
-            case R.id.xzshdz_bc:
+            case R.id.xgshdz_bc:
                 String trim = name.getText().toString().trim();
                 String trim1 = mobile.getText().toString().trim();
 
@@ -137,9 +162,9 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
                 String trim4 = diqu_text.getText().toString().trim();
                 boolean mobileNO = JiaMi.isMobileNO(trim1);
                 if (trim.equals("") || trim2.equals("") || trim3.equals("") || trim4.equals("")) {
-                    ToSi.show(XZSHDZ.this, "信息未填写完整");
+                    ToSi.show(XGSHDZ.this, "信息未填写完整");
                 }  else if (!mobileNO){
-                        ToSi.show(XZSHDZ.this,"手机号有误");
+                        ToSi.show(XGSHDZ.this,"手机号有误");
                 } else{
                     HashMap<String, String> map = new HashMap<>();
                     map.put("user_id",zxcid);
@@ -148,18 +173,18 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
                     map.put("userName",trim);
                     map.put("mobile",trim1);
                     map.put("address",trim2);
-                    map.put("province",sheng);
-                    map.put("city",shi);
-                    map.put("district",qu);
+                    map.put("province",province1);
+                    map.put("city",city1);
+                    map.put("district",districe1);
                     map.put("isDefault",shifoumoren);
                     map.put("zip_code",trim3);
-
+                    map.put("id",dizhiid);
                     JSONObject jsonObject = new JSONObject(map);
                     String string = jsonObject.toString();
                     String s = JiaMi.jdkBase64Encoder(string);
                     HashMap<String, String> map1 = new HashMap<>();
                     map1.put("secret",s);
-                    OkUtils.UploadSJ(WangZhi.TJSHDZ, map1, new Callback() {
+                    OkUtils.UploadSJ(WangZhi.XGSHDZ, map1, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
@@ -167,7 +192,6 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-//                            Log.e(TAG, "onResponse: "+response.body().string() );
                             String string = response.body().string();
                             Message mess = hand.obtainMessage();
                             mess.obj=string;
@@ -194,11 +218,10 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
                     String status = jsonObject.getString("status");
                     //成功返回0
                     if ("0".equals(status)){
-                        ToSi.show(XZSHDZ.this,info);
+                        ToSi.show(XGSHDZ.this,info);
                         finish();
                     }else {
-
-                        ToSi.show(XZSHDZ.this,status+info);
+                        ToSi.show(XGSHDZ.this,info);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -43,9 +43,14 @@
                 android:id="@+id/slider"
                 android:layout_width="match_parent"
                 android:layout_height="170dp" />
-
+            <View
+                style="@style/xiantiao"/>
+            <View
+                android:layout_marginTop="10dp"
+                style="@style/xiantiao"/>
 
             <LinearLayout
+                android:paddingTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:orientation="horizontal">

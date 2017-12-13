@@ -63,7 +63,12 @@ public class ZZC extends Activity implements View.OnClickListener {
     private String shopAvailable;
     private String shopBindMoney;
     private String nickName;
-
+    private String shopBalance;
+    private String shopFrozen;
+    private float v5;
+    private float v8;
+    private String secondMoney;
+    private float v11;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,7 +83,7 @@ public class ZZC extends Activity implements View.OnClickListener {
     }
 
     private void initLianWang() {
-        String s = JiaMi.jdkBase64Encoder("portrait,balance,available,frozen,cashMoney,shareholder,shopAvailable,shopBindMoney,nickName");
+        String s = JiaMi.jdkBase64Encoder("portrait,balance,shopBalance,available,frozen,cashMoney,shareholder,shopAvailable,shopBindMoney,nickName,shopFrozen,secondMoney");
         HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
         map.put("field", s);
@@ -222,6 +227,7 @@ public class ZZC extends Activity implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(str);
                     JSONObject data = jsonObject.getJSONObject("data");
                     JSONObject userInfo = data.getJSONObject("userInfo");
+                    Log.e(TAG, "handleMessage: "+userInfo );
                     portrait = userInfo.getString("portrait");
                     balance = userInfo.getString("balance");
                     available = userInfo.getString("available");
@@ -231,11 +237,27 @@ public class ZZC extends Activity implements View.OnClickListener {
                     shopAvailable = userInfo.getString("shopAvailable");
                     shopBindMoney = userInfo.getString("shopBindMoney");
                     nickName = userInfo.getString("nickName");
-                    zongzichan.setText(balance);
-                    keyong.setText(balance);
-                    dongjie.setText(frozen);
+                    shopBalance = userInfo.getString("shopBalance");
+                    shopFrozen = userInfo.getString("shopFrozen");
+                    secondMoney = userInfo.getString("secondMoney");
+                    float v = Float.parseFloat(balance);
+                    float v1 = Float.parseFloat(shopBalance);
+                    float v2 = v + v1;
+                    zongzichan.setText(v2+"");
+                    float v3 = Float.parseFloat(available);
+                    float v4 = Float.parseFloat(shopAvailable);
+                    v5 = v3 + v4;
+                    keyong.setText(v5 +"");
+
+                    float v6 = Float.parseFloat(shopFrozen);
+                    float v7 = Float.parseFloat(frozen);
+                    v8 = v6 + v7;
+                    dongjie.setText(v8 +"");
                     xiangbi.setText(shareholder);
-                    tixian.setText(cashMoney);
+                    float v9 = Float.parseFloat(cashMoney);
+                    float v10 = Float.parseFloat(secondMoney);
+                    v11 = v9 + v10;
+                    tixian.setText(v11 +"");
                     scky.setText(shopAvailable);
                     scbd.setText(shopBindMoney);
                     if ("".equals(nickName)){
@@ -259,17 +281,16 @@ public class ZZC extends Activity implements View.OnClickListener {
     public void shezhi(){
         //模拟数据
         ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
-        float v1 = Float.parseFloat(available);
-        float v2 = Float.parseFloat(frozen);
+
         float v3 = Float.parseFloat(cashMoney);
         float v4 = Float.parseFloat(shareholder);
-        float v5 = Float.parseFloat(shopAvailable);
+        float v512 = Float.parseFloat(shopAvailable);
         float v6 = Float.parseFloat(shopBindMoney);
-        entries.add(new PieEntry(v1, ""));
-        entries.add(new PieEntry(v2, ""));
-        entries.add(new PieEntry(v3, ""));
-        entries.add(new PieEntry(v4, ""));
         entries.add(new PieEntry(v5, ""));
+        entries.add(new PieEntry(v8, ""));
+        entries.add(new PieEntry(v11, ""));
+        entries.add(new PieEntry(v4, ""));
+        entries.add(new PieEntry(v512, ""));
         entries.add(new PieEntry(v6, ""));
         //设置数据
         setData(entries);

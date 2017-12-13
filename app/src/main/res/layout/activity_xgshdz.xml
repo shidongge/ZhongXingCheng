@@ -14,7 +14,7 @@
 
         <ImageView
             android:layout_gravity="center"
-            android:id="@+id/xzshdz_back"
+            android:id="@+id/xgshdz_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@mipmap/fh"
@@ -26,7 +26,7 @@
             android:textSize="18sp"
             android:textColor="#fff"
             style="@style/zhuti_text"
-            android:text="新增收货地址"
+            android:text="修改收货地址"
             />
         <View
             style="@style/xiantiao_zhongjian"
@@ -35,7 +35,7 @@
         <TextView
             android:textSize="18sp"
             android:textColor="#fff"
-            android:id="@+id/xzshdz_bc"
+            android:id="@+id/xgshdz_bc"
             android:layout_marginRight="10dp"
             style="@style/zhuti_text"
             android:text="保存"
@@ -86,7 +86,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/xzshdz_name"
+                android:id="@+id/xgshdz_name"
                 android:theme="@style/MyEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 android:hint="请填写姓名" />
 
             <EditText
-                android:id="@+id/xzshdz_number"
+                android:id="@+id/xgshdz_number"
                 android:theme="@style/MyEditText"
                 android:numeric="integer"
                 android:maxLength="11"
@@ -104,12 +104,12 @@
                 android:hint="请填写手机号" />
 
             <LinearLayout
-                android:id="@+id/xzshdz_diqu"
+                android:id="@+id/xgshdz_diqu"
                 android:layout_width="match_parent"
                 android:layout_height="34dp">
 
                 <TextView
-                    android:id="@+id/xzshdz_text"
+                    android:id="@+id/xgshdz_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -120,7 +120,7 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/xzshdz_xxdz"
+                android:id="@+id/xgshdz_xxdz"
                 android:theme="@style/MyEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                 android:numeric="integer"
                 android:maxLength="6"
                 android:theme="@style/MyEditText"
-                android:id="@+id/xzshdz_youbian"
+                android:id="@+id/xgshdz_youbian"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -157,7 +157,7 @@
             style="@style/xiantiao_zhongjian"
             />
         <ImageView
-            android:id="@+id/xzshdz_moren"
+            android:id="@+id/xgshdz_moren"
             android:padding="10dp"
             android:layout_marginRight="10dp"
             android:layout_gravity="center"

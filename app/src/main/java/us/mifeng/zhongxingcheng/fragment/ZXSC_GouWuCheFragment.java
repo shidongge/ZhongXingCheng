@@ -3,11 +3,9 @@ package us.mifeng.zhongxingcheng.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -29,7 +27,7 @@ import us.mifeng.zhongxingcheng.utils.ToSi;
  * Created by shido on 2017/11/27.
  */
 
-public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListener, ShoppingCartAdapter.CheckInterface, ShoppingCartAdapter.ModifyCountInterface, AdapterView.OnItemClickListener {
+public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListener, ShoppingCartAdapter.CheckInterface, ShoppingCartAdapter.ModifyCountInterface {
     private static final String TAG = "ZXSC_GouWuCheFragment";
     private boolean isAllCheck;
     ListView list_shopping_cart;
@@ -49,7 +47,8 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
     private boolean mSelect;
     private boolean flag = false;
     private DecimalFormat df;
-    private LinearLayout xiayou,xiawu;
+    private LinearLayout xiayou, xiawu;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,12 +72,12 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
         tvSettlement = (TextView) inflate.findViewById(R.id.tv_settlement);
 
         list_shopping_cart = (ListView) inflate.findViewById(R.id.list_shopping_cart);
+        list_shopping_cart.setClickable(false);
         ImageView back = (ImageView) inflate.findViewById(R.id.zxsc_gouwuche_back);
         ckAll.setOnClickListener(this);
         back.setOnClickListener(this);
         btnEdit.setOnClickListener(this);
         tvSettlement.setOnClickListener(this);
-        list_shopping_cart.setOnItemClickListener(this);
         initList();
         df = new DecimalFormat("#.00");
         return inflate;
@@ -105,11 +104,11 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
             shoppingCartBean.setImageUrl("https://gd1.alicdn.com/imgextra/i1/2160089910/TB2M_NSbB0kpuFjSsppXXcGTXXa_!!2160089910.jpg");
             list.add(shoppingCartBean);
         }
-        shoppingCartAdapter = new ShoppingCartAdapter(getActivity(),list);
+        shoppingCartAdapter = new ShoppingCartAdapter(getActivity(), list);
         shoppingCartAdapter.setCheckInterface(this);
         shoppingCartAdapter.setModifyCountInterface(this);
-        if (shoppingCartAdapter==null){
-            shoppingCartAdapter = new ShoppingCartAdapter(getActivity(),list);
+        if (shoppingCartAdapter == null) {
+            shoppingCartAdapter = new ShoppingCartAdapter(getActivity(), list);
         }
         list_shopping_cart.setAdapter(shoppingCartAdapter);
         shoppingCartAdapter.setShoppingCartBeanList(list);
@@ -160,8 +159,6 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
     }
 
 
-
-
     /**
      * 结算订单、支付
      */
@@ -179,7 +176,7 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
             }
         }
 
-        ToSi.show(getActivity(), "总价：" +  totalPrice);
+        ToSi.show(getActivity(), "总价：" + totalPrice);
 
         //跳转到支付界面
     }
@@ -195,6 +192,7 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
         shoppingCartAdapter.notifyDataSetChanged();
         statistics();
     }
+
     /**
      * 遍历list集合
      *
@@ -208,6 +206,7 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
         }
         return true;
     }
+
     /**
      * 统计操作
      * 1.先清空全局计数器<br>
@@ -245,6 +244,7 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
         shoppingCartAdapter.notifyDataSetChanged();
         statistics();
     }
+
     /**
      * 删减
      *
@@ -265,6 +265,7 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
         shoppingCartAdapter.notifyDataSetChanged();
         statistics();
     }
+
     /**
      * 删除
      *
@@ -276,10 +277,4 @@ public class ZXSC_GouWuCheFragment extends Fragment implements View.OnClickListe
         shoppingCartAdapter.notifyDataSetChanged();
         statistics();
     }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ShoppingCartBean item = (ShoppingCartBean) parent.getAdapter().getItem(position);
-        int id1 = item.getId();
-        Log.e(TAG, "onItemClick: "+id1+"" );}
 }

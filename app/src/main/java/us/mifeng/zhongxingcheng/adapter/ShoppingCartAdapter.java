@@ -3,6 +3,7 @@ package us.mifeng.zhongxingcheng.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,9 @@ import java.util.List;
 
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.bean.ShoppingCartBean;
+import us.mifeng.zhongxingcheng.dianpu.DianPuActivity;
 import us.mifeng.zhongxingcheng.utils.StringUtil;
+import us.mifeng.zhongxingcheng.wpxq_ceshi.WPXQ_CeSi;
 
 /**
  * Created by shido on 2017/12/11.
@@ -206,29 +209,34 @@ public class ShoppingCartAdapter extends BaseAdapter {
             }
         });
 
-//        holder.dianpu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                context.startActivity(new Intent(context, DianPuActivity.class));
-//            }
-//        });
-//        holder.wupin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                context.startActivity(new Intent(context, WPXQ_CeSi.class));
-//            }
-//        });
+        holder.dianpu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, DianPuActivity.class));
+            }
+        });
+        holder.wupin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, WPXQ_CeSi.class));
+            }
+        });
         //判断是否在编辑状态下
         if (isShow) {
             holder.tvCommodityName.setVisibility(View.VISIBLE);
             holder.rlEdit.setVisibility(View.GONE);
             holder.tvCommodityNum.setVisibility(View.VISIBLE);
             holder.tvCommodityDelete.setVisibility(View.GONE);
+            holder.dianpu.setClickable(true);
+            holder.wupin.setClickable(true);
         } else {
             holder.tvCommodityName.setVisibility(View.VISIBLE);
             holder.rlEdit.setVisibility(View.VISIBLE);
             holder.tvCommodityNum.setVisibility(View.GONE);
             holder.tvCommodityDelete.setVisibility(View.VISIBLE);
+            holder.dianpu.setClickable(false);
+            holder.wupin.setClickable(false);
+
         }
 
 

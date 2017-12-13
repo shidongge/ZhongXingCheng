@@ -111,11 +111,13 @@ public class AccountLoginService {
                         String sessionId = data.getString("sessionId");
                         String token = data.getString("token");
                         String mobile = data.getString("mobile");
+                        String id = data.getString("id");
                         SharedUtils sharedUtils = new SharedUtils();
                         Log.e(TAG, "handleMessage: "+sessionId );
                         sharedUtils.saveShared("sessionId","sessionId="+sessionId,context);
                         sharedUtils.saveShared("token",token,context);
                         sharedUtils.saveShared("mobile",mobile,context);
+                        sharedUtils.saveShared("zxcid",id,context);
                         username = username + "a";
                         sharedUtils.saveShared("id",username,context);
                         tlsService.TLSPwdLogin(username, LOGIN_PSW, pwdLoginListener);

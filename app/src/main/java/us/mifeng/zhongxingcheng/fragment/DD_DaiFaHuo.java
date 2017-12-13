@@ -1,55 +1,36 @@
 package us.mifeng.zhongxingcheng.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.adapter.DD_DaiFuKuanAdapter;
-import us.mifeng.zhongxingcheng.base.LJZBaseFragment;
 
 /**
  * Created by shido on 2017/12/1.
  */
 
-public class DD_DaiFaHuo extends LJZBaseFragment {
+public class DD_DaiFaHuo extends Fragment {
     private ListView lv;
     private List<String> list;
+    private View inflate;
 
+    @Nullable
     @Override
-    public View initView() {
-        View inflate = View.inflate(getActivity(), R.layout.dd_daifukuai, null);
-        lv = (ListView) inflate.findViewById(R.id.dd_daifukan_lv);
-
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        inflate = View.inflate(getActivity(), R.layout.dd_daifahuo, null);
+        initView();
         return inflate;
-    }
-
-    @Override
-    public void initList() {
-        list = new ArrayList<>();
-        for (int i = 0 ;i<4;i++){
-            list.add(i+"");
-        }
-    }
-
-    @Override
-    public void setOnclick() {
 
     }
 
-    @Override
-    protected void Start() {
-        DD_DaiFuKuanAdapter dd_daiFuKuanAdapter = new DD_DaiFuKuanAdapter(list, getActivity());
-        lv.setAdapter(dd_daiFuKuanAdapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
+    private void initView() {
+        lv = (ListView) inflate.findViewById(R.id.dd_daifahuo_lv);
     }
 }

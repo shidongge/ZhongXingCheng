@@ -36,4 +36,12 @@ public class WangZhi {
     public static final String XINWEN = WAIWANG+"app/news";//新闻中心
 
 
+
+    //杨雅方地址
+    public static final String TJSHDZ = "http://192.168.1.120:8082/Api/addReceiptAddress";//添加收货地址
+    public static final String SHDZLB = "http://192.168.1.120:8082/Api/getReceiptAddressList";//收货地址列表
+    public static final String SCHHDZ = "http://192.168.1.120:8082/Api/delReceiptAddress";//删除收货地址
+    public static final String XGSHDZ = "http://192.168.1.120:8082/Api/updReceiptAddress";//修改收货地址
+    public static final String TJFFTT = "http://192.168.1.120:8082/Api/addApplyInvoice";//申请开发票
+
 }

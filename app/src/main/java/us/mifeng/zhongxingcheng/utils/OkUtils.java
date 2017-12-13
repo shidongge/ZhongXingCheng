@@ -3,6 +3,8 @@ package us.mifeng.zhongxingcheng.utils;
 import android.content.Context;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +27,7 @@ public class OkUtils {
 	private Context ctx;
 	private static OkHttpClient ok=null;
 	private static final MediaType MEDIA_TYPE_PNG=MediaType.parse("image/png");
+	private static final MediaType JSON = MediaType.parse("application/json;charset=utf-8");
 	private Map<String, String> map=new HashMap<String, String>();//存放
 	private List<String> list=new ArrayList<String>();
 	private static File file;
@@ -168,6 +171,24 @@ public class OkUtils {
 			call.enqueue(callback);
 		}
 	}
+
+	/**
+	 * post上传json字符串方法
+	 * url:服务器网址
+	 * @param path
+	 */
+	public static void PostJaon (String url, String json, Callback callback){
+        RequestBody requestBody = RequestBody.create(JSON, json);
+        Request build = new Request.Builder()
+                .url(url)
+                .patch(requestBody)
+                .build();
+        Call call = getInstance().newCall(build);
+        call.enqueue(callback);
+    }
+
+
+
 	/*
 
 	 */
