@@ -88,6 +88,14 @@ public class XWBean {
         }
 
         public static class InfoBean {
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
             /**
              * id : 157
              * title : 【经济杂谈】供给侧结构性改革要知难而进
@@ -97,7 +105,7 @@ public class XWBean {
              * praiseNum : 0
              * updateTime : 2017-09-22 17:15:16
              */
-
+            private String url;
             private String id;
             private String title;
             private String thumb;

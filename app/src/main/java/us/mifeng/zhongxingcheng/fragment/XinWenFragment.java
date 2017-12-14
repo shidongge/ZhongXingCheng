@@ -1,5 +1,6 @@
 package us.mifeng.zhongxingcheng.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -25,9 +27,12 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.adapter.XWAdapter;
-import us.mifeng.zhongxingcheng.bean.XWBean;
+import us.mifeng.zhongxingcheng.activity.XinWen_NeiRong;
+import us.mifeng.zhongxingcheng.adapter.GWGGAdapter;
+import us.mifeng.zhongxingcheng.bean.GWGGBean;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
+import us.mifeng.zhongxingcheng.utils.SharedUtils;
 import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
@@ -36,11 +41,11 @@ import us.mifeng.zhongxingcheng.utils.WangZhi;
  * Created by shido on 2017/10/17.
  */
 
-public class XinWenFragment extends Fragment implements AbsListView.OnScrollListener {
-    private List<XWBean.DataBean.InfoBean> list;
+public class XinWenFragment extends Fragment implements AbsListView.OnScrollListener, AdapterView.OnItemClickListener {
+    private List<GWGGBean.DataBean> list;
     private View view;
     private int index = 0;
-    private XWAdapter xwAdapter;
+    private GWGGAdapter gwggAdapter;
     private ListView lv;
     private static final String TAG = "XinWenFragment";
     private View inflate;
@@ -48,6 +53,7 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
     private String page;
     private String pageCound;
     private int lastVisIdnex;
+    private String token,zxcid,substring;
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         view = View.inflate(getActivity(), R.layout.fragment_xinwen, null);
@@ -58,7 +64,13 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
         lv.addFooterView(inflate);
         initLianWang();
         lv.setOnScrollListener(this);
-
+        lv.setOnItemClickListener(this);
+        SharedUtils sharedUtils = new SharedUtils();
+        String id = sharedUtils.getShared("id", getActivity());
+        String newid = id;
+        substring = newid.substring(0, 11);
+        token = sharedUtils.getShared("token", getActivity());
+        zxcid = sharedUtils.getShared("zxcid", getActivity());
         return view;
 
     }
@@ -68,7 +80,15 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
     private void initLianWang() {
         HashMap<String, String> map = new HashMap<>();
         map.put("page",""+index++);
-        OkUtils.UploadSJ(WangZhi.XINWEN, map, new Callback() {
+        map.put("user_id",zxcid);
+        map.put("user_token",token);
+        map.put("user_mobile",substring);
+        JSONObject jsonObject = new JSONObject(map);
+        String string = jsonObject.toString();
+        String s = JiaMi.jdkBase64Encoder(string);
+        HashMap<String, String> map1 = new HashMap<>();
+        map1.put("secret",s);
+        OkUtils.UploadSJ(WangZhi.GWGG, map1, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, "onFailure: "+e.getLocalizedMessage() );
@@ -94,43 +114,43 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
-                    JSONObject data = jsonObject.getJSONObject("data");
-                    pageCound = data.getString("pageCount");
-                    page = data.getString("page");
+
+                    pageCound = jsonObject.getString("page_count");
+                    page = jsonObject.getString("page");
                     if (page.equals(pageCound)){
                         mBar.setVisibility(View.GONE);
                         ToSi.show(getActivity(),"没有更多数据了");
                     }else {
-                        JSONArray info = data.getJSONArray("info");
+                        JSONArray info = jsonObject.getJSONArray("data");
                         Log.e(TAG, "handleMessage: "+info.length() );
                         for (int i = 0;i<info.length();i++){
                             JSONObject jsonObject1 = (JSONObject) info.get(i);
                             String id = jsonObject1.getString("id");
                             String title = jsonObject1.getString("title");
-                            String thumb = jsonObject1.getString("thumb");
-                            String hits = jsonObject1.getString("hits");
-                            String updateTime = jsonObject1.getString("updateTime");
-                            String commentNum = jsonObject1.getString("commentNum");
-                            String praiseNum = jsonObject1.getString("praiseNum");
-                            XWBean.DataBean.InfoBean infoBean = new XWBean.DataBean.InfoBean();
-                            infoBean.setHits(hits);
-                            infoBean.setId(id);
+                            String publisher = jsonObject1.getString("publisher");
+                            String read = jsonObject1.getString("read");
+                            String thumnai = jsonObject1.getString("thumbnail");
+                            String content = jsonObject1.getString("content");
+                            String url = jsonObject1.getString("url");
+                            GWGGBean.DataBean infoBean = new GWGGBean.DataBean();
+                            infoBean.setContent(content);
                             infoBean.setTitle(title);
-                            infoBean.setUpdateTime(updateTime);
-                            infoBean.setThumb(thumb);
-                            infoBean.setCommentNum(commentNum);
-                            infoBean.setPraiseNum(praiseNum);
+                            infoBean.setId(id);
+                            infoBean.setPublisher(publisher);
+                            infoBean.setRead(read);
+                            infoBean.setThumbnail(thumnai);
+                            infoBean.setUrl(url);
                             list.add(infoBean);
 
                         }
-                        if (xwAdapter==null){
-                            xwAdapter = new XWAdapter(getActivity(),list);
-                            lv.setAdapter(xwAdapter);
+                        if (gwggAdapter==null){
+                            gwggAdapter = new GWGGAdapter(getActivity(),list);
+                            lv.setAdapter(gwggAdapter);
                         }else {
                             lv.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    xwAdapter.notifyDataSetChanged();
+                                    gwggAdapter.notifyDataSetChanged();
                                 }
                             });
                         }
@@ -145,7 +165,7 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if(scrollState==SCROLL_STATE_IDLE&&lastVisIdnex==xwAdapter.getCount()){
+        if(scrollState==SCROLL_STATE_IDLE&&lastVisIdnex==gwggAdapter.getCount()){
             //确认滑倒底部 加载更多
             mBar.setVisibility(View.VISIBLE);
             initLianWang();
@@ -160,5 +180,15 @@ public class XinWenFragment extends Fragment implements AbsListView.OnScrollList
 //            lv.removeFooterView(inflate);
 //            ToSi.show(getActivity(),"没有更多数据了");
 //        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        GWGGBean.DataBean bean = (GWGGBean.DataBean) parent.getAdapter().getItem(position);
+        String id1 = bean.getId();
+        String url = bean.getUrl();
+        Intent intent = new Intent(getActivity(), XinWen_NeiRong.class);
+        intent.putExtra("url",url);
+        startActivity(intent);
     }
 }

@@ -15,7 +15,6 @@ public class WangZhi {
     public static final String QIANDAO = WAIWANG + "shop/shop_sign_index";//签到地址
     public static final String GWZX = ZHUJI + "shop/shop_search/k_%25E7%25BA%25A2%25E9%2585%2592%2520%257C%2520%25E6%25B4%258B%25E9%2585%2592/t_1";//购物中心地址
     public static final String XWZX = "http://m.taogt.cn/index.php?m=mobile&c=index&a=show";//新闻中心地址
-    public static final String GWGG = "http://m.taogt.cn/index.php?m=mobile&c=index&a=news_center";//官网公告
     public static final String HAOYOU = WAIWANG + "app/myFriend";//好友列表
     public static final String HOME_DIANPU = ZHUJI + "app/shop_index";
     public static final String WODE = ZHUJI + "app/userInfo";//我的fragment的信息
@@ -45,9 +44,10 @@ public class WangZhi {
     public static final String XGSHDZ = YYF+"Api/updReceiptAddress";//修改收货地址
     public static final String SFMR = YYF+"Api/setIsDefault";//设置是否为默认收货地址
     public static final String TJFFTT = YYF+"Api/addInvoiceInfo";//申请开发票
-    public static final String FPGLLB = YYF+"/Api/getInvoiceInfoList";//发票管理列表
+    public static final String FPGLLB = YYF+"Api/getInvoiceInfoList";//发票管理列表
     public static final String SCTTFP = YYF+"Api/delInvoiceInfo";//删除发票信息
     public static final String XGFPTT = YYF+"Api/updInvoiceInfo";//修改发票抬头
+    public static final String GWGG = YYF+"Api/getStationMessageList";//官网公告
 
 
 }
