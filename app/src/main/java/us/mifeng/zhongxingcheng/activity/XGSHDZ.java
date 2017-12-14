@@ -38,7 +38,7 @@ import us.mifeng.zhongxingcheng.utils.WangZhi;
  */
 
 /**
- * 新增收货地址界面
+ * 修改收货地址界面
  */
 
 public class XGSHDZ extends Activity implements View.OnClickListener {

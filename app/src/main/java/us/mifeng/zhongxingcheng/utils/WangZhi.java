@@ -38,10 +38,16 @@ public class WangZhi {
 
 
     //杨雅方地址
-    public static final String TJSHDZ = "http://192.168.1.120:8082/Api/addReceiptAddress";//添加收货地址
-    public static final String SHDZLB = "http://192.168.1.120:8082/Api/getReceiptAddressList";//收货地址列表
-    public static final String SCHHDZ = "http://192.168.1.120:8082/Api/delReceiptAddress";//删除收货地址
-    public static final String XGSHDZ = "http://192.168.1.120:8082/Api/updReceiptAddress";//修改收货地址
-    public static final String TJFFTT = "http://192.168.1.120:8082/Api/addApplyInvoice";//申请开发票
+    public static final String YYF = "http://192.168.1.120:8082/";
+    public static final String TJSHDZ = YYF+"Api/addReceiptAddress";//添加收货地址
+    public static final String SHDZLB = YYF+"Api/getReceiptAddressList";//收货地址列表
+    public static final String SCHHDZ = YYF+"Api/delReceiptAddress";//删除收货地址
+    public static final String XGSHDZ = YYF+"Api/updReceiptAddress";//修改收货地址
+    public static final String SFMR = YYF+"Api/setIsDefault";//设置是否为默认收货地址
+    public static final String TJFFTT = YYF+"Api/addInvoiceInfo";//申请开发票
+    public static final String FPGLLB = YYF+"/Api/getInvoiceInfoList";//发票管理列表
+    public static final String SCTTFP = YYF+"Api/delInvoiceInfo";//删除发票信息
+    public static final String XGFPTT = YYF+"Api/updInvoiceInfo";//修改发票抬头
+
 
 }

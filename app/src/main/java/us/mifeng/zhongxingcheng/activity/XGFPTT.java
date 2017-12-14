@@ -28,38 +28,53 @@ import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 /**
- * Created by shido on 2017/11/8.
+ * Created by shido on 2017/12/14.
  */
-//添加发票抬头
-public class TJFPTT extends Activity implements View.OnClickListener {
+
+public class XGFPTT extends Activity implements View.OnClickListener {
 
     private EditText name;
     private EditText shibiema;
     private String token, substring, zxcid;
     private static final String TAG = "TJFPTT";
-    private boolean ISTAG = false;
+    private String fpid,shifoumoren;
     private ImageView moren_img;
-    private String tag = "0";
+    private boolean ISTAG = false;
+    private String title;
+    private String id_code;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tjfptt);
+        setContentView(R.layout.activity_xgfptt);
         SharedUtils sharedUtils = new SharedUtils();
-        String id = sharedUtils.getShared("id", TJFPTT.this);
+        String id = sharedUtils.getShared("id", XGFPTT.this);
         String newid = id;
         substring = newid.substring(0, 11);
-        token = sharedUtils.getShared("token", TJFPTT.this);
-        zxcid = sharedUtils.getShared("zxcid", TJFPTT.this);
+        token = sharedUtils.getShared("token", XGFPTT.this);
+        zxcid = sharedUtils.getShared("zxcid", XGFPTT.this);
+        fpid = getIntent().getStringExtra("fpid");
+        title = getIntent().getStringExtra("title");
+        id_code = getIntent().getStringExtra("id_code");
+        shifoumoren = getIntent().getStringExtra("is_default");
         initView();
     }
-
     private void initView() {
-        TextView xinzeng = (TextView) findViewById(R.id.tjttfp_baocun);
-        ImageView back = (ImageView) findViewById(R.id.tjttfp_back);
-        name = (EditText) findViewById(R.id.tjttfp_name);
-        shibiema = (EditText) findViewById(R.id.tjttfp_shibiema);
-        moren_img = (ImageView) findViewById(R.id.tjttfp_moren);
+        TextView xinzeng = (TextView) findViewById(R.id.xgttfp_baocun);
+        ImageView back = (ImageView) findViewById(R.id.xgttfp_back);
+        name = (EditText) findViewById(R.id.xgttfp_name);
+        name.setText(title);
+        shibiema = (EditText) findViewById(R.id.xgttfp_shibiema);
+        shibiema.setText(id_code);
+        moren_img = (ImageView) findViewById(R.id.xgttfp_moren);
+        if ("0".equals(shifoumoren)){
+            shifoumoren ="0";
+            moren_img.setImageResource(R.mipmap.shdzwg);
+        }else {
+            moren_img.setImageResource(R.mipmap.shdzyg);
+            shifoumoren="1";
+        }
+
         back.setOnClickListener(this);
         xinzeng.setOnClickListener(this);
         moren_img.setOnClickListener(this);
@@ -67,27 +82,29 @@ public class TJFPTT extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tjttfp_back:
+        switch (v.getId()){
+            case R.id.xgttfp_back:
                 finish();
                 break;
+            case R.id.xgttfp_moren:
 
-            case R.id.tjttfp_moren:
                 if (!ISTAG){
                     moren_img.setImageResource(R.mipmap.shdzyg);
                     ISTAG=true;
-                    tag = "1";
+                    shifoumoren = "1";
                 }else {
-                    tag = "0";
+                    shifoumoren = "0";
                     ISTAG=false;
                     moren_img.setImageResource(R.mipmap.shdzwg);
                 }
+
                 break;
-            case R.id.tjttfp_baocun:
+
+            case R.id.xgttfp_baocun:
                 String trim = name.getText().toString().trim();
                 String trim1 = shibiema.getText().toString().trim();
                 if (trim.equals("") || trim1.equals("")) {
-                    ToSi.show(TJFPTT.this, "信息填写不完整，请重新检查输入框");
+                    ToSi.show(XGFPTT.this, "信息填写不完整，请重新检查输入框");
                 } else {
                     final HashMap<String, String> map = new HashMap<>();
                     map.put("user_id", zxcid);
@@ -95,14 +112,14 @@ public class TJFPTT extends Activity implements View.OnClickListener {
                     map.put("user_mobile",substring);
                     map.put("title",trim);
                     map.put("id_code",trim1);
-                    map.put("is_default",tag);
-                    Log.e(TAG, "onClick: "+map );
+                    map.put("is_default",shifoumoren);
+                    map.put("id",fpid);
                     JSONObject jsonObject = new JSONObject(map);
-                    String string = jsonObject.toString();
-                    String s = JiaMi.jdkBase64Encoder(string);
+                    final String string = jsonObject.toString();
+                    final String s = JiaMi.jdkBase64Encoder(string);
                     HashMap<String, String> map1 = new HashMap<>();
                     map1.put("secret",s);
-                    OkUtils.UploadSJ(WangZhi.TJFFTT, map1, new Callback() {
+                    OkUtils.UploadSJ(WangZhi.XGFPTT, map1, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             Log.e(TAG, "onFailure: "+e.getLocalizedMessage());
@@ -135,10 +152,10 @@ public class TJFPTT extends Activity implements View.OnClickListener {
                     String status = jsonObject.getString("status");
                     String info = jsonObject.getString("info");
                     if ("0".equals(status)){
-                        ToSi.show(TJFPTT.this,info);
+                        ToSi.show(XGFPTT.this,info);
                         finish();
                     }else {
-                        ToSi.show(TJFPTT.this,info);
+                        ToSi.show(XGFPTT.this,info);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -146,5 +163,4 @@ public class TJFPTT extends Activity implements View.OnClickListener {
             }
         }
     };
-
 }

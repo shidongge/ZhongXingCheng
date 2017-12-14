@@ -46,6 +46,7 @@ public class SHDZGLAdapter extends BaseAdapter {
     private String token;
     private String zxcid;
     private String substring;
+    private String isDefault;
 
     public SHDZGLAdapter(Context context, List<SHDZBean.DataBean> list) {
         this.context = context;
@@ -102,10 +103,10 @@ public class SHDZGLAdapter extends BaseAdapter {
         vh.xiangxi.setText(list.get(position).getAddress());
         vh.xingming.setText(list.get(position).getUserName());
         vh.shouji.setText(list.get(position).getMobile());
-        final String isDefault = list.get(position).getIsDefault();
-        if ("0".equals(isDefault)){
+        isDefault = list.get(position).getIsDefault();
+        if ("0".equals(isDefault)) {
             vh.moren_img.setImageResource(R.mipmap.shdzwg);
-        }else {
+        } else {
             vh.moren_img.setImageResource(R.mipmap.shdzyg);
         }
         vh.bianji.setOnClickListener(new View.OnClickListener() {
@@ -116,20 +117,20 @@ public class SHDZGLAdapter extends BaseAdapter {
                 String city = list.get(position).getCity();
                 String district = list.get(position).getDistrict();
                 String mobile = list.get(position).getMobile();
-                String isDefault1 = list.get(position).getIsDefault();
+                isDefault = list.get(position).getIsDefault();
                 String province = list.get(position).getProvince();
                 String zip_code = list.get(position).getZip_code();
                 String userName = list.get(position).getUserName();
                 Intent intent = new Intent(context, XGSHDZ.class);
-                intent.putExtra("dizhiid",id);
-                intent.putExtra("city1",city);
-                intent.putExtra("districe1",district);
-                intent.putExtra("mobile1",mobile);
-                intent.putExtra("isDefault1",isDefault1);
-                intent.putExtra("province1",province);
-                intent.putExtra("zip_code1",zip_code);
-                intent.putExtra("username1",userName);
-                intent.putExtra("address1",address);
+                intent.putExtra("dizhiid", id);
+                intent.putExtra("city1", city);
+                intent.putExtra("districe1", district);
+                intent.putExtra("mobile1", mobile);
+                intent.putExtra("isDefault1", isDefault);
+                intent.putExtra("province1", province);
+                intent.putExtra("zip_code1", zip_code);
+                intent.putExtra("username1", userName);
+                intent.putExtra("address1", address);
                 context.startActivity(intent);
             }
         });
@@ -160,7 +161,7 @@ public class SHDZGLAdapter extends BaseAdapter {
                                 String string = jsonObject.toString();
                                 String s = JiaMi.jdkBase64Encoder(string);
                                 HashMap<String, String> map1 = new HashMap<>();
-                                map1.put("secret",s);
+                                map1.put("secret", s);
                                 OkUtils.UploadSJ(WangZhi.SCHHDZ, map1, new Callback() {
                                     @Override
                                     public void onFailure(Call call, IOException e) {
@@ -184,12 +185,40 @@ public class SHDZGLAdapter extends BaseAdapter {
         vh.moren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String isDefault = list.get(position).getIsDefault();
+                Log.e(TAG, "onClick: "+isDefault );
+                String id = list.get(position).getId();
+                isDefault = list.get(position).getIsDefault();
+                HashMap<String, String> map = new HashMap<>();
+                map.put("user_id", zxcid);
+                map.put("user_token", token);
+                map.put("user_mobile", substring);
+                map.put("id", id);
+                JSONObject jsonObject = new JSONObject(map);
+                String string = jsonObject.toString();
+                String s = JiaMi.jdkBase64Encoder(string);
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put("secret", s);
                 if ("0".equals(isDefault)) {
                     vh.moren_img.setImageResource(R.mipmap.shdzyg);
-                } else {
+                }else {
                     vh.moren_img.setImageResource(R.mipmap.shdzwg);
                 }
+                OkUtils.UploadSJ(WangZhi.SFMR, map1, new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+//                        Log.e(TAG, "onResponse: " + response.body().string());
+                        String string1 = response.body().string();
+                        Message message = hand.obtainMessage();
+                        message.obj=string1;
+                        message.what=100;
+                        hand.sendMessage(message);
+                    }
+                });
             }
         });
         return convertView;
@@ -205,6 +234,23 @@ public class SHDZGLAdapter extends BaseAdapter {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            if (msg.what==100){
+                String str = (String) msg.obj;
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    String info = jsonObject.getString("info");
+                    String status = jsonObject.getString("status");
+                    if ("0".equals(status)) {
+                        ToSi.show(context, info);
+                        EventBus.getDefault().post(new SCSHDZEvent("这是要发送的内容"));
+                        notifyDataSetChanged();
+                    } else {
+                        ToSi.show(context, info);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
             if (msg.what == 200) {
                 String str = (String) msg.obj;
                 try {
@@ -219,7 +265,6 @@ public class SHDZGLAdapter extends BaseAdapter {
                     } else {
                         ToSi.show(context, info);
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

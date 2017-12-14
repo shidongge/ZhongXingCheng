@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -12,7 +11,7 @@
         >
 
         <ImageView
-            android:id="@+id/tjttfp_back"
+            android:id="@+id/xgttfp_back"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:src="@mipmap/fh"
@@ -33,16 +32,16 @@
         <TextView
             android:textSize="18sp"
             android:textColor="#fff"
-            android:id="@+id/tjttfp_baocun"
+            android:id="@+id/xgttfp_baocun"
             android:layout_marginRight="10dp"
             style="@style/zhuti_text"
-            android:text="新增"
+            android:text="保存"
             />
     </LinearLayout>
-    
+
     <EditText
         android:theme="@style/MyEditText"
-        android:id="@+id/tjttfp_name"
+        android:id="@+id/xgttfp_name"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
@@ -50,17 +49,18 @@
         android:hint="请输入发票抬头"
         />
     <EditText
+        android:maxLength="18"
         android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:inputType="number"
-        android:maxLength="18"
         android:theme="@style/MyEditText"
-        android:id="@+id/tjttfp_shibiema"
+        android:id="@+id/xgttfp_shibiema"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="输入纳税人识别码"
         />
+
     <LinearLayout
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
@@ -77,7 +77,7 @@
         <View
             style="@style/xiantiao_zhongjian"/>
         <ImageView
-            android:id="@+id/tjttfp_moren"
+            android:id="@+id/xgttfp_moren"
             android:padding="10dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
