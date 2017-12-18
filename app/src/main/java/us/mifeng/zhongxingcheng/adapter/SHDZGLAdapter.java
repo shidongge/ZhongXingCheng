@@ -224,6 +224,16 @@ public class SHDZGLAdapter extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
+
     class MyViewHorder {
         LinearLayout moren, bianji, shanchu;
         TextView xingming, shouji, sheng, shi, qu, xiangxi;
@@ -259,9 +269,7 @@ public class SHDZGLAdapter extends BaseAdapter {
                     String status = jsonObject.getString("status");
                     if ("0".equals(status)) {
                         ToSi.show(context, info);
-//                        list.remove(list.get(position));
                         EventBus.getDefault().post(new SCSHDZEvent("这是要发送的内容"));
-                        notifyDataSetChanged();
                     } else {
                         ToSi.show(context, info);
                     }

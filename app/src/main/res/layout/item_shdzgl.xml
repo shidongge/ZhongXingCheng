@@ -142,5 +142,7 @@
 
         </LinearLayout>
     </LinearLayout>
+    <View
+        style="@style/xiantiao"/>
 
 </LinearLayout>
