@@ -27,11 +27,13 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img1">
 
                 <TextView
+
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_gravity="bottom"
@@ -42,7 +44,7 @@
 
             <LinearLayout
                 android:id="@+id/spzx_spzx_yihao"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img2"
                 android:orientation="vertical">
@@ -110,7 +112,7 @@
 
             <RelativeLayout
                 android:id="@+id/spzx_spzx_erhao"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img3">
 
@@ -193,7 +195,7 @@
 
             <LinearLayout
                 android:id="@+id/spzx_spzx_sanhao"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img4"
                 android:orientation="vertical">
@@ -261,7 +263,7 @@
 
             <LinearLayout
                 android:id="@+id/spzx_spzx_sihao"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img5"
                 android:orientation="vertical"
@@ -325,15 +327,27 @@
                         android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
-
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/img6" />
+                android:background="@mipmap/img6"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_marginRight="10dp"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="台湾瑰宝-牛樟芝"
+                    />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/spzx_spzx_wuhao"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img7"
                 android:orientation="vertical"
@@ -402,7 +416,7 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/spzx_spzx_liuhao"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/img8"
                 android:orientation="vertical">

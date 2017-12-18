@@ -256,8 +256,8 @@ public class WoDeFragment extends Fragment implements View.OnClickListener {
     };
 
     @Override
-    public void onResume() {
+    public void onStart() {
+        super.onStart();
         initCGGRXX();
-        super.onResume();
     }
 }

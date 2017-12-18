@@ -144,7 +144,6 @@ public class ShangXinPinPai extends Activity implements View.OnClickListener, Ab
                                 String shopId = jsonObject2.getString("shopId");
                                 String goodsMoney = jsonObject2.getString("goodsMoney");
                                 String imgCart = jsonObject2.getString("imgCart");
-                                Log.e(TAG, "handleMessage: "+imgCart );
                                 String goodsMoney_old = jsonObject2.getString("goodsMoney_old");
 
                                 goodsInfoBean.setImgCart(imgCart);

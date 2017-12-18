@@ -161,6 +161,7 @@
         <activity android:name=".activity.XGSHDZ"/>
         <activity android:name=".activity.XGFPTT"/>
         <activity android:name=".activity.HuoDong"/>
+        <activity android:name=".activity.RXPH"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"

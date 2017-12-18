@@ -39,6 +39,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.activity.HuoDong;
+import us.mifeng.zhongxingcheng.activity.RXPH;
 import us.mifeng.zhongxingcheng.activity.ShangXinPinPai;
 import us.mifeng.zhongxingcheng.adapter.ZXSC_ShouYeAdapter;
 import us.mifeng.zhongxingcheng.bean.ADBean;
@@ -71,7 +72,7 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
     private MyListView listView;
     private View inflate;
     private List<Home_ShangPinBean> list;
-    private LinearLayout sxpp, fxlq;
+    private LinearLayout sxpp, fxlq,rxph;
     private SliderLayout slider;
     private VerticalTextview paomadeng;
     private ArrayList<String> titleList = new ArrayList<String>();
@@ -273,9 +274,11 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
         ImageView back = (ImageView) inflate.findViewById(R.id.zxsc_home_back);
         sxpp = (LinearLayout) inflate.findViewById(R.id.fragment_zxsc_shouye_sxpp);
         fxlq = (LinearLayout) inflate.findViewById(R.id.fragment_zxsc_shouye_fxlq);
+        rxph = (LinearLayout) inflate.findViewById(R.id.fragment_zxsc_shouye_rxph);
         slider = (SliderLayout) inflate.findViewById(R.id.slider);
         sxpp.setOnClickListener(this);
         fxlq.setOnClickListener(this);
+        rxph.setOnClickListener(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -297,6 +300,9 @@ public class ZXSC_ShouYeFragment extends Fragment implements View.OnClickListene
             case R.id.fragment_zxsc_shouye_fxlq:
                 WXEntryActivity activity = new WXEntryActivity();
                 activity.fenxiang(getActivity(), mTargetScene1);
+                break;
+            case R.id.fragment_zxsc_shouye_rxph:
+                startActivity(new Intent(getActivity(), RXPH.class));
                 break;
             default:
                 break;
