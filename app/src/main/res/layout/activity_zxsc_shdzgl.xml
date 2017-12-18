@@ -42,7 +42,12 @@
     </RelativeLayout>
 
     <View style="@style/xiantiao" />
-
+    <ListView
+        android:listSelector="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/zxsc_shdzgl_lv"
+        ></ListView>
 
 
 </LinearLayout>

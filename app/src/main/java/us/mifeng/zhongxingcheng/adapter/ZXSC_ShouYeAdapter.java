@@ -9,15 +9,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.bean.Home_ShangPinBean;
 import us.mifeng.zhongxingcheng.dianpu.DianPuActivity;
 import us.mifeng.zhongxingcheng.utils.ToSi;
-import us.mifeng.zhongxingcheng.utils.WangZhi;
 import us.mifeng.zhongxingcheng.wpxq_ceshi.WPXQ_CeSi;
 
 
@@ -75,13 +72,13 @@ public class ZXSC_ShouYeAdapter extends BaseAdapter  {
         }else {
             vh = (MyViewHorder) convertView.getTag();
         }
-        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(vh.img);
-        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(vh.oneimg);
-        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(vh.twoimg);
-        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(vh.threeimg);
-        vh.onetext.setText(list.get(position).getDesc());
-        vh.twotext.setText(list.get(position).getDesc());
-        vh.threetext.setText(list.get(position).getDesc());
+//        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(vh.img);
+//        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(vh.oneimg);
+//        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(vh.twoimg);
+//        Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgTop()).into(vh.threeimg);
+//        vh.onetext.setText(list.get(position).getDesc());
+//        vh.twotext.setText(list.get(position).getDesc());
+//        vh.threetext.setText(list.get(position).getDesc());
         vh.one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

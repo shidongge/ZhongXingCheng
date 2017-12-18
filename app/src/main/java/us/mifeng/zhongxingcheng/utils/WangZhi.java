@@ -16,7 +16,7 @@ public class WangZhi {
     public static final String GWZX = ZHUJI + "shop/shop_search/k_%25E7%25BA%25A2%25E9%2585%2592%2520%257C%2520%25E6%25B4%258B%25E9%2585%2592/t_1";//购物中心地址
     public static final String XWZX = "http://m.taogt.cn/index.php?m=mobile&c=index&a=show";//新闻中心地址
     public static final String HAOYOU = WAIWANG + "app/myFriend";//好友列表
-    public static final String HOME_DIANPU = ZHUJI + "app/shop_index";
+    public static final String HOME_DIANPU = WAIWANG + "app/shop_index";
     public static final String WODE = ZHUJI + "app/userInfo";//我的fragment的信息
     public static final String ZHAOPIAN = CHENGGE + "app/imageUpload";//图片
     //http://47.94.144.186:8080/uploads/userShops/20170814/1502712437111.png 首页图片
@@ -38,16 +38,17 @@ public class WangZhi {
 
     //杨雅方地址
     public static final String YYF = "http://192.168.1.120:8082/";
-    public static final String TJSHDZ = YYF+"Api/addReceiptAddress";//添加收货地址
-    public static final String SHDZLB = YYF+"Api/getReceiptAddressList";//收货地址列表
-    public static final String SCHHDZ = YYF+"Api/delReceiptAddress";//删除收货地址
-    public static final String XGSHDZ = YYF+"Api/updReceiptAddress";//修改收货地址
-    public static final String SFMR = YYF+"Api/setIsDefault";//设置是否为默认收货地址
-    public static final String TJFFTT = YYF+"Api/addInvoiceInfo";//申请开发票
-    public static final String FPGLLB = YYF+"Api/getInvoiceInfoList";//发票管理列表
-    public static final String SCTTFP = YYF+"Api/delInvoiceInfo";//删除发票信息
-    public static final String XGFPTT = YYF+"Api/updInvoiceInfo";//修改发票抬头
-    public static final String GWGG = YYF+"Api/getStationMessageList";//官网公告
-
+    public static final String TJSHDZ = YYF+"Api_My/addReceiptAddress";//添加收货地址
+    public static final String SHDZLB = YYF+"Api_My/getReceiptAddressList";//收货地址列表
+    public static final String SCHHDZ = YYF+"Api_My/delReceiptAddress";//删除收货地址
+    public static final String XGSHDZ = YYF+"Api_My/updReceiptAddress";//修改收货地址
+    public static final String SFMR = YYF+"Api_My/setIsDefault";//设置是否为默认收货地址
+    public static final String TJFFTT = YYF+"Api_My/addInvoiceInfo";//申请开发票
+    public static final String FPGLLB = YYF+"Api_My/getInvoiceInfoList";//发票管理列表
+    public static final String SCTTFP = YYF+"Api_My/delInvoiceInfo";//删除发票信息
+    public static final String XGFPTT = YYF+"Api_My/updInvoiceInfo";//修改发票抬头
+    public static final String GWGG = YYF+"Api_Find/getStationMessageList";//官网公告
+    public static final String SYDB = YYF+"Api_Index/getIndexTopBanner";//首页顶部banner图
+    public static final String SXPP = YYF+"Api_Shop/getNewBrand";//上新品牌
 
 }

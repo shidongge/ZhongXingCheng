@@ -3,11 +3,10 @@ package us.mifeng.zhongxingcheng.bean;
 import java.util.List;
 
 /**
- * Created by shido on 2017/11/2.
+ * Created by shido on 2017/12/15.
  */
 
-public class Home_ShangPinBean {
-
+public class SXPPBean {
 
     /**
      * info : 成功

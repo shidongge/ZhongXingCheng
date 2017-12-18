@@ -201,28 +201,28 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
                 Intent intent1 = new Intent(getActivity(), DianPuActivity.class);
                 intent1.putExtra("dianpu",id0);
                 startActivity(intent1);
-                Log.e(TAG, "onClick: 000" + id0);
+
                 break;
             case R.id.shouye_erhao:
                 String id1 = shangpu_list.get(1).getId();
                 Intent intent2 = new Intent(getActivity(), DianPuActivity.class);
                 intent2.putExtra("dianpu",id1);
                 startActivity(intent2);
-                Log.e(TAG, "onClick: 111" + id1);
+
                 break;
             case R.id.shouye_sanhao:
                 String id2 = shangpu_list.get(2).getId();
                 Intent intent3 = new Intent(getActivity(), DianPuActivity.class);
                 intent3.putExtra("dianpu",id2);
                 startActivity(intent3);
-                Log.e(TAG, "onClick:222 " + id2);
+
                 break;
             case R.id.shouye_sihao:
                 String id3 = shangpu_list.get(3).getId();
                 Intent intent4 = new Intent(getActivity(), DianPuActivity.class);
                 intent4.putExtra("dianpu",id3);
                 startActivity(intent4);
-                Log.e(TAG, "onClick: 333" + id3);
+
                 break;
             default:
                 break;
@@ -259,7 +259,7 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
                                 }
                             } else if (i == 1) {
 
-                                Log.e(TAG, "handleMessage: " + "我是二号");
+
                                 if ("".equals(imgTop)){
 
                                 }else {
@@ -305,7 +305,6 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
 
                         String imgTop = jsonObject1.getString("imgCart");
                         String goodsMoney = jsonObject1.getString("goodsMoney");
-                        Log.e(TAG, "handleMessage: "+imgTop );
                         Home_ShangPingCGBean.DataBean.GoodsInfoBean home_shangPinBean = new Home_ShangPingCGBean.DataBean.GoodsInfoBean();
                         home_shangPinBean.setGoodsMoney1(goodsMoney1);
                         home_shangPinBean.setShortDesc(shortDesc);
@@ -326,7 +325,7 @@ public class ShouYeFragment extends Fragment implements View.OnClickListener, Ad
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Home_ShangPingCGBean.DataBean.GoodsInfoBean bean = (Home_ShangPingCGBean.DataBean.GoodsInfoBean) parent.getAdapter().getItem(position);
         String id1 = bean.getId();
-        Log.e(TAG, "onItemClick: " + id1);
+
         Intent intent = new Intent(getActivity(), WPXQ_CeSi.class);
         intent.putExtra("id", id1);
         startActivity(intent);

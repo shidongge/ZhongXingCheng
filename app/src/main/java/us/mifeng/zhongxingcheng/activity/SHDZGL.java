@@ -50,9 +50,7 @@ public class SHDZGL extends Activity implements View.OnClickListener {
     private TextView xz;
     private ImageView back;
     private ListView lv;
-    private String token;
-    private String zxcid;
-    private String substring;
+    private String token,zxcid,substring;
     private SHDZGLAdapter shdzglAdapter;
 
     @Override

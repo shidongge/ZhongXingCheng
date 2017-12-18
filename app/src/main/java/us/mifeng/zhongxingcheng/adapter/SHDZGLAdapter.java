@@ -182,7 +182,7 @@ public class SHDZGLAdapter extends BaseAdapter {
                 alert.show();
             }
         });
-        vh.moren.setOnClickListener(new View.OnClickListener() {
+        vh.moren_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "onClick: "+isDefault );

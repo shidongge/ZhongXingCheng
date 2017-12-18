@@ -72,7 +72,6 @@ public class QianDao extends Activity {
         });
 
         qiandao.loadUrl(url);
-        Log.e(TAG, "initView: " + qiandao.getUrl());
     }
 
     @Override

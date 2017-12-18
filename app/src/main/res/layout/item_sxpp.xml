@@ -17,8 +17,7 @@
             <ImageView
                 android:id="@+id/item_sxpp_logo"
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:src="@mipmap/tjxpy" />
+                android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -31,7 +30,6 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="法国梧桐堡"
                     android:textSize="16sp" />
 
                 <LinearLayout
@@ -63,12 +61,28 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/item_sxpp_audeType1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:background="#dbdbdb"
-                android:text="企业" />
+                android:background="#dbdbdb" />
+
+            <TextView
+                android:id="@+id/item_sxpp_audeType2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#dbdbdb" />
+
+            <TextView
+                android:id="@+id/item_sxpp_audeType3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#dbdbdb" />
 
             <View style="@style/xiantiao_zhongjian" />
 
@@ -84,39 +98,90 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <View style="@style/xiantiao"
-            android:layout_marginRight="10dp"
+        <View
+            style="@style/xiantiao"
             android:layout_marginLeft="10dp"
-            />
+            android:layout_marginRight="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:padding="5dp"
-                android:id="@+id/item_sxpp_img1"
+            <RelativeLayout
+                android:layout_marginRight="2dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@mipmap/tx3" />
+                android:layout_weight="1">
 
-            <ImageView
-                android:padding="5dp"
-                android:id="@+id/item_sxpp_img2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@mipmap/tx3" />
+                <ImageView
+                    android:id="@+id/item_sxpp_img1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                   />
 
-            <ImageView
-                android:padding="5dp"
-                android:id="@+id/item_sxpp_img3"
+                <TextView
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:id="@+id/item_sxpp_text1"
+                    android:textSize="16sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginRight="2dp"
+                android:layout_marginLeft="2dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@mipmap/tx3" />
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/item_sxpp_img2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                 />
+
+                <TextView
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:id="@+id/item_sxpp_text2"
+                    android:textSize="16sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="2dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/item_sxpp_img3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    />
+
+                <TextView
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:id="@+id/item_sxpp_text3"
+                    android:textSize="16sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 
