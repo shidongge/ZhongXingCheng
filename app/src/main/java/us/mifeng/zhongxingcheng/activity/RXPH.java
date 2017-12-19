@@ -27,7 +27,6 @@ import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.adapter.RXPHAdapter;
 import us.mifeng.zhongxingcheng.bean.RXPHBean;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
-import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
 /**
@@ -99,10 +98,10 @@ public class RXPH extends Activity implements AbsListView.OnScrollListener {
                         JSONArray data = jsonObject.getJSONArray("data");
                         String page = jsonObject.getString("page");
                         String page_count = jsonObject.getString("page_count");
-                        if (page.equals(page_count)){
-                            mBar.setVisibility(View.GONE);
-                            ToSi.show(RXPH.this,"没有更多数据了");
-                        }else {
+//                        if (page.equals(page_count)){
+//                            mBar.setVisibility(View.GONE);
+//                            ToSi.show(RXPH.this,"没有更多数据了");
+//                        }else {
                             for (int i = 0;i<data.length();i++){
                                 JSONObject jsonObject1 = data.getJSONObject(i);
                                 String id = jsonObject1.getString("id");
@@ -152,7 +151,7 @@ public class RXPH extends Activity implements AbsListView.OnScrollListener {
                                     }
                                 });
                             }
-                        }
+//                        }
 
                     }
                 } catch (JSONException e) {

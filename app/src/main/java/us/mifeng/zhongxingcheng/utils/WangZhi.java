@@ -51,4 +51,5 @@ public class WangZhi {
     public static final String SYDB = YYF+"Api_Index/getIndexTopBanner";//首页顶部banner图
     public static final String SXPP = YYF+"Api_Shop/getNewBrand";//上新品牌
     public static final String RXPH = YYF+"Api_Shop/getTopSelling";//热销排行列表
+    public static final String SPFL = YYF+"Api_Shop/getGoodsClass/";//中星商场分类
 }

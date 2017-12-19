@@ -46,7 +46,7 @@
 
         <ListView
             android:gravity="center"
-            android:id="@+id/mLv"
+            android:id="@+id/zxsc_fenlei_mLv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -60,10 +60,10 @@
             android:layout_height="match_parent"/>
         <GridView
             android:numColumns="3"
-            android:id="@+id/branch_mGv"
+            android:id="@+id/zxsc_fenlei__mGv"
             android:layout_weight="2"
             android:layout_width="0dp"
-            android:layout_height="match_parent"></GridView>
+            android:layout_height="match_parent"/>
 
 
     </LinearLayout>
