@@ -92,7 +92,6 @@ public class SXPPAdapter extends BaseAdapter {
         Glide.with(context).load(WangZhi.DIANPU+list.get(position).getImgIcon()).into(vh.logo);
         final List<SXPPBean.DataBean.GoodsInfoBean> goodsInfo = list.get(position).getGoodsInfo();
         if (goodsInfo != null) {
-            Log.e(TAG, "getView: "+goodsInfo.size() );
             for (int i = 0; i < goodsInfo.size(); i++) {
                 final SXPPBean.DataBean.GoodsInfoBean goodsInfoBean = goodsInfo.get(i);
                 if (i == 0) {

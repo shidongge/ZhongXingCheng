@@ -27,6 +27,7 @@ import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.adapter.SXPPAdapter;
 import us.mifeng.zhongxingcheng.bean.SXPPBean;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.ToSi;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
@@ -48,8 +49,8 @@ public class ShangXinPinPai extends Activity implements View.OnClickListener, Ab
     private int index = 0;
     private SXPPAdapter sxppAdapter;
     private int lastVisIdnex;
-    private String page;
-    private String page_count;
+    private int page;
+    private int page_count;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,13 @@ public class ShangXinPinPai extends Activity implements View.OnClickListener, Ab
     private void initList() {
         HashMap<String, String> map = new HashMap<>();
         map.put("page", "" + index++);
-        OkUtils.UploadSJ(WangZhi.SXPP, map, new Callback() {
+        JSONObject jsonObject = new JSONObject(map);
+        String string = jsonObject.toString();
+        String s = JiaMi.jdkBase64Encoder(string);
+        HashMap<String, String> map1 = new HashMap<>();
+        map1.put("secret",s);
+
+        OkUtils.UploadSJ(WangZhi.SXPP, map1, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
@@ -109,9 +116,11 @@ public class ShangXinPinPai extends Activity implements View.OnClickListener, Ab
                 String str = (String) msg.obj;
                 try {
                     JSONObject jsonObject = new JSONObject(str);
-                    page = jsonObject.getString("page");
-                    page_count = jsonObject.getString("page_count");
-                    if (page_count.equals(page)){
+                    page = jsonObject.getInt("page");
+                    Log.e(TAG, "handleMessage: page"+page );
+                    page_count = jsonObject.getInt("page_count");
+                    Log.e(TAG, "handleMessage: page_count"+page_count );
+                    if (page_count==page){
                         mBar.setVisibility(View.GONE);
                         ToSi.show(ShangXinPinPai.this,"没有更多数据了");
                     }else {

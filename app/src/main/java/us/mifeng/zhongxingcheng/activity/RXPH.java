@@ -26,6 +26,7 @@ import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
 import us.mifeng.zhongxingcheng.adapter.RXPHAdapter;
 import us.mifeng.zhongxingcheng.bean.RXPHBean;
+import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
 import us.mifeng.zhongxingcheng.utils.WangZhi;
 
@@ -61,7 +62,12 @@ public class RXPH extends Activity implements AbsListView.OnScrollListener {
     private void initLianWang() {
         HashMap<String, String> map = new HashMap<>();
         map.put("page",""+index++);
-        OkUtils.UploadSJ(WangZhi.RXPH, map, new Callback() {
+        JSONObject jsonObject = new JSONObject(map);
+        String string = jsonObject.toString();
+        String s = JiaMi.jdkBase64Encoder(string);
+        HashMap<String, String> map1 = new HashMap<>();
+        map1.put("secret",s);
+        OkUtils.UploadSJ(WangZhi.RXPH, map1, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, "onFailure: "+e.getLocalizedMessage());
@@ -111,21 +117,13 @@ public class RXPH extends Activity implements AbsListView.OnScrollListener {
                                 String goodsName = jsonObject1.getString("goodsName");
 
                                 String shorDesc = jsonObject1.getString("shortDesc");
-                                Log.e(TAG, "handleMessage: "+shorDesc );
                                 String retailPrice = jsonObject1.getString("retailPrice");
-                                Log.e(TAG, "handleMessage: "+retailPrice );
                                 String goodsMoney = jsonObject1.getString("goodsMoney");
-                                Log.e(TAG, "handleMessage: "+goodsMoney );
                                 String goodsMoney1 = jsonObject1.getString("goodsMoney1");
-                                Log.e(TAG, "handleMessage: "+goodsMoney1 );
                                 String sellCount = jsonObject1.getString("sellCount");
-                                Log.e(TAG, "handleMessage: "+sellCount );
                                 String imgCart = jsonObject1.getString("imgCart");
-                                Log.e(TAG, "handleMessage: "+imgCart );
                                 String freight = jsonObject1.getString("freight");
-                                Log.e(TAG, "handleMessage: "+freight );
                                 String imgUrl = jsonObject1.getString("imgUrl");
-                                Log.e(TAG, "handleMessage: "+imgUrl );
                                 RXPHBean.DataBean dataBean = new RXPHBean.DataBean();
                                 dataBean.setFreight(freight);
                                 dataBean.setId(id);
