@@ -78,6 +78,27 @@
             android:layout_height="30dp"
             android:orientation="horizontal">
 
+            <LinearLayout
+                android:id="@+id/item_shdzgl_moren"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/item_shdzgl_moren_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/shdzwg"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="默认收货地址" />
+            </LinearLayout>
+
 
             <View style="@style/xiantiao_zhongjian" />
 

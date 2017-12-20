@@ -1,6 +1,8 @@
 package us.mifeng.zhongxingcheng.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,7 +30,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import us.mifeng.zhongxingcheng.R;
-import us.mifeng.zhongxingcheng.adapter.SHDZGLAdapter;
+import us.mifeng.zhongxingcheng.adapter.ZXSC_SHDZGLAdapter;
 import us.mifeng.zhongxingcheng.base.SHDZBean;
 import us.mifeng.zhongxingcheng.utils.JiaMi;
 import us.mifeng.zhongxingcheng.utils.OkUtils;
@@ -48,15 +50,20 @@ public class ZXSC_SHDZGL extends Activity implements View.OnClickListener {
 
     private TextView xz;
     private ImageView back;
-    private String token,zxcid,substring;
+    private String token, zxcid, substring;
     private List<SHDZBean.DataBean> list;
     private static final String TAG = "ZXSC_SHDZGL";
     private ListView lv;
-    private SHDZGLAdapter shdzglAdapter;
+    private ZXSC_SHDZGLAdapter shdzglAdapter;
+    private AlertDialog.Builder builder;
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zxsc_shdzgl);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.show();
         EventBus.getDefault().register(this);
         SharedUtils sharedUtils = new SharedUtils();
         String id = sharedUtils.getShared("id", ZXSC_SHDZGL.this);
@@ -79,7 +86,7 @@ public class ZXSC_SHDZGL extends Activity implements View.OnClickListener {
         String string1 = jsonObject.toString();
         String s = JiaMi.jdkBase64Encoder(string1);
         HashMap<String, String> map1 = new HashMap<>();
-        map1.put("secret",s);
+        map1.put("secret", s);
         OkUtils.UploadSJ(WangZhi.SHDZLB, map1, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -109,10 +116,10 @@ public class ZXSC_SHDZGL extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.zxsc_shdzgl_xz:
-                Intent intent = new Intent(ZXSC_SHDZGL.this, XZSHDZ.class);
-                intent.putExtra("xzshdz","新增收货地址");
+                Intent intent = new Intent(ZXSC_SHDZGL.this, ZXSC_XZSHDZ.class);
+                intent.putExtra("xzshdz", "新增收货地址");
                 startActivity(intent);
                 break;
             case R.id.zxsc_shdzgl_back:
@@ -122,6 +129,7 @@ public class ZXSC_SHDZGL extends Activity implements View.OnClickListener {
                 break;
         }
     }
+
     Handler hand = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -132,6 +140,7 @@ public class ZXSC_SHDZGL extends Activity implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(str);
                     String status = jsonObject.getString("status");
                     String info = jsonObject.getString("info");
+                    progressDialog.dismiss();
                     if ("0".equals(status)) {
                         JSONArray data = jsonObject.getJSONArray("data");
                         for (int i = 0; i < data.length(); i++) {
@@ -164,15 +173,14 @@ public class ZXSC_SHDZGL extends Activity implements View.OnClickListener {
                         }
 
                         if (shdzglAdapter == null) {
-                            shdzglAdapter = new SHDZGLAdapter(ZXSC_SHDZGL.this, list);
+                            shdzglAdapter = new ZXSC_SHDZGLAdapter(ZXSC_SHDZGL.this, list);
                             lv.setAdapter(shdzglAdapter);
                         } else {
                             shdzglAdapter.notifyDataSetChanged();
                         }
 
-                    }
-                    else {
-                        ToSi.show(ZXSC_SHDZGL.this,info);
+                    } else {
+                        ToSi.show(ZXSC_SHDZGL.this, info);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -180,12 +188,17 @@ public class ZXSC_SHDZGL extends Activity implements View.OnClickListener {
             }
         }
     };
+
     @Override
     protected void onRestart() {
         super.onRestart();
+        progressDialog.show();
         list.clear();
         initLianWang();
+
+
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void MessageEvent(SCSHDZEvent event) {
         list.clear();

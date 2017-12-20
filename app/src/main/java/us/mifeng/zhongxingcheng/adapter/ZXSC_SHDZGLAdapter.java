@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,7 +39,7 @@ import us.mifeng.zhongxingcheng.utils.WangZhi;
  * Created by shido on 2017/12/13.
  */
 
-public class SHDZGLAdapter extends BaseAdapter {
+public class ZXSC_SHDZGLAdapter extends BaseAdapter {
     private static final String TAG = "SHDZGLAdapter";
     private List<SHDZBean.DataBean> list;
     private Context context;
@@ -47,7 +48,7 @@ public class SHDZGLAdapter extends BaseAdapter {
     private String substring;
     private String isDefault;
 
-    public SHDZGLAdapter(Context context, List<SHDZBean.DataBean> list) {
+    public ZXSC_SHDZGLAdapter(Context context, List<SHDZBean.DataBean> list) {
         this.context = context;
         this.list = list;
         SharedUtils sharedUtils = new SharedUtils();
@@ -81,7 +82,8 @@ public class SHDZGLAdapter extends BaseAdapter {
         final MyViewHorder vh;
         if (convertView == null) {
             vh = new MyViewHorder();
-            convertView = View.inflate(context, R.layout.item_shdzgl, null);
+            convertView = View.inflate(context, R.layout.item_zxsc_shdzgl, null);
+            vh.moren = (LinearLayout) convertView.findViewById(R.id.item_shdzgl_moren);
             vh.bianji = (LinearLayout) convertView.findViewById(R.id.item_shdzgl_bianji);
             vh.shanchu = (LinearLayout) convertView.findViewById(R.id.item_shdzgl_shanchu);
             vh.xingming = (TextView) convertView.findViewById(R.id.item_shdzgl_xingming);
@@ -89,6 +91,7 @@ public class SHDZGLAdapter extends BaseAdapter {
             vh.sheng = (TextView) convertView.findViewById(R.id.item_shdzgl_sheng);
             vh.shi = (TextView) convertView.findViewById(R.id.item_shdzgl_shi);
             vh.qu = (TextView) convertView.findViewById(R.id.item_shdzgl_qu);
+            vh.moren_img = (ImageView) convertView.findViewById(R.id.item_shdzgl_moren_img);
             vh.xiangxi = (TextView) convertView.findViewById(R.id.item_shdzgl_xiangxi);
             convertView.setTag(vh);
         } else {
@@ -101,7 +104,11 @@ public class SHDZGLAdapter extends BaseAdapter {
         vh.xingming.setText(list.get(position).getUserName());
         vh.shouji.setText(list.get(position).getMobile());
         isDefault = list.get(position).getIsDefault();
-
+        if ("0".equals(isDefault)) {
+            vh.moren_img.setImageResource(R.mipmap.shdzwg);
+        } else {
+            vh.moren_img.setImageResource(R.mipmap.shdzyg);
+        }
         vh.bianji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,9 +182,45 @@ public class SHDZGLAdapter extends BaseAdapter {
                 alert.show();
             }
         });
-        final String id = list.get(position).getId();
-        isDefault = list.get(position).getIsDefault();
 
+        vh.moren_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = list.get(position).getId();
+                isDefault = list.get(position).getIsDefault();
+                HashMap<String, String> map = new HashMap<>();
+                map.put("user_id", zxcid);
+                map.put("user_token", token);
+                map.put("user_mobile", substring);
+                map.put("id", id);
+                JSONObject jsonObject = new JSONObject(map);
+                String string = jsonObject.toString();
+                String s = JiaMi.jdkBase64Encoder(string);
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put("secret", s);
+                if ("0".equals(isDefault)) {
+                    vh.moren_img.setImageResource(R.mipmap.shdzyg);
+                } else {
+                    vh.moren_img.setImageResource(R.mipmap.shdzwg);
+                }
+                OkUtils.UploadSJ(WangZhi.SFMR, map1, new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+//                        Log.e(TAG, "onResponse: " + response.body().string());
+                        String string1 = response.body().string();
+                        Message message = hand.obtainMessage();
+                        message.obj = string1;
+                        message.what = 100;
+                        hand.sendMessage(message);
+                    }
+                });
+            }
+        });
         return convertView;
     }
 
@@ -194,13 +237,30 @@ public class SHDZGLAdapter extends BaseAdapter {
     class MyViewHorder {
         LinearLayout moren, bianji, shanchu;
         TextView xingming, shouji, sheng, shi, qu, xiangxi;
+        ImageView moren_img;
     }
 
     Handler hand = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
+            if (msg.what == 100) {
+                String str = (String) msg.obj;
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    String info = jsonObject.getString("info");
+                    String status = jsonObject.getString("status");
+                    if ("0".equals(status)) {
+                        ToSi.show(context, info);
+                        EventBus.getDefault().post(new SCSHDZEvent("这是要发送的内容"));
+                        notifyDataSetChanged();
+                    } else {
+                        ToSi.show(context, info);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
             if (msg.what == 200) {
                 String str = (String) msg.obj;
                 try {

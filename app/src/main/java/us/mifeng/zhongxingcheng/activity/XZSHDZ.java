@@ -159,7 +159,7 @@ public class XZSHDZ extends Activity implements View.OnClickListener {
                     String s = JiaMi.jdkBase64Encoder(string);
                     HashMap<String, String> map1 = new HashMap<>();
                     map1.put("secret",s);
-                    OkUtils.UploadSJ(WangZhi.TJSHDZ, map1, new Callback() {
+                    OkUtils.UploadSJ(WangZhi.YGTJSHDZ, map1, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             Log.e(TAG, "onFailure: " + e.getLocalizedMessage());

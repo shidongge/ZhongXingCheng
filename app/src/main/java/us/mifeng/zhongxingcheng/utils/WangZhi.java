@@ -52,4 +52,6 @@ public class WangZhi {
     public static final String SXPP = YYF+"Api_Shop/getNewBrand";//上新品牌
     public static final String RXPH = YYF+"Api_Shop/getTopSelling";//热销排行列表
     public static final String SPFL = YYF+"Api_Shop/getGoodsClass/";//中星商场分类
+    //一个收获地址
+    public static final String YGTJSHDZ = YYF+"Api_My/addOneReceiptAddress";//添加收货地址
 }
