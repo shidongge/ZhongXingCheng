@@ -19,18 +19,20 @@ public class GoodsInfoWebFragment extends Fragment {
     public WebView wv_detail;
     private WebSettings webSettings;
     private LayoutInflater inflater;
+    private String id;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.inflater = inflater;
         View rootView = inflater.inflate(R.layout.fragment_item_info_web, null);
+        id = getActivity().getIntent().getStringExtra("id");
         initWebView(rootView);
         return rootView;
     }
 
     public void initWebView(View rootView) {
-        String url = "http://m.okhqb.com/item/description/1000334264.html?fromApp=true";
+        String url = "http://192.168.1.123:1002/shop/appShopGoodsInfo?goodsId="+id;
         wv_detail = (WebView) rootView.findViewById(R.id.wv_detail);
         wv_detail.setFocusable(false);
         wv_detail.loadUrl(url);

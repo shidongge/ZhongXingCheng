@@ -3,6 +3,7 @@ package us.mifeng.zhongxingcheng.wpxq_ceshi;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,21 +19,24 @@ import us.mifeng.zhongxingcheng.R;
  */
 public class GoodsDetailWebFragment extends Fragment {
     public WebView wv_detail;
-
+    private static final String TAG = "GoodsDetailWebFragment";
     private WebSettings webSettings;
     private LayoutInflater inflater;
+    private String id;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.inflater = inflater;
         View rootView = inflater.inflate(R.layout.fragment_item_detail_web, null);
+        id = getActivity().getIntent().getStringExtra("id");
+        Log.e(TAG, "onCreateView: "+id );
         initWebView(rootView);
         return rootView;
     }
 
     public void initWebView(View rootView) {
-        String url = "http://m.okhqb.com/item/description/1000334264.html?fromApp=true";
+        String url = "http://192.168.1.123:1002/shop/appShopGoodsInfo?goodsId="+id;
         wv_detail = (WebView) rootView.findViewById(R.id.wv_detail);
         wv_detail.setFocusable(false);
         wv_detail.loadUrl(url);

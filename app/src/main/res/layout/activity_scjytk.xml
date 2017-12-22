@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--商城交易条款特别提示界面-->
+
+    <LinearLayout
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/aihao_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/fhh"
+            android:padding="10dp"/>
+        <TextView
+            android:textSize="18sp"
+            style="@style/zhuti_text"
+            android:text="商城交易条款特别提示"
+            />
+
+    </LinearLayout>
+    <View
+        style="@style/xiantiao"
+        />
+    <TextView
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:textSize="16sp"
+        android:text="1.如您购买的商品在规定时间内出现国家法律所规定的性能规章或商品质量问题，需要返修/退换货时，请您在商城中提交返修/胡·退换货申请，申请单审核通过后，按照提示信息将物品已普通快递（顺丰，EMS，到付除外）对的方式寄回本商城或卖家售后，相关的邮寄运费将以我的余额的形式返还到您的商城账户中。如未提交返修/退换货申请或未通过审核而将商品寄回，则本商城或卖家有权拒绝您的相关申请。"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:paddingRight="5dp"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2.我们保证出货时商品外包装的完好无缺。请您在收到货物时当场仔细检查发票及货品与送货单的商品是否一致，如果发现商品缺少或已破损等情况，请当场即货品与送货单的商品是否一致，如果发现商品缺少或已破损等情况，请当场即配送人员还在现场时与我司客服部联系；如果发现邮寄包装破损，货物在运输中破损等情况，请当场指出并拒收，拒收后请致电我司客服，如您已签收或他人代为签收，则视为商品外包装，商品数量及内容无误，我司将无法受理。电子类商品如手机，相机，笔记本等产品请您在确认外观无损的情况下开机试用，如开机试用后，发现外观问题将无法办理"
+        />
+
+</LinearLayout>

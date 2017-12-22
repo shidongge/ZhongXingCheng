@@ -134,7 +134,11 @@
         <activity android:name=".activity.TJFPTT" />
         <activity android:name=".activity.ZhiFu" />
         <activity android:name=".activity.XinWen_NeiRong" />
-
+        <activity android:name=".activity.SCJGSM"/>
+        <activity android:name=".activity.JYTK"/>
+        <activity android:name=".activity.GMLC"/>
+        <activity android:name=".activity.RHFK"/>
+        <activity android:name=".activity.ZFSB"/>
         <activity
             android:name=".activity.ChaXunDD"
             android:theme="@style/StyledIndicators" />

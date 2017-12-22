@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/aihao_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/fhh"
+            android:padding="10dp"/>
+        <TextView
+            android:textSize="18sp"
+            style="@style/zhuti_text"
+            android:text="商城价格说明"
+            />
+        <View
+            style="@style/xiantiao_zhongjian"
+            />
+    </LinearLayout>
+    <View
+        style="@style/xiantiao"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="0.03">
+        <TextView
+            android:textSize="16sp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="118dp"
+            android:text="1.划线价.参考价：商品展示的划线价或参考价可能是品牌专柜价，商品吊牌价或由品牌供应商提供的正品零售价(如厂商指导价.建议零售价等)或该商品在本商城曾经展示获得销售价格;由于地区，时间的差异性和市场行情波动，品牌专柜标价，商品吊牌价格等可能会与您购物时展示的不一致，该价格仅供您参考"
+            android:paddingRight="5dp"
+            />
+
+
+
+    </LinearLayout>
+    <TextView
+        android:paddingRight="5dp"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="2.促销价:如无特殊说明，促销价是销售商在参考价基础上给予的优惠价格，如有疑问您可在够买前与客服联系"
+        android:layout_weight="0.04" />
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="3.价格异常：因可能存在的系统缓存，页面更新等不确定性情况下，导致价格显示异常，商品具体售价请依照订单结算也价格为准。如您发现异常情况出现，建议您在购买前先联系销售商咨询，以便您顺利购物"
+        />
+
+
+</LinearLayout>

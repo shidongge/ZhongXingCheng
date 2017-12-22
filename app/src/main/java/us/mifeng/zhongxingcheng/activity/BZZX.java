@@ -1,6 +1,7 @@
 package us.mifeng.zhongxingcheng.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -16,86 +17,65 @@ import us.mifeng.zhongxingcheng.R;
  */
 
 /**
- *帮助中心的界面
+ * 帮助中心的界面
  */
 public class BZZX extends Activity implements View.OnClickListener {
 
-    private LinearLayout tixian,kuoda,huiyuan,dizhi,renzheng,bangding;
+    private LinearLayout liucheng, jiage, tiaokuan, fukuan, shibai;
     private ImageView back;
     private String bangzhu;
     private TextView title;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bangzhu = getIntent().getStringExtra("bangzhu");
         setContentView(R.layout.activity_bzzx);
         initView();
     }
 
     private void initView() {
-        tixian = (LinearLayout) findViewById(R.id.bz_tixian);
-        kuoda = (LinearLayout) findViewById(R.id.bz_kuoda);
-        huiyuan = (LinearLayout) findViewById(R.id.bz_huiyuan);
-        dizhi = (LinearLayout) findViewById(R.id.bz_dizhi);
-        renzheng = (LinearLayout) findViewById(R.id.bz_renzheng);
-        back = (ImageView) findViewById(R.id.title_back);
-//        tixian.setOnClickListener(this);
-//        kuoda.setOnClickListener(this);
-//        huiyuan.setOnClickListener(this);
-//        dizhi.setOnClickListener(this);
-//        renzheng.setOnClickListener(this);
-//        bangding.setOnClickListener(this);
+        liucheng = (LinearLayout) findViewById(R.id.bz_liucheng);
+        jiage = (LinearLayout) findViewById(R.id.bz_jiage);
+        tiaokuan = (LinearLayout) findViewById(R.id.bz_tiaokuan);
+        fukuan = (LinearLayout) findViewById(R.id.bz_fukuan);
+        shibai = (LinearLayout) findViewById(R.id.bz_shibai);
+        back = (ImageView) findViewById(R.id.bbzx_back);
+
+        liucheng.setOnClickListener(this);
+        jiage.setOnClickListener(this);
+        tiaokuan.setOnClickListener(this);
+        fukuan.setOnClickListener(this);
+        shibai.setOnClickListener(this);
 
         back.setOnClickListener(this);
-        title = (TextView) findViewById(R.id.title_text);
-        title.setText(bangzhu);
+
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
+            case R.id.bz_liucheng:
+                startActivity(new Intent(BZZX.this,GMLC.class));
+                break;
+            case R.id.bz_jiage:
+                startActivity(new Intent(BZZX.this,SCJGSM.class));
+                break;
+            case R.id.bz_tiaokuan:
+                startActivity(new Intent(BZZX.this,JYTK.class));
+                break;
+            case R.id.bz_fukuan:
+
+                startActivity(new Intent(BZZX.this,RHFK.class));
+                break;
+            case R.id.bz_shibai:
+
+                startActivity(new Intent(BZZX.this,ZFSB.class));
+                break;
             case R.id.title_back:
                 finish();
                 break;
+            default:
+                break;
         }
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.bz_tixian:
-//                Intent intent1 = new Intent(BZZX.this, TiXian.class);
-//                intent1.putExtra("tixian","新手帮助");
-//                startActivity(intent1);
-//                break;
-//            case R.id.bz_kuoda:
-//                Intent intent2 = new Intent(BZZX.this, KuoDa.class);
-//                intent2.putExtra("kuoda","新手帮助");
-//                startActivity(intent2);
-//                break;
-//            case R.id.bz_huiyuan:
-//                Intent intent3 = new Intent(BZZX.this, HuiYuan.class);
-//                intent3.putExtra("huiyuan","新手帮助");
-//                startActivity(intent3);
-//                break;
-//            case R.id.bz_dizhi:
-//                Intent intent4 = new Intent(BZZX.this, DiZhi.class);
-//                intent4.putExtra("dizhi","热点问题");
-//                startActivity(intent4);
-//                break;
-//            case R.id.bz_renzheng:
-//                Intent intent5 = new Intent(BZZX.this, RenZheng.class);
-//                intent5.putExtra("renzheng","热点问题");
-//                startActivity(intent5);
-//                break;
-//            case R.id.bz_bangding:
-//                Intent intent6 = new Intent(BZZX.this, BangDing.class);
-//                intent6.putExtra("bangding","热点问题");
-//                startActivity(intent6);
-//                break;
-//            case R.id.zhaq_back:
-//                finish();
-//                break;
-//        }
-//    }
 }
