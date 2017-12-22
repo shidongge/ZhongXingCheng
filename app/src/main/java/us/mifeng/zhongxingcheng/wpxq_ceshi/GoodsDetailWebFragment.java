@@ -45,6 +45,7 @@ public class GoodsDetailWebFragment extends Fragment {
         webSettings.setUseWideViewPort(true);
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         wv_detail.setWebViewClient(new GoodsDetailWebViewClient());
+
     }
 
     private class GoodsDetailWebViewClient extends WebViewClient {

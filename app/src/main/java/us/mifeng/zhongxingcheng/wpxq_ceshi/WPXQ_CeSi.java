@@ -31,7 +31,7 @@ public class WPXQ_CeSi extends FragmentActivity implements View.OnClickListener 
     private GoodsInfoFragment goodsInfoFragment;
     private GoodsDetailFragment goodsDetailFragment;
     private GoodsCommentFragment goodsCommentFragment;
-    private Button goumai,jrgwc;
+    private Button goumai, jrgwc;
     private ImageView back;
 
 
@@ -42,7 +42,8 @@ public class WPXQ_CeSi extends FragmentActivity implements View.OnClickListener 
         initView();
 
     }
-    public void initView(){
+
+    public void initView() {
         back = (ImageView) findViewById(R.id.wuping_back);
         goumai = (Button) findViewById(R.id.wuping_goumai);
         jrgwc = (Button) findViewById((R.id.wuping_jrgwc));
@@ -65,18 +66,19 @@ public class WPXQ_CeSi extends FragmentActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.wuping_goumai:
-                startActivity(new Intent(WPXQ_CeSi.this,TJDD.class));
+                startActivity(new Intent(WPXQ_CeSi.this, TJDD.class));
                 break;
             case R.id.wuping_jrgwc:
-                ToSi.show(WPXQ_CeSi.this,"加入购物车成功");
+                ToSi.show(WPXQ_CeSi.this, "加入购物车成功");
 
                 break;
             case R.id.wuping_back:
                 finish();
                 break;
-
+            default:
+                break;
         }
     }
 

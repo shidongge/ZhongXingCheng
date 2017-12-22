@@ -20,7 +20,8 @@
             android:text="新手帮助"
             />
     </LinearLayout>
-
+    <View
+        style="@style/xiantiao"/>
     <LinearLayout
         android:id="@+id/bz_tixian"
         android:layout_marginLeft="10dp"
@@ -31,7 +32,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="1.如何在享汇投中体现？"
+            android:text="1.购物流程"
             android:textSize="15sp"
             />
         <View
@@ -58,7 +59,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="2.如何扩大我的图对人数？"
+            android:text="2.商城价格说明"
             android:textSize="15sp"
             />
         <View
@@ -85,7 +86,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="3.如何成为享汇投会员"
+            android:text="3.商城交易交易条款特别提示"
             android:textSize="15sp"
             />
         <View
@@ -99,30 +100,11 @@
             android:src="@mipmap/go"
             />
     </LinearLayout>
+
     <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#eee"
+        style="@style/xiantiao"
         />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="热点问题"
-            />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#eee"
-        />
+
     <LinearLayout
         android:id="@+id/bz_dizhi"
         android:layout_width="match_parent"
@@ -134,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="1.如何修改我的收货地址？"
+            android:text="4.订单已经提交如何付款？"
             android:textSize="15sp" />
 
         <View
@@ -161,7 +143,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="2.如何完成实名认证？"
+            android:text="5.订单总是支付失败改怎么办？"
             android:textSize="15sp"
             />
         <View
@@ -178,29 +160,6 @@
     <View
         style="@style/xiantiao"
         />
-    <LinearLayout
-        android:id="@+id/bz_bangding"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="3.如何绑定银行卡？"
-            android:textSize="15sp"
-            />
-        <View
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="1dp"/>
-        <ImageView
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@mipmap/go"
-            />
-    </LinearLayout>
+
 
 </LinearLayout>

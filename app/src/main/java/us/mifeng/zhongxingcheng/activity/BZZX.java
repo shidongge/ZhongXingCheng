@@ -38,7 +38,6 @@ public class BZZX extends Activity implements View.OnClickListener {
         huiyuan = (LinearLayout) findViewById(R.id.bz_huiyuan);
         dizhi = (LinearLayout) findViewById(R.id.bz_dizhi);
         renzheng = (LinearLayout) findViewById(R.id.bz_renzheng);
-        bangding = (LinearLayout) findViewById(R.id.bz_bangding);
         back = (ImageView) findViewById(R.id.title_back);
 //        tixian.setOnClickListener(this);
 //        kuoda.setOnClickListener(this);
@@ -46,7 +45,6 @@ public class BZZX extends Activity implements View.OnClickListener {
 //        dizhi.setOnClickListener(this);
 //        renzheng.setOnClickListener(this);
 //        bangding.setOnClickListener(this);
-
 
         back.setOnClickListener(this);
         title = (TextView) findViewById(R.id.title_text);
