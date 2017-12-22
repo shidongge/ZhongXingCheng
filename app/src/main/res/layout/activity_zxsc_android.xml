@@ -77,17 +77,11 @@
         </LinearLayout>
 
     </LinearLayout>
-    <View
-        android:id="@+id/zxsc_home_xiantiao"
-        android:layout_above="@id/zxsc_home_xiada"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/mycolor"
-        />
+
     <LinearLayout
         android:fitsSystemWindows="true"
         android:clipToPadding="true"
-        android:layout_above="@id/zxsc_home_xiantiao"
+        android:layout_above="@id/zxsc_home_xiada"
         android:orientation="vertical"
         android:id="@+id/zxsc_home_ll"
         android:layout_width="match_parent"
